@@ -13,6 +13,7 @@
 		D517509719E9831C0076F6FA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D517509619E9831C0076F6FA /* Images.xcassets */; };
 		D517509A19E9831C0076F6FA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D517509819E9831C0076F6FA /* LaunchScreen.xib */; };
 		D51750A619E9831C0076F6FA /* ExpressiveTouchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51750A519E9831C0076F6FA /* ExpressiveTouchTests.swift */; };
+		D51750B019E9847E0076F6FA /* Wax9Reader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51750AF19E9847E0076F6FA /* Wax9Reader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		D517509F19E9831C0076F6FA /* ExpressiveTouchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpressiveTouchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D51750A419E9831C0076F6FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D51750A519E9831C0076F6FA /* ExpressiveTouchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressiveTouchTests.swift; sourceTree = "<group>"; };
+		D51750AF19E9847E0076F6FA /* Wax9Reader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wax9Reader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				D517509619E9831C0076F6FA /* Images.xcassets */,
 				D517509819E9831C0076F6FA /* LaunchScreen.xib */,
 				D517508D19E9831C0076F6FA /* Supporting Files */,
+				D51750AF19E9847E0076F6FA /* Wax9Reader.swift */,
 			);
 			path = ExpressiveTouch;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 				TargetAttributes = {
 					D517508919E9831C0076F6FA = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = X7BDHAQC53;
 					};
 					D517509E19E9831C0076F6FA = {
 						CreatedOnToolsVersion = 6.1;
@@ -214,6 +218,7 @@
 			files = (
 				D517509219E9831C0076F6FA /* ViewController.swift in Sources */,
 				D517509019E9831C0076F6FA /* AppDelegate.swift in Sources */,
+				D51750B019E9847E0076F6FA /* Wax9Reader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +344,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ExpressiveTouch/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -349,6 +355,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ExpressiveTouch/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
