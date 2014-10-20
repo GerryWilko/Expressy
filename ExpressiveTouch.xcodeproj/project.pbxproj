@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CBF898A919F40D4F0069B2C4 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898A819F40D4F0069B2C4 /* CoreBluetooth.framework */; };
+		CBF898AB19F40D5E0069B2C4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898AA19F40D5E0069B2C4 /* UIKit.framework */; };
+		CBF898AD19F40D670069B2C4 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898AC19F40D670069B2C4 /* CoreFoundation.framework */; };
+		CBF898AF19F410790069B2C4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898AE19F410790069B2C4 /* QuartzCore.framework */; };
+		CBF898B119F410820069B2C4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898B019F410820069B2C4 /* CoreData.framework */; };
 		D517509019E9831C0076F6FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D517508F19E9831C0076F6FA /* AppDelegate.swift */; };
 		D517509219E9831C0076F6FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D517509119E9831C0076F6FA /* ViewController.swift */; };
 		D517509519E9831C0076F6FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D517509319E9831C0076F6FA /* Main.storyboard */; };
@@ -27,6 +32,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CBF898A819F40D4F0069B2C4 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		CBF898AA19F40D5E0069B2C4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CBF898AC19F40D670069B2C4 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		CBF898AE19F410790069B2C4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		CBF898B019F410820069B2C4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D517508A19E9831C0076F6FA /* ExpressiveTouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpressiveTouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D517508E19E9831C0076F6FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D517508F19E9831C0076F6FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +55,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBF898B119F410820069B2C4 /* CoreData.framework in Frameworks */,
+				CBF898AF19F410790069B2C4 /* QuartzCore.framework in Frameworks */,
+				CBF898AD19F40D670069B2C4 /* CoreFoundation.framework in Frameworks */,
+				CBF898AB19F40D5E0069B2C4 /* UIKit.framework in Frameworks */,
+				CBF898A919F40D4F0069B2C4 /* CoreBluetooth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +76,11 @@
 		D517508119E9831C0076F6FA = {
 			isa = PBXGroup;
 			children = (
+				CBF898B019F410820069B2C4 /* CoreData.framework */,
+				CBF898AE19F410790069B2C4 /* QuartzCore.framework */,
+				CBF898AC19F40D670069B2C4 /* CoreFoundation.framework */,
+				CBF898AA19F40D5E0069B2C4 /* UIKit.framework */,
+				CBF898A819F40D4F0069B2C4 /* CoreBluetooth.framework */,
 				D517508C19E9831C0076F6FA /* ExpressiveTouch */,
 				D51750A219E9831C0076F6FA /* ExpressiveTouchTests */,
 				D517508B19E9831C0076F6FA /* Products */,
@@ -414,6 +434,7 @@
 				D51750AB19E9831C0076F6FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D51750AC19E9831C0076F6FA /* Build configuration list for PBXNativeTarget "ExpressiveTouchTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +443,7 @@
 				D51750AE19E9831C0076F6FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
