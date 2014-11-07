@@ -14,10 +14,12 @@ import Foundation
 
 class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralManagerDelegate,CBPeripheralDelegate {
     @IBOutlet weak var scanForWAX9: UIButton!
-
+    
     @IBOutlet weak var sensorData: UITextView!
     
     @IBAction func scanForWAX9(sender: AnyObject) {
+        cManager.scanForPeripheralsWithServices(nil, options: nil)
+        sensorData.text = "\nNow Scanning for PERIPHERALS!\n"
     }
     
     override func viewDidLoad() {
@@ -28,14 +30,14 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
         
         peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     // Bluetooth Connection
-
+    
     var cManager = CBCentralManager()
     var peripheralManager = CBPeripheralManager()
     
@@ -77,26 +79,14 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
         }
     }
     
-    @IBAction func scanForDevices(sender: AnyObject) {
-        cManager.scanForPeripheralsWithServices(nil, options: nil)
-        sensorData.text = "\nNow Scanning for PERIPHERALS!\n"
-    }
-    
     func centralManager(central: CBCentralManager!, didDiscoverPeripheral peripheral: CBPeripheral!, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber!) {
-            
-            central.connectPeripheral(peripheral, options: nil)
-            
-            // We have to set the discoveredPeripheral var we declared earlier to reference the peripheral, otherwise we won't be able to interact with it in didConnectPeripheral. And you will get state = connecting> is being dealloc'ed while pending connection error.
+        
+        central.connectPeripheral(peripheral, options: nil)
+        
+        if (peripheral.name == "WAX9-ABAB") {
             
             self.discoveredPeripheral = peripheral
             
-            var curDevice = UIDevice.currentDevice()
-            
-            //iPad or iPhone
-            println("VENDOR ID: \(curDevice.identifierForVendor) BATTERY LEVEL: \(curDevice.batteryLevel)\n\n")
-            println("DEVICE DESCRIPTION: \(curDevice.description) MODEL: \(curDevice.model)\n\n")
-            
-            // Hardware beacon
             println("PERIPHERAL NAME: \(peripheral.name)\n AdvertisementData: \(advertisementData)\n RSSI: \(RSSI)\n")
             
             println("UUID DESCRIPTION: \(peripheral.identifier.UUIDString)\n")
@@ -105,9 +95,11 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
             
             sensorData.text = sensorData.text + "FOUND PERIPHERALS: \(peripheral) AdvertisementData: \(advertisementData) RSSI: \(RSSI)\n"
             
-            // stop scanning, saves the battery
             cManager.stopScan()
-            
+        }
+        else {
+            scanForWAX9(self)
+        }
     }
     
     func centralManager(central: CBCentralManager!, didConnectPeripheral peripheral: CBPeripheral!) {
@@ -171,18 +163,59 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
     
     func peripheral(peripheral: CBPeripheral!, didDiscoverCharacteristicsForService service: CBService!, error: NSError!)
     {
-        sensorData.text = sensorData.text + "\n\nCHARACTERISTICS\n\n"
-        var myCharacteristic = CBCharacteristic()
+        var serviceUDID = CBUUID(string: "00000000-0008-A8BA-E311-F48C90364D99")
+        var writeUDID = CBUUID(string: "00000001-0008-A8BA-E311-F48C90364D99")
+        var notifyUDID = CBUUID(string: "00000002-0008-A8BA-E311-F48C90364D99")
         
-        for myCharacteristic in service.characteristics {
-            sensorData.text = sensorData.text + "\nCharacteristic: \(myCharacteristic)\n"
+        if (service.UUID == serviceUDID) {
+            var streamMessage = NSData(bytes: [1] as [Byte], length: 1)
             
-            println("didDiscoverCharacteristicsForService - Service: \(service) Characteristic: \(myCharacteristic)\n\n")
+            peripheral.setNotifyValue(true, forCharacteristic: service.characteristics[2] as CBCharacteristic)
             
-            
-            peripheral.readValueForCharacteristic(myCharacteristic as CBCharacteristic)
-            
+            peripheral.writeValue(streamMessage, forCharacteristic: service.characteristics[1] as CBCharacteristic, type: CBCharacteristicWriteType.WithoutResponse)
         }
+    }
+    
+    func peripheral(peripheral: CBPeripheral!, didUpdateNotificationStateForCharacteristic characteristic: CBCharacteristic!, error: NSError!) {
+        
+        println("\nCharacteristic \(characteristic.description) isNotifying: \(characteristic.isNotifying)\n")
+        
+        //sensorData.text = sensorData.text + "\nCharacteristic \(characteristic.description) isNotifying: \(characteristic.isNotifying)\n"
+        
+        var ax:Int16 = 0, ay:Int16 = 0, az:Int16 = 0, gx:Int16 = 0, gy:Int16 = 0, gz:Int16 = 0, mx:Int16 = 0, my:Int16 = 0, mz:Int16 = 0
+
+        if ((characteristic.value) != nil) {
+            
+            var buffer = [Byte](count: characteristic.value.length, repeatedValue: 0)
+            characteristic.value.getBytes(&buffer, length: characteristic.value.length)
+            
+            if (characteristic.value.length >= 2+6) {
+                ax = ((Int16(buffer[ 3]) * 256) + Int16(buffer[ 2]))
+                ay = ((Int16(buffer[ 5]) * 256) + Int16(buffer[ 4]))
+                az = ((Int16(buffer[ 7]) * 256) + Int16(buffer[ 6]))
+            }
+            
+            if (characteristic.value.length >= 2+12) {
+                gx = ((Int16(buffer[ 9]) * 256) + Int16(buffer[ 8]))
+                gy = ((Int16(buffer[11]) * 256) + Int16(buffer[10]))
+                gz = ((Int16(buffer[13]) * 256) + Int16(buffer[12]))
+            }
+            
+            if (characteristic.value.length >= 2+18) {
+                mx = ((Int16(buffer[15]) * 256) + Int16(buffer[14]))
+                my = ((Int16(buffer[17]) * 256) + Int16(buffer[16]))
+                mz = ((Int16(buffer[19]) * 256) + Int16(buffer[18]))
+            }
+        }
+
+        println("\nax=\(ax) ay=\(ay) az=\(az) gx=\(gx) gy=\(gy) gz=\(gz) mx=\(mx) my=\(my) mz=\(mz)\n")
+        sensorData.text = sensorData.text + "\nax=\(ax) ay=\(ay) az=\(az) gx=\(gx) gy=\(gy) gz=\(gz) mx=\(mx) my=\(my) mz=\(mz)\n"
+        
+        //if characteristic.isNotifying == true {
+            //peripheral.readValueForCharacteristic(characteristic as CBCharacteristic)
+        //}
+        
+        peripheral.setNotifyValue(true, forCharacteristic: characteristic as CBCharacteristic)
     }
 }
 
