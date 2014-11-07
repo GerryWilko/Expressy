@@ -182,29 +182,33 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
         
         //sensorData.text = sensorData.text + "\nCharacteristic \(characteristic.description) isNotifying: \(characteristic.isNotifying)\n"
         
-        var ax:Int16 = 0, ay:Int16 = 0, az:Int16 = 0, gx:Int16 = 0, gy:Int16 = 0, gz:Int16 = 0, mx:Int16 = 0, my:Int16 = 0, mz:Int16 = 0
+        var ax = 0, ay = 0, az = 0, gx = 0, gy = 0, gz = 0, mx = 0, my = 0, mz = 0
 
         if ((characteristic.value) != nil) {
+            var mylength = characteristic.value.length;
+            //var buffer = [Byte](count: mylength, repeatedValue: 0)
+            var buffer = [Byte](count: mylength, repeatedValue: 0)
             
-            var buffer = [Byte](count: characteristic.value.length, repeatedValue: 0)
-            characteristic.value.getBytes(&buffer, length: characteristic.value.length)
+            println("Length - \(mylength)");
             
-            if (characteristic.value.length >= 2+6) {
-                ax = ((Int16(buffer[ 3]) * 256) + Int16(buffer[ 2]))
-                ay = ((Int16(buffer[ 5]) * 256) + Int16(buffer[ 4]))
-                az = ((Int16(buffer[ 7]) * 256) + Int16(buffer[ 6]))
+            characteristic.value.getBytes(&buffer, length: mylength)
+            
+            if (mylength >= 2+6) {
+                ax = ((Int(buffer[ 3]) * 256) + Int(buffer[ 2]))
+                ay = ((Int(buffer[ 5]) * 256) + Int(buffer[ 4]))
+                az = ((Int(buffer[ 7]) * 256) + Int(buffer[ 6]))
             }
             
-            if (characteristic.value.length >= 2+12) {
-                gx = ((Int16(buffer[ 9]) * 256) + Int16(buffer[ 8]))
-                gy = ((Int16(buffer[11]) * 256) + Int16(buffer[10]))
-                gz = ((Int16(buffer[13]) * 256) + Int16(buffer[12]))
+            if (mylength >= 2+12) {
+                gx = ((Int(buffer[ 9]) * 256) + Int(buffer[ 8]))
+                gy = ((Int(buffer[11]) * 256) + Int(buffer[10]))
+                gz = ((Int(buffer[13]) * 256) + Int(buffer[12]))
             }
-            
+
             if (characteristic.value.length >= 2+18) {
-                mx = ((Int16(buffer[15]) * 256) + Int16(buffer[14]))
-                my = ((Int16(buffer[17]) * 256) + Int16(buffer[16]))
-                mz = ((Int16(buffer[19]) * 256) + Int16(buffer[18]))
+                mx = ((Int(buffer[15]) * 256) + Int(buffer[14]))
+                my = ((Int(buffer[17]) * 256) + Int(buffer[16]))
+                mz = ((Int(buffer[19]) * 256) + Int(buffer[18]))
             }
         }
 
