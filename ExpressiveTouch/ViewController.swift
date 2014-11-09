@@ -151,7 +151,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
         
         var serviceUDID = CBUUID(string: "00000000-0008-A8BA-E311-F48C90364D99")
         
-        var serviceList = peripheral.services.filter{$0.UUIDString == serviceUDID }
+        var serviceList = peripheral.services.filter{($0 as CBService).UUID == serviceUDID }
         
         peripheral.discoverCharacteristics(nil, forService: serviceList[0] as CBService)
     }
@@ -199,26 +199,28 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
             }
         }
         
-        var axPerc = (Float(ax) / 100000.0);
-        accelX.setProgress(axPerc, animated: true)
-        var ayPerc = (Float(ay) / 100000.0);
-        accelY.setProgress(ayPerc, animated: true)
-        var azPerc = (Float(az) / 100000.0);
-        accelZ.setProgress(azPerc, animated: true)
+        var maxValue:Float = 70000;
         
-        var gxPerc = (Float(gx) / 100000.0);
-        gyroX.setProgress(gxPerc, animated: true)
-        var gyPerc = (Float(gy) / 100000.0);
-        gyroY.setProgress(gyPerc, animated: true)
-        var gzPerc = (Float(gz) / 100000.0);
-        gyroZ.setProgress(gzPerc, animated: true)
+        var axPerc = (Float(ax) / maxValue);
+        accelX.setProgress(axPerc, animated: false)
+        var ayPerc = (Float(ay) / maxValue);
+        accelY.setProgress(ayPerc, animated: false)
+        var azPerc = (Float(az) / maxValue);
+        accelZ.setProgress(azPerc, animated: false)
         
-        var mxPerc = (Float(mx) / 100000.0);
-        accelX.setProgress(mxPerc, animated: true)
-        var myPerc = (Float(my) / 100000.0);
-        accelY.setProgress(myPerc, animated: true)
-        var mzPerc = (Float(mz) / 100000.0);
-        accelZ.setProgress(mzPerc, animated: true)
+        var gxPerc = (Float(gx) / maxValue);
+        gyroX.setProgress(gxPerc, animated: false)
+        var gyPerc = (Float(gy) / maxValue);
+        gyroY.setProgress(gyPerc, animated: false)
+        var gzPerc = (Float(gz) / maxValue);
+        gyroZ.setProgress(gzPerc, animated: false)
+        
+        var mxPerc = (Float(mx) / maxValue);
+        accelX.setProgress(mxPerc, animated: false)
+        var myPerc = (Float(my) / maxValue);
+        accelY.setProgress(myPerc, animated: false)
+        var mzPerc = (Float(mz) / maxValue);
+        accelZ.setProgress(mzPerc, animated: false)
         
         peripheral.setNotifyValue(true, forCharacteristic: characteristic as CBCharacteristic)
     }
