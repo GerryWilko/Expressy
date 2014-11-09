@@ -15,11 +15,21 @@ import Foundation
 class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralManagerDelegate,CBPeripheralDelegate {
     @IBOutlet weak var scanForWAX9: UIButton!
     
-    @IBOutlet weak var sensorData: UITextView!
+    @IBOutlet weak var accelX: UIProgressView!
+    @IBOutlet weak var accelY: UIProgressView!
+    @IBOutlet weak var accelZ: UIProgressView!
+    
+    @IBOutlet weak var gyroX: UIProgressView!
+    @IBOutlet weak var gyroY: UIProgressView!
+    @IBOutlet weak var gyroZ: UIProgressView!
+    
+    @IBOutlet weak var magX: UIProgressView!
+    @IBOutlet weak var magY: UIProgressView!
+    @IBOutlet weak var magZ: UIProgressView!
     
     @IBAction func scanForWAX9(sender: AnyObject) {
         cManager.scanForPeripheralsWithServices(nil, options: nil)
-        sensorData.text = "\nNow Scanning for PERIPHERALS!\n"
+        println("\nNow Scanning for PERIPHERALS!\n")
     }
     
     override func viewDidLoad() {
@@ -48,32 +58,23 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
             
         case .PoweredOff:
             println("CoreBluetooth BLE hardware is powered off")
-            self.sensorData.text = "CoreBluetooth BLE hardware is powered off\n"
             break
         case .PoweredOn:
             println("CoreBluetooth BLE hardware is powered on and ready")
-            self.sensorData.text = "CoreBluetooth BLE hardware is powered on and ready\n"
-            // We can now call scanForBeacons
             self.scanForWAX9(self)
             break
         case .Resetting:
             println("CoreBluetooth BLE hardware is resetting")
-            self.sensorData.text = "CoreBluetooth BLE hardware is resetting\n"
             break
         case .Unauthorized:
             println("CoreBluetooth BLE state is unauthorized")
-            self.sensorData.text = "CoreBluetooth BLE state is unauthorized\n"
-            
             break
         case .Unknown:
             println("CoreBluetooth BLE state is unknown")
-            self.sensorData.text = "CoreBluetooth BLE state is unknown\n"
             break
         case .Unsupported:
             println("CoreBluetooth BLE hardware is unsupported on this platform")
-            self.sensorData.text = "CoreBluetooth BLE hardware is unsupported on this platform\n"
             break
-            
         default:
             break
         }
@@ -93,8 +94,6 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
             
             println("IDENTIFIER: \(peripheral.identifier)\n")
             
-            sensorData.text = sensorData.text + "FOUND PERIPHERALS: \(peripheral) AdvertisementData: \(advertisementData) RSSI: \(RSSI)\n"
-            
             cManager.stopScan()
         }
         else {
@@ -111,7 +110,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
     }
     
     func centralManager(central: CBCentralManager!, didFailToConnectPeripheral peripheral: CBPeripheral!, error: NSError!) {
-        sensorData.text = "FAILED TO CONNECT \(error)"
+        println("FAILED TO CONNECT \(error)")
     }
     
     func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager!) {
@@ -119,29 +118,28 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
         switch peripheralManager.state {
             
         case .PoweredOff:
-            sensorData.text = "Peripheral - CoreBluetooth BLE hardware is powered off"
+            println("Peripheral - CoreBluetooth BLE hardware is powered off")
             break
             
         case .PoweredOn:
-            sensorData.text = "Peripheral - CoreBluetooth BLE hardware is powered on and ready"
+            println("Peripheral - CoreBluetooth BLE hardware is powered on and ready")
             break
             
         case .Resetting:
-            sensorData.text = "Peripheral - CoreBluetooth BLE hardware is resetting"
+            println("Peripheral - CoreBluetooth BLE hardware is resetting")
             break
             
         case .Unauthorized:
-            sensorData.text = "Peripheral - CoreBluetooth BLE state is unauthorized"
+            println("Peripheral - CoreBluetooth BLE state is unauthorized")
             break
             
         case .Unknown:
-            sensorData.text = "Peripheral - CoreBluetooth BLE state is unknown"
+            println("Peripheral - CoreBluetooth BLE state is unknown")
             break
             
         case .Unsupported:
-            sensorData.text = "Peripheral - CoreBluetooth BLE hardware is unsupported on this platform"
+            println("Peripheral - CoreBluetooth BLE hardware is unsupported on this platform")
             break
-            
         default:
             break
         }
@@ -151,45 +149,34 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
     func peripheral(peripheral: CBPeripheral!, didDiscoverServices error: NSError!) {
         println("ERROR: \(error)")
         
-        var svc:CBService
+        var serviceUDID = CBUUID(string: "00000000-0008-A8BA-E311-F48C90364D99")
         
-        for svc in peripheral.services {
-            println("Service \(svc)\n")
-            sensorData.text = sensorData.text + "\(svc)\n"
-            println("Discovering Characteristics for Service : \(svc)")
-            peripheral.discoverCharacteristics(nil, forService: svc as CBService)
-        }
+        var serviceList = peripheral.services.filter{$0.UUIDString == serviceUDID }
+        
+        peripheral.discoverCharacteristics(nil, forService: serviceList[0] as CBService)
     }
     
     func peripheral(peripheral: CBPeripheral!, didDiscoverCharacteristicsForService service: CBService!, error: NSError!)
     {
-        var serviceUDID = CBUUID(string: "00000000-0008-A8BA-E311-F48C90364D99")
         var writeUDID = CBUUID(string: "00000001-0008-A8BA-E311-F48C90364D99")
         var notifyUDID = CBUUID(string: "00000002-0008-A8BA-E311-F48C90364D99")
         
-        if (service.UUID == serviceUDID) {
-            var streamMessage = NSData(bytes: [1] as [Byte], length: 1)
+        var streamMessage = NSData(bytes: [1] as [Byte], length: 1)
             
-            peripheral.setNotifyValue(true, forCharacteristic: service.characteristics[2] as CBCharacteristic)
+        peripheral.setNotifyValue(true, forCharacteristic: service.characteristics[2] as CBCharacteristic)
             
-            peripheral.writeValue(streamMessage, forCharacteristic: service.characteristics[1] as CBCharacteristic, type: CBCharacteristicWriteType.WithoutResponse)
-        }
+        peripheral.writeValue(streamMessage, forCharacteristic: service.characteristics[1] as CBCharacteristic, type: CBCharacteristicWriteType.WithoutResponse)
     }
     
     func peripheral(peripheral: CBPeripheral!, didUpdateNotificationStateForCharacteristic characteristic: CBCharacteristic!, error: NSError!) {
         
         println("\nCharacteristic \(characteristic.description) isNotifying: \(characteristic.isNotifying)\n")
         
-        //sensorData.text = sensorData.text + "\nCharacteristic \(characteristic.description) isNotifying: \(characteristic.isNotifying)\n"
-        
         var ax = 0, ay = 0, az = 0, gx = 0, gy = 0, gz = 0, mx = 0, my = 0, mz = 0
 
         if ((characteristic.value) != nil) {
             var mylength = characteristic.value.length;
-            //var buffer = [Byte](count: mylength, repeatedValue: 0)
             var buffer = [Byte](count: mylength, repeatedValue: 0)
-            
-            println("Length - \(mylength)");
             
             characteristic.value.getBytes(&buffer, length: mylength)
             
@@ -211,13 +198,27 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
                 mz = ((Int(buffer[19]) * 256) + Int(buffer[18]))
             }
         }
-
-        println("\nax=\(ax) ay=\(ay) az=\(az) gx=\(gx) gy=\(gy) gz=\(gz) mx=\(mx) my=\(my) mz=\(mz)\n")
-        sensorData.text = sensorData.text + "\nax=\(ax) ay=\(ay) az=\(az) gx=\(gx) gy=\(gy) gz=\(gz) mx=\(mx) my=\(my) mz=\(mz)\n"
         
-        //if characteristic.isNotifying == true {
-            //peripheral.readValueForCharacteristic(characteristic as CBCharacteristic)
-        //}
+        var axPerc = (Float(ax) / 100000.0);
+        accelX.setProgress(axPerc, animated: true)
+        var ayPerc = (Float(ay) / 100000.0);
+        accelY.setProgress(ayPerc, animated: true)
+        var azPerc = (Float(az) / 100000.0);
+        accelZ.setProgress(azPerc, animated: true)
+        
+        var gxPerc = (Float(gx) / 100000.0);
+        gyroX.setProgress(gxPerc, animated: true)
+        var gyPerc = (Float(gy) / 100000.0);
+        gyroY.setProgress(gyPerc, animated: true)
+        var gzPerc = (Float(gz) / 100000.0);
+        gyroZ.setProgress(gzPerc, animated: true)
+        
+        var mxPerc = (Float(mx) / 100000.0);
+        accelX.setProgress(mxPerc, animated: true)
+        var myPerc = (Float(my) / 100000.0);
+        accelY.setProgress(myPerc, animated: true)
+        var mzPerc = (Float(mz) / 100000.0);
+        accelZ.setProgress(mzPerc, animated: true)
         
         peripheral.setNotifyValue(true, forCharacteristic: characteristic as CBCharacteristic)
     }

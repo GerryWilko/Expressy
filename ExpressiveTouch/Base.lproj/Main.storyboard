@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xRo-bi-xiv">
-                                <rect key="frame" x="248" y="285" width="104" height="30"/>
+                                <rect key="frame" x="245" y="20" width="111" height="40"/>
                                 <state key="normal" title="Scan for WAX9">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -25,22 +25,70 @@
                                     <action selector="scanForWAX9:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PPh-fR-btg"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4f1-Hj-vpC">
-                                <rect key="frame" x="180" y="341" width="420" height="259"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="1xI-BY-MXq">
+                                <rect key="frame" x="225" y="171" width="150" height="2"/>
+                            </progressView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lZu-Mn-BXm">
+                                <rect key="frame" x="225" y="184" width="150" height="2"/>
+                            </progressView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="rEH-FL-a3v">
+                                <rect key="frame" x="225" y="197" width="150" height="2"/>
+                            </progressView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="HHF-Fu-w2t">
+                                <rect key="frame" x="225" y="286" width="150" height="2"/>
+                            </progressView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lej-LQ-yTM">
+                                <rect key="frame" x="225" y="299" width="150" height="2"/>
+                            </progressView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ZMp-wd-qnB">
+                                <rect key="frame" x="225" y="312" width="150" height="2"/>
+                            </progressView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="46Q-Fk-rW6">
+                                <rect key="frame" x="225" y="401" width="150" height="2"/>
+                            </progressView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8Oh-DW-vra">
+                                <rect key="frame" x="225" y="414" width="150" height="2"/>
+                            </progressView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="M7l-hT-38N">
+                                <rect key="frame" x="225" y="427" width="150" height="2"/>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Accelerometer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUl-cR-IdR">
+                                <rect key="frame" x="244" y="142" width="112" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Gyroscope" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x2V-BJ-0eC">
+                                <rect key="frame" x="258" y="257" width="84" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Magnetometer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TRT-ci-Cak">
+                                <rect key="frame" x="244" y="372" width="112" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="accelX" destination="1xI-BY-MXq" id="1FS-p9-YF9"/>
+                        <outlet property="accelY" destination="lZu-Mn-BXm" id="gkB-hn-zgO"/>
+                        <outlet property="accelZ" destination="rEH-FL-a3v" id="MKN-f5-ZFV"/>
+                        <outlet property="gyroX" destination="HHF-Fu-w2t" id="ki3-b8-im0"/>
+                        <outlet property="gyroY" destination="lej-LQ-yTM" id="0bu-oK-QOH"/>
+                        <outlet property="gyroZ" destination="ZMp-wd-qnB" id="J9g-67-0yJ"/>
+                        <outlet property="magX" destination="46Q-Fk-rW6" id="MEc-1W-8BQ"/>
+                        <outlet property="magY" destination="8Oh-DW-vra" id="aHs-12-DVu"/>
+                        <outlet property="magZ" destination="M7l-hT-38N" id="CgD-m5-fc3"/>
                         <outlet property="scanForWAX9" destination="xRo-bi-xiv" id="14i-af-IVe"/>
-                        <outlet property="sensorData" destination="4f1-Hj-vpC" id="0rW-dS-pc2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="436" y="289"/>
         </scene>
     </scenes>
 </document>
