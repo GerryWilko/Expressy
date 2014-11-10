@@ -82,9 +82,11 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
     
     func centralManager(central: CBCentralManager!, didDiscoverPeripheral peripheral: CBPeripheral!, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber!) {
         
-        central.connectPeripheral(peripheral, options: nil)
+        println(peripheral.name);
         
         if (peripheral.name == "WAX9-ABAB") {
+            
+            central.connectPeripheral(peripheral, options: nil)
             
             self.discoveredPeripheral = peripheral
             
@@ -95,9 +97,6 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
             println("IDENTIFIER: \(peripheral.identifier)\n")
             
             cManager.stopScan()
-        }
-        else {
-            scanForWAX9(self)
         }
     }
     
@@ -147,13 +146,17 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
     }
     
     func peripheral(peripheral: CBPeripheral!, didDiscoverServices error: NSError!) {
-        println("ERROR: \(error)")
+        if (error == nil) {
+            println("ERROR: \(error)")
+        }
         
         var serviceUDID = CBUUID(string: "00000000-0008-A8BA-E311-F48C90364D99")
         
-        var serviceList = peripheral.services.filter{$0.UUIDString == serviceUDID }
+        var serviceList = peripheral.services.filter{($0 as CBService).UUID == serviceUDID }
         
-        peripheral.discoverCharacteristics(nil, forService: serviceList[0] as CBService)
+        if (serviceList.count > 0) {
+            peripheral.discoverCharacteristics(nil, forService: serviceList[0] as CBService)
+        }
     }
     
     func peripheral(peripheral: CBPeripheral!, didDiscoverCharacteristicsForService service: CBService!, error: NSError!)
@@ -172,31 +175,32 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
         
         println("\nCharacteristic \(characteristic.description) isNotifying: \(characteristic.isNotifying)\n")
         
-        var ax = 0, ay = 0, az = 0, gx = 0, gy = 0, gz = 0, mx = 0, my = 0, mz = 0
+        var ax:CShort = 0;
+        var ay:CShort = 0;
+        var az:CShort = 0;
+        var gx:CShort = 0;
+        var gy:CShort = 0;
+        var gz:CShort = 0;
+        var mx:CShort = 0;
+        var my:CShort = 0;
+        var mz:CShort = 0;
 
         if ((characteristic.value) != nil) {
             var mylength = characteristic.value.length;
+            
+            assert( mylength == 20 );
+            
             var buffer = [Byte](count: mylength, repeatedValue: 0)
             
             characteristic.value.getBytes(&buffer, length: mylength)
             
-            if (mylength >= 2+6) {
-                ax = ((Int(buffer[ 3]) * 256) + Int(buffer[ 2]))
-                ay = ((Int(buffer[ 5]) * 256) + Int(buffer[ 4]))
-                az = ((Int(buffer[ 7]) * 256) + Int(buffer[ 6]))
-            }
+            //ax = Int((Int16(buffer[ 3]) << 8) + Int16(buffer[ 2]));
+            //ay = Int((Int16(buffer[ 5]) << 8) + Int16(buffer[ 4]));
+            //az = Int((Int16(buffer[ 7]) << 8) + Int16(buffer[ 6]));
             
-            if (mylength >= 2+12) {
-                gx = ((Int(buffer[ 9]) * 256) + Int(buffer[ 8]))
-                gy = ((Int(buffer[11]) * 256) + Int(buffer[10]))
-                gz = ((Int(buffer[13]) * 256) + Int(buffer[12]))
-            }
-
-            if (characteristic.value.length >= 2+18) {
-                mx = ((Int(buffer[15]) * 256) + Int(buffer[14]))
-                my = ((Int(buffer[17]) * 256) + Int(buffer[16]))
-                mz = ((Int(buffer[19]) * 256) + Int(buffer[18]))
-            }
+            ax = ((CShort(buffer[ 3]) << 8) + CShort(buffer[ 2]));
+            ay = ((CShort(buffer[ 5]) << 8) + CShort(buffer[ 4]));
+            az = ((CShort(buffer[ 7]) << 8) + CShort(buffer[ 6]));
         }
         
         var axPerc = (Float(ax) / 100000.0);
