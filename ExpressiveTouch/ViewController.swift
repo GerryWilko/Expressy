@@ -84,7 +84,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
         
         println(peripheral.name);
         
-        if (peripheral.name == "WAX9-ABAB") {
+        if (peripheral.name != nil && peripheral.name == "WAX9-ABAB") {
             
             central.connectPeripheral(peripheral, options: nil)
             
@@ -186,45 +186,53 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
         var mz:CShort = 0;
 
         if ((characteristic.value) != nil) {
-            var mylength = characteristic.value.length;
+            var dataLength = characteristic.value.length;
             
-            assert( mylength == 20 );
+            assert( dataLength == 20 );
             
-            var buffer = [Byte](count: mylength, repeatedValue: 0)
+            var buffer = [Byte](count: dataLength, repeatedValue: 0)
             
-            characteristic.value.getBytes(&buffer, length: mylength)
+            characteristic.value.getBytes(&buffer, length: dataLength)
             
-            //ax = Int((Int16(buffer[ 3]) << 8) + Int16(buffer[ 2]));
-            //ay = Int((Int16(buffer[ 5]) << 8) + Int16(buffer[ 4]));
-            //az = Int((Int16(buffer[ 7]) << 8) + Int16(buffer[ 6]));
+            ax = CShort(buffer[ 3]) << 8 + CShort(buffer[ 2])
+            ay = CShort(buffer[ 5]) << 8 + CShort(buffer[ 4])
+            az = CShort(buffer[ 7]) << 8 + CShort(buffer[ 6])
             
-            ax = ((CShort(buffer[ 3]) << 8) + CShort(buffer[ 2]));
-            ay = ((CShort(buffer[ 5]) << 8) + CShort(buffer[ 4]));
-            az = ((CShort(buffer[ 7]) << 8) + CShort(buffer[ 6]));
+            gx = CShort(buffer[ 9]) << 8 + CShort(buffer[ 8])
+            gy = CShort(buffer[11]) << 8 + CShort(buffer[10])
+            gz = CShort(buffer[13]) << 8 + CShort(buffer[12])
+            
+            mx = CShort(buffer[15]) << 8 + CShort(buffer[14])
+            my = CShort(buffer[17]) << 8 + CShort(buffer[16])
+            mz = CShort(buffer[19]) << 8 + CShort(buffer[18])
         }
         
-        var maxValue:Float = 70000;
+        println("ax: \(ax), ay: \(ay),az: \(az), gx: \(gx), gy: \(gy), gz: \(gz), mx: \(mx), my: \(my), mz: \(mz)")
         
-        var axPerc = (Float(ax) / maxValue);
-        accelX.setProgress(axPerc, animated: false)
-        var ayPerc = (Float(ay) / maxValue);
-        accelY.setProgress(ayPerc, animated: false)
-        var azPerc = (Float(az) / maxValue);
-        accelZ.setProgress(azPerc, animated: false)
+//        var maxValue:Float = 70000;
+//        
+//        var axPerc = (Float(ax) / maxValue);
+//        accelX.setProgress(axPerc, animated: false)
+//        var ayPerc = (Float(ay) / maxValue);
+//        accelY.setProgress(ayPerc, animated: false)
+//        var azPerc = (Float(az) / maxValue);
+//        accelZ.setProgress(azPerc, animated: false)
+//        
+//        var gxPerc = (Float(gx) / maxValue);
+//        gyroX.setProgress(gxPerc, animated: false)
+//        var gyPerc = (Float(gy) / maxValue);
+//        gyroY.setProgress(gyPerc, animated: false)
+//        var gzPerc = (Float(gz) / maxValue);
+//        gyroZ.setProgress(gzPerc, animated: false)
+//        
+//        var mxPerc = (Float(mx) / maxValue);
+//        accelX.setProgress(mxPerc, animated: false)
+//        var myPerc = (Float(my) / maxValue);
+//        accelY.setProgress(myPerc, animated: false)
+//        var mzPerc = (Float(mz) / maxValue);
+//        accelZ.setProgress(mzPerc, animated: false)
         
-        var gxPerc = (Float(gx) / maxValue);
-        gyroX.setProgress(gxPerc, animated: false)
-        var gyPerc = (Float(gy) / maxValue);
-        gyroY.setProgress(gyPerc, animated: false)
-        var gzPerc = (Float(gz) / maxValue);
-        gyroZ.setProgress(gzPerc, animated: false)
-        
-        var mxPerc = (Float(mx) / maxValue);
-        accelX.setProgress(mxPerc, animated: false)
-        var myPerc = (Float(my) / maxValue);
-        accelY.setProgress(myPerc, animated: false)
-        var mzPerc = (Float(mz) / maxValue);
-        accelZ.setProgress(mzPerc, animated: false)
+        //peripheral.readValueForCharacteristic(characteristic);
         
         peripheral.setNotifyValue(true, forCharacteristic: characteristic as CBCharacteristic)
     }
