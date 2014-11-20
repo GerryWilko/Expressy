@@ -12,46 +12,32 @@ import QuartzCore
 import CoreData
 import Foundation
 
-class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralManagerDelegate,CBPeripheralDelegate, CPTPlotDataSource {
+class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralManagerDelegate,CBPeripheralDelegate {
     @IBOutlet weak var graphView: CPTGraphHostingView!
     
-    func scanForWAX9(sender: AnyObject) {
-        cManager.scanForPeripheralsWithServices(nil, options: nil)
-        println("\nNow Scanning for PERIPHERALS!\n")
+    var graphBuilder:GraphBuilder
+    var accCache:WaxCache
+    var gyroCache:WaxCache
+    var magCache:WaxCache
+    
+    required init(coder aDecoder: NSCoder)
+    {
+        self.accCache = WaxCache(limit: 1000)
+        self.gyroCache = WaxCache(limit: 1000)
+        self.magCache = WaxCache(limit: 1000)
+        self.graphBuilder = GraphBuilder(accCache: accCache, gyroCache: gyroCache, magCache: magCache)
+        
+        super.init(coder: aDecoder)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.initPlot();
+        
+        self.graphBuilder.initLoad(self.graphView)
         
         cManager = CBCentralManager(delegate: self, queue:nil)
         
         peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
-        
-        /*
-        var graph = CPTXYGraph(frame: CGRectZero)
-        
-        graph.title = "WAX9 Data"
-        
-        graph.paddingTop = 0
-        graph.paddingBottom = 0
-        graph.paddingLeft = 0
-        graph.paddingRight = 0
-        
-        var axes = graph.axisSet as CPTXYAxisSet
-        var lineStyle = CPTMutableLineStyle()
-        lineStyle.lineWidth = 0
-        axes.xAxis.axisLineStyle = lineStyle
-        axes.yAxis.axisLineStyle = lineStyle
-        
-        var plot = CPTPlot()
-        plot.dataSource = self
-        
-        
-        
-        graph.addPlot(plot)
-        self.graphView.hostedGraph = graph
-        */
     }
     
     override func didReceiveMemoryWarning() {
@@ -59,59 +45,9 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
         // Dispose of any resources that can be recreated.
     }
     
-    func initPlot() {
-        self.configureHost()
-        self.configureGraph()
-        self.configurePlots()
-        self.configureAxes()
-    }
-    
-    func configureHost() {
-        self.graphView.allowPinchScaling = true
-    }
-    
-    func configureGraph() {
-        var graph = CPTXYGraph(frame: CGRectZero)
-        self.graphView.hostedGraph = graph
-    
-        graph.title = "WAX9 Data"
-        
-        var titleStyle = CPTMutableTextStyle()
-        titleStyle.color = CPTColor.whiteColor()
-        titleStyle.fontName = "Helvetica-Bold"
-        titleStyle.fontSize = 16.0
-        
-        graph.titleTextStyle = titleStyle
-        graph.titlePlotAreaFrameAnchor = CPTRectAnchorTop
-        graph.titleDisplacement = CGPointMake(0.0, 10.0)
-        
-        graph.plotAreaFrame.paddingLeft = 30.0
-        graph.plotAreaFrame.paddingBottom = 30.0
-        
-        graph.defaultPlotSpace.allowsUserInteraction = true
-    }
-    
-    func configurePlots() {
-        var graph = self.graphView.hostedGraph
-        var plotSpace = graph.defaultPlotSpace
-        
-        var accPlot = CPTScatterPlot()
-        var gyroPlot = CPTScatterPlot()
-        var magPlot = CPTScatterPlot()
-        
-        accPlot.dataSource = self
-        gyroPlot.dataSource = self
-        magPlot.dataSource = self
-        
-        graph.addPlot(accPlot)
-        graph.addPlot(gyroPlot)
-        graph.addPlot(magPlot)
-        
-        plotSpace.scaleToFitPlots([accPlot, gyroPlot, magPlot])
-        
-    }
-    
-    func configureAxes() {
+    func scanForWAX9(sender: AnyObject) {
+        cManager.scanForPeripheralsWithServices(nil, options: nil)
+        println("\nNow Scanning for PERIPHERALS!\n")
     }
     
     var cManager = CBCentralManager()
@@ -278,7 +214,11 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
             
             println("ax: \(ax), ay: \(ay),az: \(az), gx: \(gx), gy: \(gy), gz: \(gz), mx: \(mx), my: \(my), mz: \(mz)")
             
-            var maxValue:Float = 5000;
+            accCache.push(SensorData(x: Int(ax), y: Int(ay), z: Int(az)))
+            gyroCache.push(SensorData(x: Int(gx), y: Int(gy), z: Int(gz)))
+            magCache.push(SensorData(x: Int(mx), y: Int(my), z: Int(mz)))
+            
+            graphBuilder.refresh()
             
     }
     
@@ -287,14 +227,6 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
         {
             peripheral.readValueForCharacteristic(characteristic);
         }
-    }
-    
-    func numberOfRecordsForPlot(plot: CPTPlot!) -> UInt {
-        return 0
-    }
-    
-    func numberForPlot(plot: CPTPlot!, field fieldEnum: UInt, recordIndex idx: UInt) -> NSNumber! {
-        return 0
     }
 }
 

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CBE963341A1CC76600A9D03E /* WaxCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE963331A1CC76600A9D03E /* WaxCache.swift */; };
+		CBE963381A1CCAF700A9D03E /* GraphBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE963371A1CCAF700A9D03E /* GraphBuilder.swift */; };
+		CBE9633A1A1CEAEB00A9D03E /* SensorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE963391A1CEAEB00A9D03E /* SensorData.swift */; };
 		CBF898A919F40D4F0069B2C4 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898A819F40D4F0069B2C4 /* CoreBluetooth.framework */; };
 		CBF898AB19F40D5E0069B2C4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898AA19F40D5E0069B2C4 /* UIKit.framework */; };
 		CBF898AD19F40D670069B2C4 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898AC19F40D670069B2C4 /* CoreFoundation.framework */; };
@@ -35,6 +38,9 @@
 		3F07AA3D3FD6F9107B0DCFD6 /* Pods-ExpressiveTouch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpressiveTouch.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExpressiveTouch/Pods-ExpressiveTouch.release.xcconfig"; sourceTree = "<group>"; };
 		7EA315116ED542A1FC9DE226 /* libPods-ExpressiveTouch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExpressiveTouch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB74F7351A14E99100C63FCB /* ExpressiveTouch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ExpressiveTouch-Bridging-Header.h"; sourceTree = "<group>"; };
+		CBE963331A1CC76600A9D03E /* WaxCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxCache.swift; sourceTree = "<group>"; };
+		CBE963371A1CCAF700A9D03E /* GraphBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphBuilder.swift; sourceTree = "<group>"; };
+		CBE963391A1CEAEB00A9D03E /* SensorData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorData.swift; sourceTree = "<group>"; };
 		CBF898A819F40D4F0069B2C4 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		CBF898AA19F40D5E0069B2C4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CBF898AC19F40D670069B2C4 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -120,6 +126,9 @@
 				D517509619E9831C0076F6FA /* Images.xcassets */,
 				D517509819E9831C0076F6FA /* LaunchScreen.xib */,
 				D517508D19E9831C0076F6FA /* Supporting Files */,
+				CBE963331A1CC76600A9D03E /* WaxCache.swift */,
+				CBE963371A1CCAF700A9D03E /* GraphBuilder.swift */,
+				CBE963391A1CEAEB00A9D03E /* SensorData.swift */,
 			);
 			path = ExpressiveTouch;
 			sourceTree = "<group>";
@@ -294,7 +303,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBE963341A1CC76600A9D03E /* WaxCache.swift in Sources */,
 				D517509219E9831C0076F6FA /* ViewController.swift in Sources */,
+				CBE963381A1CCAF700A9D03E /* GraphBuilder.swift in Sources */,
+				CBE9633A1A1CEAEB00A9D03E /* SensorData.swift in Sources */,
 				D517509019E9831C0076F6FA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
