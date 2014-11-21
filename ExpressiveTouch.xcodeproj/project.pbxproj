@@ -121,8 +121,8 @@
 			children = (
 				D517508F19E9831C0076F6FA /* AppDelegate.swift */,
 				D517509119E9831C0076F6FA /* ViewController.swift */,
-				CB74F7351A14E99100C63FCB /* ExpressiveTouch-Bridging-Header.h */,
 				D517509319E9831C0076F6FA /* Main.storyboard */,
+				CB74F7351A14E99100C63FCB /* ExpressiveTouch-Bridging-Header.h */,
 				D517509619E9831C0076F6FA /* Images.xcassets */,
 				D517509819E9831C0076F6FA /* LaunchScreen.xib */,
 				D517508D19E9831C0076F6FA /* Supporting Files */,

@@ -19,7 +19,7 @@ class WaxCache {
     
     func push(item: SensorData) {
         if (items.count >= limit) {
-            items.removeLast()
+            items.removeAtIndex(0)
         }
         
         items.append(item)

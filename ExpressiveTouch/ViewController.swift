@@ -22,9 +22,9 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
     
     required init(coder aDecoder: NSCoder)
     {
-        self.accCache = WaxCache(limit: 1000)
-        self.gyroCache = WaxCache(limit: 1000)
-        self.magCache = WaxCache(limit: 1000)
+        self.accCache = WaxCache(limit: 100)
+        self.gyroCache = WaxCache(limit: 100)
+        self.magCache = WaxCache(limit: 100)
         self.graphBuilder = GraphBuilder(accCache: accCache, gyroCache: gyroCache, magCache: magCache)
         
         super.init(coder: aDecoder)
@@ -175,8 +175,6 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
     
     func peripheral(peripheral: CBPeripheral!, didUpdateValueForCharacteristic characteristic: CBCharacteristic!,
         error: NSError!) {
-            
-            
             println("\nCharacteristic \(characteristic.description) isNotifying: \(characteristic.isNotifying)\n")
             
             var ax:CShort = 0;
@@ -214,12 +212,17 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
             
             println("ax: \(ax), ay: \(ay),az: \(az), gx: \(gx), gy: \(gy), gz: \(gz), mx: \(mx), my: \(my), mz: \(mz)")
             
-            accCache.push(SensorData(x: Int(ax), y: Int(ay), z: Int(az)))
-            gyroCache.push(SensorData(x: Int(gx), y: Int(gy), z: Int(gz)))
-            magCache.push(SensorData(x: Int(mx), y: Int(my), z: Int(mz)))
+            var accNorm:Double = 1 / 4096.0
+            var gyroNorm:Double = 0.07
+            var magNorm:Double = 0.1
+            
+            var accXNorm = Double(ax) * accNorm
+            
+            accCache.push(SensorData(x: Double(ax) * accNorm, y: Double(ay) * accNorm, z: Double(az) * accNorm))
+            gyroCache.push(SensorData(x: Double(gx) * gyroNorm, y: Double(gy) * gyroNorm, z: Double(gz) * gyroNorm))
+            magCache.push(SensorData(x: Double(mx) * magNorm, y: Double(my) * magNorm, z: Double(mz) * magNorm))
             
             graphBuilder.refresh()
-            
     }
     
     func peripheral(peripheral: CBPeripheral!, didUpdateNotificationStateForCharacteristic characteristic: CBCharacteristic!, error: NSError!) {

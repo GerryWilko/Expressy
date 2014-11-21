@@ -9,7 +9,7 @@
 import Foundation
 
 struct SensorData {
-    let x:Int, y:Int, z:Int
+    let x:Double, y:Double, z:Double
 }
 
 enum SensorDataType:Int {

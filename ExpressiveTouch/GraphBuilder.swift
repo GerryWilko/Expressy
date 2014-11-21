@@ -44,7 +44,7 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         graph.title = "WAX9 Data"
         
         var titleStyle = CPTMutableTextStyle()
-        titleStyle.color = CPTColor.whiteColor()
+        titleStyle.color = CPTColor.blackColor()
         titleStyle.fontName = "Helvetica-Bold"
         titleStyle.fontSize = 16.0
         
@@ -55,7 +55,7 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         graph.plotAreaFrame.paddingLeft = 30.0
         graph.plotAreaFrame.paddingBottom = 30.0
         
-        graph.defaultPlotSpace.allowsUserInteraction = true
+        //graph.defaultPlotSpace.allowsUserInteraction = true
     }
     
     func configurePlots() {
@@ -98,19 +98,17 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         magPlotY.identifier = SensorDataType.MY.rawValue
         magPlotZ.identifier = SensorDataType.MZ.rawValue
         
-        graph.addPlot(accPlotX)
-        graph.addPlot(accPlotY)
-        graph.addPlot(accPlotZ)
+        graph.addPlot(accPlotX, toPlotSpace: plotSpace)
+        graph.addPlot(accPlotY, toPlotSpace: plotSpace)
+        graph.addPlot(accPlotZ, toPlotSpace: plotSpace)
         
-        graph.addPlot(gyroPlotX)
-        graph.addPlot(gyroPlotY)
-        graph.addPlot(gyroPlotZ)
+        graph.addPlot(gyroPlotX, toPlotSpace: plotSpace)
+        graph.addPlot(gyroPlotY, toPlotSpace: plotSpace)
+        graph.addPlot(gyroPlotZ, toPlotSpace: plotSpace)
         
-        graph.addPlot(magPlotX)
-        graph.addPlot(magPlotY)
-        graph.addPlot(magPlotZ)
-        
-        plotSpace.scaleToFitPlots([accPlotX, accPlotY, accPlotZ, gyroPlotX, gyroPlotY, gyroPlotZ, magPlotX, magPlotY, magPlotZ])
+        graph.addPlot(magPlotX, toPlotSpace: plotSpace)
+        graph.addPlot(magPlotY, toPlotSpace: plotSpace)
+        graph.addPlot(magPlotZ, toPlotSpace: plotSpace)
         
         var accColor = CPTColor.redColor()
         var gyroColor = CPTColor.greenColor()
@@ -131,13 +129,6 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         
         var accSymbolLineStyle = CPTMutableLineStyle.lineStyle() as CPTMutableLineStyle
         accSymbolLineStyle.lineColor = accColor
-        var accSymbol = CPTPlotSymbol.ellipsePlotSymbol()
-        accSymbol.fill = CPTFill(color: accColor)
-        accSymbol.lineStyle = accSymbolLineStyle;
-        accSymbol.size = CGSizeMake(6.0, 6.0)
-        accPlotX.plotSymbol = accSymbol
-        accPlotY.plotSymbol = accSymbol
-        accPlotZ.plotSymbol = accSymbol
         
         var gyroLineStyleX = gyroPlotX.dataLineStyle.mutableCopy() as CPTMutableLineStyle
         gyroLineStyleX.lineWidth = 1.0
@@ -154,13 +145,6 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         
         var gyroSymbolLineStyle = CPTMutableLineStyle.lineStyle() as CPTMutableLineStyle
         gyroSymbolLineStyle.lineColor = gyroColor
-        var gyroSymbol = CPTPlotSymbol.starPlotSymbol()
-        gyroSymbol.fill = CPTFill(color: gyroColor)
-        gyroSymbol.lineStyle = gyroSymbolLineStyle
-        gyroSymbol.size = CGSizeMake(6.0, 6.0)
-        gyroPlotX.plotSymbol = gyroSymbol;
-        gyroPlotY.plotSymbol = gyroSymbol;
-        gyroPlotZ.plotSymbol = gyroSymbol;
         
         var magLineStyleX = magPlotX.dataLineStyle.mutableCopy() as CPTMutableLineStyle
         magLineStyleX.lineWidth = 2.0
@@ -177,52 +161,105 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         
         var magSymbolLineStyle = CPTMutableLineStyle.lineStyle() as CPTMutableLineStyle
         magSymbolLineStyle.lineColor = magColor
-        var magSymbol = CPTPlotSymbol.diamondPlotSymbol()
-        magSymbol.fill = CPTFill(color: magColor)
-        magSymbol.lineStyle = magSymbolLineStyle
-        magSymbol.size = CGSizeMake(6.0, 6.0)
-        magPlotX.plotSymbol = magSymbol
-        magPlotY.plotSymbol = magSymbol
-        magPlotZ.plotSymbol = magSymbol
     }
     
     func configureAxes() {
+        var axisTitleStyle = CPTMutableTextStyle.textStyle() as CPTMutableTextStyle
+        axisTitleStyle.color =  CPTColor.blackColor()
+        axisTitleStyle.fontName = "Helvetica-Bold"
+        axisTitleStyle.fontSize = 12.0
+        var axisLineStyle = CPTMutableLineStyle.lineStyle() as CPTMutableLineStyle
+        axisLineStyle.lineWidth = 2.0
+        axisLineStyle.lineColor = CPTColor.blackColor()
+        var axisTextStyle = CPTMutableTextStyle()
+        axisTextStyle.color = CPTColor.blackColor()
+        axisTextStyle.fontName = "Helvetica-Bold"
+        axisTextStyle.fontSize = 11.0
+        var tickLineStyle = CPTMutableLineStyle.lineStyle() as CPTMutableLineStyle
+        tickLineStyle.lineColor = CPTColor.blackColor()
+        tickLineStyle.lineWidth = 2.0
+        var gridLineStyle = CPTMutableLineStyle.lineStyle() as CPTMutableLineStyle
+        tickLineStyle.lineColor = CPTColor.blackColor()
+        tickLineStyle.lineWidth = 1.0
+        
+        var axisSet = self.graphView.hostedGraph.axisSet as CPTXYAxisSet
+        
+        var x = axisSet.xAxis as CPTAxis
+        x.title = "Time"
+        x.titleTextStyle = axisTitleStyle
+        x.titleOffset = 15.0
+        x.axisLineStyle = axisLineStyle
+        x.labelingPolicy = CPTAxisLabelingPolicyNone
+        x.labelTextStyle = axisTextStyle
+        x.majorTickLineStyle = axisLineStyle
+        x.majorTickLength = 4.0
+        x.tickDirection = CPTSignNegative
+        
+        var y = axisSet.yAxis as CPTAxis
+        y.title = "Value"
+        y.titleTextStyle = axisTitleStyle
+        y.titleOffset = -20.0
+        y.axisLineStyle = axisLineStyle
+        y.majorGridLineStyle = gridLineStyle
+        y.labelingPolicy = CPTAxisLabelingPolicyNone;
+        y.labelTextStyle = axisTextStyle
+        y.labelOffset = 16.0
+        y.majorTickLineStyle = axisLineStyle
+        y.majorTickLength = 4.0
+        y.minorTickLength = 2.0
+        y.tickDirection = CPTSignPositive
     }
     
     func numberOfRecordsForPlot(plot: CPTPlot!) -> UInt {
-        return UInt(accCache.count())
+        switch (plot.identifier as Int) {
+        case SensorDataType.AX.rawValue:
+            fallthrough
+        case SensorDataType.AY.rawValue:
+            fallthrough
+        case SensorDataType.AZ.rawValue:
+            return UInt(accCache.count())
+        case SensorDataType.GX.rawValue:
+            fallthrough
+        case SensorDataType.GY.rawValue:
+            fallthrough
+        case SensorDataType.GZ.rawValue:
+            return UInt(gyroCache.count())
+        case SensorDataType.MX.rawValue:
+            fallthrough
+        case SensorDataType.MY.rawValue:
+            fallthrough
+        case SensorDataType.MZ.rawValue:
+            return UInt(magCache.count())
+        default:
+            break
+        }
+        return 0;
     }
     
-    func numberForPlot(plot: CPTPlot!, fieldEnum: UInt, index: UInt) -> NSNumber! {
-        var valueCount:UInt = 1000
-        
+    func numberForPlot(plot: CPTPlot!, field fieldEnum: UInt, recordIndex idx: UInt) -> NSNumber! {
         switch (UInt32(fieldEnum)) {
         case CPTScatterPlotFieldX.value:
-            if (index < valueCount) {
-                return index
-            }
-            break;
-            
+            return idx
         case CPTScatterPlotFieldY.value:
             switch plot.identifier as Int {
             case SensorDataType.AX.rawValue:
-                return accCache.get(index).x
+                return accCache.get(idx).x
             case SensorDataType.AY.rawValue:
-                return accCache.get(index).y
+                return accCache.get(idx).y
             case SensorDataType.AZ.rawValue:
-                return accCache.get(index).z
+                return accCache.get(idx).z
             case SensorDataType.GX.rawValue:
-                return gyroCache.get(index).x
+                return gyroCache.get(idx).x
             case SensorDataType.GY.rawValue:
-                return gyroCache.get(index).y
+                return gyroCache.get(idx).y
             case SensorDataType.GZ.rawValue:
-                return gyroCache.get(index).z
+                return gyroCache.get(idx).z
             case SensorDataType.MX.rawValue:
-                return magCache.get(index).x
+                return magCache.get(idx).x
             case SensorDataType.MY.rawValue:
-                return magCache.get(index).y
+                return magCache.get(idx).y
             case SensorDataType.MZ.rawValue:
-                return magCache.get(index).z
+                return magCache.get(idx).z
             default:
                 break
             }
@@ -235,5 +272,6 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
     
     func refresh() {
         graphView.hostedGraph.reloadData()
+        graphView.hostedGraph.defaultPlotSpace.scaleToFitPlots(graphView.hostedGraph.allPlots())
     }
 }
