@@ -9,15 +9,15 @@
 import Foundation
 
 class WaxCache {
-    private var limit:Int
-    private var items:[SensorData]
+    private let limit:Int
+    private var items:[WaxData]
     
     init(limit:Int) {
         self.limit = limit
-        self.items = [SensorData]()
+        self.items = [WaxData]()
     }
     
-    func push(item: SensorData) {
+    func push(item: WaxData) {
         if (items.count >= limit) {
             items.removeAtIndex(0)
         }
@@ -25,7 +25,7 @@ class WaxCache {
         items.append(item)
     }
     
-    func get(index:UInt) -> SensorData {
+    func get(index:UInt) -> WaxData {
         return items[Int(index)]
     }
     

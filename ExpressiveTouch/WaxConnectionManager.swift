@@ -1,59 +1,38 @@
 //
-//  ViewController.swift
+//  WaxConnectionManager.swift
 //  ExpressiveTouch
 //
-//  Created by Gerard Wilkinson on 11/10/2014.
+//  Created by Gerry Wilkinson on 12/22/14.
 //  Copyright (c) 2014 Newcastle University. All rights reserved.
 //
 
-import UIKit
-import CoreBluetooth
-import QuartzCore
-import CoreData
 import Foundation
+import CoreBluetooth
 
-class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralManagerDelegate,CBPeripheralDelegate {
-    @IBOutlet weak var graphView: CPTGraphHostingView!
+class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralManagerDelegate, CBPeripheralDelegate {
+    private var cManager = CBCentralManager()
+    private var peripheralManager = CBPeripheralManager()
+    private var discoveredPeripheral:CBPeripheral?
     
-    var graphBuilder:GraphBuilder
-    var accCache:WaxCache
-    var gyroCache:WaxCache
-    var magCache:WaxCache
+    private var dataProcessor:WaxProcessor
     
-    required init(coder aDecoder: NSCoder)
-    {
-        self.accCache = WaxCache(limit: 100)
-        self.gyroCache = WaxCache(limit: 100)
-        self.magCache = WaxCache(limit: 100)
-        self.graphBuilder = GraphBuilder(accCache: accCache, gyroCache: gyroCache, magCache: magCache)
+    private let deviceName:String = "WAX9-ABAB";
+    
+    init(dataProcessor:WaxProcessor) {
+        self.dataProcessor = dataProcessor;
         
-        super.init(coder: aDecoder)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.graphBuilder.initLoad(self.graphView)
+        super.init()
         
         cManager = CBCentralManager(delegate: self, queue:nil)
         
         peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
+        
+        scan()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func scanForWAX9(sender: AnyObject) {
+    func scan() {
         cManager.scanForPeripheralsWithServices(nil, options: nil)
-        println("\nNow Scanning for PERIPHERALS!\n")
     }
-    
-    var cManager = CBCentralManager()
-    var peripheralManager = CBPeripheralManager()
-    
-    var discoveredPeripheral:CBPeripheral?
     
     func centralManagerDidUpdateState(central: CBCentralManager!) {
         switch cManager.state {
@@ -63,7 +42,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
             break
         case .PoweredOn:
             println("CoreBluetooth BLE hardware is powered on and ready")
-            self.scanForWAX9(self)
+            self.scan()
             break
         case .Resetting:
             println("CoreBluetooth BLE hardware is resetting")
@@ -86,7 +65,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
         
         println(peripheral.name);
         
-        if (peripheral.name != nil && peripheral.name == "WAX9-ABAB") {
+        if (peripheral.name != nil && peripheral.name == deviceName) {
             
             central.connectPeripheral(peripheral, options: nil)
             
@@ -167,9 +146,9 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
         var notifyUDID = CBUUID(string: "00000002-0008-A8BA-E311-F48C90364D99")
         
         var streamMessage = NSData(bytes: [1] as [Byte], length: 1)
-            
+        
         peripheral.setNotifyValue(true, forCharacteristic: service.characteristics[2] as CBCharacteristic)
-            
+        
         peripheral.writeValue(streamMessage, forCharacteristic: service.characteristics[1] as CBCharacteristic, type: CBCharacteristicWriteType.WithoutResponse)
     }
     
@@ -177,52 +156,7 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
         error: NSError!) {
             println("\nCharacteristic \(characteristic.description) isNotifying: \(characteristic.isNotifying)\n")
             
-            var ax:CShort = 0;
-            var ay:CShort = 0;
-            var az:CShort = 0;
-            var gx:CShort = 0;
-            var gy:CShort = 0;
-            var gz:CShort = 0;
-            var mx:CShort = 0;
-            var my:CShort = 0;
-            var mz:CShort = 0;
-            
-            assert( characteristic.value != nil );
-            
-            var dataLength = characteristic.value.length;
-            
-            assert( dataLength == 20 );
-            
-            var buffer = [Byte](count: dataLength, repeatedValue: 0)
-            
-            characteristic.value.getBytes(&buffer, length: dataLength)
-            
-            ax = CShort(buffer[ 3]) << 8 + CShort(buffer[ 2])
-            ay = CShort(buffer[ 5]) << 8 + CShort(buffer[ 4])
-            az = CShort(buffer[ 7]) << 8 + CShort(buffer[ 6])
-            
-            gx = CShort(buffer[ 9]) << 8 + CShort(buffer[ 8])
-            gy = CShort(buffer[11]) << 8 + CShort(buffer[10])
-            gz = CShort(buffer[13]) << 8 + CShort(buffer[12])
-            
-            mx = CShort(buffer[15]) << 8 + CShort(buffer[14])
-            my = CShort(buffer[17]) << 8 + CShort(buffer[16])
-            mz = CShort(buffer[19]) << 8 + CShort(buffer[18])
-            
-            
-            println("ax: \(ax), ay: \(ay),az: \(az), gx: \(gx), gy: \(gy), gz: \(gz), mx: \(mx), my: \(my), mz: \(mz)")
-            
-            var accNorm:Double = 1 / 4096.0
-            var gyroNorm:Double = 0.07
-            var magNorm:Double = 0.1
-            
-            var accXNorm = Double(ax) * accNorm
-            
-            accCache.push(SensorData(x: Double(ax) * accNorm, y: Double(ay) * accNorm, z: Double(az) * accNorm))
-            gyroCache.push(SensorData(x: Double(gx) * gyroNorm, y: Double(gy) * gyroNorm, z: Double(gz) * gyroNorm))
-            magCache.push(SensorData(x: Double(mx) * magNorm, y: Double(my) * magNorm, z: Double(mz) * magNorm))
-            
-            graphBuilder.refresh()
+            dataProcessor.updateCache(characteristic.value)
     }
     
     func peripheral(peripheral: CBPeripheral!, didUpdateNotificationStateForCharacteristic characteristic: CBCharacteristic!, error: NSError!) {
@@ -232,4 +166,3 @@ class ViewController: UIViewController,CBCentralManagerDelegate,CBPeripheralMana
         }
     }
 }
-

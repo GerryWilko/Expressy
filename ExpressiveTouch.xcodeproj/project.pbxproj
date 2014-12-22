@@ -7,16 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB812ABF1A48342E0097A574 /* WaxProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB812ABE1A48342E0097A574 /* WaxProcessor.swift */; };
+		CB812AC11A4838160097A574 /* WaxConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB812AC01A4838160097A574 /* WaxConnectionManager.swift */; };
+		CB812AC31A4877EA0097A574 /* AccViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB812AC21A4877EA0097A574 /* AccViewController.swift */; };
+		CB812AC71A4879DE0097A574 /* GyroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB812AC61A4879DE0097A574 /* GyroViewController.swift */; };
+		CB812AC91A487A670097A574 /* MagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB812AC81A487A670097A574 /* MagViewController.swift */; };
+		CB812ACB1A48822A0097A574 /* GraphTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB812ACA1A48822A0097A574 /* GraphTabViewController.swift */; };
 		CBE963341A1CC76600A9D03E /* WaxCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE963331A1CC76600A9D03E /* WaxCache.swift */; };
 		CBE963381A1CCAF700A9D03E /* GraphBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE963371A1CCAF700A9D03E /* GraphBuilder.swift */; };
-		CBE9633A1A1CEAEB00A9D03E /* SensorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE963391A1CEAEB00A9D03E /* SensorData.swift */; };
+		CBE9633A1A1CEAEB00A9D03E /* WaxData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE963391A1CEAEB00A9D03E /* WaxData.swift */; };
 		CBF898A919F40D4F0069B2C4 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898A819F40D4F0069B2C4 /* CoreBluetooth.framework */; };
 		CBF898AB19F40D5E0069B2C4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898AA19F40D5E0069B2C4 /* UIKit.framework */; };
 		CBF898AD19F40D670069B2C4 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898AC19F40D670069B2C4 /* CoreFoundation.framework */; };
 		CBF898AF19F410790069B2C4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898AE19F410790069B2C4 /* QuartzCore.framework */; };
 		CBF898B119F410820069B2C4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898B019F410820069B2C4 /* CoreData.framework */; };
 		D517509019E9831C0076F6FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D517508F19E9831C0076F6FA /* AppDelegate.swift */; };
-		D517509219E9831C0076F6FA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D517509119E9831C0076F6FA /* ViewController.swift */; };
 		D517509519E9831C0076F6FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D517509319E9831C0076F6FA /* Main.storyboard */; };
 		D517509719E9831C0076F6FA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D517509619E9831C0076F6FA /* Images.xcassets */; };
 		D517509A19E9831C0076F6FA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D517509819E9831C0076F6FA /* LaunchScreen.xib */; };
@@ -38,9 +43,15 @@
 		3F07AA3D3FD6F9107B0DCFD6 /* Pods-ExpressiveTouch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpressiveTouch.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExpressiveTouch/Pods-ExpressiveTouch.release.xcconfig"; sourceTree = "<group>"; };
 		7EA315116ED542A1FC9DE226 /* libPods-ExpressiveTouch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExpressiveTouch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB74F7351A14E99100C63FCB /* ExpressiveTouch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ExpressiveTouch-Bridging-Header.h"; sourceTree = "<group>"; };
+		CB812ABE1A48342E0097A574 /* WaxProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxProcessor.swift; sourceTree = "<group>"; };
+		CB812AC01A4838160097A574 /* WaxConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxConnectionManager.swift; sourceTree = "<group>"; };
+		CB812AC21A4877EA0097A574 /* AccViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccViewController.swift; sourceTree = "<group>"; };
+		CB812AC61A4879DE0097A574 /* GyroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GyroViewController.swift; sourceTree = "<group>"; };
+		CB812AC81A487A670097A574 /* MagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagViewController.swift; sourceTree = "<group>"; };
+		CB812ACA1A48822A0097A574 /* GraphTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphTabViewController.swift; sourceTree = "<group>"; };
 		CBE963331A1CC76600A9D03E /* WaxCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxCache.swift; sourceTree = "<group>"; };
 		CBE963371A1CCAF700A9D03E /* GraphBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphBuilder.swift; sourceTree = "<group>"; };
-		CBE963391A1CEAEB00A9D03E /* SensorData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorData.swift; sourceTree = "<group>"; };
+		CBE963391A1CEAEB00A9D03E /* WaxData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxData.swift; sourceTree = "<group>"; };
 		CBF898A819F40D4F0069B2C4 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		CBF898AA19F40D5E0069B2C4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CBF898AC19F40D670069B2C4 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -49,7 +60,6 @@
 		D517508A19E9831C0076F6FA /* ExpressiveTouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpressiveTouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D517508E19E9831C0076F6FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D517508F19E9831C0076F6FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D517509119E9831C0076F6FA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D517509419E9831C0076F6FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D517509619E9831C0076F6FA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D517509919E9831C0076F6FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -91,6 +101,28 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CB812AC41A4877F10097A574 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CB812AC21A4877EA0097A574 /* AccViewController.swift */,
+				CB812AC61A4879DE0097A574 /* GyroViewController.swift */,
+				CB812AC81A487A670097A574 /* MagViewController.swift */,
+				CB812ACA1A48822A0097A574 /* GraphTabViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		CB812AC51A4879320097A574 /* Wax */ = {
+			isa = PBXGroup;
+			children = (
+				CB812AC01A4838160097A574 /* WaxConnectionManager.swift */,
+				CB812ABE1A48342E0097A574 /* WaxProcessor.swift */,
+				CBE963391A1CEAEB00A9D03E /* WaxData.swift */,
+				CBE963331A1CC76600A9D03E /* WaxCache.swift */,
+			);
+			name = Wax;
+			sourceTree = "<group>";
+		};
 		D517508119E9831C0076F6FA = {
 			isa = PBXGroup;
 			children = (
@@ -119,16 +151,15 @@
 		D517508C19E9831C0076F6FA /* ExpressiveTouch */ = {
 			isa = PBXGroup;
 			children = (
+				CB812AC41A4877F10097A574 /* ViewControllers */,
+				CB812AC51A4879320097A574 /* Wax */,
 				D517508F19E9831C0076F6FA /* AppDelegate.swift */,
-				D517509119E9831C0076F6FA /* ViewController.swift */,
 				D517509319E9831C0076F6FA /* Main.storyboard */,
 				CB74F7351A14E99100C63FCB /* ExpressiveTouch-Bridging-Header.h */,
 				D517509619E9831C0076F6FA /* Images.xcassets */,
 				D517509819E9831C0076F6FA /* LaunchScreen.xib */,
 				D517508D19E9831C0076F6FA /* Supporting Files */,
-				CBE963331A1CC76600A9D03E /* WaxCache.swift */,
 				CBE963371A1CCAF700A9D03E /* GraphBuilder.swift */,
-				CBE963391A1CEAEB00A9D03E /* SensorData.swift */,
 			);
 			path = ExpressiveTouch;
 			sourceTree = "<group>";
@@ -303,10 +334,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB812AC71A4879DE0097A574 /* GyroViewController.swift in Sources */,
+				CB812ACB1A48822A0097A574 /* GraphTabViewController.swift in Sources */,
+				CB812AC31A4877EA0097A574 /* AccViewController.swift in Sources */,
+				CB812AC11A4838160097A574 /* WaxConnectionManager.swift in Sources */,
 				CBE963341A1CC76600A9D03E /* WaxCache.swift in Sources */,
-				D517509219E9831C0076F6FA /* ViewController.swift in Sources */,
+				CB812ABF1A48342E0097A574 /* WaxProcessor.swift in Sources */,
 				CBE963381A1CCAF700A9D03E /* GraphBuilder.swift in Sources */,
-				CBE9633A1A1CEAEB00A9D03E /* SensorData.swift in Sources */,
+				CBE9633A1A1CEAEB00A9D03E /* WaxData.swift in Sources */,
+				CB812AC91A487A670097A574 /* MagViewController.swift in Sources */,
 				D517509019E9831C0076F6FA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

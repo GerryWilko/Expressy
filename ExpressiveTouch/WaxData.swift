@@ -8,10 +8,10 @@
 
 import Foundation
 
-struct SensorData {
+struct WaxData {
     let x:Double, y:Double, z:Double
 }
 
-enum SensorDataType:Int {
-    case AX = 1, AY, AZ, GX, GY, GZ, MX, MY, MZ
+enum WaxDataAxis:Int {
+    case X = 1, Y, Z
 }

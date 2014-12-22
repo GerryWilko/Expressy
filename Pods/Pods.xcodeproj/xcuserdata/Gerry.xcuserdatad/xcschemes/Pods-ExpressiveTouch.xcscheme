@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C4455EA076E54C343D41C827"
+               BlueprintIdentifier = "7BD14FA40C1DA5573FA0E8CE"
                BuildableName = "libPods-ExpressiveTouch.a"
                BlueprintName = "Pods-ExpressiveTouch"
                ReferencedContainer = "container:Pods.xcodeproj">
