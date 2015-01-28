@@ -54,8 +54,8 @@ class WaxProcessor {
         my = CShort(buffer[17]) << 8 + CShort(buffer[16])
         mz = CShort(buffer[19]) << 8 + CShort(buffer[18])
         
-        accCache.push(WaxData(x: Double(ax) * accNorm, y: Double(ay) * accNorm, z: Double(az) * accNorm))
-        gyroCache.push(WaxData(x: Double(gx) * gyroNorm, y: Double(gy) * gyroNorm, z: Double(gz) * gyroNorm))
-        magCache.push(WaxData(x: Double(mx) * magNorm, y: Double(my) * magNorm, z: Double(mz) * magNorm))
+        accCache.push(WaxData(x: Double(ax) * accNorm, y: Double(ay) * accNorm, z: Double(az) * accNorm, touch: false))
+        gyroCache.push(WaxData(x: Double(gx) * gyroNorm, y: Double(gy) * gyroNorm, z: Double(gz) * gyroNorm, touch: false))
+        magCache.push(WaxData(x: Double(mx) * magNorm, y: Double(my) * magNorm, z: Double(mz) * magNorm, touch: false))
     }
 }

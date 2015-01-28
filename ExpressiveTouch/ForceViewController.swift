@@ -22,6 +22,12 @@ class ForceViewController: UIViewController {
         super.init(coder: aDecoder)
     }
     
+    func tappedView() {
+        let tapAlert = UIAlertController(title: "Tapped", message: String(format:"%f", forceDtc.getForce()), preferredStyle: UIAlertControllerStyle.Alert)
+        tapAlert.addAction(UIAlertAction(title: "OK", style: .Destructive, handler: nil))
+        self.presentViewController(tapAlert, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "tappedView"))
         self.view.userInteractionEnabled = true
@@ -30,11 +36,5 @@ class ForceViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func tappedView() {
-        let tapAlert = UIAlertController(title: "Tapped", message: String(format:"%f", forceDtc.getForce()), preferredStyle: UIAlertControllerStyle.Alert)
-        tapAlert.addAction(UIAlertAction(title: "OK", style: .Destructive, handler: nil))
-        self.presentViewController(tapAlert, animated: true, completion: nil)
     }
 }

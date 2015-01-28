@@ -9,7 +9,7 @@
 import Foundation
 
 struct WaxData {
-    let x:Double, y:Double, z:Double
+    let x:Double, y:Double, z:Double, touch:Bool = false
 }
 
 enum WaxDataAxis:Int {

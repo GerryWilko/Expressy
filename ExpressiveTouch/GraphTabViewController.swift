@@ -12,8 +12,7 @@ class GraphTabViewController : UITabBarController {
     private let connectionManager:WaxConnectionManager
     internal let dataProcessor:WaxProcessor
     
-    required init(coder aDecoder: NSCoder)
-    {
+    required init(coder aDecoder: NSCoder) {
         dataProcessor = WaxProcessor(limit: 100)
         connectionManager = WaxConnectionManager(dataProcessor: dataProcessor)
         

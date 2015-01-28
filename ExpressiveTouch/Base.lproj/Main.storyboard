@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="C04-5o-deq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="KG6-LY-L5m">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
@@ -148,6 +148,24 @@
             </objects>
             <point key="canvasLocation" x="-897" y="645"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="V6y-wt-CRb">
+            <objects>
+                <navigationController id="KG6-LY-L5m" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="15R-zu-Zvt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="C04-5o-deq" kind="show" id="Jet-UJ-sFA"/>
+                        <segue destination="iPk-6M-5TH" kind="show" id="vNY-hE-Bzl"/>
+                        <segue destination="sX9-zw-S6C" kind="show" identifier="Live Data" id="uiN-uP-m7Q"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eW1-Yl-g7L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1770" y="2065.5"/>
+        </scene>
         <!--Force View Controller-->
         <scene sceneID="Vkx-0s-48i">
             <objects>
@@ -157,6 +175,7 @@
                         <viewControllerLayoutGuide type="bottom" id="69b-50-GmS"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="qjU-Ak-etD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -164,6 +183,63 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ieg-QV-M8e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-897" y="1615.5"/>
+        </scene>
+        <!--Record View Controller-->
+        <scene sceneID="lJV-Uu-TF1">
+            <objects>
+                <viewController id="iPk-6M-5TH" customClass="RecordViewController" customModule="ExpressiveTouch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BHU-0a-HnI"/>
+                        <viewControllerLayoutGuide type="bottom" id="gKm-T0-oh7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JI7-rQ-x1c">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LfP-Wg-cco">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="284" y="223" width="233" height="21"/>
+                                </variation>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJR-dy-e7S">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Start Recording">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="323" y="185" width="154" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="recordPress:" destination="iPk-6M-5TH" eventType="touchUpInside" id="3uX-4m-zsS"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="LfP-Wg-cco"/>
+                                <exclude reference="NJR-dy-e7S"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="LfP-Wg-cco"/>
+                                <include reference="NJR-dy-e7S"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="recordBtn" destination="NJR-dy-e7S" id="lkq-p5-kZ2"/>
+                        <outlet property="timeLabel" destination="LfP-Wg-cco" id="SKZ-5M-UdA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZIp-Sx-FAI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-897" y="2539.5"/>
         </scene>
     </scenes>
 </document>
