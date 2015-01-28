@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB3690DE1A77DE4B0094FA8C /* ForceDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3690DD1A77DE4B0094FA8C /* ForceDetector.swift */; };
 		CB812ABF1A48342E0097A574 /* WaxProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB812ABE1A48342E0097A574 /* WaxProcessor.swift */; };
 		CB812AC11A4838160097A574 /* WaxConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB812AC01A4838160097A574 /* WaxConnectionManager.swift */; };
 		CB812AC31A4877EA0097A574 /* AccViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB812AC21A4877EA0097A574 /* AccViewController.swift */; };
@@ -21,6 +22,7 @@
 		CBF898AD19F40D670069B2C4 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898AC19F40D670069B2C4 /* CoreFoundation.framework */; };
 		CBF898AF19F410790069B2C4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898AE19F410790069B2C4 /* QuartzCore.framework */; };
 		CBF898B119F410820069B2C4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898B019F410820069B2C4 /* CoreData.framework */; };
+		CBFBB2A41A78E7F100EAC109 /* ForceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFBB2A31A78E7F100EAC109 /* ForceViewController.swift */; };
 		D517509019E9831C0076F6FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D517508F19E9831C0076F6FA /* AppDelegate.swift */; };
 		D517509519E9831C0076F6FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D517509319E9831C0076F6FA /* Main.storyboard */; };
 		D517509719E9831C0076F6FA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D517509619E9831C0076F6FA /* Images.xcassets */; };
@@ -42,6 +44,7 @@
 /* Begin PBXFileReference section */
 		3F07AA3D3FD6F9107B0DCFD6 /* Pods-ExpressiveTouch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpressiveTouch.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExpressiveTouch/Pods-ExpressiveTouch.release.xcconfig"; sourceTree = "<group>"; };
 		7EA315116ED542A1FC9DE226 /* libPods-ExpressiveTouch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExpressiveTouch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB3690DD1A77DE4B0094FA8C /* ForceDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForceDetector.swift; sourceTree = "<group>"; };
 		CB74F7351A14E99100C63FCB /* ExpressiveTouch-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ExpressiveTouch-Bridging-Header.h"; sourceTree = "<group>"; };
 		CB812ABE1A48342E0097A574 /* WaxProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxProcessor.swift; sourceTree = "<group>"; };
 		CB812AC01A4838160097A574 /* WaxConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxConnectionManager.swift; sourceTree = "<group>"; };
@@ -57,6 +60,7 @@
 		CBF898AC19F40D670069B2C4 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		CBF898AE19F410790069B2C4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CBF898B019F410820069B2C4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		CBFBB2A31A78E7F100EAC109 /* ForceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForceViewController.swift; sourceTree = "<group>"; };
 		D517508A19E9831C0076F6FA /* ExpressiveTouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpressiveTouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D517508E19E9831C0076F6FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D517508F19E9831C0076F6FA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +105,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CB3690DC1A77DDF20094FA8C /* ExpressiveTouch */ = {
+			isa = PBXGroup;
+			children = (
+				CB3690DD1A77DE4B0094FA8C /* ForceDetector.swift */,
+			);
+			name = ExpressiveTouch;
+			sourceTree = "<group>";
+		};
 		CB812AC41A4877F10097A574 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +120,7 @@
 				CB812AC61A4879DE0097A574 /* GyroViewController.swift */,
 				CB812AC81A487A670097A574 /* MagViewController.swift */,
 				CB812ACA1A48822A0097A574 /* GraphTabViewController.swift */,
+				CBFBB2A31A78E7F100EAC109 /* ForceViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -151,6 +164,7 @@
 		D517508C19E9831C0076F6FA /* ExpressiveTouch */ = {
 			isa = PBXGroup;
 			children = (
+				CB3690DC1A77DDF20094FA8C /* ExpressiveTouch */,
 				CB812AC41A4877F10097A574 /* ViewControllers */,
 				CB812AC51A4879320097A574 /* Wax */,
 				D517508F19E9831C0076F6FA /* AppDelegate.swift */,
@@ -342,7 +356,9 @@
 				CB812ABF1A48342E0097A574 /* WaxProcessor.swift in Sources */,
 				CBE963381A1CCAF700A9D03E /* GraphBuilder.swift in Sources */,
 				CBE9633A1A1CEAEB00A9D03E /* WaxData.swift in Sources */,
+				CB3690DE1A77DE4B0094FA8C /* ForceDetector.swift in Sources */,
 				CB812AC91A487A670097A574 /* MagViewController.swift in Sources */,
+				CBFBB2A41A78E7F100EAC109 /* ForceViewController.swift in Sources */,
 				D517509019E9831C0076F6FA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

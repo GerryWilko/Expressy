@@ -9,7 +9,7 @@
 import Foundation
 
 class MagViewController: UIViewController {
-    @IBOutlet weak var magGraphView: CPTGraphHostingView!
+    @IBOutlet weak var magGraphView:CPTGraphHostingView!
     
     let magGraphBuilder:GraphBuilder
     

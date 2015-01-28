@@ -9,27 +9,30 @@
 import Foundation
 
 class WaxCache {
-    private let limit:Int
+    private let limit:UInt
     private var items:[WaxData]
+    private var count:UInt
     
-    init(limit:Int) {
+    init(limit:UInt) {
         self.limit = limit
-        self.items = [WaxData]()
+        items = [WaxData]()
+        count = 0;
     }
     
     func push(item: WaxData) {
-        if (items.count >= limit) {
+        if (count >= limit) {
             items.removeAtIndex(0)
+            count--
         }
-        
         items.append(item)
+        count++
     }
     
     func get(index:UInt) -> WaxData {
         return items[Int(index)]
     }
     
-    func count() -> Int {
-        return items.count
+    func length() -> UInt {
+        return count
     }
 }

@@ -82,11 +82,8 @@ class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralMan
     }
     
     func centralManager(central: CBCentralManager!, didConnectPeripheral peripheral: CBPeripheral!) {
-        
         peripheral.delegate = self
         peripheral.discoverServices(nil)
-        
-        println("Connected to peripheral")
     }
     
     func centralManager(central: CBCentralManager!, didFailToConnectPeripheral peripheral: CBPeripheral!, error: NSError!) {
@@ -127,10 +124,6 @@ class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralMan
     }
     
     func peripheral(peripheral: CBPeripheral!, didDiscoverServices error: NSError!) {
-        if (error == nil) {
-            println("ERROR: \(error)")
-        }
-        
         var serviceUDID = CBUUID(string: "00000000-0008-A8BA-E311-F48C90364D99")
         
         var serviceList = peripheral.services.filter{($0 as CBService).UUID == serviceUDID }
@@ -154,8 +147,6 @@ class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralMan
     
     func peripheral(peripheral: CBPeripheral!, didUpdateValueForCharacteristic characteristic: CBCharacteristic!,
         error: NSError!) {
-            println("\nCharacteristic \(characteristic.description) isNotifying: \(characteristic.isNotifying)\n")
-            
             dataProcessor.updateCache(characteristic.value)
     }
     

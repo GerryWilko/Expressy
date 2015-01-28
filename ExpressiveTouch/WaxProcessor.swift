@@ -17,7 +17,7 @@ class WaxProcessor {
     private let gyroNorm:Double = 0.07
     private let magNorm:Double = 0.1
     
-    init(limit:Int) {
+    init(limit:UInt) {
         accCache = WaxCache(limit: limit)
         gyroCache = WaxCache(limit: limit)
         magCache = WaxCache(limit: limit)

@@ -9,7 +9,7 @@
 import Foundation
 
 class AccViewController: UIViewController {
-    @IBOutlet weak var accGraphView: CPTGraphHostingView!
+    @IBOutlet weak var accGraphView:CPTGraphHostingView!
     
     let accGraphBuilder:GraphBuilder
     

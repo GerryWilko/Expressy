@@ -35,11 +35,11 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         configureAxes()
     }
     
-    func configureHost() {
+    private func configureHost() {
         graphView.allowPinchScaling = true
     }
     
-    func configureGraph() {
+    private func configureGraph() {
         var graph = CPTXYGraph(frame: CGRectZero)
         graphView.hostedGraph = graph
         
@@ -58,7 +58,7 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         graph.plotAreaFrame.paddingBottom = 30.0
     }
     
-    func configurePlots() {
+    private func configurePlots() {
         var graph = graphView.hostedGraph
         var plotSpace = graph.defaultPlotSpace
         
@@ -98,7 +98,7 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         dataPlotZ.dataLineStyle = dataZLineStyle
     }
     
-    func configureAxes() {
+    private func configureAxes() {
         var axisTitleStyle = CPTMutableTextStyle.textStyle() as CPTMutableTextStyle
         axisTitleStyle.color =  CPTColor.blackColor()
         axisTitleStyle.fontName = "Helvetica-Bold"
@@ -145,7 +145,7 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         case WaxDataAxis.Y.rawValue:
             fallthrough
         case WaxDataAxis.Z.rawValue:
-            return UInt(dataCache.count())
+            return UInt(dataCache.length())
         default:
             break
         }

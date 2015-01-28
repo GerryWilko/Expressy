@@ -9,7 +9,7 @@
 import Foundation
 
 class GyroViewController: UIViewController {
-    @IBOutlet weak var gyroGraphView: CPTGraphHostingView!
+    @IBOutlet weak var gyroGraphView:CPTGraphHostingView!
     
     let gyroGraphBuilder:GraphBuilder
     

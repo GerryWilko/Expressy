@@ -10,7 +10,6 @@ import Foundation
 
 class GraphTabViewController : UITabBarController {
     private let connectionManager:WaxConnectionManager
-    
     internal let dataProcessor:WaxProcessor
     
     required init(coder aDecoder: NSCoder)
