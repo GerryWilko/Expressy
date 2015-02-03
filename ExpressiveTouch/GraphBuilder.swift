@@ -16,7 +16,7 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
     
     init(title:String) {
         graphView = CPTGraphHostingView()
-        dataCache = WaxCache(limit: 0)
+        dataCache = WaxCache()
         
         self.title = title
         
@@ -54,8 +54,13 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         graph.titlePlotAreaFrameAnchor = CPTRectAnchorTop
         graph.titleDisplacement = CGPointMake(0.0, 10.0)
         
-        graph.plotAreaFrame.paddingLeft = 30.0
         graph.plotAreaFrame.paddingBottom = 30.0
+        graph.plotAreaFrame.paddingLeft = 30.0
+        
+        graph.paddingTop = 40.0
+        graph.paddingBottom = 40.0
+        graph.paddingLeft = 40.0
+        graph.paddingRight = 40.0
     }
     
     private func configurePlots() {
@@ -139,17 +144,7 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
     }
     
     func numberOfRecordsForPlot(plot: CPTPlot!) -> UInt {
-        switch (plot.identifier as Int) {
-        case WaxDataAxis.X.rawValue:
-            fallthrough
-        case WaxDataAxis.Y.rawValue:
-            fallthrough
-        case WaxDataAxis.Z.rawValue:
-            return UInt(dataCache.length())
-        default:
-            break
-        }
-        return 0;
+        return dataCache.length() <= 100 ? dataCache.length() : 100;
     }
     
     func numberForPlot(plot: CPTPlot!, field fieldEnum: UInt, recordIndex idx: UInt) -> NSNumber! {
@@ -157,13 +152,20 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         case CPTScatterPlotFieldX.value:
             return idx
         case CPTScatterPlotFieldY.value:
+            var index = idx
+            if (dataCache.length() <= 100) {
+                var shift = dataCache.length() - 100
+                
+                index = idx + shift
+            }
+            
             switch plot.identifier as Int {
             case WaxDataAxis.X.rawValue:
-                return dataCache.get(idx).x
+                return dataCache.get(index).x
             case WaxDataAxis.Y.rawValue:
-                return dataCache.get(idx).y
+                return dataCache.get(index).y
             case WaxDataAxis.Z.rawValue:
-                return dataCache.get(idx).z
+                return dataCache.get(index).z
             default:
                 break
             }

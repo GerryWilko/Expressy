@@ -8,15 +8,19 @@
 
 import Foundation
 
-class WaxCache {
-    private let limit:UInt
+class WaxCache: NilLiteralConvertible {
+    private let limit:UInt = 1000
     private var items:[WaxData]
     private var count:UInt
     
-    init(limit:UInt) {
-        self.limit = limit
+    required init(nilLiteral: ()) {
         items = [WaxData]()
-        count = 0;
+        count = 0
+    }
+    
+    init() {
+        items = [WaxData]()
+        count = 0
     }
     
     func push(item: WaxData) {

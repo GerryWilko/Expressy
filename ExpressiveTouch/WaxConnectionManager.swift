@@ -9,17 +9,26 @@
 import Foundation
 import CoreBluetooth
 
-class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralManagerDelegate, CBPeripheralDelegate {
+var connectionManager:WaxConnectionManager = nil
+
+
+class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralManagerDelegate, CBPeripheralDelegate, NilLiteralConvertible {
     private var cManager = CBCentralManager()
     private var peripheralManager = CBPeripheralManager()
-    private var discoveredPeripheral:CBPeripheral?
     
     private var dataProcessor:WaxProcessor
+    private var ready:Bool
     
-    private let deviceName:String = "WAX9-ABAB";
+    required init(nilLiteral: ()) {
+        self.dataProcessor = nil
+        ready = false
+        
+        super.init()
+    }
     
     init(dataProcessor:WaxProcessor) {
-        self.dataProcessor = dataProcessor;
+        self.dataProcessor = dataProcessor
+        ready = false
         
         super.init()
         
@@ -27,58 +36,55 @@ class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralMan
         
         peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
         
-        scan()
+        connectionManager = self
+    }
+    
+    class func getConnectionManager() -> WaxConnectionManager {
+        return connectionManager
     }
     
     func scan() {
-        cManager.scanForPeripheralsWithServices(nil, options: nil)
+        if (ready) {
+            cManager.scanForPeripheralsWithServices(nil, options: nil)
+        }
     }
     
     func centralManagerDidUpdateState(central: CBCentralManager!) {
         switch cManager.state {
-            
         case .PoweredOff:
             println("CoreBluetooth BLE hardware is powered off")
+            ready = false
             break
         case .PoweredOn:
             println("CoreBluetooth BLE hardware is powered on and ready")
-            self.scan()
+            ready = true
             break
         case .Resetting:
             println("CoreBluetooth BLE hardware is resetting")
+            ready = false
             break
         case .Unauthorized:
             println("CoreBluetooth BLE state is unauthorized")
+            ready = false
             break
         case .Unknown:
             println("CoreBluetooth BLE state is unknown")
+            ready = false
             break
         case .Unsupported:
             println("CoreBluetooth BLE hardware is unsupported on this platform")
+            ready = false
             break
         default:
+            ready = false
             break
         }
     }
     
     func centralManager(central: CBCentralManager!, didDiscoverPeripheral peripheral: CBPeripheral!, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber!) {
-        
         println(peripheral.name);
         
-        if (peripheral.name != nil && peripheral.name == deviceName) {
-            
-            central.connectPeripheral(peripheral, options: nil)
-            
-            self.discoveredPeripheral = peripheral
-            
-            println("PERIPHERAL NAME: \(peripheral.name)\n AdvertisementData: \(advertisementData)\n RSSI: \(RSSI)\n")
-            
-            println("UUID DESCRIPTION: \(peripheral.identifier.UUIDString)\n")
-            
-            println("IDENTIFIER: \(peripheral.identifier)\n")
-            
-            cManager.stopScan()
-        }
+        WAXScanViewController.addDevice(peripheral)
     }
     
     func centralManager(central: CBCentralManager!, didConnectPeripheral peripheral: CBPeripheral!) {
@@ -91,7 +97,6 @@ class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralMan
     }
     
     func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager!) {
-        
         switch peripheralManager.state {
             
         case .PoweredOff:

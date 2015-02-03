@@ -25,7 +25,7 @@ class MagViewController: UIViewController {
         
         let tabController = self.tabBarController as GraphTabViewController
         
-        magGraphBuilder.initLoad(magGraphView, dataCache: tabController.dataProcessor.magCache)
+        magGraphBuilder.initLoad(magGraphView, dataCache: WaxProcessor.getProcessor().magCache)
     }
     
     override func viewDidAppear(animated: Bool) {

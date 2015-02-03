@@ -25,7 +25,7 @@ class GyroViewController: UIViewController {
         
         let tabController = self.tabBarController as GraphTabViewController
         
-        gyroGraphBuilder.initLoad(gyroGraphView, dataCache: tabController.dataProcessor.gyroCache)
+        gyroGraphBuilder.initLoad(gyroGraphView, dataCache: WaxProcessor.getProcessor().gyroCache)
     }
     
     override func viewDidAppear(animated: Bool) {

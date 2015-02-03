@@ -8,7 +8,9 @@
 
 import Foundation
 
-class WaxProcessor {
+var waxProcessor:WaxProcessor = nil
+
+class WaxProcessor: NilLiteralConvertible {
     internal var accCache:WaxCache
     internal var gyroCache:WaxCache
     internal var magCache:WaxCache
@@ -17,10 +19,22 @@ class WaxProcessor {
     private let gyroNorm:Double = 0.07
     private let magNorm:Double = 0.1
     
-    init(limit:UInt) {
-        accCache = WaxCache(limit: limit)
-        gyroCache = WaxCache(limit: limit)
-        magCache = WaxCache(limit: limit)
+    required init(nilLiteral: ()) {
+        accCache = nil
+        gyroCache = nil
+        magCache = nil
+    }
+    
+    init() {
+        accCache = WaxCache()
+        gyroCache = WaxCache()
+        magCache = WaxCache()
+        
+        waxProcessor = self
+    }
+    
+    class func getProcessor() -> WaxProcessor {
+        return waxProcessor
     }
     
     func updateCache(data:NSData) {

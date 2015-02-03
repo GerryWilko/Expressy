@@ -15,6 +15,8 @@
 		CB812AC91A487A670097A574 /* MagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB812AC81A487A670097A574 /* MagViewController.swift */; };
 		CB812ACB1A48822A0097A574 /* GraphTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB812ACA1A48822A0097A574 /* GraphTabViewController.swift */; };
 		CBA8D01E1A7944AC0097DF55 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA8D01D1A7944AC0097DF55 /* RecordViewController.swift */; };
+		CBADB0491A80F4A80056D4C6 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBADB0481A80F4A70056D4C6 /* MenuViewController.swift */; };
+		CBD4EAF31A7BCE7700707CDA /* WAXScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD4EAF21A7BCE7700707CDA /* WAXScanViewController.swift */; };
 		CBE963341A1CC76600A9D03E /* WaxCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE963331A1CC76600A9D03E /* WaxCache.swift */; };
 		CBE963381A1CCAF700A9D03E /* GraphBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE963371A1CCAF700A9D03E /* GraphBuilder.swift */; };
 		CBE9633A1A1CEAEB00A9D03E /* WaxData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE963391A1CEAEB00A9D03E /* WaxData.swift */; };
@@ -54,6 +56,8 @@
 		CB812AC81A487A670097A574 /* MagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagViewController.swift; sourceTree = "<group>"; };
 		CB812ACA1A48822A0097A574 /* GraphTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphTabViewController.swift; sourceTree = "<group>"; };
 		CBA8D01D1A7944AC0097DF55 /* RecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
+		CBADB0481A80F4A70056D4C6 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		CBD4EAF21A7BCE7700707CDA /* WAXScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WAXScanViewController.swift; sourceTree = "<group>"; };
 		CBE963331A1CC76600A9D03E /* WaxCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxCache.swift; sourceTree = "<group>"; };
 		CBE963371A1CCAF700A9D03E /* GraphBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphBuilder.swift; sourceTree = "<group>"; };
 		CBE963391A1CEAEB00A9D03E /* WaxData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxData.swift; sourceTree = "<group>"; };
@@ -124,6 +128,8 @@
 				CB812ACA1A48822A0097A574 /* GraphTabViewController.swift */,
 				CBFBB2A31A78E7F100EAC109 /* ForceViewController.swift */,
 				CBA8D01D1A7944AC0097DF55 /* RecordViewController.swift */,
+				CBD4EAF21A7BCE7700707CDA /* WAXScanViewController.swift */,
+				CBADB0481A80F4A70056D4C6 /* MenuViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -352,6 +358,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB812AC71A4879DE0097A574 /* GyroViewController.swift in Sources */,
+				CBADB0491A80F4A80056D4C6 /* MenuViewController.swift in Sources */,
 				CB812ACB1A48822A0097A574 /* GraphTabViewController.swift in Sources */,
 				CB812AC31A4877EA0097A574 /* AccViewController.swift in Sources */,
 				CB812AC11A4838160097A574 /* WaxConnectionManager.swift in Sources */,
@@ -360,6 +367,7 @@
 				CBE963381A1CCAF700A9D03E /* GraphBuilder.swift in Sources */,
 				CBE9633A1A1CEAEB00A9D03E /* WaxData.swift in Sources */,
 				CB3690DE1A77DE4B0094FA8C /* ForceDetector.swift in Sources */,
+				CBD4EAF31A7BCE7700707CDA /* WAXScanViewController.swift in Sources */,
 				CB812AC91A487A670097A574 /* MagViewController.swift in Sources */,
 				CBA8D01E1A7944AC0097DF55 /* RecordViewController.swift in Sources */,
 				CBFBB2A41A78E7F100EAC109 /* ForceViewController.swift in Sources */,

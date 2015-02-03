@@ -10,14 +10,9 @@ import Foundation
 
 class ForceViewController: UIViewController {
     private let forceDtc:ForceDetector
-    internal let dataProcessor:WaxProcessor
-    private let connectionManager:WaxConnectionManager
     
     required init(coder aDecoder: NSCoder) {
-        dataProcessor = WaxProcessor(limit: 100)
-        connectionManager = WaxConnectionManager(dataProcessor: dataProcessor)
-        
-        forceDtc = ForceDetector(accCache: dataProcessor.accCache)
+        forceDtc = ForceDetector(accCache: WaxProcessor.getProcessor().accCache)
         
         super.init(coder: aDecoder)
     }

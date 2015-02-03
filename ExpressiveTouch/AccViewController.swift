@@ -25,7 +25,7 @@ class AccViewController: UIViewController {
         
         let tabController = self.tabBarController as GraphTabViewController
         
-        accGraphBuilder.initLoad(accGraphView, dataCache: tabController.dataProcessor.accCache)
+        accGraphBuilder.initLoad(accGraphView, dataCache: WaxProcessor.getProcessor().accCache)
     }
     
     override func viewDidAppear(animated: Bool) {
