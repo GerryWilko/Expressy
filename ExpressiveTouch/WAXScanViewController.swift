@@ -16,6 +16,9 @@ class WAXScanViewController: UITableViewController {
     
     required init(coder aDecoder:NSCoder) {
         timer = NSTimer()
+        
+        let processor = WaxProcessor()
+        let conMan = WaxConnectionManager(dataProcessor: processor)
             
         super.init(coder: aDecoder)
         

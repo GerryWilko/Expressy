@@ -55,7 +55,15 @@ class RecordViewController : UIViewController {
     }
     
     func tappedView() {
+        var processor = WaxProcessor.getProcessor()
         
+        var latestAcc = processor.accCache.get(processor.accCache.length())
+        var latestGyro = processor.gyroCache.get(processor.accCache.length())
+        var latestMag = processor.magCache.get(processor.accCache.length())
+        
+        latestAcc.touch = true
+        latestGyro.touch = true
+        latestAcc.touch = true
     }
     
     override func viewDidLoad() {

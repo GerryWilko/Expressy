@@ -9,8 +9,6 @@
 #ifndef ExpressiveTouch_ExpressiveTouch_Bridging_Header_h
 #define ExpressiveTouch_ExpressiveTouch_Bridging_Header_h
 
+#import "CorePlot-CocoaTouch.h"
 
 #endif
-
-
-#import "CorePlot-CocoaTouch.h"
