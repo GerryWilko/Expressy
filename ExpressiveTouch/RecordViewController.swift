@@ -41,6 +41,7 @@ class RecordViewController : UIViewController {
     
     @IBAction func viewData(sender: AnyObject) {
         GraphTabViewController.setLive(false)
+        self.performSegueWithIdentifier("recordViewData", sender: sender)
     }
     
     @IBAction func back(sender: AnyObject) {

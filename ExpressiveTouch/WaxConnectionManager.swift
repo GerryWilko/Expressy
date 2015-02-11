@@ -12,7 +12,8 @@ import CoreBluetooth
 var connectionManager:WaxConnectionManager = nil
 var initialisedConMan = false
 
-class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralManagerDelegate, CBPeripheralDelegate, NilLiteralConvertible {
+class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralManagerDelegate, CBPeripheralDelegate, NilLiteralConvertible
+{
     private var cManager = CBCentralManager()
     private var peripheralManager = CBPeripheralManager()
     
@@ -145,10 +146,10 @@ class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralMan
     func peripheral(peripheral: CBPeripheral!, didDiscoverServices error: NSError!) {
         var serviceUDID = CBUUID(string: "00000000-0008-A8BA-E311-F48C90364D99")
         
-        var serviceList = peripheral.services.filter{($0 as CBService).UUID == serviceUDID }
+        var serviceList = peripheral.services.filter{($0 as! CBService).UUID == serviceUDID }
         
         if (serviceList.count > 0) {
-            peripheral.discoverCharacteristics(nil, forService: serviceList[0] as CBService)
+            peripheral.discoverCharacteristics(nil, forService: serviceList[0] as! CBService)
         }
     }
     
@@ -157,11 +158,11 @@ class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralMan
         var writeUDID = CBUUID(string: "00000001-0008-A8BA-E311-F48C90364D99")
         var notifyUDID = CBUUID(string: "00000002-0008-A8BA-E311-F48C90364D99")
         
-        var streamMessage = NSData(bytes: [1] as [Byte], length: 1)
+        var streamMessage = NSData(bytes: [1] as [UInt8], length: 1)
         
-        peripheral.setNotifyValue(true, forCharacteristic: service.characteristics[2] as CBCharacteristic)
+        peripheral.setNotifyValue(true, forCharacteristic: service.characteristics[2] as! CBCharacteristic)
         
-        peripheral.writeValue(streamMessage, forCharacteristic: service.characteristics[1] as CBCharacteristic, type: CBCharacteristicWriteType.WithoutResponse)
+        peripheral.writeValue(streamMessage, forCharacteristic: service.characteristics[1] as! CBCharacteristic, type: CBCharacteristicWriteType.WithoutResponse)
     }
     
     func peripheral(peripheral: CBPeripheral!, didUpdateValueForCharacteristic characteristic: CBCharacteristic!,

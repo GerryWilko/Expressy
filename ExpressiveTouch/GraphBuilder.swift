@@ -87,28 +87,28 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         var dataYColor = CPTColor.greenColor()
         var dataZColor = CPTColor.blueColor()
         
-        var dataXLineStyle = dataPlotX.dataLineStyle.mutableCopy() as CPTMutableLineStyle
+        var dataXLineStyle = dataPlotX.dataLineStyle.mutableCopy() as! CPTMutableLineStyle
         dataXLineStyle.lineWidth = 2.5
         dataXLineStyle.lineColor = dataXColor
         dataPlotX.dataLineStyle = dataXLineStyle
         
-        var dataYLineStyle = dataPlotY.dataLineStyle.mutableCopy() as CPTMutableLineStyle
+        var dataYLineStyle = dataPlotY.dataLineStyle.mutableCopy() as! CPTMutableLineStyle
         dataYLineStyle.lineWidth = 2.5
         dataYLineStyle.lineColor = dataYColor
         dataPlotY.dataLineStyle = dataYLineStyle
         
-        var dataZLineStyle = dataPlotZ.dataLineStyle.mutableCopy() as CPTMutableLineStyle
+        var dataZLineStyle = dataPlotZ.dataLineStyle.mutableCopy() as! CPTMutableLineStyle
         dataZLineStyle.lineWidth = 2.5
         dataZLineStyle.lineColor = dataZColor
         dataPlotZ.dataLineStyle = dataZLineStyle
     }
     
     private func configureAxes() {
-        var axisTitleStyle = CPTMutableTextStyle.textStyle() as CPTMutableTextStyle
+        var axisTitleStyle = CPTMutableTextStyle.textStyle() as! CPTMutableTextStyle
         axisTitleStyle.color =  CPTColor.blackColor()
         axisTitleStyle.fontName = "HelveticaNeue-Medium"
         axisTitleStyle.fontSize = 12.0
-        var axisLineStyle = CPTMutableLineStyle.lineStyle() as CPTMutableLineStyle
+        var axisLineStyle = CPTMutableLineStyle.lineStyle() as! CPTMutableLineStyle
         axisLineStyle.lineWidth = 2.0
         axisLineStyle.lineColor = CPTColor.blackColor()
         var axisTextStyle = CPTMutableTextStyle()
@@ -116,7 +116,7 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         axisTextStyle.fontName = "HelveticaNeue-Medium"
         axisTextStyle.fontSize = 11.0
         
-        var axisSet = graphView.hostedGraph.axisSet as CPTXYAxisSet
+        var axisSet = graphView.hostedGraph.axisSet as! CPTXYAxisSet
         
         var x = axisSet.xAxis as CPTAxis
         x.title = "Time"
@@ -144,7 +144,11 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
     }
     
     func numberOfRecordsForPlot(plot: CPTPlot!) -> UInt {
-        return dataCache.count() <= 100 || live ? dataCache.count() : 100;
+        if (dataCache.count() <= 100 || live) {
+            return UInt(dataCache.count())
+        }
+        
+        return 100
     }
     
     func numberForPlot(plot: CPTPlot!, field fieldEnum: UInt, recordIndex idx: UInt) -> NSNumber! {
@@ -156,10 +160,10 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
             if (dataCache.count() >= 100 && !live) {
                 var shift = dataCache.count() - 100
                 
-                index = idx + shift
+                index = idx + UInt(shift)
             }
             
-            switch plot.identifier as Int {
+            switch plot.identifier as! Int {
             case WaxDataAxis.X.rawValue:
                 return dataCache.get(index).x
             case WaxDataAxis.Y.rawValue:
@@ -186,6 +190,8 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
     }
     
     func resume() {
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "refresh", userInfo: nil, repeats: true)
+        if (live) {
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "refresh", userInfo: nil, repeats: true)
+        }
     }
 }

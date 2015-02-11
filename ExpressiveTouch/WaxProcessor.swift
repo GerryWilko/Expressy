@@ -57,7 +57,7 @@ class WaxProcessor: NilLiteralConvertible {
         
         assert( dataLength == 20 );
         
-        var buffer = [Byte](count: dataLength, repeatedValue: 0)
+        var buffer = [UInt8](count: dataLength, repeatedValue: 0)
         
         data.getBytes(&buffer, length: dataLength)
         

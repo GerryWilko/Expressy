@@ -44,7 +44,7 @@ class WAXScanViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let peripheral = deviceList[indexPath.row] as CBPeripheral
+        let peripheral = deviceList[indexPath.row] as! CBPeripheral
         let cell = UITableViewCell()
         
         cell.textLabel!.text = peripheral.name
@@ -54,7 +54,7 @@ class WAXScanViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let peripheral = deviceList[indexPath.row] as CBPeripheral
+        let peripheral = deviceList[indexPath.row] as! CBPeripheral
         
         WaxConnectionManager.getConnectionManager().connectPeripheral(peripheral)
         

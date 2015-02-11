@@ -27,15 +27,13 @@ class AccViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let tabController = self.tabBarController as GraphTabViewController
+        let tabController = self.tabBarController as! GraphTabViewController
         
         accGraphBuilder.initLoad(accGraphView, dataCache: WaxProcessor.getProcessor().accCache)
     }
     
     override func viewDidAppear(animated: Bool) {
-        if (GraphTabViewController.getLive()) {
-            accGraphBuilder.resume()
-        }
+        accGraphBuilder.resume()
     }
     
     override func viewDidDisappear(animated: Bool) {

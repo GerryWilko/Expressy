@@ -31,8 +31,8 @@ class WaxCache: NilLiteralConvertible {
         return items[Int(index)]
     }
     
-    func count() -> UInt {
-        return UInt(items.count)
+    func count() -> Int {
+        return items.count
     }
     
     func startRecording() {
