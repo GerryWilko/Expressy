@@ -23,6 +23,10 @@ class ForceViewController: UIViewController {
         self.presentViewController(tapAlert, animated: true, completion: nil)
     }
     
+    @IBAction func back(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "tappedView"))
         self.view.userInteractionEnabled = true

@@ -22,8 +22,8 @@ class ForceDetector {
     private func calculateCurrentForce() -> Double {
         var gForce = 0.0
         
-        if (accCache.length() > 0) {
-            var index = accCache.length() - 1
+        if (accCache.count() > 0) {
+            var index = accCache.count() - 1
             var x = accCache.get(index).x / 9.81
             var y = accCache.get(index).y / 9.81
             var z = accCache.get(index).z / 9.81

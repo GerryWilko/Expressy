@@ -15,9 +15,13 @@ class GyroViewController: UIViewController {
     
     required init(coder aDecoder: NSCoder)
     {        
-        gyroGraphBuilder = GraphBuilder(title: "Gyroscope")
+        gyroGraphBuilder = GraphBuilder(title: "Gyroscope", live: GraphTabViewController.getLive())
         
         super.init(coder: aDecoder)
+    }
+    
+    @IBAction func back(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func viewDidLoad() {

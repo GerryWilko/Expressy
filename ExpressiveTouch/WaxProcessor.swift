@@ -9,6 +9,7 @@
 import Foundation
 
 var waxProcessor:WaxProcessor = nil
+var initialisedProcessor = false
 
 class WaxProcessor: NilLiteralConvertible {
     internal var accCache:WaxCache
@@ -26,11 +27,15 @@ class WaxProcessor: NilLiteralConvertible {
     }
     
     init() {
+        assert(!initialisedProcessor)
+        
         accCache = WaxCache()
         gyroCache = WaxCache()
         magCache = WaxCache()
         
         waxProcessor = self
+        
+        initialisedProcessor = true
     }
     
     class func getProcessor() -> WaxProcessor {
@@ -68,8 +73,62 @@ class WaxProcessor: NilLiteralConvertible {
         my = CShort(buffer[17]) << 8 + CShort(buffer[16])
         mz = CShort(buffer[19]) << 8 + CShort(buffer[18])
         
-        accCache.push(WaxData(x: Double(ax) * accNorm, y: Double(ay) * accNorm, z: Double(az) * accNorm, touch: false))
-        gyroCache.push(WaxData(x: Double(gx) * gyroNorm, y: Double(gy) * gyroNorm, z: Double(gz) * gyroNorm, touch: false))
-        magCache.push(WaxData(x: Double(mx) * magNorm, y: Double(my) * magNorm, z: Double(mz) * magNorm, touch: false))
+        accCache.push(WaxData(x: Double(ax) * accNorm, y: Double(ay) * accNorm, z: Double(az) * accNorm))
+        gyroCache.push(WaxData(x: Double(gx) * gyroNorm, y: Double(gy) * gyroNorm, z: Double(gz) * gyroNorm))
+        magCache.push(WaxData(x: Double(mx) * magNorm, y: Double(my) * magNorm, z: Double(mz) * magNorm))
+    }
+    
+    func startRecording() {
+        accCache.startRecording()
+        gyroCache.startRecording()
+        magCache.startRecording()
+    }
+    
+    func stopRecording() {
+        accCache.stopRecording()
+        gyroCache.stopRecording()
+        magCache.stopRecording()
+    }
+    
+    func tapped() {
+        accCache.tapped()
+        gyroCache.tapped()
+        magCache.tapped()
+    }
+    
+    func pinched() {
+        accCache.pinched()
+        gyroCache.pinched()
+        magCache.pinched()
+    }
+    
+    func rotated() {
+        accCache.rotated()
+        gyroCache.rotated()
+        magCache.rotated()
+    }
+    
+    func swiped() {
+        accCache.swiped()
+        gyroCache.swiped()
+        magCache.swiped()
+    }
+    
+    func panned() {
+        accCache.panned()
+        gyroCache.panned()
+        magCache.panned()
+    }
+    
+    func edgePan() {
+        accCache.edgePan()
+        gyroCache.edgePan()
+        magCache.edgePan()
+    }
+    
+    func longPress() {
+        accCache.longPress()
+        gyroCache.longPress()
+        magCache.longPress()
     }
 }

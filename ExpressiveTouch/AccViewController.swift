@@ -15,9 +15,13 @@ class AccViewController: UIViewController {
     
     required init(coder aDecoder: NSCoder)
     {
-        accGraphBuilder = GraphBuilder(title: "Accelerometer")
+        accGraphBuilder = GraphBuilder(title: "Accelerometer", live: GraphTabViewController.getLive())
         
         super.init(coder: aDecoder)
+    }
+    
+    @IBAction func back(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -29,7 +33,9 @@ class AccViewController: UIViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        accGraphBuilder.resume()
+        if (GraphTabViewController.getLive()) {
+            accGraphBuilder.resume()
+        }
     }
     
     override func viewDidDisappear(animated: Bool) {

@@ -41,6 +41,10 @@ class ETDetectorViewController: UIViewController {
         
     }
     
+    @IBAction func back(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "tappedView"))
         self.view.addGestureRecognizer(UIPinchGestureRecognizer(target: self, action: "pinchedView"))

@@ -9,30 +9,34 @@
 import Foundation
 import CoreBluetooth
 
-var deviceList = [CBPeripheral]()
+var deviceList = NSMutableOrderedSet()
+var currentTableView = UITableView()
 
 class WAXScanViewController: UITableViewController {
-    var timer:NSTimer
     
     required init(coder aDecoder:NSCoder) {
-        timer = NSTimer()
-        
-        let processor = WaxProcessor()
-        let conMan = WaxConnectionManager(dataProcessor: processor)
-            
         super.init(coder: aDecoder)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        currentTableView = self.tableView
         
-        WaxConnectionManager.getConnectionManager().scan()
-        timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self.tableView, selector: "reloadData", userInfo: nil, repeats: true)
+        while (!WaxConnectionManager.getConnectionManager().scan()) {}
     }
     
     @IBAction func cancel(sender: AnyObject) {
-        timer.invalidate()
+        WaxConnectionManager.getConnectionManager().stop()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     class func addDevice(device:CBPeripheral) {
-        deviceList.append(device)
+        deviceList.addObject(device)
+        reloadData()
+    }
+    
+    class func reloadData() {
+        currentTableView.reloadData()
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -40,14 +44,21 @@ class WAXScanViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+        let peripheral = deviceList[indexPath.row] as CBPeripheral
+        let cell = UITableViewCell()
         
-        let candy = deviceList[indexPath.row]
-        
-        cell.textLabel!.text = candy.name
+        cell.textLabel!.text = peripheral.name
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let peripheral = deviceList[indexPath.row] as CBPeripheral
+        
+        WaxConnectionManager.getConnectionManager().connectPeripheral(peripheral)
+        
+        cancel(self)
     }
     
     override func didReceiveMemoryWarning() {

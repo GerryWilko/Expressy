@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfT-zT-XkF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfT-zT-XkF">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
@@ -16,22 +16,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uYa-0w-eAL">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Gyroscope" id="Geh-Em-Vg8">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="K2o-in-gHw">
+                                            <connections>
+                                                <action selector="back:" destination="ffG-L8-QUD" id="Eug-P0-Sd8"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="800" height="44"/>
+                                </variation>
+                            </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lSi-5O-ANK" customClass="CPTGraphHostingView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="20" width="800" height="331"/>
+                                    <rect key="frame" x="0.0" y="44" width="800" height="307"/>
                                 </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
+                                <exclude reference="uYa-0w-eAL"/>
                                 <exclude reference="lSi-5O-ANK"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
                             <mask key="subviews">
+                                <include reference="uYa-0w-eAL"/>
                                 <include reference="lSi-5O-ANK"/>
                             </mask>
                         </variation>
@@ -61,19 +78,36 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="20" width="800" height="331"/>
+                                    <rect key="frame" x="0.0" y="44" width="800" height="307"/>
                                 </variation>
                             </view>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dym-hD-yzH">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Magnetometer" id="B5c-MX-6WI">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="N6t-pB-k0J">
+                                            <connections>
+                                                <action selector="back:" destination="wwv-KW-iVB" id="eMr-fN-DPi"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="800" height="44"/>
+                                </variation>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="CFh-Ox-lbD"/>
+                                <exclude reference="Dym-hD-yzH"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
                             <mask key="subviews">
                                 <include reference="CFh-Ox-lbD"/>
+                                <include reference="Dym-hD-yzH"/>
                             </mask>
                         </variation>
                     </view>
@@ -98,22 +132,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qF6-7w-T77">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Acceleration" id="S3W-ql-ewH">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="9Cj-AA-Zms">
+                                            <connections>
+                                                <action selector="back:" destination="W3H-qP-x1E" id="6fh-Zu-TT5"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="800" height="44"/>
+                                </variation>
+                            </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OcT-bQ-nng" customClass="CPTGraphHostingView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="20" width="800" height="331"/>
+                                    <rect key="frame" x="0.0" y="44" width="800" height="307"/>
                                 </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
+                                <exclude reference="qF6-7w-T77"/>
                                 <exclude reference="OcT-bQ-nng"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
                             <mask key="subviews">
+                                <include reference="qF6-7w-T77"/>
                                 <include reference="OcT-bQ-nng"/>
                             </mask>
                         </variation>
@@ -174,9 +225,6 @@
                             <outlet property="delegate" destination="d86-nE-Dzc" id="7HZ-nK-Glu"/>
                         </connections>
                     </tableView>
-                    <connections>
-                        <outlet property="deviceTable" destination="9DP-1B-eIn" id="DXS-YZ-kYZ"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yqK-5h-gbx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -197,7 +245,7 @@
                                 <navigationItem title="Expressive Touch" id="u9g-AR-dZB">
                                     <barButtonItem key="leftBarButtonItem" title="Scan for Devices" id="A7W-Tf-8Yq">
                                         <connections>
-                                            <segue destination="d86-nE-Dzc" kind="presentation" id="t2r-CI-WxE"/>
+                                            <segue destination="d86-nE-Dzc" kind="presentation" modalPresentationStyle="pageSheet" id="t2r-CI-WxE"/>
                                         </connections>
                                     </barButtonItem>
                                 </navigationItem>
@@ -314,7 +362,34 @@
                     <view key="view" contentMode="scaleToFill" id="qjU-Ak-etD">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="btq-fB-AXs">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Force Detector" id="zy8-zB-TKN">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="DQL-nP-Xcl">
+                                            <connections>
+                                                <action selector="back:" destination="C04-5o-deq" id="wJ3-zF-tVz"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="800" height="44"/>
+                                </variation>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="btq-fB-AXs"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="btq-fB-AXs"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ieg-QV-M8e" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -351,27 +426,50 @@
                                     <rect key="frame" x="323" y="185" width="154" height="30"/>
                                 </variation>
                                 <connections>
-                                    <action selector="recordPress:" destination="iPk-6M-5TH" eventType="touchUpInside" id="3uX-4m-zsS"/>
+                                    <action selector="recordPress:" destination="iPk-6M-5TH" eventType="touchUpInside" id="Vsd-qq-oiu"/>
                                 </connections>
                             </button>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bVE-KO-ehh">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Record Interaction Data" id="anX-ub-WK7">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="KXi-ad-OVV">
+                                            <connections>
+                                                <action selector="back:" destination="iPk-6M-5TH" id="lbu-qO-52V"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="View Data" id="9hV-yu-TRi">
+                                            <connections>
+                                                <action selector="viewData:" destination="iPk-6M-5TH" id="xBU-KR-t5J"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="800" height="44"/>
+                                </variation>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="LfP-Wg-cco"/>
                                 <exclude reference="NJR-dy-e7S"/>
+                                <exclude reference="bVE-KO-ehh"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
                             <mask key="subviews">
                                 <include reference="LfP-Wg-cco"/>
                                 <include reference="NJR-dy-e7S"/>
+                                <include reference="bVE-KO-ehh"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="recordBtn" destination="NJR-dy-e7S" id="lkq-p5-kZ2"/>
-                        <outlet property="timeLabel" destination="LfP-Wg-cco" id="SKZ-5M-UdA"/>
+                        <outlet property="recordBtn" destination="NJR-dy-e7S" id="YVD-dd-vXd"/>
+                        <outlet property="timeLabel" destination="LfP-Wg-cco" id="VYM-4C-kAt"/>
+                        <outlet property="viewDataBtn" destination="9hV-yu-TRi" id="M8E-ra-GIJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZIp-Sx-FAI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -387,8 +485,36 @@
                         <viewControllerLayoutGuide type="bottom" id="qyp-z3-zdC"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="YVb-l1-0j9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eQQ-Mp-zbH">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Interaction Detector" id="P8A-sN-Uhy">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="lhz-g5-ueh">
+                                            <connections>
+                                                <action selector="back:" destination="g1C-39-oww" id="YYL-4J-uqe"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="800" height="44"/>
+                                </variation>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="eQQ-Mp-zbH"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="eQQ-Mp-zbH"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h6U-9E-nvG" userLabel="First Responder" sceneMemberID="firstResponder"/>

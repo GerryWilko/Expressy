@@ -10,7 +10,7 @@ import Foundation
 import CoreBluetooth
 
 var connectionManager:WaxConnectionManager = nil
-
+var initialisedConMan = false
 
 class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralManagerDelegate, CBPeripheralDelegate, NilLiteralConvertible {
     private var cManager = CBCentralManager()
@@ -27,6 +27,8 @@ class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralMan
     }
     
     init(dataProcessor:WaxProcessor) {
+        assert(!initialisedConMan)
+        
         self.dataProcessor = dataProcessor
         ready = false
         
@@ -37,16 +39,24 @@ class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralMan
         peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
         
         connectionManager = self
+        
+        initialisedConMan = true
     }
     
     class func getConnectionManager() -> WaxConnectionManager {
         return connectionManager
     }
     
-    func scan() {
+    func scan() -> Bool {
         if (ready) {
             cManager.scanForPeripheralsWithServices(nil, options: nil)
         }
+        
+        return ready
+    }
+    
+    func stop() {
+        cManager.stopScan()
     }
     
     func centralManagerDidUpdateState(central: CBCentralManager!) {
@@ -85,6 +95,10 @@ class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralMan
         println(peripheral.name);
         
         WAXScanViewController.addDevice(peripheral)
+    }
+    
+    func connectPeripheral(peripheral: CBPeripheral) {
+        cManager.connectPeripheral(peripheral, options: nil)
     }
     
     func centralManager(central: CBCentralManager!, didConnectPeripheral peripheral: CBPeripheral!) {
@@ -152,11 +166,11 @@ class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralMan
     
     func peripheral(peripheral: CBPeripheral!, didUpdateValueForCharacteristic characteristic: CBCharacteristic!,
         error: NSError!) {
-            dataProcessor.updateCache(characteristic.value)
+        dataProcessor.updateCache(characteristic.value)
     }
     
     func peripheral(peripheral: CBPeripheral!, didUpdateNotificationStateForCharacteristic characteristic: CBCharacteristic!, error: NSError!) {
-        if( characteristic.isNotifying )
+        if(characteristic.isNotifying)
         {
             peripheral.readValueForCharacteristic(characteristic);
         }

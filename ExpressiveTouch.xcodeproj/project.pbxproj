@@ -18,7 +18,6 @@
 		CB73387F1A822CA600FA1121 /* GraphTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73386B1A822CA600FA1121 /* GraphTabViewController.swift */; };
 		CB7338801A822CA600FA1121 /* GyroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73386C1A822CA600FA1121 /* GyroViewController.swift */; };
 		CB7338811A822CA600FA1121 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB73386D1A822CA600FA1121 /* Images.xcassets */; };
-		CB7338821A822CA600FA1121 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB73386E1A822CA600FA1121 /* Info.plist */; };
 		CB7338831A822CA600FA1121 /* InteractionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73386F1A822CA600FA1121 /* InteractionDetector.swift */; };
 		CB7338841A822CA600FA1121 /* MagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338701A822CA600FA1121 /* MagViewController.swift */; };
 		CB7338851A822CA600FA1121 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338711A822CA600FA1121 /* RecordViewController.swift */; };
@@ -308,7 +307,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB7338821A822CA600FA1121 /* Info.plist in Resources */,
 				CB7338811A822CA600FA1121 /* Images.xcassets in Resources */,
 				CB7338791A822CA600FA1121 /* LaunchScreen.xib in Resources */,
 				CB73387A1A822CA600FA1121 /* Main.storyboard in Resources */,

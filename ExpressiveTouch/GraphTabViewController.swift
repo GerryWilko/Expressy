@@ -8,13 +8,27 @@
 
 import Foundation
 
+var liveData = true
+
 class GraphTabViewController : UITabBarController {
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
+    class func setLive(live:Bool) {
+        liveData = live
+    }
+    
+    class func getLive() -> Bool {
+        return liveData
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        liveData = false
     }
     
     override func didReceiveMemoryWarning() {

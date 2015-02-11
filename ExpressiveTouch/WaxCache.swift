@@ -11,32 +11,63 @@ import Foundation
 class WaxCache: NilLiteralConvertible {
     private let limit:UInt = 1000
     private var items:[WaxData]
-    private var count:UInt
     
     required init(nilLiteral: ()) {
         items = [WaxData]()
-        count = 0
     }
     
     init() {
         items = [WaxData]()
-        count = 0
     }
     
     func push(item: WaxData) {
-        if (count >= limit) {
+        if (UInt(items.count) >= limit) {
             items.removeAtIndex(0)
-            count--
         }
         items.append(item)
-        count++
     }
     
     func get(index:UInt) -> WaxData {
         return items[Int(index)]
     }
     
-    func length() -> UInt {
-        return count
+    func count() -> UInt {
+        return UInt(items.count)
+    }
+    
+    func startRecording() {
+        if (count() > 0) { items[count() - 1].startRecording = true }
+    }
+    
+    func stopRecording() {
+        if (count() > 0) { items[count() - 1].stopRecording = true }
+    }
+    
+    func tapped() {
+        if (count() > 0) { items[count() - 1].tapped = true }
+    }
+    
+    func pinched() {
+        if (count() > 0) { items[count() - 1].pinched = true }
+    }
+    
+    func rotated() {
+        if (count() > 0) { items[count() - 1].rotated = true }
+    }
+    
+    func swiped() {
+        if (count() > 0) { items[count() - 1].swiped = true }
+    }
+    
+    func panned() {
+        if (count() > 0) { items[count() - 1].panned = true }
+    }
+    
+    func edgePan() {
+        if (count() > 0) { items[count() - 1].edgePan = true }
+    }
+    
+    func longPress() {
+        if (count() > 0) { items[count() - 1].longPress = true }
     }
 }

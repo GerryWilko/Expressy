@@ -12,13 +12,15 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
     private var graphView:CPTGraphHostingView
     private var dataCache:WaxCache
     private let title:String
+    private let live:Bool
     private var timer:NSTimer
     
-    init(title:String) {
+    init(title:String, live:Bool) {
         graphView = CPTGraphHostingView()
         dataCache = WaxCache()
         
         self.title = title
+        self.live = live
         
         timer = NSTimer()
         
@@ -43,11 +45,9 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         var graph = CPTXYGraph(frame: CGRectZero)
         graphView.hostedGraph = graph
         
-        graph.title = title
-        
         var titleStyle = CPTMutableTextStyle()
         titleStyle.color = CPTColor.blackColor()
-        titleStyle.fontName = "Helvetica-Bold"
+        titleStyle.fontName = "HelveticaNeue-Medium"
         titleStyle.fontSize = 16.0
         
         graph.titleTextStyle = titleStyle
@@ -106,14 +106,14 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
     private func configureAxes() {
         var axisTitleStyle = CPTMutableTextStyle.textStyle() as CPTMutableTextStyle
         axisTitleStyle.color =  CPTColor.blackColor()
-        axisTitleStyle.fontName = "Helvetica-Bold"
+        axisTitleStyle.fontName = "HelveticaNeue-Medium"
         axisTitleStyle.fontSize = 12.0
         var axisLineStyle = CPTMutableLineStyle.lineStyle() as CPTMutableLineStyle
         axisLineStyle.lineWidth = 2.0
         axisLineStyle.lineColor = CPTColor.blackColor()
         var axisTextStyle = CPTMutableTextStyle()
         axisTextStyle.color = CPTColor.blackColor()
-        axisTextStyle.fontName = "Helvetica-Bold"
+        axisTextStyle.fontName = "HelveticaNeue-Medium"
         axisTextStyle.fontSize = 11.0
         
         var axisSet = graphView.hostedGraph.axisSet as CPTXYAxisSet
@@ -144,7 +144,7 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
     }
     
     func numberOfRecordsForPlot(plot: CPTPlot!) -> UInt {
-        return dataCache.length() <= 100 ? dataCache.length() : 100;
+        return dataCache.count() <= 100 || live ? dataCache.count() : 100;
     }
     
     func numberForPlot(plot: CPTPlot!, field fieldEnum: UInt, recordIndex idx: UInt) -> NSNumber! {
@@ -153,8 +153,8 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
             return idx
         case CPTScatterPlotFieldY.value:
             var index = idx
-            if (dataCache.length() <= 100) {
-                var shift = dataCache.length() - 100
+            if (dataCache.count() >= 100 && !live) {
+                var shift = dataCache.count() - 100
                 
                 index = idx + shift
             }
