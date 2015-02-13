@@ -14,6 +14,7 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
     private let title:String
     private let live:Bool
     private var timer:NSTimer
+    private var recordedStartPos:UInt
     
     init(title:String, live:Bool) {
         graphView = CPTGraphHostingView()
@@ -23,8 +24,7 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         self.live = live
         
         timer = NSTimer()
-        
-        super.init()
+        recordedStartPos = 0
     }
     
     func initLoad(graphView:CPTGraphHostingView, dataCache:WaxCache) {
@@ -146,8 +146,16 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
     }
     
     func numberOfRecordsForPlot(plot: CPTPlot!) -> UInt {
-        if (dataCache.count() <= 100 || !live) {
+        if (dataCache.count() <= 100 && live) {
             return UInt(dataCache.count())
+        }
+        else if (!live) {
+            for (var i = dataCache.count() - 1; i >= 0; i--) {
+                if (dataCache.get(UInt(i)).startRecording) {
+                    recordedStartPos = UInt(i)
+                    return UInt(dataCache.count() - i)
+                }
+            }
         }
         
         return 100
@@ -163,6 +171,9 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
                 var shift = dataCache.count() - 100
                 
                 index = idx + UInt(shift)
+            }
+            else if (!live) {
+                index += recordedStartPos
             }
             
             switch plot.identifier as! Int {
@@ -180,6 +191,28 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         }
         
         return 0
+    }
+    
+    func dataLabelForPlot(plot: CPTPlot!, recordIndex idx: UInt) -> CPTLayer! {
+        let data = dataCache.get(idx)
+        
+        if (!live && (data.startRecording || data.stopRecording || data.tapped || data.pinched || data.rotated || data.swiped || data.panned || data.edgePan || data.longPress)) {
+            var labelText = ""
+            
+            labelText += data.startRecording ? "Started Recording\n" : ""
+            labelText += data.stopRecording ? "Stopped Recording\n" : ""
+            labelText += data.tapped ? "Tapped\n" : ""
+            labelText += data.pinched ? "Pinched\n" : ""
+            labelText += data.rotated ? "Rotated\n" : ""
+            labelText += data.swiped ? "Swiped\n" : ""
+            labelText += data.panned ? "Panned\n" : ""
+            labelText += data.edgePan ? "Edge Pan\n" : ""
+            labelText += data.longPress ? "Long Press\n" : ""
+            
+            return CPTTextLayer(text: labelText)
+        }
+        
+        return CPTLayer()
     }
     
     func refresh() {

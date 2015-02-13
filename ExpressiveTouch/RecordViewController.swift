@@ -69,31 +69,45 @@ class RecordViewController : UIViewController {
     }
     
     func tappedView() {
-        WaxProcessor.getProcessor().tapped()
+        if (recording) {
+            WaxProcessor.getProcessor().tapped()
+        }
     }
     
     func pinchedView() {
-        WaxProcessor.getProcessor().pinched()
+        if (recording) {
+            WaxProcessor.getProcessor().pinched()
+        }
     }
     
     func rotatedView() {
-        WaxProcessor.getProcessor().rotated()
+        if (recording) {
+            WaxProcessor.getProcessor().rotated()
+        }
     }
     
     func swipedView() {
-        WaxProcessor.getProcessor().swiped()
+        if (recording) {
+            WaxProcessor.getProcessor().swiped()
+        }
     }
     
     func pannedView() {
-        WaxProcessor.getProcessor().panned()
+        if (recording) {
+            WaxProcessor.getProcessor().panned()
+        }
     }
     
     func edgePanView() {
-        WaxProcessor.getProcessor().edgePan()
+        if (recording) {
+            WaxProcessor.getProcessor().edgePan()
+        }
     }
     
     func longPressView() {
-        WaxProcessor.getProcessor().longPress()
+        if (recording) {
+            WaxProcessor.getProcessor().longPress()
+        }
     }
     
     override func viewDidLoad() {

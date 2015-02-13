@@ -14,31 +14,31 @@ class ETDetectorViewController: UIViewController {
     }
     
     func tappedView() {
-        
+        WaxProcessor.getProcessor().tapped()
     }
     
     func pinchedView() {
-        
+        WaxProcessor.getProcessor().pinched()
     }
     
     func rotatedView() {
-        
+        WaxProcessor.getProcessor().rotated()
     }
     
     func swipedView() {
-        
+        WaxProcessor.getProcessor().swiped()
     }
     
     func pannedView() {
-        
+        WaxProcessor.getProcessor().panned()
     }
     
     func edgePanView() {
-        
+        WaxProcessor.getProcessor().edgePan()
     }
     
     func longPressView() {
-        
+        WaxProcessor.getProcessor().longPress()
     }
     
     @IBAction func back(sender: AnyObject) {
