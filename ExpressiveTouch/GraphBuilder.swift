@@ -61,6 +61,8 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         graph.paddingBottom = 40.0
         graph.paddingLeft = 40.0
         graph.paddingRight = 40.0
+        
+        graph.defaultPlotSpace.allowsUserInteraction = !live
     }
     
     private func configurePlots() {
@@ -144,7 +146,7 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
     }
     
     func numberOfRecordsForPlot(plot: CPTPlot!) -> UInt {
-        if (dataCache.count() <= 100 || live) {
+        if (dataCache.count() <= 100 || !live) {
             return UInt(dataCache.count())
         }
         
@@ -157,7 +159,7 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
             return idx
         case CPTScatterPlotFieldY.value:
             var index = idx
-            if (dataCache.count() >= 100 && !live) {
+            if (dataCache.count() > 100 && live) {
                 var shift = dataCache.count() - 100
                 
                 index = idx + UInt(shift)

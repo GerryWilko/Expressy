@@ -26,6 +26,7 @@
 		CB7338881A822CA600FA1121 /* WaxData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338741A822CA600FA1121 /* WaxData.swift */; };
 		CB7338891A822CA600FA1121 /* WaxProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338751A822CA600FA1121 /* WaxProcessor.swift */; };
 		CB73388A1A822CA600FA1121 /* WAXScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338761A822CA600FA1121 /* WAXScanViewController.swift */; };
+		CBD2500C1A8E39D5002792B7 /* MadgwickAHRS.c in Sources */ = {isa = PBXBuildFile; fileRef = CBD2500A1A8E39D5002792B7 /* MadgwickAHRS.c */; };
 		CBF898A919F40D4F0069B2C4 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898A819F40D4F0069B2C4 /* CoreBluetooth.framework */; };
 		CBF898AB19F40D5E0069B2C4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898AA19F40D5E0069B2C4 /* UIKit.framework */; };
 		CBF898AD19F40D670069B2C4 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898AC19F40D670069B2C4 /* CoreFoundation.framework */; };
@@ -69,6 +70,8 @@
 		CB7338741A822CA600FA1121 /* WaxData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxData.swift; sourceTree = "<group>"; };
 		CB7338751A822CA600FA1121 /* WaxProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxProcessor.swift; sourceTree = "<group>"; };
 		CB7338761A822CA600FA1121 /* WAXScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WAXScanViewController.swift; sourceTree = "<group>"; };
+		CBD2500A1A8E39D5002792B7 /* MadgwickAHRS.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MadgwickAHRS.c; sourceTree = "<group>"; };
+		CBD2500B1A8E39D5002792B7 /* MadgwickAHRS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MadgwickAHRS.h; sourceTree = "<group>"; };
 		CBF898A819F40D4F0069B2C4 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		CBF898AA19F40D5E0069B2C4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CBF898AC19F40D670069B2C4 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -113,9 +116,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CB29A28C1A8E156A009F269A /* Madgwick */ = {
+			isa = PBXGroup;
+			children = (
+				CBD2500A1A8E39D5002792B7 /* MadgwickAHRS.c */,
+				CBD2500B1A8E39D5002792B7 /* MadgwickAHRS.h */,
+			);
+			name = Madgwick;
+			sourceTree = "<group>";
+		};
 		CB73385F1A822CA600FA1121 /* ExpressiveTouch */ = {
 			isa = PBXGroup;
 			children = (
+				CB29A28C1A8E156A009F269A /* Madgwick */,
 				CB73388C1A822CE700FA1121 /* View Controllers */,
 				CB73388F1A822D0F00FA1121 /* Expressive Touch */,
 				CB73388D1A822CEF00FA1121 /* WAX */,
@@ -270,7 +283,7 @@
 		D517508219E9831C0076F6FA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Newcastle University";
 				TargetAttributes = {
 					D517508919E9831C0076F6FA = {
@@ -364,6 +377,7 @@
 				CB7338891A822CA600FA1121 /* WaxProcessor.swift in Sources */,
 				CB7338781A822CA600FA1121 /* AppDelegate.swift in Sources */,
 				CB7338871A822CA600FA1121 /* WaxConnectionManager.swift in Sources */,
+				CBD2500C1A8E39D5002792B7 /* MadgwickAHRS.c in Sources */,
 				CB73387B1A822CA600FA1121 /* ETDetectorViewController.swift in Sources */,
 				CB7338801A822CA600FA1121 /* GyroViewController.swift in Sources */,
 				CB7338771A822CA600FA1121 /* AccViewController.swift in Sources */,
@@ -510,9 +524,16 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/CorePlot",
 				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-l\"Pods-ExpressiveTouch-CorePlot\"",
+					"-framework",
+					"\"QuartzCore\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ExpressiveTouch/ExpressiveTouch-Bridging-Header.h";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
@@ -530,9 +551,16 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/CorePlot",
 				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-l\"Pods-ExpressiveTouch-CorePlot\"",
+					"-framework",
+					"\"QuartzCore\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ExpressiveTouch/ExpressiveTouch-Bridging-Header.h";
+				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
 		};

@@ -28,7 +28,7 @@ class GraphTabViewController : UITabBarController {
     }
     
     override func viewDidDisappear(animated: Bool) {
-        liveData = false
+        GraphTabViewController.setLive(true)
     }
     
     override func didReceiveMemoryWarning() {
