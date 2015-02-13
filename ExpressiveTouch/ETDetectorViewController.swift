@@ -9,7 +9,11 @@
 import Foundation
 
 class ETDetectorViewController: UIViewController {
+    private let intDetector:InteractionDetector
+    
     required init(coder aDecoder: NSCoder) {
+        intDetector = InteractionDetector()
+        
         super.init(coder: aDecoder)
     }
     
