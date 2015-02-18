@@ -9,11 +9,7 @@
 import Foundation
 
 class ETDetectorViewController: UIViewController {
-    private let intDetector:InteractionDetector
-    
     required init(coder aDecoder: NSCoder) {
-        intDetector = InteractionDetector()
-        
         super.init(coder: aDecoder)
     }
     
@@ -58,6 +54,7 @@ class ETDetectorViewController: UIViewController {
         self.view.addGestureRecognizer(UIScreenEdgePanGestureRecognizer(target: self, action: "edgePanView"))
         self.view.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: "longPressView"))
         self.view.userInteractionEnabled = true
+        (self.view as! InteractionView).delegate = self
     }
     
     override func didReceiveMemoryWarning() {

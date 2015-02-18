@@ -17,11 +17,10 @@ class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralMan
     private var cManager = CBCentralManager()
     private var peripheralManager = CBPeripheralManager()
     
-    private var dataProcessor:WaxProcessor
+    private var dataProcessor:WaxProcessor!
     private var ready:Bool
     
     required init(nilLiteral: ()) {
-        self.dataProcessor = nil
         ready = false
         
         super.init()
@@ -109,6 +108,10 @@ class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralMan
     
     func centralManager(central: CBCentralManager!, didFailToConnectPeripheral peripheral: CBPeripheral!, error: NSError!) {
         println("FAILED TO CONNECT \(error)")
+        
+        let tapAlert = UIAlertController(title: "Connection Failed", message: "Failed to connect to peripheral.", preferredStyle: UIAlertControllerStyle.Alert)
+        tapAlert.addAction(UIAlertAction(title: "OK", style: .Destructive, handler: nil))
+        UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(tapAlert, animated: true, completion: nil)
     }
     
     func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager!) {
@@ -150,6 +153,10 @@ class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralMan
         
         if (serviceList.count > 0) {
             peripheral.discoverCharacteristics(nil, forService: serviceList[0] as! CBService)
+        } else {
+            let tapAlert = UIAlertController(title: "Connection Failed", message: "Selected sensor does not have the required services.", preferredStyle: UIAlertControllerStyle.Alert)
+            tapAlert.addAction(UIAlertAction(title: "OK", style: .Destructive, handler: nil))
+            UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(tapAlert, animated: true, completion: nil)
         }
     }
     
@@ -163,6 +170,10 @@ class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralMan
         peripheral.setNotifyValue(true, forCharacteristic: service.characteristics[2] as! CBCharacteristic)
         
         peripheral.writeValue(streamMessage, forCharacteristic: service.characteristics[1] as! CBCharacteristic, type: CBCharacteristicWriteType.WithoutResponse)
+        
+        let tapAlert = UIAlertController(title: "Connection Successful", message: "WAX sensor connected and data now being streamed.", preferredStyle: UIAlertControllerStyle.Alert)
+        tapAlert.addAction(UIAlertAction(title: "OK", style: .Destructive, handler: nil))
+        UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(tapAlert, animated: true, completion: nil)
     }
     
     func peripheral(peripheral: CBPeripheral!, didUpdateValueForCharacteristic characteristic: CBCharacteristic!,

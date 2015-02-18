@@ -13,17 +13,5 @@ class InteractionDetector {
     
     init() {
         timer = NSTimer()
-        
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "processData", userInfo: nil, repeats: false)
-    }
-    
-    func processData() {
-        detectSweep()
-        
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "processData", userInfo: nil, repeats: false)
-    }
-    
-    func detectSweep() {
-        
     }
 }

@@ -31,6 +31,27 @@ class WaxCache: NilLiteralConvertible {
         return items[Int(index)]
     }
     
+    private func getIndexForTime(time:Int) -> Int {
+        var closest:Int = 0
+        for i in 0..<count() {
+            if(abs(time - items[closest].time) > abs(items[i].time - time)) {
+                closest = i;
+            }
+        }
+        return closest;
+    }
+    
+    func getForTime(time:Int) -> WaxData {
+        return items[getIndexForTime(time)]
+    }
+    
+    func getRangeForTime(start:Int, end:Int) -> [WaxData] {
+        let startIndex = getIndexForTime(start)
+        let endIndex = getIndexForTime(end)
+        
+        return Array(items[startIndex..<endIndex])
+    }
+    
     func count() -> Int {
         return items.count
     }

@@ -8,11 +8,33 @@
 
 import Foundation
 
-class WaxData {
-    let x:Double, y:Double, z:Double, madgwick:Vector4D
+class WaxData: NilLiteralConvertible {
+    let time:Int, x:Double, y:Double, z:Double, madgwick:Vector4D
     var startRecording:Bool, stopRecording:Bool, tapped:Bool, pinched:Bool, rotated:Bool, swiped:Bool, panned:Bool, edgePan:Bool, longPress:Bool
     
-    init(x:Double, y:Double, z:Double, madgwick:Vector4D) {
+    required init(nilLiteral: ()) {
+        self.time = 0
+        
+        self.x = 0
+        self.y = 0
+        self.z = 0
+        
+        self.madgwick = Vector4D(x:0,y:0,z:0,w:0)
+        
+        startRecording = false
+        stopRecording = false
+        tapped = false
+        pinched = false
+        rotated = false
+        swiped = false
+        panned = false
+        edgePan = false
+        longPress = false
+    }
+    
+    init(time:Int, x:Double, y:Double, z:Double, madgwick:Vector4D) {
+        self.time = time
+        
         self.x = x
         self.y = y
         self.z = z

@@ -76,9 +76,11 @@ class WaxProcessor: NilLiteralConvertible {
         MadgwickAHRSupdate(CFloat(gx), CFloat(gy), CFloat(gz), CFloat(ax), CFloat(ay), CFloat(az), CFloat(mx), CFloat(my), CFloat(mz))
         let madgwick = Vector4D(x: q0, y: q1, z: q2, w: q3)
         
-        accCache.push(WaxData(x: Double(ax) * accNorm, y: Double(ay) * accNorm, z: Double(az) * accNorm, madgwick: madgwick))
-        gyroCache.push(WaxData(x: Double(gx) * gyroNorm, y: Double(gy) * gyroNorm, z: Double(gz) * gyroNorm, madgwick: madgwick))
-        magCache.push(WaxData(x: Double(mx) * magNorm, y: Double(my) * magNorm, z: Double(mz) * magNorm, madgwick: madgwick))
+        let time = Int(NSDate.timeIntervalSinceReferenceDate())
+        
+        accCache.push(WaxData(time: time, x: Double(ax) * accNorm, y: Double(ay) * accNorm, z: Double(az) * accNorm, madgwick: madgwick))
+        gyroCache.push(WaxData(time: time, x: Double(gx) * gyroNorm, y: Double(gy) * gyroNorm, z: Double(gz) * gyroNorm, madgwick: madgwick))
+        magCache.push(WaxData(time: time, x: Double(mx) * magNorm, y: Double(my) * magNorm, z: Double(mz) * magNorm, madgwick: madgwick))
     }
     
     func startRecording() {

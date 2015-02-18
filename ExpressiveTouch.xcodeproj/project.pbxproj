@@ -18,7 +18,6 @@
 		CB73387F1A822CA600FA1121 /* GraphTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73386B1A822CA600FA1121 /* GraphTabViewController.swift */; };
 		CB7338801A822CA600FA1121 /* GyroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73386C1A822CA600FA1121 /* GyroViewController.swift */; };
 		CB7338811A822CA600FA1121 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB73386D1A822CA600FA1121 /* Images.xcassets */; };
-		CB7338831A822CA600FA1121 /* InteractionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73386F1A822CA600FA1121 /* InteractionDetector.swift */; };
 		CB7338841A822CA600FA1121 /* MagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338701A822CA600FA1121 /* MagViewController.swift */; };
 		CB7338851A822CA600FA1121 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338711A822CA600FA1121 /* RecordViewController.swift */; };
 		CB7338861A822CA600FA1121 /* WaxCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338721A822CA600FA1121 /* WaxCache.swift */; };
@@ -26,6 +25,7 @@
 		CB7338881A822CA600FA1121 /* WaxData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338741A822CA600FA1121 /* WaxData.swift */; };
 		CB7338891A822CA600FA1121 /* WaxProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338751A822CA600FA1121 /* WaxProcessor.swift */; };
 		CB73388A1A822CA600FA1121 /* WAXScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338761A822CA600FA1121 /* WAXScanViewController.swift */; };
+		CB983BD51A949A9F0042F946 /* InteractionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB983BD41A949A9F0042F946 /* InteractionView.swift */; };
 		CBD2500C1A8E39D5002792B7 /* MadgwickAHRS.c in Sources */ = {isa = PBXBuildFile; fileRef = CBD2500A1A8E39D5002792B7 /* MadgwickAHRS.c */; };
 		CBF898A919F40D4F0069B2C4 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898A819F40D4F0069B2C4 /* CoreBluetooth.framework */; };
 		CBF898AB19F40D5E0069B2C4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898AA19F40D5E0069B2C4 /* UIKit.framework */; };
@@ -62,7 +62,6 @@
 		CB73386C1A822CA600FA1121 /* GyroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GyroViewController.swift; sourceTree = "<group>"; };
 		CB73386D1A822CA600FA1121 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CB73386E1A822CA600FA1121 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CB73386F1A822CA600FA1121 /* InteractionDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionDetector.swift; sourceTree = "<group>"; };
 		CB7338701A822CA600FA1121 /* MagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagViewController.swift; sourceTree = "<group>"; };
 		CB7338711A822CA600FA1121 /* RecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		CB7338721A822CA600FA1121 /* WaxCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxCache.swift; sourceTree = "<group>"; };
@@ -70,6 +69,7 @@
 		CB7338741A822CA600FA1121 /* WaxData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxData.swift; sourceTree = "<group>"; };
 		CB7338751A822CA600FA1121 /* WaxProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxProcessor.swift; sourceTree = "<group>"; };
 		CB7338761A822CA600FA1121 /* WAXScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WAXScanViewController.swift; sourceTree = "<group>"; };
+		CB983BD41A949A9F0042F946 /* InteractionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionView.swift; sourceTree = "<group>"; };
 		CBD2500A1A8E39D5002792B7 /* MadgwickAHRS.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MadgwickAHRS.c; sourceTree = "<group>"; };
 		CBD2500B1A8E39D5002792B7 /* MadgwickAHRS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MadgwickAHRS.h; sourceTree = "<group>"; };
 		CBF898A819F40D4F0069B2C4 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
@@ -181,7 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				CB7338681A822CA600FA1121 /* ForceDetector.swift */,
-				CB73386F1A822CA600FA1121 /* InteractionDetector.swift */,
+				CB983BD41A949A9F0042F946 /* InteractionView.swift */,
 			);
 			name = "Expressive Touch";
 			sourceTree = "<group>";
@@ -374,6 +374,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB73387D1A822CA600FA1121 /* ForceViewController.swift in Sources */,
+				CB983BD51A949A9F0042F946 /* InteractionView.swift in Sources */,
 				CB7338891A822CA600FA1121 /* WaxProcessor.swift in Sources */,
 				CB7338781A822CA600FA1121 /* AppDelegate.swift in Sources */,
 				CB7338871A822CA600FA1121 /* WaxConnectionManager.swift in Sources */,
@@ -386,7 +387,6 @@
 				CB7338881A822CA600FA1121 /* WaxData.swift in Sources */,
 				CB73388A1A822CA600FA1121 /* WAXScanViewController.swift in Sources */,
 				CB73387E1A822CA600FA1121 /* GraphBuilder.swift in Sources */,
-				CB7338831A822CA600FA1121 /* InteractionDetector.swift in Sources */,
 				CB7338861A822CA600FA1121 /* WaxCache.swift in Sources */,
 				CB7338841A822CA600FA1121 /* MagViewController.swift in Sources */,
 				CB73387C1A822CA600FA1121 /* ForceDetector.swift in Sources */,
