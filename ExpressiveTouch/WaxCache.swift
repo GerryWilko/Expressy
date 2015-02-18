@@ -8,13 +8,9 @@
 
 import Foundation
 
-class WaxCache: NilLiteralConvertible {
+class WaxCache {
     private let limit:UInt = 1000
     private var items:[WaxData]
-    
-    required init(nilLiteral: ()) {
-        items = [WaxData]()
-    }
     
     init() {
         items = [WaxData]()

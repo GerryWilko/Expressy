@@ -9,22 +9,16 @@
 import Foundation
 import CoreBluetooth
 
-var connectionManager:WaxConnectionManager = nil
+var connectionManager:WaxConnectionManager!
 var initialisedConMan = false
 
-class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralManagerDelegate, CBPeripheralDelegate, NilLiteralConvertible
+class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralManagerDelegate, CBPeripheralDelegate
 {
     private var cManager = CBCentralManager()
     private var peripheralManager = CBPeripheralManager()
     
     private var dataProcessor:WaxProcessor!
     private var ready:Bool
-    
-    required init(nilLiteral: ()) {
-        ready = false
-        
-        super.init()
-    }
     
     init(dataProcessor:WaxProcessor) {
         assert(!initialisedConMan)

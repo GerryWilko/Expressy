@@ -8,10 +8,10 @@
 
 import Foundation
 
-var waxProcessor:WaxProcessor = nil
+var waxProcessor:WaxProcessor
 var initialisedProcessor = false
 
-class WaxProcessor: NilLiteralConvertible {
+class WaxProcessor {
     internal var accCache:WaxCache
     internal var gyroCache:WaxCache
     internal var magCache:WaxCache
@@ -19,12 +19,6 @@ class WaxProcessor: NilLiteralConvertible {
     private let accNorm:Double = 1 / 4096.0
     private let gyroNorm:Double = 0.07
     private let magNorm:Double = 0.1
-    
-    required init(nilLiteral: ()) {
-        accCache = nil
-        gyroCache = nil
-        magCache = nil
-    }
     
     init() {
         assert(!initialisedProcessor)
