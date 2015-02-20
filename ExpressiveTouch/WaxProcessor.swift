@@ -8,13 +8,14 @@
 
 import Foundation
 
-var waxProcessor:WaxProcessor
+var waxProcessor:WaxProcessor!
 var initialisedProcessor = false
 
 class WaxProcessor {
-    internal var accCache:WaxCache
-    internal var gyroCache:WaxCache
-    internal var magCache:WaxCache
+    internal let accCache:WaxDataCache
+    internal let gyroCache:WaxDataCache
+    internal let magCache:WaxDataCache
+    internal let infoCache:WaxInfoCache
     
     private let accNorm:Double = 1 / 4096.0
     private let gyroNorm:Double = 0.07
@@ -23,9 +24,10 @@ class WaxProcessor {
     init() {
         assert(!initialisedProcessor)
         
-        accCache = WaxCache()
-        gyroCache = WaxCache()
-        magCache = WaxCache()
+        accCache = WaxDataCache()
+        gyroCache = WaxDataCache()
+        magCache = WaxDataCache()
+        infoCache = WaxInfoCache()
         
         waxProcessor = self
         
@@ -70,64 +72,47 @@ class WaxProcessor {
         MadgwickAHRSupdate(CFloat(gx), CFloat(gy), CFloat(gz), CFloat(ax), CFloat(ay), CFloat(az), CFloat(mx), CFloat(my), CFloat(mz))
         let madgwick = Vector4D(x: q0, y: q1, z: q2, w: q3)
         
-        let time = Int(NSDate.timeIntervalSinceReferenceDate())
+        let time = NSDate.timeIntervalSinceReferenceDate()
         
-        accCache.push(WaxData(time: time, x: Double(ax) * accNorm, y: Double(ay) * accNorm, z: Double(az) * accNorm, madgwick: madgwick))
-        gyroCache.push(WaxData(time: time, x: Double(gx) * gyroNorm, y: Double(gy) * gyroNorm, z: Double(gz) * gyroNorm, madgwick: madgwick))
-        magCache.push(WaxData(time: time, x: Double(mx) * magNorm, y: Double(my) * magNorm, z: Double(mz) * magNorm, madgwick: madgwick))
+        accCache.add(WaxData(time: time, x: Double(ax) * accNorm, y: Double(ay) * accNorm, z: Double(az) * accNorm))
+        gyroCache.add(WaxData(time: time, x: Double(gx) * gyroNorm, y: Double(gy) * gyroNorm, z: Double(gz) * gyroNorm))
+        magCache.add(WaxData(time: time, x: Double(mx) * magNorm, y: Double(my) * magNorm, z: Double(mz) * magNorm))
+        infoCache.add(WaxInfo(madgwick: madgwick))
     }
     
     func startRecording() {
-        accCache.startRecording()
-        gyroCache.startRecording()
-        magCache.startRecording()
+        infoCache.startRecording()
     }
     
     func stopRecording() {
-        accCache.stopRecording()
-        gyroCache.stopRecording()
-        magCache.stopRecording()
+        infoCache.stopRecording()
     }
     
     func tapped() {
-        accCache.tapped()
-        gyroCache.tapped()
-        magCache.tapped()
+        infoCache.tapped()
     }
     
     func pinched() {
-        accCache.pinched()
-        gyroCache.pinched()
-        magCache.pinched()
+        infoCache.pinched()
     }
     
     func rotated() {
-        accCache.rotated()
-        gyroCache.rotated()
-        magCache.rotated()
+        infoCache.rotated()
     }
     
     func swiped() {
-        accCache.swiped()
-        gyroCache.swiped()
-        magCache.swiped()
+        infoCache.swiped()
     }
     
     func panned() {
-        accCache.panned()
-        gyroCache.panned()
-        magCache.panned()
+        infoCache.panned()
     }
     
     func edgePan() {
-        accCache.edgePan()
-        gyroCache.edgePan()
-        magCache.edgePan()
+        infoCache.edgePan()
     }
     
     func longPress() {
-        accCache.longPress()
-        gyroCache.longPress()
-        magCache.longPress()
+        infoCache.longPress()
     }
 }

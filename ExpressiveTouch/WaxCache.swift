@@ -8,83 +8,26 @@
 
 import Foundation
 
-class WaxCache {
+class WaxCache<T> {
     private let limit:UInt = 1000
-    private var items:[WaxData]
+    internal var items:[T]
     
     init() {
-        items = [WaxData]()
+        items = [T]()
     }
     
-    func push(item: WaxData) {
+    func push(item: T) {
         if (UInt(items.count) >= limit) {
             items.removeAtIndex(0)
         }
         items.append(item)
     }
     
-    func get(index:UInt) -> WaxData {
-        return items[Int(index)]
-    }
-    
-    private func getIndexForTime(time:Int) -> Int {
-        var closest:Int = 0
-        for i in 0..<count() {
-            if(abs(time - items[closest].time) > abs(items[i].time - time)) {
-                closest = i;
-            }
-        }
-        return closest;
-    }
-    
-    func getForTime(time:Int) -> WaxData {
-        return items[getIndexForTime(time)]
-    }
-    
-    func getRangeForTime(start:Int, end:Int) -> [WaxData] {
-        let startIndex = getIndexForTime(start)
-        let endIndex = getIndexForTime(end)
-        
+    func getRange(startIndex:Int, endIndex:Int) -> Array<T> {
         return Array(items[startIndex..<endIndex])
     }
     
     func count() -> Int {
         return items.count
-    }
-    
-    func startRecording() {
-        if (count() > 0) { items[count() - 1].startRecording = true }
-    }
-    
-    func stopRecording() {
-        if (count() > 0) { items[count() - 1].stopRecording = true }
-    }
-    
-    func tapped() {
-        if (count() > 0) { items[count() - 1].tapped = true }
-    }
-    
-    func pinched() {
-        if (count() > 0) { items[count() - 1].pinched = true }
-    }
-    
-    func rotated() {
-        if (count() > 0) { items[count() - 1].rotated = true }
-    }
-    
-    func swiped() {
-        if (count() > 0) { items[count() - 1].swiped = true }
-    }
-    
-    func panned() {
-        if (count() > 0) { items[count() - 1].panned = true }
-    }
-    
-    func edgePan() {
-        if (count() > 0) { items[count() - 1].edgePan = true }
-    }
-    
-    func longPress() {
-        if (count() > 0) { items[count() - 1].longPress = true }
     }
 }

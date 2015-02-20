@@ -27,6 +27,9 @@
 		CB73388A1A822CA600FA1121 /* WAXScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338761A822CA600FA1121 /* WAXScanViewController.swift */; };
 		CB983BD51A949A9F0042F946 /* InteractionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB983BD41A949A9F0042F946 /* InteractionView.swift */; };
 		CBD2500C1A8E39D5002792B7 /* MadgwickAHRS.c in Sources */ = {isa = PBXBuildFile; fileRef = CBD2500A1A8E39D5002792B7 /* MadgwickAHRS.c */; };
+		CBD97CA01A97421200335499 /* WaxInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD97C9F1A97421200335499 /* WaxInfo.swift */; };
+		CBD97CA21A97433300335499 /* WaxDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD97CA11A97433300335499 /* WaxDataCache.swift */; };
+		CBD97CA41A97433F00335499 /* WaxInfoCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD97CA31A97433F00335499 /* WaxInfoCache.swift */; };
 		CBF898A919F40D4F0069B2C4 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898A819F40D4F0069B2C4 /* CoreBluetooth.framework */; };
 		CBF898AB19F40D5E0069B2C4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898AA19F40D5E0069B2C4 /* UIKit.framework */; };
 		CBF898AD19F40D670069B2C4 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898AC19F40D670069B2C4 /* CoreFoundation.framework */; };
@@ -72,6 +75,9 @@
 		CB983BD41A949A9F0042F946 /* InteractionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionView.swift; sourceTree = "<group>"; };
 		CBD2500A1A8E39D5002792B7 /* MadgwickAHRS.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MadgwickAHRS.c; sourceTree = "<group>"; };
 		CBD2500B1A8E39D5002792B7 /* MadgwickAHRS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MadgwickAHRS.h; sourceTree = "<group>"; };
+		CBD97C9F1A97421200335499 /* WaxInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxInfo.swift; sourceTree = "<group>"; };
+		CBD97CA11A97433300335499 /* WaxDataCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxDataCache.swift; sourceTree = "<group>"; };
+		CBD97CA31A97433F00335499 /* WaxInfoCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxInfoCache.swift; sourceTree = "<group>"; };
 		CBF898A819F40D4F0069B2C4 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		CBF898AA19F40D5E0069B2C4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CBF898AC19F40D670069B2C4 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -165,6 +171,9 @@
 				CB7338721A822CA600FA1121 /* WaxCache.swift */,
 				CB7338751A822CA600FA1121 /* WaxProcessor.swift */,
 				CB7338731A822CA600FA1121 /* WaxConnectionManager.swift */,
+				CBD97C9F1A97421200335499 /* WaxInfo.swift */,
+				CBD97CA11A97433300335499 /* WaxDataCache.swift */,
+				CBD97CA31A97433F00335499 /* WaxInfoCache.swift */,
 			);
 			name = WAX;
 			sourceTree = "<group>";
@@ -373,6 +382,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBD97CA21A97433300335499 /* WaxDataCache.swift in Sources */,
+				CBD97CA01A97421200335499 /* WaxInfo.swift in Sources */,
 				CB73387D1A822CA600FA1121 /* ForceViewController.swift in Sources */,
 				CB983BD51A949A9F0042F946 /* InteractionView.swift in Sources */,
 				CB7338891A822CA600FA1121 /* WaxProcessor.swift in Sources */,
@@ -380,6 +391,7 @@
 				CB7338871A822CA600FA1121 /* WaxConnectionManager.swift in Sources */,
 				CBD2500C1A8E39D5002792B7 /* MadgwickAHRS.c in Sources */,
 				CB73387B1A822CA600FA1121 /* ETDetectorViewController.swift in Sources */,
+				CBD97CA41A97433F00335499 /* WaxInfoCache.swift in Sources */,
 				CB7338801A822CA600FA1121 /* GyroViewController.swift in Sources */,
 				CB7338771A822CA600FA1121 /* AccViewController.swift in Sources */,
 				CB7338851A822CA600FA1121 /* RecordViewController.swift in Sources */,

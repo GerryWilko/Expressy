@@ -9,27 +9,25 @@
 import Foundation
 
 class GraphBuilder : NSObject, CPTPlotDataSource {
-    private var graphView:CPTGraphHostingView
-    private var dataCache:WaxCache
+    private var graphView:CPTGraphHostingView!
+    private var dataCache:WaxDataCache!
+    private var infoCache:WaxInfoCache!
     private let title:String
     private let live:Bool
-    private var timer:NSTimer
-    private var recordedStartPos:UInt
+    private var timer:NSTimer!
+    private var recordedStartPos:Int
     
     init(title:String, live:Bool) {
-        graphView = CPTGraphHostingView()
-        dataCache = WaxCache()
-        
         self.title = title
         self.live = live
         
-        timer = NSTimer()
         recordedStartPos = 0
     }
     
-    func initLoad(graphView:CPTGraphHostingView, dataCache:WaxCache) {
+    func initLoad(graphView:CPTGraphHostingView, dataCache:WaxDataCache, infoCache:WaxInfoCache) {
         self.graphView = graphView
         self.dataCache = dataCache
+        self.infoCache = infoCache
         
         configureHost()
         configureGraph()
@@ -151,8 +149,8 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         }
         else if (!live) {
             for (var i = dataCache.count() - 1; i >= 0; i--) {
-                if (dataCache.get(UInt(i)).startRecording) {
-                    recordedStartPos = UInt(i)
+                if (infoCache.get(i).startRecording) {
+                    recordedStartPos = i
                     return UInt(dataCache.count() - i)
                 }
             }
@@ -166,11 +164,11 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         case CPTScatterPlotFieldX.value:
             return idx
         case CPTScatterPlotFieldY.value:
-            var index = idx
+            var index = Int(idx)
             if (dataCache.count() > 100 && live) {
                 var shift = dataCache.count() - 100
                 
-                index = idx + UInt(shift)
+                index = index + shift
             }
             else if (!live) {
                 index += recordedStartPos
@@ -194,20 +192,20 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
     }
     
     func dataLabelForPlot(plot: CPTPlot!, recordIndex idx: UInt) -> CPTLayer! {
-        let data = dataCache.get(idx)
+        let info = infoCache.get(Int(idx))
         
-        if (!live && (data.startRecording || data.stopRecording || data.tapped || data.pinched || data.rotated || data.swiped || data.panned || data.edgePan || data.longPress)) {
+        if (!live && (info.startRecording || info.stopRecording || info.tapped || info.pinched || info.rotated || info.swiped || info.panned || info.edgePan || info.longPress)) {
             var labelText = ""
             
-            labelText += data.startRecording ? "Started Recording\n" : ""
-            labelText += data.stopRecording ? "Stopped Recording\n" : ""
-            labelText += data.tapped ? "Tapped\n" : ""
-            labelText += data.pinched ? "Pinched\n" : ""
-            labelText += data.rotated ? "Rotated\n" : ""
-            labelText += data.swiped ? "Swiped\n" : ""
-            labelText += data.panned ? "Panned\n" : ""
-            labelText += data.edgePan ? "Edge Pan\n" : ""
-            labelText += data.longPress ? "Long Press\n" : ""
+            labelText += info.startRecording ? "Started Recording\n" : ""
+            labelText += info.stopRecording ? "Stopped Recording\n" : ""
+            labelText += info.tapped ? "Tapped\n" : ""
+            labelText += info.pinched ? "Pinched\n" : ""
+            labelText += info.rotated ? "Rotated\n" : ""
+            labelText += info.swiped ? "Swiped\n" : ""
+            labelText += info.panned ? "Panned\n" : ""
+            labelText += info.edgePan ? "Edge Pan\n" : ""
+            labelText += info.longPress ? "Long Press\n" : ""
             
             return CPTTextLayer(text: labelText)
         }

@@ -504,19 +504,59 @@
                                     <rect key="frame" x="0.0" y="0.0" width="800" height="44"/>
                                 </variation>
                             </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="15c-V0-kgW" customClass="InteractionView" customModule="ExpressiveTouch" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="44" width="800" height="356"/>
+                                </variation>
+                                <connections>
+                                    <outlet property="rotationLbl" destination="Cdr-HM-2Ha" id="GA4-7d-vew"/>
+                                </connections>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rotation: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iYR-1I-ndx">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="97" y="11" width="75" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdr-HM-2Ha">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="180" y="11" width="39" height="21"/>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="eQQ-Mp-zbH"/>
+                                <exclude reference="15c-V0-kgW"/>
+                                <exclude reference="iYR-1I-ndx"/>
+                                <exclude reference="Cdr-HM-2Ha"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
                             <mask key="subviews">
                                 <include reference="eQQ-Mp-zbH"/>
+                                <include reference="15c-V0-kgW"/>
+                                <include reference="iYR-1I-ndx"/>
+                                <include reference="Cdr-HM-2Ha"/>
                             </mask>
                         </variation>
+                        <connections>
+                            <outlet property="rotationLbl" destination="Cdr-HM-2Ha" id="jmU-Yh-hEh"/>
+                        </connections>
                     </view>
+                    <connections>
+                        <outlet property="interactionView" destination="15c-V0-kgW" id="tS4-C6-oTt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h6U-9E-nvG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

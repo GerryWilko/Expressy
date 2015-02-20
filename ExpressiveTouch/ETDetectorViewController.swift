@@ -9,36 +9,10 @@
 import Foundation
 
 class ETDetectorViewController: UIViewController {
+    @IBOutlet weak var interactionView: InteractionView!
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-    }
-    
-    func tappedView() {
-        WaxProcessor.getProcessor().tapped()
-    }
-    
-    func pinchedView() {
-        WaxProcessor.getProcessor().pinched()
-    }
-    
-    func rotatedView() {
-        WaxProcessor.getProcessor().rotated()
-    }
-    
-    func swipedView() {
-        WaxProcessor.getProcessor().swiped()
-    }
-    
-    func pannedView() {
-        WaxProcessor.getProcessor().panned()
-    }
-    
-    func edgePanView() {
-        WaxProcessor.getProcessor().edgePan()
-    }
-    
-    func longPressView() {
-        WaxProcessor.getProcessor().longPress()
     }
     
     @IBAction func back(sender: AnyObject) {
@@ -46,15 +20,7 @@ class ETDetectorViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "tappedView"))
-        self.view.addGestureRecognizer(UIPinchGestureRecognizer(target: self, action: "pinchedView"))
-        self.view.addGestureRecognizer(UIRotationGestureRecognizer(target: self, action: "rotatedView"))
-        self.view.addGestureRecognizer(UISwipeGestureRecognizer(target: self, action: "swipedView"))
-        self.view.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: "pannedView"))
-        self.view.addGestureRecognizer(UIScreenEdgePanGestureRecognizer(target: self, action: "edgePanView"))
-        self.view.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: "longPressView"))
-        self.view.userInteractionEnabled = true
-        (self.view as! InteractionView).delegate = self
+        interactionView.delegate = self
     }
     
     override func didReceiveMemoryWarning() {
