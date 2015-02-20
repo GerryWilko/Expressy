@@ -10,11 +10,10 @@ import Foundation
 
 class InteractionView: UIView {
     var touchDown:Bool
-    var start:NSTimeInterval!
     var delegate:UIViewController!
     var timer:NSTimer!
     
-    let flickThreshold = 0.15
+    let flickThreshold = 1.5
     
     @IBOutlet weak var rotationLbl: UILabel!
     
@@ -27,20 +26,20 @@ class InteractionView: UIView {
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         if (!touchDown) {
             let processor = WaxProcessor.getProcessor()
-            start = NSDate.timeIntervalSinceReferenceDate()
             touchDown = true
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("interactionCallback:"), userInfo: nil, repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("interactionCallback:"), userInfo: NSDate.timeIntervalSinceReferenceDate(), repeats: true)
         }
     }
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         if (touchDown) {
             touchDown = false
-            timer.invalidate()
-            
+            let touchDownTime = timer.userInfo as! NSTimeInterval
             let touchUpTime = NSDate.timeIntervalSinceReferenceDate()
             
-            detectFlick(start, touchUpTime: touchUpTime)
+            detectFlick(touchDownTime, touchUpTime: touchUpTime)
+            
+            timer.invalidate()
         }
     }
     
@@ -50,7 +49,8 @@ class InteractionView: UIView {
     }
     
     func interactionCallback(timer:NSTimer) {
-        rotationLbl.text = String(format: "%.2f", calculateRotation(start, touchUpTime: NSDate.timeIntervalSinceReferenceDate()))
+        let touchDownTime = timer.userInfo as! NSTimeInterval
+        rotationLbl.text = String(format: "%.2f", calculateRotation(touchDownTime, touchUpTime: NSDate.timeIntervalSinceReferenceDate()))
     }
     
     func calculateRotation(touchDownTime:NSTimeInterval, touchUpTime:NSTimeInterval) -> Double {
@@ -83,14 +83,13 @@ class InteractionView: UIView {
         
         if (data.count > 1) {
             for i in 1..<data.count {
-                let x = data[i].x * Double(NSTimeInterval(data[i].time - data[i-1].time))
-                let y = data[i].y * Double(NSTimeInterval(data[i].time - data[i-1].time))
-                let z = data[i].z * Double(NSTimeInterval(data[i].time - data[i-1].time))
+                let x = data[i].x
+                let y = data[i].y
+                let z = data[i].z
                 
                 let vectorLength = sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2))
-                println(vectorLength)
                 
-                if (vectorLength > 0.06) {
+                if (vectorLength > flickThreshold) {
                     flicked = true
                 }
             }

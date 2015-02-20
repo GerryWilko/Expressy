@@ -60,7 +60,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dmA-2C-9oD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-115.5" y="924"/>
+            <point key="canvasLocation" x="-115.5" y="606"/>
         </scene>
         <!--Magnetometer-->
         <scene sceneID="FJs-rD-JXX">
@@ -118,7 +118,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I6d-CL-edB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-115.5" y="1615.5"/>
+            <point key="canvasLocation" x="-115.5" y="1291.5"/>
         </scene>
         <!--Acceleration-->
         <scene sceneID="PeQ-jx-nKG">
@@ -176,7 +176,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JsI-IO-8Cl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-115.5" y="234"/>
+            <point key="canvasLocation" x="-115.5" y="-84"/>
         </scene>
         <!--Graph Tab View Controller-->
         <scene sceneID="qPP-Hn-hzf">

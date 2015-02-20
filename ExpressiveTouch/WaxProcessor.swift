@@ -77,7 +77,7 @@ class WaxProcessor {
         accCache.add(WaxData(time: time, x: Double(ax) * accNorm, y: Double(ay) * accNorm, z: Double(az) * accNorm))
         gyroCache.add(WaxData(time: time, x: Double(gx) * gyroNorm, y: Double(gy) * gyroNorm, z: Double(gz) * gyroNorm))
         magCache.add(WaxData(time: time, x: Double(mx) * magNorm, y: Double(my) * magNorm, z: Double(mz) * magNorm))
-        infoCache.add(WaxInfo(madgwick: madgwick))
+        infoCache.add(WaxInfo(time: time, madgwick: madgwick))
     }
     
     func startRecording() {

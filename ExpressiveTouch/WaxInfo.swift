@@ -9,10 +9,11 @@
 import Foundation
 
 class WaxInfo {
-    let madgwick:Vector4D
+    let time:NSTimeInterval, madgwick:Vector4D
     var startRecording:Bool, stopRecording:Bool, tapped:Bool, pinched:Bool, rotated:Bool, swiped:Bool, panned:Bool, edgePan:Bool, longPress:Bool
     
-    init(madgwick:Vector4D) {
+    init(time:NSTimeInterval, madgwick:Vector4D) {
+        self.time = time
         self.madgwick = madgwick
         
         startRecording = false

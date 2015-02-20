@@ -27,6 +27,27 @@ class WaxInfoCache {
         return info.count()
     }
     
+    private func getIndexForTime(time:NSTimeInterval) -> Int {
+        var closest:Int = 0
+        for i in 0..<info.count() {
+            if(abs(time - get(closest).time) > abs(get(i).time - time)) {
+                closest = i;
+            }
+        }
+        return closest;
+    }
+    
+    func getForTime(time:NSTimeInterval) -> WaxInfo {
+        return get(getIndexForTime(time))
+    }
+    
+    func getRangeForTime(start:NSTimeInterval, end:NSTimeInterval) -> [WaxInfo] {
+        let startIndex = getIndexForTime(start)
+        let endIndex = getIndexForTime(end)
+        
+        return info.getRange(startIndex, endIndex: endIndex)
+    }
+    
     func startRecording() {
         if (info.count() > 0) { info.items[info.count() - 1].startRecording = true }
     }
