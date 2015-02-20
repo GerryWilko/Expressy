@@ -14,7 +14,7 @@ class InteractionView: UIView {
     var delegate:UIViewController!
     var timer:NSTimer!
     
-    let flickThreshold = 0.5
+    let flickThreshold = 0.15
     
     @IBOutlet weak var rotationLbl: UILabel!
     
@@ -77,19 +77,26 @@ class InteractionView: UIView {
         let touchTimes = timer.userInfo as! [NSTimeInterval]
         let processor = WaxProcessor.getProcessor()
         
-        let data = processor.accCache.getRangeForTime(touchTimes[0], end: NSDate.timeIntervalSinceReferenceDate())
+        let data = processor.accCache.getRangeForTime(touchTimes[1], end: NSDate.timeIntervalSinceReferenceDate())
         
-        var movement = 0.0
+        var flicked = false
         
         if (data.count > 1) {
             for i in 1..<data.count {
-                movement += abs(data[i].x) / 9.81 * Double(NSTimeInterval(data[i].time - data[i-1].time))
-                movement += abs(data[i].y) / 9.81 * Double(NSTimeInterval(data[i].time - data[i-1].time))
-                movement += abs(data[i].z) / 9.81 * Double(NSTimeInterval(data[i].time - data[i-1].time))
+                let x = data[i].x * Double(NSTimeInterval(data[i].time - data[i-1].time))
+                let y = data[i].y * Double(NSTimeInterval(data[i].time - data[i-1].time))
+                let z = data[i].z * Double(NSTimeInterval(data[i].time - data[i-1].time))
+                
+                let vectorLength = sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2))
+                println(vectorLength)
+                
+                if (vectorLength > 0.06) {
+                    flicked = true
+                }
             }
         }
         
-        let message = movement > flickThreshold ? "Flicked!" : "No Flick"
+        let message = flicked ? "Flicked!" : "No Flick"
         
         let flickAlert = UIAlertController(title: "Flicked", message: message, preferredStyle: UIAlertControllerStyle.Alert)
         flickAlert.addAction(UIAlertAction(title: "OK", style: .Destructive, handler: nil))
