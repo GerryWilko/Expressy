@@ -275,27 +275,6 @@
                                             <segue destination="sX9-zw-S6C" kind="show" id="qDr-FV-1wG"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="D6e-I4-iw9" style="IBUITableViewCellStyleDefault" id="NBq-P4-MiO">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NBq-P4-MiO" id="C5o-EC-EFs">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Force Detector" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="D6e-I4-iw9">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=compact-widthClass=regular">
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    </variation>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="C04-5o-deq" kind="show" id="pte-aL-KNs"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="Eii-ef-aCJ" style="IBUITableViewCellStyleDefault" id="b0e-Ir-ojY">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -350,51 +329,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FAd-DI-NEo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1678.5" y="1615.5"/>
-        </scene>
-        <!--Force View Controller-->
-        <scene sceneID="Vkx-0s-48i">
-            <objects>
-                <viewController id="C04-5o-deq" customClass="ForceViewController" customModule="ExpressiveTouch" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="yOh-zc-Vsl"/>
-                        <viewControllerLayoutGuide type="bottom" id="69b-50-GmS"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="qjU-Ak-etD">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="btq-fB-AXs">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <items>
-                                    <navigationItem title="Force Detector" id="zy8-zB-TKN">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="DQL-nP-Xcl">
-                                            <connections>
-                                                <action selector="back:" destination="C04-5o-deq" id="wJ3-zF-tVz"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="800" height="44"/>
-                                </variation>
-                            </navigationBar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="btq-fB-AXs"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=compact-widthClass=regular">
-                            <mask key="subviews">
-                                <include reference="btq-fB-AXs"/>
-                            </mask>
-                        </variation>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ieg-QV-M8e" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-897" y="1615.5"/>
         </scene>
         <!--Record View Controller-->
         <scene sceneID="lJV-Uu-TF1">
@@ -475,7 +409,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZIp-Sx-FAI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-897" y="2314.5"/>
+            <point key="canvasLocation" x="-897" y="1615.5"/>
         </scene>
         <!--Detector View Controller-->
         <scene sceneID="eyc-5y-ISp">
@@ -506,51 +440,119 @@
                             </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="15c-V0-kgW" customClass="InteractionView" customModule="ExpressiveTouch" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Fl-1B-poe">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rotation: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iYR-1I-ndx">
+                                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                                    <rect key="frame" x="8" y="8" width="75" height="21"/>
+                                                </variation>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdr-HM-2Ha">
+                                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                                    <rect key="frame" x="113" y="8" width="92" height="21"/>
+                                                </variation>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Force: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sla-Nb-j5J">
+                                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                                    <rect key="frame" x="8" y="37" width="54" height="21"/>
+                                                </variation>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIA-ny-9iu">
+                                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                                    <rect key="frame" x="113" y="37" width="92" height="21"/>
+                                                </variation>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flicked: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymP-iP-aFe">
+                                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                                    <rect key="frame" x="8" y="66" width="65" height="21"/>
+                                                </variation>
+                                            </label>
+                                            <switch opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xaD-oB-0CR">
+                                                <rect key="frame" x="-25" y="-15" width="51" height="31"/>
+                                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                                    <rect key="frame" x="156" y="61" width="51" height="31"/>
+                                                </variation>
+                                            </switch>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <variation key="default">
+                                            <mask key="subviews">
+                                                <exclude reference="iYR-1I-ndx"/>
+                                                <exclude reference="Cdr-HM-2Ha"/>
+                                                <exclude reference="sla-Nb-j5J"/>
+                                                <exclude reference="EIA-ny-9iu"/>
+                                                <exclude reference="ymP-iP-aFe"/>
+                                                <exclude reference="xaD-oB-0CR"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                            <rect key="frame" x="8" y="8" width="213" height="95"/>
+                                            <mask key="subviews">
+                                                <include reference="iYR-1I-ndx"/>
+                                                <include reference="Cdr-HM-2Ha"/>
+                                                <include reference="sla-Nb-j5J"/>
+                                                <include reference="EIA-ny-9iu"/>
+                                                <include reference="ymP-iP-aFe"/>
+                                                <include reference="xaD-oB-0CR"/>
+                                            </mask>
+                                        </variation>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="1Fl-1B-poe"/>
+                                    </mask>
+                                </variation>
                                 <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="44" width="800" height="356"/>
+                                    <mask key="subviews">
+                                        <include reference="1Fl-1B-poe"/>
+                                    </mask>
                                 </variation>
                                 <connections>
                                     <outlet property="rotationLbl" destination="Cdr-HM-2Ha" id="GA4-7d-vew"/>
                                 </connections>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rotation: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iYR-1I-ndx">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="97" y="11" width="75" height="21"/>
-                                </variation>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdr-HM-2Ha">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="180" y="11" width="60" height="21"/>
-                                </variation>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="eQQ-Mp-zbH"/>
                                 <exclude reference="15c-V0-kgW"/>
-                                <exclude reference="iYR-1I-ndx"/>
-                                <exclude reference="Cdr-HM-2Ha"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
                             <mask key="subviews">
                                 <include reference="eQQ-Mp-zbH"/>
                                 <include reference="15c-V0-kgW"/>
-                                <include reference="iYR-1I-ndx"/>
-                                <include reference="Cdr-HM-2Ha"/>
                             </mask>
                         </variation>
                         <connections>
+                            <outlet property="flickedSwitch" destination="xaD-oB-0CR" id="Xwi-LM-KJO"/>
+                            <outlet property="forceLbl" destination="EIA-ny-9iu" id="WeR-Nd-TEz"/>
                             <outlet property="rotationLbl" destination="Cdr-HM-2Ha" id="jmU-Yh-hEh"/>
                         </connections>
                     </view>
@@ -560,10 +562,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h6U-9E-nvG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-897" y="3015"/>
+            <point key="canvasLocation" x="-897" y="2316"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="L15-6o-aX9"/>
+        <segue reference="qDr-FV-1wG"/>
     </inferredMetricsTieBreakers>
 </document>

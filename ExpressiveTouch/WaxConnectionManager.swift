@@ -10,7 +10,6 @@ import Foundation
 import CoreBluetooth
 
 var connectionManager:WaxConnectionManager!
-var initialisedConMan = false
 
 class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralManagerDelegate, CBPeripheralDelegate
 {
@@ -21,7 +20,7 @@ class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralMan
     private var ready:Bool
     
     init(dataProcessor:WaxProcessor) {
-        assert(!initialisedConMan)
+        assert(connectionManager == nil)
         
         self.dataProcessor = dataProcessor
         ready = false
@@ -33,13 +32,9 @@ class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralMan
         peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
         
         connectionManager = self
-        
-        initialisedConMan = true
     }
     
-    class func getConnectionManager() -> WaxConnectionManager {
-        return connectionManager
-    }
+    class func getConnectionManager() -> WaxConnectionManager { return connectionManager }
     
     func scan() -> Bool {
         if (ready) {

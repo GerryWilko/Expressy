@@ -9,7 +9,6 @@
 import Foundation
 
 var waxProcessor:WaxProcessor!
-var initialisedProcessor = false
 
 class WaxProcessor {
     internal let accCache:WaxDataCache
@@ -22,7 +21,7 @@ class WaxProcessor {
     private let magNorm:Double = 0.1
     
     init() {
-        assert(!initialisedProcessor)
+        assert(waxProcessor == nil)
         
         accCache = WaxDataCache()
         gyroCache = WaxDataCache()
@@ -30,13 +29,9 @@ class WaxProcessor {
         infoCache = WaxInfoCache()
         
         waxProcessor = self
-        
-        initialisedProcessor = true
     }
     
-    class func getProcessor() -> WaxProcessor {
-        return waxProcessor
-    }
+    class func getProcessor() -> WaxProcessor { return waxProcessor }
     
     func updateCache(data:NSData) {
         var ax:CShort = 0;

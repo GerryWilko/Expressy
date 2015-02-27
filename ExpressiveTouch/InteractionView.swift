@@ -16,6 +16,8 @@ class InteractionView: UIView {
     let flickThreshold = 1.5
     
     @IBOutlet weak var rotationLbl: UILabel!
+    @IBOutlet weak var forceLbl: UILabel!
+    @IBOutlet weak var flickedSwitch: UISwitch!
     
     required init(coder aDecoder: NSCoder) {
         touchDown = false
@@ -25,9 +27,12 @@ class InteractionView: UIView {
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         if (!touchDown) {
-            let processor = WaxProcessor.getProcessor()
             touchDown = true
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("interactionCallback:"), userInfo: NSDate.timeIntervalSinceReferenceDate(), repeats: true)
+            let touchDownTime = NSDate.timeIntervalSinceReferenceDate()
+            
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("interactionCallback:"), userInfo: touchDownTime, repeats: true)
+            
+            forceLbl.text = String(format: "%.2f", calculateForce(touchDownTime))
         }
     }
     
@@ -81,24 +86,28 @@ class InteractionView: UIView {
         
         var flicked = false
         
-        if (data.count > 1) {
-            for i in 1..<data.count {
-                let x = data[i].x
-                let y = data[i].y
-                let z = data[i].z
-                
-                let vectorLength = sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2))
-                
-                if (vectorLength > flickThreshold) {
-                    flicked = true
-                }
+        for d in data {
+            let vectorLength = sqrt(pow(d.x, 2) + pow(d.y, 2) + pow(d.z, 2))
+            
+            if (vectorLength > flickThreshold) {
+                flicked = true
             }
         }
         
-        let message = flicked ? "Flicked!" : "No Flick"
+        flickedSwitch.setOn(flicked, animated: true)
+    }
+    
+    func calculateForce(touchDownTime:NSTimeInterval) -> Double {
+        let processor = WaxProcessor.getProcessor()
         
-        let flickAlert = UIAlertController(title: "Flicked", message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        flickAlert.addAction(UIAlertAction(title: "OK", style: .Destructive, handler: nil))
-        delegate.presentViewController(flickAlert, animated: true, completion: nil)
+        let data = processor.accCache.getRangeForTime(touchDownTime - 1, end: touchDownTime)
+        
+        var force = 0.0
+        
+        for d in data {
+            force += sqrt(pow(d.x, 2) + pow(d.y, 2) + pow(d.z, 2))
+        }
+        
+        return force
     }
 }

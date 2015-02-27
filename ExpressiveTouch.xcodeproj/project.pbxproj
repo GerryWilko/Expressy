@@ -12,8 +12,6 @@
 		CB7338791A822CA600FA1121 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB7338621A822CA600FA1121 /* LaunchScreen.xib */; };
 		CB73387A1A822CA600FA1121 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB7338641A822CA600FA1121 /* Main.storyboard */; };
 		CB73387B1A822CA600FA1121 /* ETDetectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338661A822CA600FA1121 /* ETDetectorViewController.swift */; };
-		CB73387C1A822CA600FA1121 /* ForceDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338681A822CA600FA1121 /* ForceDetector.swift */; };
-		CB73387D1A822CA600FA1121 /* ForceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338691A822CA600FA1121 /* ForceViewController.swift */; };
 		CB73387E1A822CA600FA1121 /* GraphBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73386A1A822CA600FA1121 /* GraphBuilder.swift */; };
 		CB73387F1A822CA600FA1121 /* GraphTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73386B1A822CA600FA1121 /* GraphTabViewController.swift */; };
 		CB7338801A822CA600FA1121 /* GyroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73386C1A822CA600FA1121 /* GyroViewController.swift */; };
@@ -58,8 +56,6 @@
 		CB7338651A822CA600FA1121 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CB7338661A822CA600FA1121 /* ETDetectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETDetectorViewController.swift; sourceTree = "<group>"; };
 		CB7338671A822CA600FA1121 /* ExpressiveTouch-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ExpressiveTouch-Bridging-Header.h"; sourceTree = "<group>"; };
-		CB7338681A822CA600FA1121 /* ForceDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForceDetector.swift; sourceTree = "<group>"; };
-		CB7338691A822CA600FA1121 /* ForceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForceViewController.swift; sourceTree = "<group>"; };
 		CB73386A1A822CA600FA1121 /* GraphBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphBuilder.swift; sourceTree = "<group>"; };
 		CB73386B1A822CA600FA1121 /* GraphTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphTabViewController.swift; sourceTree = "<group>"; };
 		CB73386C1A822CA600FA1121 /* GyroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GyroViewController.swift; sourceTree = "<group>"; };
@@ -157,7 +153,6 @@
 				CB7338701A822CA600FA1121 /* MagViewController.swift */,
 				CB73386B1A822CA600FA1121 /* GraphTabViewController.swift */,
 				CB7338761A822CA600FA1121 /* WAXScanViewController.swift */,
-				CB7338691A822CA600FA1121 /* ForceViewController.swift */,
 				CB7338711A822CA600FA1121 /* RecordViewController.swift */,
 				CB7338661A822CA600FA1121 /* ETDetectorViewController.swift */,
 			);
@@ -189,7 +184,6 @@
 		CB73388F1A822D0F00FA1121 /* Expressive Touch */ = {
 			isa = PBXGroup;
 			children = (
-				CB7338681A822CA600FA1121 /* ForceDetector.swift */,
 				CB983BD41A949A9F0042F946 /* InteractionView.swift */,
 			);
 			name = "Expressive Touch";
@@ -384,7 +378,6 @@
 			files = (
 				CBD97CA21A97433300335499 /* WaxDataCache.swift in Sources */,
 				CBD97CA01A97421200335499 /* WaxInfo.swift in Sources */,
-				CB73387D1A822CA600FA1121 /* ForceViewController.swift in Sources */,
 				CB983BD51A949A9F0042F946 /* InteractionView.swift in Sources */,
 				CB7338891A822CA600FA1121 /* WaxProcessor.swift in Sources */,
 				CB7338781A822CA600FA1121 /* AppDelegate.swift in Sources */,
@@ -401,7 +394,6 @@
 				CB73387E1A822CA600FA1121 /* GraphBuilder.swift in Sources */,
 				CB7338861A822CA600FA1121 /* WaxCache.swift in Sources */,
 				CB7338841A822CA600FA1121 /* MagViewController.swift in Sources */,
-				CB73387C1A822CA600FA1121 /* ForceDetector.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
