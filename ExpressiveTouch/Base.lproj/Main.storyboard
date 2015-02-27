@@ -480,19 +480,37 @@
                                                     <rect key="frame" x="113" y="37" width="92" height="21"/>
                                                 </variation>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pitch:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMH-d7-QE2">
+                                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                                    <rect key="frame" x="8" y="66" width="44" height="21"/>
+                                                </variation>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZWy-zG-j0p">
+                                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                                    <rect key="frame" x="113" y="66" width="92" height="21"/>
+                                                </variation>
+                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flicked: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymP-iP-aFe">
                                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
-                                                    <rect key="frame" x="8" y="66" width="65" height="21"/>
+                                                    <rect key="frame" x="8" y="100" width="65" height="21"/>
                                                 </variation>
                                             </label>
                                             <switch opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xaD-oB-0CR">
                                                 <rect key="frame" x="-25" y="-15" width="51" height="31"/>
                                                 <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
-                                                    <rect key="frame" x="156" y="61" width="51" height="31"/>
+                                                    <rect key="frame" x="156" y="95" width="51" height="31"/>
                                                 </variation>
                                             </switch>
                                         </subviews>
@@ -503,17 +521,21 @@
                                                 <exclude reference="Cdr-HM-2Ha"/>
                                                 <exclude reference="sla-Nb-j5J"/>
                                                 <exclude reference="EIA-ny-9iu"/>
+                                                <exclude reference="jMH-d7-QE2"/>
+                                                <exclude reference="ZWy-zG-j0p"/>
                                                 <exclude reference="ymP-iP-aFe"/>
                                                 <exclude reference="xaD-oB-0CR"/>
                                             </mask>
                                         </variation>
                                         <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
-                                            <rect key="frame" x="8" y="8" width="213" height="95"/>
+                                            <rect key="frame" x="8" y="8" width="213" height="134"/>
                                             <mask key="subviews">
                                                 <include reference="iYR-1I-ndx"/>
                                                 <include reference="Cdr-HM-2Ha"/>
                                                 <include reference="sla-Nb-j5J"/>
                                                 <include reference="EIA-ny-9iu"/>
+                                                <include reference="jMH-d7-QE2"/>
+                                                <include reference="ZWy-zG-j0p"/>
                                                 <include reference="ymP-iP-aFe"/>
                                                 <include reference="xaD-oB-0CR"/>
                                             </mask>
@@ -553,6 +575,7 @@
                         <connections>
                             <outlet property="flickedSwitch" destination="xaD-oB-0CR" id="Xwi-LM-KJO"/>
                             <outlet property="forceLbl" destination="EIA-ny-9iu" id="WeR-Nd-TEz"/>
+                            <outlet property="pitchLbl" destination="ZWy-zG-j0p" id="ul5-ax-b7l"/>
                             <outlet property="rotationLbl" destination="Cdr-HM-2Ha" id="jmU-Yh-hEh"/>
                         </connections>
                     </view>

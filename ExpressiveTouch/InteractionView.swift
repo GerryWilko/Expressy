@@ -17,6 +17,7 @@ class InteractionView: UIView {
     
     @IBOutlet weak var rotationLbl: UILabel!
     @IBOutlet weak var forceLbl: UILabel!
+    @IBOutlet weak var pitchLbl: UILabel!
     @IBOutlet weak var flickedSwitch: UISwitch!
     
     required init(coder aDecoder: NSCoder) {
@@ -30,9 +31,8 @@ class InteractionView: UIView {
             touchDown = true
             let touchDownTime = NSDate.timeIntervalSinceReferenceDate()
             
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("interactionCallback:"), userInfo: touchDownTime, repeats: true)
-            
             forceLbl.text = String(format: "%.2f", calculateForce(touchDownTime))
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("interactionCallback:"), userInfo: touchDownTime, repeats: true)
         }
     }
     
@@ -55,7 +55,10 @@ class InteractionView: UIView {
     
     func interactionCallback(timer:NSTimer) {
         let touchDownTime = timer.userInfo as! NSTimeInterval
-        rotationLbl.text = String(format: "%.2f", calculateRotation(touchDownTime, touchUpTime: NSDate.timeIntervalSinceReferenceDate()))
+        let touchUpTime = NSDate.timeIntervalSinceReferenceDate()
+        
+        rotationLbl.text = String(format: "%.2f", calculateRotation(touchDownTime, touchUpTime: touchUpTime))
+        pitchLbl.text = String(format: "%.2f", calculatePitch(touchDownTime, touchUpTime: touchUpTime))
     }
     
     func calculateRotation(touchDownTime:NSTimeInterval, touchUpTime:NSTimeInterval) -> Double {
@@ -72,6 +75,22 @@ class InteractionView: UIView {
         }
         
         return totalRotation
+    }
+    
+    func calculatePitch(touchDownTime:NSTimeInterval, touchUpTime:NSTimeInterval) -> Double {
+        let processor = WaxProcessor.getProcessor()
+        
+        let data = processor.infoCache.getRangeForTime(touchDownTime, end: touchUpTime)
+        
+        var totalPitchChange = 0.0
+        
+        if (data.count > 1) {
+            for i in 1..<data.count {
+                totalPitchChange += data[i].madgwick * Double(NSTimeInterval(data[i].time - data[i-1].time))
+            }
+        }
+        
+        return totalPitchChange
     }
     
     func detectFlick(touchDownTime:NSTimeInterval, touchUpTime:NSTimeInterval) {
