@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7515.2" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfT-zT-XkF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfT-zT-XkF">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7512"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
     </dependencies>
     <scenes>
         <!--Gyroscope-->
@@ -419,7 +419,7 @@
                         <viewControllerLayoutGuide type="top" id="i4q-Ui-cwQ"/>
                         <viewControllerLayoutGuide type="bottom" id="qyp-z3-zdC"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="YVb-l1-0j9" customClass="InteractionView" customModule="ExpressiveTouch" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="YVb-l1-0j9">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -489,7 +489,7 @@
                                                     <rect key="frame" x="8" y="66" width="44" height="21"/>
                                                 </variation>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZWy-zG-j0p">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZWy-zG-j0p">
                                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -555,7 +555,10 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <outlet property="rotationLbl" destination="Cdr-HM-2Ha" id="GA4-7d-vew"/>
+                                    <outlet property="flickedSwitch" destination="xaD-oB-0CR" id="lHj-0V-HIX"/>
+                                    <outlet property="forceLbl" destination="EIA-ny-9iu" id="z4t-Aj-MJg"/>
+                                    <outlet property="pitchLbl" destination="ZWy-zG-j0p" id="2RI-UP-cDb"/>
+                                    <outlet property="rotationLbl" destination="Cdr-HM-2Ha" id="Fzz-Al-g7w"/>
                                 </connections>
                             </view>
                         </subviews>
@@ -572,12 +575,6 @@
                                 <include reference="15c-V0-kgW"/>
                             </mask>
                         </variation>
-                        <connections>
-                            <outlet property="flickedSwitch" destination="xaD-oB-0CR" id="Xwi-LM-KJO"/>
-                            <outlet property="forceLbl" destination="EIA-ny-9iu" id="WeR-Nd-TEz"/>
-                            <outlet property="pitchLbl" destination="ZWy-zG-j0p" id="ul5-ax-b7l"/>
-                            <outlet property="rotationLbl" destination="Cdr-HM-2Ha" id="jmU-Yh-hEh"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="interactionView" destination="15c-V0-kgW" id="tS4-C6-oTt"/>

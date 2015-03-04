@@ -15,8 +15,10 @@ class WaxInfoCache {
         info = WaxCache<WaxInfo>()
     }
     
-    func get(index:Int) -> WaxInfo {
-        return info.items[index]
+    subscript(index: Int) -> WaxInfo {
+        get {
+            return info.items[index]
+        }
     }
     
     func add(newInfo:WaxInfo) {
@@ -30,7 +32,7 @@ class WaxInfoCache {
     private func getIndexForTime(time:NSTimeInterval) -> Int {
         var closest:Int = 0
         for i in 0..<info.count() {
-            if(abs(time - get(closest).time) > abs(get(i).time - time)) {
+            if(abs(time - self[closest].time) > abs(self[i].time - time)) {
                 closest = i;
             }
         }
@@ -38,7 +40,11 @@ class WaxInfoCache {
     }
     
     func getForTime(time:NSTimeInterval) -> WaxInfo {
-        return get(getIndexForTime(time))
+        if (count() > 0) {
+            return self[getIndexForTime(time)]
+        }
+        
+        return WaxInfo(time: time, madgwick: Vector4D(x: 0,y: 0,z: 0,w: 0))
     }
     
     func getRangeForTime(start:NSTimeInterval, end:NSTimeInterval) -> [WaxInfo] {

@@ -27,7 +27,3 @@ class WaxInfo {
         longPress = false
     }
 }
-
-struct Vector4D {
-    let x:Float, y:Float, z:Float, w:Float
-}

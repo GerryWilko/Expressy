@@ -149,7 +149,7 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         }
         else if (!live) {
             for (var i = dataCache.count() - 1; i >= 0; i--) {
-                if (infoCache.get(i).startRecording) {
+                if (infoCache[i].startRecording) {
                     recordedStartPos = i
                     return UInt(dataCache.count() - i)
                 }
@@ -176,11 +176,11 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
             
             switch plot.identifier as! Int {
             case WaxDataAxis.X.rawValue:
-                return dataCache.get(index).x
+                return dataCache[index].x
             case WaxDataAxis.Y.rawValue:
-                return dataCache.get(index).y
+                return dataCache[index].y
             case WaxDataAxis.Z.rawValue:
-                return dataCache.get(index).z
+                return dataCache[index].z
             default:
                 break
             }
@@ -192,7 +192,7 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
     }
     
     func dataLabelForPlot(plot: CPTPlot!, recordIndex idx: UInt) -> CPTLayer! {
-        let info = infoCache.get(Int(idx))
+        let info = infoCache[Int(idx)]
         
         if (!live && (info.startRecording || info.stopRecording || info.tapped || info.pinched || info.rotated || info.swiped || info.panned || info.edgePan || info.longPress)) {
             var labelText = ""

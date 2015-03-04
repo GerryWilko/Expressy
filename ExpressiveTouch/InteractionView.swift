@@ -12,7 +12,9 @@ class InteractionView: UIView {
     var touchDown:Bool
     var delegate:UIViewController!
     var timer:NSTimer!
+    var position:Vector3D
     
+    let initialPos = Vector3D(x: 0, y: 0, z: 1)
     let flickThreshold = 1.5
     
     @IBOutlet weak var rotationLbl: UILabel!
@@ -22,6 +24,7 @@ class InteractionView: UIView {
     
     required init(coder aDecoder: NSCoder) {
         touchDown = false
+        position = Vector3D(x: 0, y: 0, z: 1)
         
         super.init(coder: aDecoder)
     }
@@ -32,7 +35,7 @@ class InteractionView: UIView {
             let touchDownTime = NSDate.timeIntervalSinceReferenceDate()
             
             forceLbl.text = String(format: "%.2f", calculateForce(touchDownTime))
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("interactionCallback:"), userInfo: touchDownTime, repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("interactionCallback:"), userInfo: touchDownTime, repeats: true)
         }
     }
     
@@ -45,6 +48,7 @@ class InteractionView: UIView {
             detectFlick(touchDownTime, touchUpTime: touchUpTime)
             
             timer.invalidate()
+            position = Vector3D(x: 0, y: 0, z: 1)
         }
     }
     
@@ -55,16 +59,17 @@ class InteractionView: UIView {
     
     func interactionCallback(timer:NSTimer) {
         let touchDownTime = timer.userInfo as! NSTimeInterval
-        let touchUpTime = NSDate.timeIntervalSinceReferenceDate()
+        let currentTime = NSDate.timeIntervalSinceReferenceDate()
         
-        rotationLbl.text = String(format: "%.2f", calculateRotation(touchDownTime, touchUpTime: touchUpTime))
-        pitchLbl.text = String(format: "%.2f", calculatePitch(touchDownTime, touchUpTime: touchUpTime))
+        calculatePosition(touchDownTime, currentTime: currentTime)
+        rotationLbl.text = String(format: "%.2f", calculateRotation(touchDownTime, currentTime: currentTime))
+        pitchLbl.text = detectPitch()
     }
     
-    func calculateRotation(touchDownTime:NSTimeInterval, touchUpTime:NSTimeInterval) -> Double {
+    func calculateRotation(touchDownTime:NSTimeInterval, currentTime:NSTimeInterval) -> Double {
         let processor = WaxProcessor.getProcessor()
         
-        let data = processor.gyroCache.getRangeForTime(touchDownTime, end: touchUpTime)
+        let data = processor.gyroCache.getRangeForTime(touchDownTime, end: currentTime)
         
         var totalRotation = 0.0
         
@@ -77,20 +82,28 @@ class InteractionView: UIView {
         return totalRotation
     }
     
-    func calculatePitch(touchDownTime:NSTimeInterval, touchUpTime:NSTimeInterval) -> Double {
+    func detectPitch() -> String {
+        return position.y > 0 ? "Flat" : "Upright"
+    }
+    
+    func calculatePosition(touchDownTime:NSTimeInterval, currentTime:NSTimeInterval) {
         let processor = WaxProcessor.getProcessor()
         
-        let data = processor.infoCache.getRangeForTime(touchDownTime, end: touchUpTime)
+        let info = processor.infoCache.getRangeForTime(touchDownTime, end: currentTime)
         
-        var totalPitchChange = 0.0
+        var newPos = initialPos
         
-        if (data.count > 1) {
-            for i in 1..<data.count {
-                totalPitchChange += data[i].madgwick * Double(NSTimeInterval(data[i].time - data[i-1].time))
-            }
+        for i in info {
+            newPos = newPos * i.madgwick
         }
         
-        return totalPitchChange
+        position = newPos
+        
+        let x = String(format: "%.2f", position.x)
+        let y = String(format: "%.2f", position.y)
+        let z = String(format: "%.2f", position.z)
+        
+        println("x:\(x) y:\(y) z:\(z)")
     }
     
     func detectFlick(touchDownTime:NSTimeInterval, touchUpTime:NSTimeInterval) {
