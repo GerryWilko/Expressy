@@ -9,8 +9,9 @@
 import Foundation
 
 class WaxCache<T> {
+    var items:[T]
+    
     private let limit:UInt = 1000
-    internal var items:[T]
     
     init() {
         items = [T]()

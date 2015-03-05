@@ -15,7 +15,6 @@ class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralMan
 {
     private var cManager = CBCentralManager()
     private var peripheralManager = CBPeripheralManager()
-    
     private var dataProcessor:WaxProcessor!
     private var ready:Bool
     

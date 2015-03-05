@@ -10,10 +10,9 @@ import Foundation
 import CoreBluetooth
 
 var deviceList = NSMutableOrderedSet()
-var currentTableView = UITableView()
+var currentTableView:UITableView!
 
 class WAXScanViewController: UITableViewController {
-    
     required init(coder aDecoder:NSCoder) {
         super.init(coder: aDecoder)
     }

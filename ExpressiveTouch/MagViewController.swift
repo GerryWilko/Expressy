@@ -9,9 +9,9 @@
 import Foundation
 
 class MagViewController: UIViewController {
-    @IBOutlet weak var magGraphView:CPTGraphHostingView!
-    
     let magGraphBuilder:GraphBuilder
+    
+    @IBOutlet weak var magGraphView:CPTGraphHostingView!
     
     required init(coder aDecoder: NSCoder)
     {

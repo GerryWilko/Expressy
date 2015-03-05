@@ -9,13 +9,13 @@
 import Foundation
 
 class RecordViewController : UIViewController {
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var recordBtn: UIButton!
-    @IBOutlet weak var viewDataBtn: UIBarButtonItem!
-    
     private var recording:Bool
     private var timer:NSTimer
     private var startTime:NSTimeInterval
+    
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var recordBtn: UIButton!
+    @IBOutlet weak var viewDataBtn: UIBarButtonItem!
     
     required init(coder aDecoder: NSCoder) {
         recording = false

@@ -9,9 +9,9 @@
 import Foundation
 
 class AccViewController: UIViewController {
-    @IBOutlet weak var accGraphView:CPTGraphHostingView!
-    
     let accGraphBuilder:GraphBuilder
+    
+    @IBOutlet weak var accGraphView:CPTGraphHostingView!
     
     required init(coder aDecoder: NSCoder)
     {

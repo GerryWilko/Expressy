@@ -11,11 +11,10 @@ import Foundation
 var waxProcessor:WaxProcessor!
 
 class WaxProcessor {
-    internal let accCache:WaxDataCache
-    internal let gyroCache:WaxDataCache
-    internal let magCache:WaxDataCache
-    internal let infoCache:WaxInfoCache
-    
+    let accCache:WaxDataCache
+    let gyroCache:WaxDataCache
+    let magCache:WaxDataCache
+    let infoCache:WaxInfoCache
     private let accNorm = 1 / 4096.0
     private let gyroNorm = 0.07
     private let magNorm = 0.1
