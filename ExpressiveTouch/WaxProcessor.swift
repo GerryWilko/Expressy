@@ -16,9 +16,9 @@ class WaxProcessor {
     internal let magCache:WaxDataCache
     internal let infoCache:WaxInfoCache
     
-    private let accNorm:Double = 1 / 4096.0
-    private let gyroNorm:Double = 0.07
-    private let magNorm:Double = 0.1
+    private let accNorm = 1 / 4096.0
+    private let gyroNorm = 0.07
+    private let magNorm = 0.1
     
     init() {
         assert(waxProcessor == nil)
@@ -34,35 +34,25 @@ class WaxProcessor {
     class func getProcessor() -> WaxProcessor { return waxProcessor }
     
     func updateCache(data:NSData) {
-        var ax:CShort = 0;
-        var ay:CShort = 0;
-        var az:CShort = 0;
-        var gx:CShort = 0;
-        var gy:CShort = 0;
-        var gz:CShort = 0;
-        var mx:CShort = 0;
-        var my:CShort = 0;
-        var mz:CShort = 0;
+        var dataLength = data.length
         
-        var dataLength = data.length;
-        
-        assert( dataLength == 20 );
+        assert( dataLength == 20 )
         
         var buffer = [UInt8](count: dataLength, repeatedValue: 0)
         
         data.getBytes(&buffer, length: dataLength)
         
-        ax = CShort(buffer[ 3]) << 8 + CShort(buffer[ 2])
-        ay = CShort(buffer[ 5]) << 8 + CShort(buffer[ 4])
-        az = CShort(buffer[ 7]) << 8 + CShort(buffer[ 6])
+        var ax = CShort(buffer[ 3]) << 8 + CShort(buffer[ 2])
+        var ay = CShort(buffer[ 5]) << 8 + CShort(buffer[ 4])
+        var az = CShort(buffer[ 7]) << 8 + CShort(buffer[ 6])
         
-        gx = CShort(buffer[ 9]) << 8 + CShort(buffer[ 8])
-        gy = CShort(buffer[11]) << 8 + CShort(buffer[10])
-        gz = CShort(buffer[13]) << 8 + CShort(buffer[12])
+        var gx = CShort(buffer[ 9]) << 8 + CShort(buffer[ 8])
+        var gy = CShort(buffer[11]) << 8 + CShort(buffer[10])
+        var gz = CShort(buffer[13]) << 8 + CShort(buffer[12])
         
-        mx = CShort(buffer[15]) << 8 + CShort(buffer[14])
-        my = CShort(buffer[17]) << 8 + CShort(buffer[16])
-        mz = CShort(buffer[19]) << 8 + CShort(buffer[18])
+        var mx = CShort(buffer[15]) << 8 + CShort(buffer[14])
+        var my = CShort(buffer[17]) << 8 + CShort(buffer[16])
+        var mz = CShort(buffer[19]) << 8 + CShort(buffer[18])
         
         MadgwickAHRSupdate(CFloat(gx), CFloat(gy), CFloat(gz), CFloat(ax), CFloat(ay), CFloat(az), CFloat(mx), CFloat(my), CFloat(mz))
         let madgwick = Vector4D(x: q0, y: q1, z: q2, w: q3)

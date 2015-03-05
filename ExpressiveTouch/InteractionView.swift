@@ -22,6 +22,13 @@ class InteractionView: UIView {
     @IBOutlet weak var pitchLbl: UILabel!
     @IBOutlet weak var flickedSwitch: UISwitch!
     
+    @IBOutlet weak var posXLbl: UILabel!
+    @IBOutlet weak var posYLbl: UILabel!
+    @IBOutlet weak var posZLbl: UILabel!
+    @IBOutlet weak var madgXLbl: UILabel!
+    @IBOutlet weak var madgYLbl: UILabel!
+    @IBOutlet weak var madgZLbl: UILabel!
+    
     required init(coder aDecoder: NSCoder) {
         touchDown = false
         position = Vector3D(x: 0, y: 0, z: 1)
@@ -31,6 +38,9 @@ class InteractionView: UIView {
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         if (!touchDown) {
+            position = Vector3D(x: 0, y: 0, z: 1)
+            MadgwickResetAuxFrame()
+            
             touchDown = true
             let touchDownTime = NSDate.timeIntervalSinceReferenceDate()
             
@@ -48,7 +58,6 @@ class InteractionView: UIView {
             detectFlick(touchDownTime, touchUpTime: touchUpTime)
             
             timer.invalidate()
-            position = Vector3D(x: 0, y: 0, z: 1)
         }
     }
     
@@ -89,21 +98,20 @@ class InteractionView: UIView {
     func calculatePosition(touchDownTime:NSTimeInterval, currentTime:NSTimeInterval) {
         let processor = WaxProcessor.getProcessor()
         
-        let info = processor.infoCache.getRangeForTime(touchDownTime, end: currentTime)
+        let info = processor.infoCache.getForTime(currentTime)
         
-        var newPos = initialPos
+        madgXLbl.text = String(stringInterpolationSegment: info.madgwick.x)
+        madgYLbl.text = String(stringInterpolationSegment: info.madgwick.y)
+        madgZLbl.text = String(stringInterpolationSegment: info.madgwick.z)
         
-        for i in info {
-            newPos = newPos * i.madgwick
-        }
+        position = initialPos * info.madgwick
         
-        position = newPos
+        posXLbl.text = String(stringInterpolationSegment: position.x)
+        posYLbl.text = String(stringInterpolationSegment: position.y)
+        posZLbl.text = String(stringInterpolationSegment: position.z)
         
-        let x = String(format: "%.2f", position.x)
-        let y = String(format: "%.2f", position.y)
-        let z = String(format: "%.2f", position.z)
-        
-        println("x:\(x) y:\(y) z:\(z)")
+        println("Madgwick(x: \(info.madgwick.x), y: \(info.madgwick.y), z: \(info.madgwick.z), w: \(info.madgwick.w))")
+        println("Position(x: \(position.x), y: \(position.y), z: \(position.z))")
     }
     
     func detectFlick(touchDownTime:NSTimeInterval, touchUpTime:NSTimeInterval) {
