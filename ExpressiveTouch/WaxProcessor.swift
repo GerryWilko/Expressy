@@ -53,7 +53,7 @@ class WaxProcessor {
         var my = CFloat(CShort(buffer[17]) << 8 + CShort(buffer[16])) * magNorm
         var mz = CFloat(CShort(buffer[19]) << 8 + CShort(buffer[18])) * magNorm
         
-        MadgwickAHRSupdateIMU(deg2rad(gx), deg2rad(gy), deg2rad(gz), ax, ay, az)
+        MadgwickAHRSupdate(deg2rad(gx), deg2rad(gy), deg2rad(gz), ax, ay, az, mx, my, mz)
         let madgwick = Vector4D(x: q0, y: q1, z: q2, w: q3)
         
         let time = NSDate.timeIntervalSinceReferenceDate()
