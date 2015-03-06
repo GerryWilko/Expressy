@@ -25,7 +25,7 @@
 		CB73388A1A822CA600FA1121 /* WAXScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338761A822CA600FA1121 /* WAXScanViewController.swift */; };
 		CB9798351AA715BC00124A9D /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9798341AA715BC00124A9D /* Vector.swift */; };
 		CB983BD51A949A9F0042F946 /* InteractionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB983BD41A949A9F0042F946 /* InteractionView.swift */; };
-		CBD2500C1A8E39D5002792B7 /* MadgwickAHRS.c in Sources */ = {isa = PBXBuildFile; fileRef = CBD2500A1A8E39D5002792B7 /* MadgwickAHRS.c */; };
+		CBA2B0B51AAA1AD1006967EF /* MadgwickAHRS.c in Sources */ = {isa = PBXBuildFile; fileRef = CBA2B0B31AAA1AD1006967EF /* MadgwickAHRS.c */; };
 		CBD97CA01A97421200335499 /* WaxInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD97C9F1A97421200335499 /* WaxInfo.swift */; };
 		CBD97CA21A97433300335499 /* WaxDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD97CA11A97433300335499 /* WaxDataCache.swift */; };
 		CBD97CA41A97433F00335499 /* WaxInfoCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD97CA31A97433F00335499 /* WaxInfoCache.swift */; };
@@ -71,8 +71,8 @@
 		CB7338761A822CA600FA1121 /* WAXScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WAXScanViewController.swift; sourceTree = "<group>"; };
 		CB9798341AA715BC00124A9D /* Vector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
 		CB983BD41A949A9F0042F946 /* InteractionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionView.swift; sourceTree = "<group>"; };
-		CBD2500A1A8E39D5002792B7 /* MadgwickAHRS.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MadgwickAHRS.c; sourceTree = "<group>"; };
-		CBD2500B1A8E39D5002792B7 /* MadgwickAHRS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MadgwickAHRS.h; sourceTree = "<group>"; };
+		CBA2B0B31AAA1AD1006967EF /* MadgwickAHRS.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MadgwickAHRS.c; sourceTree = "<group>"; };
+		CBA2B0B41AAA1AD1006967EF /* MadgwickAHRS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MadgwickAHRS.h; sourceTree = "<group>"; };
 		CBD97C9F1A97421200335499 /* WaxInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxInfo.swift; sourceTree = "<group>"; };
 		CBD97CA11A97433300335499 /* WaxDataCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxDataCache.swift; sourceTree = "<group>"; };
 		CBD97CA31A97433F00335499 /* WaxInfoCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxInfoCache.swift; sourceTree = "<group>"; };
@@ -123,8 +123,8 @@
 		CB29A28C1A8E156A009F269A /* Madgwick */ = {
 			isa = PBXGroup;
 			children = (
-				CBD2500A1A8E39D5002792B7 /* MadgwickAHRS.c */,
-				CBD2500B1A8E39D5002792B7 /* MadgwickAHRS.h */,
+				CBA2B0B31AAA1AD1006967EF /* MadgwickAHRS.c */,
+				CBA2B0B41AAA1AD1006967EF /* MadgwickAHRS.h */,
 			);
 			name = Madgwick;
 			sourceTree = "<group>";
@@ -385,7 +385,6 @@
 				CB7338891A822CA600FA1121 /* WaxProcessor.swift in Sources */,
 				CB7338781A822CA600FA1121 /* AppDelegate.swift in Sources */,
 				CB7338871A822CA600FA1121 /* WaxConnectionManager.swift in Sources */,
-				CBD2500C1A8E39D5002792B7 /* MadgwickAHRS.c in Sources */,
 				CB73387B1A822CA600FA1121 /* ETDetectorViewController.swift in Sources */,
 				CBD97CA41A97433F00335499 /* WaxInfoCache.swift in Sources */,
 				CB7338801A822CA600FA1121 /* GyroViewController.swift in Sources */,
@@ -397,6 +396,7 @@
 				CB9798351AA715BC00124A9D /* Vector.swift in Sources */,
 				CB73387E1A822CA600FA1121 /* GraphBuilder.swift in Sources */,
 				CB7338861A822CA600FA1121 /* WaxCache.swift in Sources */,
+				CBA2B0B51AAA1AD1006967EF /* MadgwickAHRS.c in Sources */,
 				CB7338841A822CA600FA1121 /* MagViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

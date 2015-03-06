@@ -14,7 +14,7 @@ class InteractionView: UIView {
     var timer:NSTimer!
     var position:Vector3D
     
-    let initialPos = Vector3D(x: 0, y: 0, z: 1)
+    let initialPos = Vector3D(x: 1, y: 1, z: 1)
     let flickThreshold:Float = 1.5
     
     @IBOutlet weak var rotationLbl: UILabel!
