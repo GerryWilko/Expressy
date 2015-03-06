@@ -14,13 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        let initialPos = Vector3D(x: 0, y: 0, z: 1)
-        MadgwickAHRSupdateIMU(0, 0, 0, 1, 0, 0)
-        MadgwickAHRSupdateIMU(0, 0, 0, -1, 0, 0)
-        let quat = Vector4D(x: q0, y: q1, z: q2, w: q3)
-        
-        let test = initialPos * quat
-        
         // Override point for customization after application launch.
         let processor = WaxProcessor()
         let conMan = WaxConnectionManager(dataProcessor: processor)

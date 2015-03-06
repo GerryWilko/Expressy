@@ -15,9 +15,9 @@ class WaxProcessor {
     let gyroCache:WaxDataCache
     let magCache:WaxDataCache
     let infoCache:WaxInfoCache
-    private let accNorm = 1 / 4096.0
-    private let gyroNorm = 0.07
-    private let magNorm = 0.1
+    private let accNorm:Float = 4096.0
+    private let gyroNorm:Float = 0.07
+    private let magNorm:Float = 0.1
     
     init() {
         assert(waxProcessor == nil)
@@ -41,27 +41,31 @@ class WaxProcessor {
         
         data.getBytes(&buffer, length: dataLength)
         
-        var ax = CShort(buffer[ 3]) << 8 + CShort(buffer[ 2])
-        var ay = CShort(buffer[ 5]) << 8 + CShort(buffer[ 4])
-        var az = CShort(buffer[ 7]) << 8 + CShort(buffer[ 6])
+        var ax = CFloat(CShort(buffer[ 3]) << 8 + CShort(buffer[ 2])) / accNorm
+        var ay = CFloat(CShort(buffer[ 5]) << 8 + CShort(buffer[ 4])) / accNorm
+        var az = CFloat(CShort(buffer[ 7]) << 8 + CShort(buffer[ 6])) / accNorm
         
-        var gx = CShort(buffer[ 9]) << 8 + CShort(buffer[ 8])
-        var gy = CShort(buffer[11]) << 8 + CShort(buffer[10])
-        var gz = CShort(buffer[13]) << 8 + CShort(buffer[12])
+        var gx = CFloat(CShort(buffer[ 9]) << 8 + CShort(buffer[ 8])) * gyroNorm
+        var gy = CFloat(CShort(buffer[11]) << 8 + CShort(buffer[10])) * gyroNorm
+        var gz = CFloat(CShort(buffer[13]) << 8 + CShort(buffer[12])) * gyroNorm
         
-        var mx = CShort(buffer[15]) << 8 + CShort(buffer[14])
-        var my = CShort(buffer[17]) << 8 + CShort(buffer[16])
-        var mz = CShort(buffer[19]) << 8 + CShort(buffer[18])
+        var mx = CFloat(CShort(buffer[15]) << 8 + CShort(buffer[14])) * magNorm
+        var my = CFloat(CShort(buffer[17]) << 8 + CShort(buffer[16])) * magNorm
+        var mz = CFloat(CShort(buffer[19]) << 8 + CShort(buffer[18])) * magNorm
         
-        MadgwickAHRSupdate(CFloat(gx), CFloat(gy), CFloat(gz), CFloat(ax), CFloat(ay), CFloat(az), CFloat(mx), CFloat(my), CFloat(mz))
+        MadgwickAHRSupdate(deg2rad(gx), deg2rad(gy), deg2rad(gz), ax, ay, az, mx, my, mz)
         let madgwick = Vector4D(x: q0, y: q1, z: q2, w: q3)
         
         let time = NSDate.timeIntervalSinceReferenceDate()
         
-        accCache.add(WaxData(time: time, x: Double(ax) * accNorm, y: Double(ay) * accNorm, z: Double(az) * accNorm))
-        gyroCache.add(WaxData(time: time, x: Double(gx) * gyroNorm, y: Double(gy) * gyroNorm, z: Double(gz) * gyroNorm))
-        magCache.add(WaxData(time: time, x: Double(mx) * magNorm, y: Double(my) * magNorm, z: Double(mz) * magNorm))
+        accCache.add(WaxData(time: time, x: ax / accNorm, y: ay / accNorm, z: az / accNorm))
+        gyroCache.add(WaxData(time: time, x: gx * gyroNorm, y: gy * gyroNorm, z: gz * gyroNorm))
+        magCache.add(WaxData(time: time, x: mx * magNorm, y: my * magNorm, z: mz * magNorm))
         infoCache.add(WaxInfo(time: time, madgwick: madgwick))
+    }
+    
+    func deg2rad(degrees:Float) -> Float {
+        return Float((M_PI / 180)) * degrees
     }
     
     func startRecording() {

@@ -9,9 +9,9 @@
 import Foundation
 
 class WaxData {
-    let time:NSTimeInterval, x:Double, y:Double, z:Double
+    let time:NSTimeInterval, x:Float, y:Float, z:Float
     
-    init(time:NSTimeInterval, x:Double, y:Double, z:Double) {
+    init(time:NSTimeInterval, x:Float, y:Float, z:Float) {
         self.time = time
         
         self.x = x

@@ -15,7 +15,7 @@ class InteractionView: UIView {
     var position:Vector3D
     
     let initialPos = Vector3D(x: 0, y: 0, z: 1)
-    let flickThreshold = 1.5
+    let flickThreshold:Float = 1.5
     
     @IBOutlet weak var rotationLbl: UILabel!
     @IBOutlet weak var forceLbl: UILabel!
@@ -38,9 +38,6 @@ class InteractionView: UIView {
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         if (!touchDown) {
-            position = Vector3D(x: 0, y: 0, z: 1)
-            MadgwickResetAuxFrame()
-            
             touchDown = true
             let touchDownTime = NSDate.timeIntervalSinceReferenceDate()
             
@@ -75,16 +72,16 @@ class InteractionView: UIView {
         pitchLbl.text = detectPitch()
     }
     
-    func calculateRotation(touchDownTime:NSTimeInterval, currentTime:NSTimeInterval) -> Double {
+    func calculateRotation(touchDownTime:NSTimeInterval, currentTime:NSTimeInterval) -> Float {
         let processor = WaxProcessor.getProcessor()
         
         let data = processor.gyroCache.getRangeForTime(touchDownTime, end: currentTime)
         
-        var totalRotation = 0.0
+        var totalRotation:Float = 0.0
         
         if (data.count > 1) {
             for i in 1..<data.count {
-                totalRotation += data[i].x * Double(NSTimeInterval(data[i].time - data[i-1].time))
+                totalRotation += data[i].x * Float(NSTimeInterval(data[i].time - data[i-1].time))
             }
         }
         
@@ -137,12 +134,12 @@ class InteractionView: UIView {
         flickedSwitch.setOn(flicked, animated: true)
     }
     
-    func calculateForce(touchDownTime:NSTimeInterval) -> Double {
+    func calculateForce(touchDownTime:NSTimeInterval) -> Float {
         let processor = WaxProcessor.getProcessor()
         
         let data = processor.accCache.getRangeForTime(touchDownTime - 1, end: touchDownTime)
         
-        var force = 0.0
+        var force:Float = 0.0
         
         for d in data {
             force += sqrt(pow(d.x, 2) + pow(d.y, 2) + pow(d.z, 2))
