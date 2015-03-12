@@ -20,7 +20,7 @@ class ETDetectorViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        interactionView.delegate = self
+        
     }
     
     override func didReceiveMemoryWarning() {

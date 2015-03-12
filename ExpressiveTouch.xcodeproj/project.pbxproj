@@ -23,6 +23,8 @@
 		CB7338881A822CA600FA1121 /* WaxData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338741A822CA600FA1121 /* WaxData.swift */; };
 		CB7338891A822CA600FA1121 /* WaxProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338751A822CA600FA1121 /* WaxProcessor.swift */; };
 		CB73388A1A822CA600FA1121 /* WAXScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338761A822CA600FA1121 /* WAXScanViewController.swift */; };
+		CB82A42A1AB1CAA40032F5D6 /* InteractionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB82A4291AB1CAA40032F5D6 /* InteractionDetector.swift */; };
+		CB82A42C1AB1CAD00032F5D6 /* HandModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB82A42B1AB1CAD00032F5D6 /* HandModel.swift */; };
 		CB9798351AA715BC00124A9D /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9798341AA715BC00124A9D /* Vector.swift */; };
 		CB983BD51A949A9F0042F946 /* InteractionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB983BD41A949A9F0042F946 /* InteractionView.swift */; };
 		CBA2B0B51AAA1AD1006967EF /* MadgwickAHRS.c in Sources */ = {isa = PBXBuildFile; fileRef = CBA2B0B31AAA1AD1006967EF /* MadgwickAHRS.c */; };
@@ -69,6 +71,8 @@
 		CB7338741A822CA600FA1121 /* WaxData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxData.swift; sourceTree = "<group>"; };
 		CB7338751A822CA600FA1121 /* WaxProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxProcessor.swift; sourceTree = "<group>"; };
 		CB7338761A822CA600FA1121 /* WAXScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WAXScanViewController.swift; sourceTree = "<group>"; };
+		CB82A4291AB1CAA40032F5D6 /* InteractionDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionDetector.swift; sourceTree = "<group>"; };
+		CB82A42B1AB1CAD00032F5D6 /* HandModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandModel.swift; sourceTree = "<group>"; };
 		CB9798341AA715BC00124A9D /* Vector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
 		CB983BD41A949A9F0042F946 /* InteractionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionView.swift; sourceTree = "<group>"; };
 		CBA2B0B31AAA1AD1006967EF /* MadgwickAHRS.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MadgwickAHRS.c; sourceTree = "<group>"; };
@@ -188,6 +192,8 @@
 			isa = PBXGroup;
 			children = (
 				CB983BD41A949A9F0042F946 /* InteractionView.swift */,
+				CB82A4291AB1CAA40032F5D6 /* InteractionDetector.swift */,
+				CB82A42B1AB1CAD00032F5D6 /* HandModel.swift */,
 			);
 			name = "Expressive Touch";
 			sourceTree = "<group>";
@@ -389,11 +395,13 @@
 				CBD97CA41A97433F00335499 /* WaxInfoCache.swift in Sources */,
 				CB7338801A822CA600FA1121 /* GyroViewController.swift in Sources */,
 				CB7338771A822CA600FA1121 /* AccViewController.swift in Sources */,
+				CB82A42A1AB1CAA40032F5D6 /* InteractionDetector.swift in Sources */,
 				CB7338851A822CA600FA1121 /* RecordViewController.swift in Sources */,
 				CB73387F1A822CA600FA1121 /* GraphTabViewController.swift in Sources */,
 				CB7338881A822CA600FA1121 /* WaxData.swift in Sources */,
 				CB73388A1A822CA600FA1121 /* WAXScanViewController.swift in Sources */,
 				CB9798351AA715BC00124A9D /* Vector.swift in Sources */,
+				CB82A42C1AB1CAD00032F5D6 /* HandModel.swift in Sources */,
 				CB73387E1A822CA600FA1121 /* GraphBuilder.swift in Sources */,
 				CB7338861A822CA600FA1121 /* WaxCache.swift in Sources */,
 				CBA2B0B51AAA1AD1006967EF /* MadgwickAHRS.c in Sources */,
