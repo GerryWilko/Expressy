@@ -8,8 +8,34 @@
 
 import Foundation
 
-struct Vector3D {
+class Vector3D {
     let x:Float, y:Float, z:Float
+    
+    init(x:Float, y:Float, z:Float) {
+        self.x = x
+        self.y = y
+        self.z = z
+    }
+    
+    func magnitude() -> Float {
+        return sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2))
+    }
+    
+    func angleBetween(other:Vector3D) -> Float {
+        return atan2(self.crossProduct(other).magnitude(), self.dotProduct(other))
+    }
+    
+    func crossProduct(right:Vector3D) -> Vector3D {
+        let x = self.y * right.z - self.z * right.y
+        let y = self.z * right.x - self.x * right.z
+        let z = self.x * right.y - self.y * right.x
+        
+        return Vector3D(x: x, y: y, z: z)
+    }
+    
+    func dotProduct(right:Vector3D) -> Float {
+        return x * right.x + y * right.y + z * right.z
+    }
 }
 
 struct Vector4D {

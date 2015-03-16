@@ -9,38 +9,26 @@
 import Foundation
 
 class HandModel {
-    private var handState:HandState!
+    private var pitch:Float!
+    private var roll:Float!
     
-    init(madgwick:Vector4D) {
-        handState = detectState(madgwick)
+    private let initialVec = Vector3D(x: 0, y: 0, z: 1)
+    
+    init(data:WaxData) {
+        pitch = calculatePitch(data)
+        roll = calculateRoll(data)
     }
     
-    private func detectState(madgwick:Vector4D) -> HandState {
-        let initialPos = Vector3D(x: 0, y: 0, z: 0)
-        
-        let madgPos = initialPos * madgwick
-        if (madgPos.x == 1) {
-            return .PalmDown
-        } else if (madgPos.x == -1) {
-            return .PalmUp
-        } else if (madgPos.y == 1) {
-            return .ThumbUp
-        } else if (madgPos.y == -1) {
-            return .ThumbDown
-        }
-        
-        return .Unknown
+    func updateState(data:WaxData) {
+        pitch = calculatePitch(data)
+        roll = calculateRoll(data)
     }
     
-    func updateState(madgwick:Vector4D) {
-        
+    private func calculatePitch(data:WaxData) -> Float {
+        return data.grav.angleBetween(initialVec)
     }
     
-    func getState() -> HandState {
-        return handState
+    private func calculateRoll(data:WaxData) -> Float {
+        return data.grav.angleBetween(initialVec)
     }
-}
-
-enum HandState {
-    case PalmDown, PalmUp, ThumbUp, ThumbDown, Unknown
 }

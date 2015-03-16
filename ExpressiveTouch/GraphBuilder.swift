@@ -10,24 +10,19 @@ import Foundation
 
 class GraphBuilder : NSObject, CPTPlotDataSource {
     private var graphView:CPTGraphHostingView!
-    private var dataCache:WaxDataCache!
-    private var infoCache:WaxInfoCache!
+    private var dataCache:WaxCache!
     private let title:String
-    private let live:Bool
     private var timer:NSTimer!
-    private var recordedStartPos:Int
+    private var type:WaxDataType
     
-    init(title:String, live:Bool) {
+    init(title:String, type:WaxDataType) {
         self.title = title
-        self.live = live
-        
-        recordedStartPos = 0
+        self.type = type
     }
     
-    func initLoad(graphView:CPTGraphHostingView, dataCache:WaxDataCache, infoCache:WaxInfoCache) {
+    func initLoad(graphView:CPTGraphHostingView, dataCache:WaxCache) {
         self.graphView = graphView
         self.dataCache = dataCache
-        self.infoCache = infoCache
         
         configureHost()
         configureGraph()
@@ -59,8 +54,6 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         graph.paddingBottom = 40.0
         graph.paddingLeft = 40.0
         graph.paddingRight = 40.0
-        
-        graph.defaultPlotSpace.allowsUserInteraction = !live
     }
     
     private func configurePlots() {
@@ -144,16 +137,8 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
     }
     
     func numberOfRecordsForPlot(plot: CPTPlot!) -> UInt {
-        if (dataCache.count() <= 100 && live) {
+        if (dataCache.count() <= 100) {
             return UInt(dataCache.count())
-        }
-        else if (!live) {
-            for (var i = dataCache.count() - 1; i >= 0; i--) {
-                if (infoCache[i].startRecording) {
-                    recordedStartPos = i
-                    return UInt(dataCache.count() - i)
-                }
-            }
         }
         
         return 100
@@ -165,22 +150,33 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
             return idx
         case CPTScatterPlotFieldY.value:
             var index = Int(idx)
-            if (dataCache.count() > 100 && live) {
+            if (dataCache.count() > 100) {
                 var shift = dataCache.count() - 100
                 
                 index = index + shift
             }
-            else if (!live) {
-                index += recordedStartPos
+            
+            var data:Vector3D!
+            
+            switch type {
+            case .Accelerometer:
+                data = dataCache[index].acc
+                break
+            case .Gyroscope:
+                data = dataCache[index].gyro
+                break
+            case .Magnetometer:
+                data = dataCache[index].mag
+                break
             }
             
             switch plot.identifier as! Int {
             case WaxDataAxis.X.rawValue:
-                return dataCache[index].x
+                return data.x
             case WaxDataAxis.Y.rawValue:
-                return dataCache[index].y
+                return data.y
             case WaxDataAxis.Z.rawValue:
-                return dataCache[index].z
+                return data.z
             default:
                 break
             }
@@ -189,28 +185,6 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         }
         
         return 0
-    }
-    
-    func dataLabelForPlot(plot: CPTPlot!, recordIndex idx: UInt) -> CPTLayer! {
-        let info = infoCache[Int(idx)]
-        
-        if (!live && (info.startRecording || info.stopRecording || info.tapped || info.pinched || info.rotated || info.swiped || info.panned || info.edgePan || info.longPress)) {
-            var labelText = ""
-            
-            labelText += info.startRecording ? "Started Recording\n" : ""
-            labelText += info.stopRecording ? "Stopped Recording\n" : ""
-            labelText += info.tapped ? "Tapped\n" : ""
-            labelText += info.pinched ? "Pinched\n" : ""
-            labelText += info.rotated ? "Rotated\n" : ""
-            labelText += info.swiped ? "Swiped\n" : ""
-            labelText += info.panned ? "Panned\n" : ""
-            labelText += info.edgePan ? "Edge Pan\n" : ""
-            labelText += info.longPress ? "Long Press\n" : ""
-            
-            return CPTTextLayer(text: labelText)
-        }
-        
-        return CPTLayer()
     }
     
     func refresh() {
@@ -223,8 +197,10 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
     }
     
     func resume() {
-        if (live) {
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "refresh", userInfo: nil, repeats: true)
-        }
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "refresh", userInfo: nil, repeats: true)
     }
+}
+
+enum WaxDataType {
+    case Accelerometer, Gyroscope, Magnetometer
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfT-zT-XkF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7525" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xfT-zT-XkF">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7516"/>
     </dependencies>
     <scenes>
         <!--Gyroscope-->
@@ -120,7 +120,7 @@
             </objects>
             <point key="canvasLocation" x="-115.5" y="1291.5"/>
         </scene>
-        <!--Acceleration-->
+        <!--Accelerometer-->
         <scene sceneID="PeQ-jx-nKG">
             <objects>
                 <viewController id="W3H-qP-x1E" customClass="AccViewController" customModule="ExpressiveTouch" customModuleProvider="target" sceneMemberID="viewController">
@@ -169,7 +169,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Acceleration" id="Azl-h0-2Rf"/>
+                    <tabBarItem key="tabBarItem" title="Accelerometer" id="Azl-h0-2Rf"/>
                     <connections>
                         <outlet property="accGraphView" destination="OcT-bQ-nng" id="W0r-A2-IJL"/>
                     </connections>
@@ -178,10 +178,10 @@
             </objects>
             <point key="canvasLocation" x="-115.5" y="-84"/>
         </scene>
-        <!--Graph Tab View Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="qPP-Hn-hzf">
             <objects>
-                <tabBarController id="sX9-zw-S6C" customClass="GraphTabViewController" customModule="ExpressiveTouch" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="sX9-zw-S6C" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="PF5-Xk-kDa"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="zeY-Kg-5Sd">
@@ -275,27 +275,6 @@
                                             <segue destination="sX9-zw-S6C" kind="show" id="qDr-FV-1wG"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="Eii-ef-aCJ" style="IBUITableViewCellStyleDefault" id="b0e-Ir-ojY">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b0e-Ir-ojY" id="8Et-dM-Gtf">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Record Interaction Data" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Eii-ef-aCJ">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=compact-widthClass=regular">
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    </variation>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="iPk-6M-5TH" kind="show" id="voi-Km-8ec"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="gJ6-Sc-CDb" style="IBUITableViewCellStyleDefault" id="1LO-9t-WzI">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -329,87 +308,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FAd-DI-NEo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1678.5" y="1615.5"/>
-        </scene>
-        <!--Record View Controller-->
-        <scene sceneID="lJV-Uu-TF1">
-            <objects>
-                <viewController id="iPk-6M-5TH" customClass="RecordViewController" customModule="ExpressiveTouch" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="BHU-0a-HnI"/>
-                        <viewControllerLayoutGuide type="bottom" id="gKm-T0-oh7"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="JI7-rQ-x1c">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LfP-Wg-cco">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="284" y="223" width="233" height="21"/>
-                                </variation>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJR-dy-e7S">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Start Recording">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="323" y="185" width="154" height="30"/>
-                                </variation>
-                                <connections>
-                                    <action selector="recordPress:" destination="iPk-6M-5TH" eventType="touchUpInside" id="Vsd-qq-oiu"/>
-                                </connections>
-                            </button>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bVE-KO-ehh">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <items>
-                                    <navigationItem title="Record Interaction Data" id="anX-ub-WK7">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="KXi-ad-OVV">
-                                            <connections>
-                                                <action selector="back:" destination="iPk-6M-5TH" id="lbu-qO-52V"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="View Data" id="9hV-yu-TRi">
-                                            <connections>
-                                                <action selector="viewData:" destination="iPk-6M-5TH" id="xBU-KR-t5J"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="800" height="44"/>
-                                </variation>
-                            </navigationBar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="LfP-Wg-cco"/>
-                                <exclude reference="NJR-dy-e7S"/>
-                                <exclude reference="bVE-KO-ehh"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=compact-widthClass=regular">
-                            <mask key="subviews">
-                                <include reference="LfP-Wg-cco"/>
-                                <include reference="NJR-dy-e7S"/>
-                                <include reference="bVE-KO-ehh"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <connections>
-                        <outlet property="recordBtn" destination="NJR-dy-e7S" id="YVD-dd-vXd"/>
-                        <outlet property="timeLabel" destination="LfP-Wg-cco" id="VYM-4C-kAt"/>
-                        <outlet property="viewDataBtn" destination="9hV-yu-TRi" id="M8E-ra-GIJ"/>
-                        <segue destination="sX9-zw-S6C" kind="show" identifier="recordViewData" id="L15-6o-aX9"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZIp-Sx-FAI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-897" y="1615.5"/>
         </scene>
         <!--Detector View Controller-->
         <scene sceneID="eyc-5y-ISp">
@@ -625,7 +523,4 @@
             <point key="canvasLocation" x="-897" y="2316"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="qDr-FV-1wG"/>
-    </inferredMetricsTieBreakers>
 </document>

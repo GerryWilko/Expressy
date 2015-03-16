@@ -15,7 +15,7 @@ class GyroViewController: UIViewController {
     
     required init(coder aDecoder: NSCoder)
     {        
-        gyroGraphBuilder = GraphBuilder(title: "Gyroscope", live: GraphTabViewController.getLive())
+        gyroGraphBuilder = GraphBuilder(title: "Gyroscope", type: .Gyroscope)
         
         super.init(coder: aDecoder)
     }
@@ -29,7 +29,7 @@ class GyroViewController: UIViewController {
         
         let processor = WaxProcessor.getProcessor()
         
-        gyroGraphBuilder.initLoad(gyroGraphView, dataCache: processor.gyroCache, infoCache: processor.infoCache)
+        gyroGraphBuilder.initLoad(gyroGraphView, dataCache: processor.dataCache)
     }
     
     override func viewDidAppear(animated: Bool) {

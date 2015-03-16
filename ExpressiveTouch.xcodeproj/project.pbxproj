@@ -13,11 +13,9 @@
 		CB73387A1A822CA600FA1121 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB7338641A822CA600FA1121 /* Main.storyboard */; };
 		CB73387B1A822CA600FA1121 /* ETDetectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338661A822CA600FA1121 /* ETDetectorViewController.swift */; };
 		CB73387E1A822CA600FA1121 /* GraphBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73386A1A822CA600FA1121 /* GraphBuilder.swift */; };
-		CB73387F1A822CA600FA1121 /* GraphTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73386B1A822CA600FA1121 /* GraphTabViewController.swift */; };
 		CB7338801A822CA600FA1121 /* GyroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73386C1A822CA600FA1121 /* GyroViewController.swift */; };
 		CB7338811A822CA600FA1121 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB73386D1A822CA600FA1121 /* Images.xcassets */; };
 		CB7338841A822CA600FA1121 /* MagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338701A822CA600FA1121 /* MagViewController.swift */; };
-		CB7338851A822CA600FA1121 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338711A822CA600FA1121 /* RecordViewController.swift */; };
 		CB7338861A822CA600FA1121 /* WaxCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338721A822CA600FA1121 /* WaxCache.swift */; };
 		CB7338871A822CA600FA1121 /* WaxConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338731A822CA600FA1121 /* WaxConnectionManager.swift */; };
 		CB7338881A822CA600FA1121 /* WaxData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338741A822CA600FA1121 /* WaxData.swift */; };
@@ -28,9 +26,6 @@
 		CB9798351AA715BC00124A9D /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9798341AA715BC00124A9D /* Vector.swift */; };
 		CB983BD51A949A9F0042F946 /* InteractionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB983BD41A949A9F0042F946 /* InteractionView.swift */; };
 		CBA2B0B51AAA1AD1006967EF /* MadgwickAHRS.c in Sources */ = {isa = PBXBuildFile; fileRef = CBA2B0B31AAA1AD1006967EF /* MadgwickAHRS.c */; };
-		CBD97CA01A97421200335499 /* WaxInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD97C9F1A97421200335499 /* WaxInfo.swift */; };
-		CBD97CA21A97433300335499 /* WaxDataCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD97CA11A97433300335499 /* WaxDataCache.swift */; };
-		CBD97CA41A97433F00335499 /* WaxInfoCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD97CA31A97433F00335499 /* WaxInfoCache.swift */; };
 		CBF898A919F40D4F0069B2C4 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898A819F40D4F0069B2C4 /* CoreBluetooth.framework */; };
 		CBF898AB19F40D5E0069B2C4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898AA19F40D5E0069B2C4 /* UIKit.framework */; };
 		CBF898AD19F40D670069B2C4 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898AC19F40D670069B2C4 /* CoreFoundation.framework */; };
@@ -60,12 +55,10 @@
 		CB7338661A822CA600FA1121 /* ETDetectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETDetectorViewController.swift; sourceTree = "<group>"; };
 		CB7338671A822CA600FA1121 /* ExpressiveTouch-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ExpressiveTouch-Bridging-Header.h"; sourceTree = "<group>"; };
 		CB73386A1A822CA600FA1121 /* GraphBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphBuilder.swift; sourceTree = "<group>"; };
-		CB73386B1A822CA600FA1121 /* GraphTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphTabViewController.swift; sourceTree = "<group>"; };
 		CB73386C1A822CA600FA1121 /* GyroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GyroViewController.swift; sourceTree = "<group>"; };
 		CB73386D1A822CA600FA1121 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CB73386E1A822CA600FA1121 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB7338701A822CA600FA1121 /* MagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MagViewController.swift; sourceTree = "<group>"; };
-		CB7338711A822CA600FA1121 /* RecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		CB7338721A822CA600FA1121 /* WaxCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxCache.swift; sourceTree = "<group>"; };
 		CB7338731A822CA600FA1121 /* WaxConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxConnectionManager.swift; sourceTree = "<group>"; };
 		CB7338741A822CA600FA1121 /* WaxData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxData.swift; sourceTree = "<group>"; };
@@ -77,9 +70,6 @@
 		CB983BD41A949A9F0042F946 /* InteractionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionView.swift; sourceTree = "<group>"; };
 		CBA2B0B31AAA1AD1006967EF /* MadgwickAHRS.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MadgwickAHRS.c; sourceTree = "<group>"; };
 		CBA2B0B41AAA1AD1006967EF /* MadgwickAHRS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MadgwickAHRS.h; sourceTree = "<group>"; };
-		CBD97C9F1A97421200335499 /* WaxInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxInfo.swift; sourceTree = "<group>"; };
-		CBD97CA11A97433300335499 /* WaxDataCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxDataCache.swift; sourceTree = "<group>"; };
-		CBD97CA31A97433F00335499 /* WaxInfoCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxInfoCache.swift; sourceTree = "<group>"; };
 		CBF898A819F40D4F0069B2C4 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		CBF898AA19F40D5E0069B2C4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CBF898AC19F40D670069B2C4 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -157,9 +147,7 @@
 				CB7338601A822CA600FA1121 /* AccViewController.swift */,
 				CB73386C1A822CA600FA1121 /* GyroViewController.swift */,
 				CB7338701A822CA600FA1121 /* MagViewController.swift */,
-				CB73386B1A822CA600FA1121 /* GraphTabViewController.swift */,
 				CB7338761A822CA600FA1121 /* WAXScanViewController.swift */,
-				CB7338711A822CA600FA1121 /* RecordViewController.swift */,
 				CB7338661A822CA600FA1121 /* ETDetectorViewController.swift */,
 			);
 			name = "View Controllers";
@@ -172,9 +160,6 @@
 				CB7338721A822CA600FA1121 /* WaxCache.swift */,
 				CB7338751A822CA600FA1121 /* WaxProcessor.swift */,
 				CB7338731A822CA600FA1121 /* WaxConnectionManager.swift */,
-				CBD97C9F1A97421200335499 /* WaxInfo.swift */,
-				CBD97CA11A97433300335499 /* WaxDataCache.swift */,
-				CBD97CA31A97433F00335499 /* WaxInfoCache.swift */,
 				CB9798341AA715BC00124A9D /* Vector.swift */,
 			);
 			name = WAX;
@@ -385,19 +370,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CBD97CA21A97433300335499 /* WaxDataCache.swift in Sources */,
-				CBD97CA01A97421200335499 /* WaxInfo.swift in Sources */,
 				CB983BD51A949A9F0042F946 /* InteractionView.swift in Sources */,
 				CB7338891A822CA600FA1121 /* WaxProcessor.swift in Sources */,
 				CB7338781A822CA600FA1121 /* AppDelegate.swift in Sources */,
 				CB7338871A822CA600FA1121 /* WaxConnectionManager.swift in Sources */,
 				CB73387B1A822CA600FA1121 /* ETDetectorViewController.swift in Sources */,
-				CBD97CA41A97433F00335499 /* WaxInfoCache.swift in Sources */,
 				CB7338801A822CA600FA1121 /* GyroViewController.swift in Sources */,
 				CB7338771A822CA600FA1121 /* AccViewController.swift in Sources */,
 				CB82A42A1AB1CAA40032F5D6 /* InteractionDetector.swift in Sources */,
-				CB7338851A822CA600FA1121 /* RecordViewController.swift in Sources */,
-				CB73387F1A822CA600FA1121 /* GraphTabViewController.swift in Sources */,
 				CB7338881A822CA600FA1121 /* WaxData.swift in Sources */,
 				CB73388A1A822CA600FA1121 /* WAXScanViewController.swift in Sources */,
 				CB9798351AA715BC00124A9D /* Vector.swift in Sources */,

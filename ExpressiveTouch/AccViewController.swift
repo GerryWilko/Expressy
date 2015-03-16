@@ -15,7 +15,7 @@ class AccViewController: UIViewController {
     
     required init(coder aDecoder: NSCoder)
     {
-        accGraphBuilder = GraphBuilder(title: "Accelerometer", live: GraphTabViewController.getLive())
+        accGraphBuilder = GraphBuilder(title: "Accelerometer", type: .Accelerometer)
         
         super.init(coder: aDecoder)
     }
@@ -29,7 +29,7 @@ class AccViewController: UIViewController {
         
         let processor = WaxProcessor.getProcessor()
         
-        accGraphBuilder.initLoad(accGraphView, dataCache: processor.accCache, infoCache: processor.infoCache)
+        accGraphBuilder.initLoad(accGraphView, dataCache: processor.dataCache)
     }
     
     override func viewDidAppear(animated: Bool) {

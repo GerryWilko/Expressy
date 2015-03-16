@@ -11,10 +11,7 @@ import Foundation
 var waxProcessor:WaxProcessor!
 
 class WaxProcessor {
-    let accCache:WaxDataCache
-    let gyroCache:WaxDataCache
-    let magCache:WaxDataCache
-    let infoCache:WaxInfoCache
+    let dataCache:WaxCache
     private let accNorm:Float = 4096.0
     private let gyroNorm:Float = 0.07
     private let magNorm:Float = 0.1
@@ -22,10 +19,7 @@ class WaxProcessor {
     init() {
         assert(waxProcessor == nil)
         
-        accCache = WaxDataCache()
-        gyroCache = WaxDataCache()
-        magCache = WaxDataCache()
-        infoCache = WaxInfoCache()
+        dataCache = WaxCache()
         
         waxProcessor = self
     }
@@ -53,54 +47,14 @@ class WaxProcessor {
         var my = CFloat(CShort(buffer[17]) << 8 + CShort(buffer[16])) * magNorm
         var mz = CFloat(CShort(buffer[19]) << 8 + CShort(buffer[18])) * magNorm
         
-        MadgwickAHRSupdate(deg2rad(gx), deg2rad(gy), deg2rad(gz), ax, ay, az, mx, my, mz)
-        let madgwick = Vector4D(x: q0, y: q1, z: q2, w: q3)
+        MadgwickAHRSupdateIMU(deg2rad(gx), deg2rad(gy), deg2rad(gz), ax, ay, az)
         
         let time = NSDate.timeIntervalSinceReferenceDate()
         
-        accCache.add(WaxData(time: time, x: ax / accNorm, y: ay / accNorm, z: az / accNorm))
-        gyroCache.add(WaxData(time: time, x: gx * gyroNorm, y: gy * gyroNorm, z: gz * gyroNorm))
-        magCache.add(WaxData(time: time, x: mx * magNorm, y: my * magNorm, z: mz * magNorm))
-        infoCache.add(WaxInfo(time: time, madgwick: madgwick))
+        dataCache.add(WaxData(time: time, ax: ax, ay: ay, az: az, gx: gx, gy: gy, gz: gz, mx: mx, my: my, mz: mz, qx: q0, qy: q1, qz: q2, qw: q3))
     }
     
-    func deg2rad(degrees:Float) -> Float {
+    private func deg2rad(degrees:Float) -> Float {
         return Float((M_PI / 180)) * degrees
-    }
-    
-    func startRecording() {
-        infoCache.startRecording()
-    }
-    
-    func stopRecording() {
-        infoCache.stopRecording()
-    }
-    
-    func tapped() {
-        infoCache.tapped()
-    }
-    
-    func pinched() {
-        infoCache.pinched()
-    }
-    
-    func rotated() {
-        infoCache.rotated()
-    }
-    
-    func swiped() {
-        infoCache.swiped()
-    }
-    
-    func panned() {
-        infoCache.panned()
-    }
-    
-    func edgePan() {
-        infoCache.edgePan()
-    }
-    
-    func longPress() {
-        infoCache.longPress()
     }
 }

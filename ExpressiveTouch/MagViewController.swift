@@ -15,7 +15,7 @@ class MagViewController: UIViewController {
     
     required init(coder aDecoder: NSCoder)
     {
-        magGraphBuilder = GraphBuilder(title: "Magnetometer", live: GraphTabViewController.getLive())
+        magGraphBuilder = GraphBuilder(title: "Magnetometer", type: .Magnetometer)
         
         super.init(coder: aDecoder)
     }
@@ -29,7 +29,7 @@ class MagViewController: UIViewController {
         
         let processor = WaxProcessor.getProcessor()
         
-        magGraphBuilder.initLoad(magGraphView, dataCache: processor.magCache, infoCache: processor.infoCache)
+        magGraphBuilder.initLoad(magGraphView, dataCache: processor.dataCache)
     }
     
     override func viewDidAppear(animated: Bool) {
