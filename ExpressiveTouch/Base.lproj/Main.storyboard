@@ -401,22 +401,22 @@
                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Vw-qZ-Ld9">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press orientation: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHu-Pi-hMo">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press pitch: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHu-Pi-hMo">
                                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
-                                                    <rect key="frame" x="8" y="8" width="139" height="21"/>
+                                                    <rect key="frame" x="8" y="8" width="96" height="21"/>
                                                 </variation>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press force: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l15-JB-6OR">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press roll: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l15-JB-6OR">
                                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
-                                                    <rect key="frame" x="8" y="37" width="96" height="21"/>
+                                                    <rect key="frame" x="8" y="37" width="81" height="21"/>
                                                 </variation>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BK3-tC-OPF">
@@ -437,7 +437,7 @@
                                                     <rect key="frame" x="155" y="37" width="106" height="21"/>
                                                 </variation>
                                             </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4d1-l8-DC3">
+                                            <switch opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4d1-l8-DC3">
                                                 <rect key="frame" x="-25" y="-15" width="51" height="31"/>
                                                 <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
                                                     <rect key="frame" x="212" y="66" width="51" height="31"/>
@@ -494,8 +494,8 @@
                                 <connections>
                                     <outlet property="flickedSwitch" destination="4d1-l8-DC3" id="2Tw-G7-o0X"/>
                                     <outlet property="forceLbl" destination="EIA-ny-9iu" id="z4t-Aj-MJg"/>
-                                    <outlet property="pForceLbl" destination="ZD2-02-gmh" id="Mt1-eB-c3J"/>
-                                    <outlet property="pOrientationLbl" destination="BK3-tC-OPF" id="7Em-p3-e0q"/>
+                                    <outlet property="pPitchLbl" destination="BK3-tC-OPF" id="oi6-1P-fC1"/>
+                                    <outlet property="pRollLbl" destination="ZD2-02-gmh" id="Myf-kJ-jrl"/>
                                     <outlet property="rotationLbl" destination="Cdr-HM-2Ha" id="Fzz-Al-g7w"/>
                                 </connections>
                             </view>

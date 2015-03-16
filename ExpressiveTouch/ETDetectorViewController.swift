@@ -19,8 +19,8 @@ class ETDetectorViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    override func viewDidLoad() {
-        
+    override func viewDidDisappear(animated: Bool) {
+        interactionView.detector.stopDetection()
     }
     
     override func didReceiveMemoryWarning() {

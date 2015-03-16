@@ -16,36 +16,27 @@ class InteractionView: UIView {
     @IBOutlet weak var rotationLbl: UILabel!
     @IBOutlet weak var forceLbl: UILabel!
     
-    @IBOutlet weak var pOrientationLbl: UILabel!
-    @IBOutlet weak var pForceLbl: UILabel!
+    @IBOutlet weak var pPitchLbl: UILabel!
+    @IBOutlet weak var pRollLbl: UILabel!
     @IBOutlet weak var flickedSwitch: UISwitch!
     
     required init(coder aDecoder: NSCoder) {
         detector = InteractionDetector()
+        detector.startDetection()
         
         super.init(coder: aDecoder)
         
         detector.subscribe(EventType.Flicked, callback: {
             self.flickedSwitch.setOn(true, animated: true)
         })
-        
-        detector.subscribe(EventType.PadPress, callback: {
-            self.pOrientationLbl.text = "Pad Press"
-        })
-        
-        detector.subscribe(EventType.KnucklePress, callback: {
-            self.pOrientationLbl.text = "Knuckle Press"
-        })
-        
-        detector.subscribe(EventType.SidePress, callback: {
-            self.pOrientationLbl.text = "Side Press"
-        })
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         if (!detector.touchDown) {
             detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
-            forceLbl.text = String(format: "%.2f", detector.currentForce)
+            pPitchLbl.text = String(format: "%.2f", detector.handModel.getPitch())
+            pRollLbl.text = String(format: "%.2f", detector.handModel.getRoll())
+            flickedSwitch.setOn(false, animated: true)
             timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("interactionCallback:"), userInfo: nil, repeats: true)
         }
     }
@@ -62,6 +53,7 @@ class InteractionView: UIView {
     }
     
     func interactionCallback(timer:NSTimer) {
+        forceLbl.text = String(format: "%.2f", detector.currentForce)
         rotationLbl.text = String(format: "%.2f", detector.currentRotation)
     }
 }

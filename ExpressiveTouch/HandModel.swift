@@ -24,6 +24,14 @@ class HandModel {
         roll = calculateRoll(data)
     }
     
+    func getPitch() -> Float {
+        return pitch
+    }
+    
+    func getRoll() -> Float {
+        return roll
+    }
+    
     private func calculatePitch(data:WaxData) -> Float {
         return data.grav.angleBetween(initialVec)
     }

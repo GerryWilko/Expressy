@@ -18,9 +18,6 @@ class InteractionDetector {
     private var touchDownTime:NSTimeInterval!
     private var touchUpTime:NSTimeInterval!
     
-    private var padPressCallbacks:Array<() -> Void>
-    private var sidePressCallbacks:Array<() -> Void>
-    private var knucklePressCallbacks:Array<() -> Void>
     private var flickedCallbacks:Array<() -> Void>
     private var hardPressCallbacks:Array<() -> Void>
     private var softPressCallbacks:Array<() -> Void>
@@ -32,12 +29,9 @@ class InteractionDetector {
         touchDown = false
         var data = WaxProcessor.getProcessor().dataCache.getForTime(NSDate.timeIntervalSinceReferenceDate())
         handModel = HandModel(data: data)
-        currentForce = 1.0
+        currentForce = 0.0
         currentRotation = 0.0
         
-        padPressCallbacks = Array<() -> Void>()
-        sidePressCallbacks = Array<() -> Void>()
-        knucklePressCallbacks = Array<() -> Void>()
         flickedCallbacks = Array<() -> Void>()
         hardPressCallbacks = Array<() -> Void>()
         softPressCallbacks = Array<() -> Void>()
@@ -51,7 +45,7 @@ class InteractionDetector {
         timer.invalidate()
     }
     
-    func detectionCallback(timer:NSTimer!) {
+    @objc func detectionCallback(timer:NSTimer) {
         let processor = WaxProcessor.getProcessor()
         
         currentForce = calculateForce()
@@ -79,21 +73,25 @@ class InteractionDetector {
         self.touchUpTime = touchUpTime
         currentRotation = 0.0
         
-        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("touchEndCallback"), userInfo: [touchDownTime, touchUpTime], repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("touchEndCallback:"), userInfo: [touchDownTime, touchUpTime], repeats: true)
     }
     
     func touchCancelled() {
         touchDown = false
     }
     
-    func touchEndCallback() {
-        //let touchTimes = timer.userInfo as! [NSTimeInterval]
+    @objc func touchEndCallback(timer:NSTimer) {
+        let touchTimes = timer.userInfo as! [NSTimeInterval]
         let end = NSDate.timeIntervalSinceReferenceDate()
         
-        let flicked = detectFlick(touchUpTime, end: end)
+        let flicked = detectFlick(touchTimes[1], end: end)
         
         if (flicked) {
             fireFlicked()
+        }
+        
+        if (NSDate.timeIntervalSinceReferenceDate() - touchTimes[1] > 1) {
+            timer.invalidate()
         }
     }
     
@@ -119,7 +117,7 @@ class InteractionDetector {
         
         let data = processor.dataCache.getForTime(NSDate.timeIntervalSinceReferenceDate())
         let accNoGrav = data.getAccNoGrav()
-        let force = currentForce * (accNoGrav.x + accNoGrav.y + accNoGrav.z)
+        let force = (fabs(accNoGrav.x) + fabs(accNoGrav.y) + fabs(accNoGrav.z))
         
         return force
     }
@@ -142,18 +140,6 @@ class InteractionDetector {
         return flicked
     }
     
-    private func firePadPress() {
-        fireCallbacks(padPressCallbacks)
-    }
-    
-    private func fireSidePress() {
-        fireCallbacks(sidePressCallbacks)
-    }
-    
-    private func fireKnucklePress() {
-        fireCallbacks(knucklePressCallbacks)
-    }
-    
     private func fireFlicked() {
        fireCallbacks(flickedCallbacks)
     }
@@ -174,15 +160,6 @@ class InteractionDetector {
     
     func subscribe(event:EventType, callback:() -> Void) {
         switch event {
-        case .PadPress:
-            padPressCallbacks.append(callback)
-            break
-        case .SidePress:
-            sidePressCallbacks.append(callback)
-            break
-        case .KnucklePress:
-            knucklePressCallbacks.append(callback)
-            break
         case .Flicked:
             flickedCallbacks.append(callback)
             break
@@ -200,5 +177,5 @@ class InteractionDetector {
 }
 
 enum EventType {
-    case PadPress, SidePress, KnucklePress, Flicked, HardPress, SoftPress
+    case Flicked, HardPress, SoftPress
 }
