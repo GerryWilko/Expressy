@@ -19,6 +19,7 @@ class InteractionDetector {
     
     private var flickedCallbacks:Array<() -> Void>
     private var hardPressCallbacks:Array<() -> Void>
+    private var mediumPressCallbacks:Array<() -> Void>
     private var softPressCallbacks:Array<() -> Void>
     
     private let dataCache:WaxCache
@@ -38,6 +39,7 @@ class InteractionDetector {
         
         flickedCallbacks = Array<() -> Void>()
         hardPressCallbacks = Array<() -> Void>()
+        mediumPressCallbacks = Array<() -> Void>()
         softPressCallbacks = Array<() -> Void>()
     }
     
@@ -169,7 +171,7 @@ class InteractionDetector {
     }
     
     private func fireMediumPress() {
-        
+        fireCallbacks(mediumPressCallbacks)
     }
     
     private func fireSoftPress() {
@@ -190,6 +192,9 @@ class InteractionDetector {
         case .HardPress:
             hardPressCallbacks.append(callback)
             break
+        case .MediumPress:
+            mediumPressCallbacks.append(callback)
+            break
         case .SoftPress:
             softPressCallbacks.append(callback)
             break
@@ -201,5 +206,5 @@ class InteractionDetector {
 }
 
 enum EventType {
-    case Flicked, HardPress, SoftPress
+    case Flicked, HardPress, MediumPress, SoftPress
 }
