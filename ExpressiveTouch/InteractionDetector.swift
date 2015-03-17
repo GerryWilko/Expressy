@@ -9,28 +9,32 @@
 import Foundation
 
 class InteractionDetector {
-    var touchDown:Bool
     var handModel:HandModel
     var currentForce:Float
     var currentRotation:Float
+    var touchDown:Bool
     
-    private var timer:NSTimer!
-    private var touchDownTime:NSTimeInterval!
-    private var touchUpTime:NSTimeInterval!
+    private var continousTimer:NSTimer!
+    private var touchTimer:NSTimer!
     
     private var flickedCallbacks:Array<() -> Void>
     private var hardPressCallbacks:Array<() -> Void>
     private var softPressCallbacks:Array<() -> Void>
     
-    private let forceThreshold:Float = 1.5
+    private let dataCache:WaxCache
+    private let medForceThreshold:Float = 1.5
+    private let hardForceThreshold:Float = 3.0
     private let flickThreshold:Float = 1.5
     
-    init() {
-        touchDown = false
-        var data = WaxProcessor.getProcessor().dataCache.getForTime(NSDate.timeIntervalSinceReferenceDate())
+    
+    init(dataCache:WaxCache) {
+        self.dataCache = dataCache
+        
+        var data = dataCache.getForTime(NSDate.timeIntervalSinceReferenceDate())
         handModel = HandModel(data: data)
         currentForce = 0.0
         currentRotation = 0.0
+        touchDown = false
         
         flickedCallbacks = Array<() -> Void>()
         hardPressCallbacks = Array<() -> Void>()
@@ -38,68 +42,78 @@ class InteractionDetector {
     }
     
     func startDetection() {
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("detectionCallback:"), userInfo: nil, repeats: true)
+        continousTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("continousCallback:"), userInfo: nil, repeats: true)
     }
     
     func stopDetection() {
-        timer.invalidate()
+        continousTimer.invalidate()
     }
     
-    @objc func detectionCallback(timer:NSTimer) {
-        let processor = WaxProcessor.getProcessor()
-        
+    @objc func continousCallback(timer:NSTimer) {
         currentForce = calculateForce()
-        let data = processor.dataCache.getForTime(NSDate.timeIntervalSinceReferenceDate())
+        let data = dataCache.getForTime(NSDate.timeIntervalSinceReferenceDate())
         handModel.updateState(data)
-        
-        if (touchDown) {
-            currentRotation = calculateRotation()
-        }
     }
     
     func touchDown(touchDownTime:NSTimeInterval) {
         touchDown = true
-        self.touchDownTime = touchDownTime
         
-        if (currentForce > forceThreshold) {
+        touchTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("touchCallback:"), userInfo: touchDownTime, repeats: true)
+        
+        let touchForce = calculateTouchForce(touchDownTime)
+        let data = dataCache.getForTime(touchDownTime)
+        data.touched()
+        
+        if (touchForce > hardForceThreshold) {
             fireHardPress()
+            data.touchForce = "Hard"
+        } else if (touchForce > medForceThreshold) {
+            fireMediumPress()
+            data.touchForce = "Medium"
         } else {
             fireSoftPress()
+            data.touchForce = "Soft"
         }
     }
     
     func touchUp(touchUpTime:NSTimeInterval) {
         touchDown = false
-        self.touchUpTime = touchUpTime
         currentRotation = 0.0
         
-        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("touchEndCallback:"), userInfo: [touchDownTime, touchUpTime], repeats: true)
+        touchTimer.invalidate()
+        
+        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("touchEndCallback:"), userInfo: touchUpTime, repeats: true)
     }
     
     func touchCancelled() {
         touchDown = false
     }
     
+    @objc func touchCallback(timer:NSTimer) {
+        let touchDownTime = timer.userInfo as! NSTimeInterval
+        
+        currentRotation = calculateRotation(touchDownTime)
+    }
+    
     @objc func touchEndCallback(timer:NSTimer) {
-        let touchTimes = timer.userInfo as! [NSTimeInterval]
+        let touchUpTime = timer.userInfo as! NSTimeInterval
         let end = NSDate.timeIntervalSinceReferenceDate()
         
-        let flicked = detectFlick(touchTimes[1], end: end)
+        let flicked = detectFlick(touchUpTime, end: end)
         
         if (flicked) {
             fireFlicked()
         }
         
-        if (NSDate.timeIntervalSinceReferenceDate() - touchTimes[1] > 1) {
+        if (NSDate.timeIntervalSinceReferenceDate() - touchUpTime > 1) {
             timer.invalidate()
         }
     }
     
-    private func calculateRotation() -> Float {
-        let processor = WaxProcessor.getProcessor()
+    private func calculateRotation(touchDownTime:NSTimeInterval) -> Float {
         let currentTime = NSDate.timeIntervalSinceReferenceDate()
         
-        let data = processor.dataCache.getRangeForTime(touchDownTime, end: currentTime)
+        let data = dataCache.getRangeForTime(touchDownTime, end: currentTime)
         
         var totalRotation:Float = 0.0
         
@@ -113,19 +127,25 @@ class InteractionDetector {
     }
     
     private func calculateForce() -> Float {
-        let processor = WaxProcessor.getProcessor()
+        let data = dataCache.getForTime(NSDate.timeIntervalSinceReferenceDate())
         
-        let data = processor.dataCache.getForTime(NSDate.timeIntervalSinceReferenceDate())
-        let accNoGrav = data.getAccNoGrav()
-        let force = (fabs(accNoGrav.x) + fabs(accNoGrav.y) + fabs(accNoGrav.z))
+        return data.getAccNoGrav().magnitude()
+    }
+    
+    private func calculateTouchForce(touchDownTime:NSTimeInterval) -> Float {
+        let data = dataCache.getRangeForTime(touchDownTime - 1, end: touchDownTime)
+        
+        var force:Float = 0.0
+        
+        for d in data {
+            force += d.getAccNoGrav().magnitude()
+        }
         
         return force
     }
     
     private func detectFlick(touchUpTime:NSTimeInterval, end:NSTimeInterval) -> Bool {
-        let processor = WaxProcessor.getProcessor()
-        
-        let data = processor.dataCache.getRangeForTime(touchUpTime, end: end)
+        let data = dataCache.getRangeForTime(touchUpTime, end: end)
         
         var flicked = false
         
@@ -146,6 +166,10 @@ class InteractionDetector {
     
     private func fireHardPress() {
         fireCallbacks(hardPressCallbacks)
+    }
+    
+    private func fireMediumPress() {
+        
     }
     
     private func fireSoftPress() {

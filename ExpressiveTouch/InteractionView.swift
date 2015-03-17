@@ -21,7 +21,7 @@ class InteractionView: UIView {
     @IBOutlet weak var flickedSwitch: UISwitch!
     
     required init(coder aDecoder: NSCoder) {
-        detector = InteractionDetector()
+        detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
         detector.startDetection()
         
         super.init(coder: aDecoder)
@@ -46,10 +46,6 @@ class InteractionView: UIView {
             detector.touchUp(NSDate.timeIntervalSinceReferenceDate())
             timer.invalidate()
         }
-    }
-    
-    override func touchesCancelled(touches: Set<NSObject>!, withEvent event: UIEvent!) {
-        detector.touchCancelled()
     }
     
     func interactionCallback(timer:NSTimer) {

@@ -330,6 +330,11 @@
                                                 <action selector="back:" destination="g1C-39-oww" id="YYL-4J-uqe"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Export Data" id="Prv-p2-QRA">
+                                            <connections>
+                                                <action selector="exportData:" destination="g1C-39-oww" id="Rqr-o0-HWU"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                                 <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
@@ -520,7 +525,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h6U-9E-nvG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-897" y="2316"/>
+            <point key="canvasLocation" x="-906" y="1887"/>
         </scene>
     </scenes>
 </document>
