@@ -120,11 +120,7 @@ static void *const CPTFunctionDataSourceKVOContext = (void *)&CPTFunctionDataSou
 
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 
-#if MAC_OS_X_VERSION_10_6 < MAC_OS_X_VERSION_MAX_ALLOWED || __IPHONE_4_0 < __IPHONE_OS_VERSION_MAX_ALLOWED
     [dataPlot removeObserver:self forKeyPath:@"plotSpace" context:CPTFunctionDataSourceKVOContext];
-#else
-    [dataPlot removeObserver:self forKeyPath:@"plotSpace"];
-#endif
 
     [super dealloc];
 }
@@ -179,26 +175,16 @@ static void *const CPTFunctionDataSourceKVOContext = (void *)&CPTFunctionDataSou
 {
     CPTPlot *plot = self.dataPlot;
 
-    if ( plot ) {
-        CGFloat width = plot.bounds.size.width;
-        if ( width > CPTFloat(0.0) ) {
-            NSUInteger count = (NSUInteger)ceil(width / self.resolution) + 1;
+    NSUInteger count = (NSUInteger)ceil(plot.bounds.size.width / self.resolution) + 1;
 
-            if ( count > self.cachedCount ) {
-                self.dataCount   = count;
-                self.cachedCount = count;
+    if ( count > self.cachedCount ) {
+        self.dataCount   = count;
+        self.cachedCount = count;
 
-                CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)plot.plotSpace;
-                self.cachedStep = plotSpace.xRange.lengthDouble / count;
+        CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)plot.plotSpace;
+        self.cachedStep = plotSpace.xRange.lengthDouble / count;
 
-                [plot reloadData];
-            }
-        }
-        else {
-            self.dataCount   = 0;
-            self.cachedCount = 0;
-            self.cachedStep  = 0.0;
-        }
+        [plot reloadData];
     }
 }
 
@@ -341,16 +327,10 @@ static void *const CPTFunctionDataSourceKVOContext = (void *)&CPTFunctionDataSou
 {
     CPTNumericData *numericData = nil;
 
-    NSUInteger count = self.dataCount;
+    NSUInteger count     = self.dataCount;
+    CPTPlotRange *xRange = self.cachedPlotRange;
 
-    if ( count > 0 ) {
-        CPTPlotRange *xRange = self.cachedPlotRange;
-
-        if ( !xRange ) {
-            [self plotSpaceChanged];
-            xRange = self.cachedPlotRange;
-        }
-
+    if ( xRange && (count > 0) ) {
         NSMutableData *data = [[NSMutableData alloc] initWithLength:indexRange.length * 2 * sizeof(double)];
 
         double *xBytes = data.mutableBytes;

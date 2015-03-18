@@ -223,11 +223,6 @@ NSString *const CPTPlotBindingDataLabels = @"dataLabels"; ///< Plot data labels.
  **/
 @synthesize alignsPointsToPixels;
 
-/** @property BOOL drawLegendSwatchDecoration
- *  @brief If @YES (the default), additional plot-specific decorations, symbols, and/or colors will be drawn on top of the legend swatch rectangle.
- **/
-@synthesize drawLegendSwatchDecoration;
-
 #pragma mark -
 #pragma mark Init/Dealloc
 
@@ -268,7 +263,6 @@ NSString *const CPTPlotBindingDataLabels = @"dataLabels"; ///< Plot data labels.
  *  - @ref labelFormatter = @nil
  *  - @ref labelShadow = @nil
  *  - @ref alignsPointsToPixels = @YES
- *  - @ref drawLegendSwatchDecoration = @YES
  *  - @ref masksToBounds = @YES
  *  - @ref needsDisplayOnBoundsChange = @YES
  *
@@ -298,8 +292,6 @@ NSString *const CPTPlotBindingDataLabels = @"dataLabels"; ///< Plot data labels.
         labelIndexRange      = NSMakeRange(0, 0);
         labelAnnotations     = nil;
         alignsPointsToPixels = YES;
-
-        drawLegendSwatchDecoration = YES;
 
         self.masksToBounds              = YES;
         self.needsDisplayOnBoundsChange = YES;
@@ -336,8 +328,6 @@ NSString *const CPTPlotBindingDataLabels = @"dataLabels"; ///< Plot data labels.
         labelIndexRange      = theLayer->labelIndexRange;
         labelAnnotations     = [theLayer->labelAnnotations retain];
         alignsPointsToPixels = theLayer->alignsPointsToPixels;
-
-        drawLegendSwatchDecoration = theLayer->drawLegendSwatchDecoration;
     }
     return self;
 }
@@ -386,7 +376,6 @@ NSString *const CPTPlotBindingDataLabels = @"dataLabels"; ///< Plot data labels.
     [coder encodeObject:[NSValue valueWithRange:self.labelIndexRange] forKey:@"CPTPlot.labelIndexRange"];
     [coder encodeObject:self.labelAnnotations forKey:@"CPTPlot.labelAnnotations"];
     [coder encodeBool:self.alignsPointsToPixels forKey:@"CPTPlot.alignsPointsToPixels"];
-    [coder encodeBool:self.drawLegendSwatchDecoration forKey:@"CPTPlot.drawLegendSwatchDecoration"];
 
     // No need to archive these properties:
     // dataNeedsReloading
@@ -414,8 +403,6 @@ NSString *const CPTPlotBindingDataLabels = @"dataLabels"; ///< Plot data labels.
         labelIndexRange      = [[coder decodeObjectForKey:@"CPTPlot.labelIndexRange"] rangeValue];
         labelAnnotations     = [[coder decodeObjectForKey:@"CPTPlot.labelAnnotations"] mutableCopy];
         alignsPointsToPixels = [coder decodeBoolForKey:@"CPTPlot.alignsPointsToPixels"];
-
-        drawLegendSwatchDecoration = [coder decodeBoolForKey:@"CPTPlot.drawLegendSwatchDecoration"];
 
         // support old archives
         if ( [coder containsValueForKey:@"CPTPlot.identifier"] ) {
@@ -1606,23 +1593,8 @@ NSString *const CPTPlotBindingDataLabels = @"dataLabels"; ///< Plot data labels.
  **/
 -(void)drawSwatchForLegend:(CPTLegend *)legend atIndex:(NSUInteger)idx inRect:(CGRect)rect inContext:(CGContextRef)context
 {
-    id<CPTLegendDelegate> theDelegate = (id<CPTLegendDelegate>)self.delegate;
-
-    CPTFill *theFill = nil;
-    if ( [theDelegate respondsToSelector:@selector(legend:fillForSwatchAtIndex:forPlot:)] ) {
-        theFill = [theDelegate legend:legend fillForSwatchAtIndex:idx forPlot:self];
-    }
-    if ( !theFill ) {
-        theFill = legend.swatchFill;
-    }
-
-    CPTLineStyle *theLineStyle = nil;
-    if ( [theDelegate respondsToSelector:@selector(legend:lineStyleForSwatchAtIndex:forPlot:)] ) {
-        theLineStyle = [theDelegate legend:legend lineStyleForSwatchAtIndex:idx forPlot:self];
-    }
-    if ( !theLineStyle ) {
-        theLineStyle = legend.swatchBorderLineStyle;
-    }
+    CPTFill *theFill           = legend.swatchFill;
+    CPTLineStyle *theLineStyle = legend.swatchBorderLineStyle;
 
     if ( theFill || theLineStyle ) {
         CGFloat radius = legend.swatchCornerRadius;
@@ -1636,7 +1608,7 @@ NSString *const CPTPlotBindingDataLabels = @"dataLabels"; ///< Plot data labels.
         if ( theLineStyle ) {
             [theLineStyle setLineStyleInContext:context];
             CGContextBeginPath(context);
-            AddRoundedRectPath(context, CPTAlignBorderedRectToUserSpace(context, rect, theLineStyle), radius);
+            AddRoundedRectPath(context, CPTAlignRectToUserSpace(context, rect), radius);
             [theLineStyle strokePathInContext:context];
         }
     }

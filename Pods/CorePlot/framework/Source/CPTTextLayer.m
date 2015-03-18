@@ -6,7 +6,7 @@
 #import "CPTUtilities.h"
 #import <tgmath.h>
 
-const CGFloat kCPTTextLayerMarginWidth = CPTFloat(2.0);
+const CGFloat kCPTTextLayerMarginWidth = CPTFloat(1.0);
 
 /**
  *  @brief A Core Animation layer that displays text drawn in a uniform style.
@@ -322,12 +322,12 @@ const CGFloat kCPTTextLayerMarginWidth = CPTFloat(2.0);
         newBounds.size.width  += self.paddingLeft + self.paddingRight;
         newBounds.size.height += self.paddingTop + self.paddingBottom;
 
-        CGSize myMaxSize = self.maximumSize;
-        if ( myMaxSize.width > CPTFloat(0.0) ) {
-            newBounds.size.width = MIN(newBounds.size.width, myMaxSize.width);
+        CGSize maxSize = self.maximumSize;
+        if ( maxSize.width > CPTFloat(0.0) ) {
+            newBounds.size.width = MIN(newBounds.size.width, maxSize.width);
         }
-        if ( myMaxSize.height > CPTFloat(0.0) ) {
-            newBounds.size.height = MIN(newBounds.size.height, myMaxSize.height);
+        if ( maxSize.height > CPTFloat(0.0) ) {
+            newBounds.size.height = MIN(newBounds.size.height, maxSize.height);
         }
 
         newBounds.size.width  = ceil(newBounds.size.width);

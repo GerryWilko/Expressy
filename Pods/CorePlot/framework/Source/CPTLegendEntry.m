@@ -227,9 +227,6 @@
         }
     }
 
-    theTitleSize.width  = ceil(theTitleSize.width);
-    theTitleSize.height = ceil(theTitleSize.height);
-
     return theTitleSize;
 }
 

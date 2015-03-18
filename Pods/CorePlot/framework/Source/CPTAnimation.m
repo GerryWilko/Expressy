@@ -2,7 +2,6 @@
 
 #import "CPTAnimationOperation.h"
 #import "CPTAnimationPeriod.h"
-#import "CPTDefinitions.h"
 #import "_CPTAnimationTimingFunctions.h"
 
 static const CGFloat kCPTAnimationFrameRate = CPTFloat(1.0 / 60.0); // 60 frames per second
@@ -76,8 +75,6 @@ static CPTAnimation *instance = nil;
  **/
 @synthesize timer;
 
-#pragma mark - Init/Dealloc
-
 /// @name Initialization
 /// @{
 
@@ -96,7 +93,7 @@ static CPTAnimation *instance = nil;
         runningAnimationOperations = [[NSMutableArray alloc] init];
         expiredAnimationOperations = [[NSMutableArray alloc] init];
         timer                      = nil;
-        timeOffset                 = CPTFloat(0.0);
+        timeOffset                 = 0.0;
         defaultAnimationCurve      = CPTAnimationCurveLinear;
     }
 
@@ -131,7 +128,7 @@ static CPTAnimation *instance = nil;
 
 /// @endcond
 
-#pragma mark - Animation Controller Instance
+#pragma mark -
 
 /** @brief A shared CPTAnimation instance responsible for scheduling and executing animations.
  *  @return The shared CPTAnimation instance.
@@ -144,7 +141,7 @@ static CPTAnimation *instance = nil;
     return instance;
 }
 
-#pragma mark - Property Animation
+#pragma mark -
 
 /** @brief Creates an animation operation with the given properties and adds it to the animation queue.
  *  @param object The object to animate.
@@ -188,7 +185,7 @@ static CPTAnimation *instance = nil;
 
 /// @endcond
 
-#pragma mark - Animation Management
+#pragma mark -
 
 /** @brief Adds an animation operation to the animation queue.
  *  @param animationOperation The animation operation to add.
@@ -196,11 +193,19 @@ static CPTAnimation *instance = nil;
  **/
 -(CPTAnimationOperation *)addAnimationOperation:(CPTAnimationOperation *)animationOperation
 {
-    id boundObject             = animationOperation.boundObject;
-    CPTAnimationPeriod *period = animationOperation.period;
+    if ( animationOperation ) {
+        NSMutableArray *theAnimationOperations = self.animationOperations;
 
-    if ( animationOperation.delegate || (boundObject && period && ![period.startValue isEqual:period.endValue]) ) {
-        [self.animationOperations addObject:animationOperation];
+        for ( CPTAnimationOperation *operation in theAnimationOperations ) {
+            if ( operation.boundObject == animationOperation.boundObject ) {
+                if ( (operation.boundGetter == animationOperation.boundGetter) && (operation.boundSetter == animationOperation.boundSetter) ) {
+                    [self removeAnimationOperation:operation];
+                    break;
+                }
+            }
+        }
+
+        [theAnimationOperations addObject:animationOperation];
 
         if ( !self.timer ) {
             self.timer = [NSTimer timerWithTimeInterval:kCPTAnimationFrameRate target:self selector:@selector(update:) userInfo:nil repeats:YES];
@@ -222,13 +227,6 @@ static CPTAnimation *instance = nil;
         if ( [theAnimationOperations containsObject:animationOperation] ) {
             [self.expiredAnimationOperations addObject:animationOperation];
             [theAnimationOperations removeObject:animationOperation];
-
-            NSObject<CPTAnimationDelegate> *animationDelegate = animationOperation.delegate;
-            if ( [animationDelegate respondsToSelector:@selector(animationCancelled:)] ) {
-                [animationDelegate performSelector:@selector(animationCancelled:)
-                                        withObject:animationOperation
-                                        afterDelay:0];
-            }
         }
     }
 }
@@ -239,36 +237,11 @@ static CPTAnimation *instance = nil;
 {
     NSMutableArray *theAnimationOperations = self.animationOperations;
 
-    for ( CPTAnimationOperation *operation in theAnimationOperations ) {
-        NSObject<CPTAnimationDelegate> *animationDelegate = operation.delegate;
-        if ( [animationDelegate respondsToSelector:@selector(animationCancelled:)] ) {
-            [animationDelegate performSelector:@selector(animationCancelled:)
-                                    withObject:operation
-                                    afterDelay:0];
-        }
-    }
-
     [self.expiredAnimationOperations addObjectsFromArray:theAnimationOperations];
     [theAnimationOperations removeAllObjects];
 }
 
-#pragma mark - Retrieving Animation Operations
-
-/** @brief Gets the animation operation with the given identifier from the animation operation array.
- *  @param identifier An animation operation identifier.
- *  @return The animation operation with the given identifier or @nil if it was not found.
- **/
--(CPTAnimationOperation *)operationWithIdentifier:(id<NSCopying, NSObject>)identifier
-{
-    for ( CPTAnimationOperation *operation in self.animationOperations ) {
-        if ( [[operation identifier] isEqual:identifier] ) {
-            return operation;
-        }
-    }
-    return nil;
-}
-
-#pragma mark - Animation Update
+#pragma mark -
 
 /// @cond
 
@@ -282,7 +255,6 @@ static CPTAnimation *instance = nil;
 
     CGFloat currentTime = self.timeOffset;
     Class valueClass    = [NSValue class];
-    Class decimalClass  = [NSDecimalNumber class];
 
     for ( CPTAnimationOperation *animationOperation in theAnimationOperations ) {
         NSObject<CPTAnimationDelegate> *animationDelegate = animationOperation.delegate;
@@ -290,42 +262,25 @@ static CPTAnimation *instance = nil;
         CPTAnimationPeriod *period = animationOperation.period;
 
         CGFloat duration  = period.duration;
-        CGFloat startTime = period.startOffset;
-        CGFloat delay     = period.delay;
-        if ( isnan(delay) ) {
-            if ( [period canStartWithValueFromObject:animationOperation.boundObject propertyGetter:animationOperation.boundGetter] ) {
-                period.delay = currentTime - startTime;
-                startTime    = currentTime;
-            }
-            else {
-                startTime = CPTFloat(NAN);
-            }
-        }
-        else {
-            startTime += delay;
-        }
-        CGFloat endTime = startTime + duration;
+        CGFloat startTime = period.startOffset + period.delay;
+        CGFloat endTime   = startTime + duration;
 
-        if ( currentTime >= startTime ) {
+        if ( currentTime > endTime ) {
+            [expiredOperations addObject:animationOperation];
+
+            if ( [animationDelegate respondsToSelector:@selector(animationDidFinish:)] ) {
+                [animationDelegate performSelector:@selector(animationDidFinish:)
+                                        withObject:animationOperation
+                                        afterDelay:0];
+            }
+        }
+        else if ( currentTime >= startTime ) {
             id boundObject = animationOperation.boundObject;
 
             CPTAnimationTimingFunction timingFunction = [self timingFunctionForAnimationCurve:animationOperation.animationCurve];
 
             if ( boundObject && timingFunction ) {
                 if ( ![runningOperations containsObject:animationOperation] ) {
-                    // Remove any running animations for the same property
-                    SEL boundGetter = animationOperation.boundGetter;
-                    SEL boundSetter = animationOperation.boundSetter;
-
-                    for ( CPTAnimationOperation *operation in runningOperations ) {
-                        if ( operation.boundObject == boundObject ) {
-                            if ( (operation.boundGetter == boundGetter) && (operation.boundSetter == boundSetter) ) {
-                                [expiredOperations addObject:operation];
-                            }
-                        }
-                    }
-
-                    // Start the new animation
                     [runningOperations addObject:animationOperation];
 
                     if ( [animationDelegate respondsToSelector:@selector(animationDidStart:)] ) {
@@ -333,77 +288,55 @@ static CPTAnimation *instance = nil;
                                                 withObject:animationOperation
                                                 afterDelay:0];
                     }
-
-                    if ( !period.startValue ) {
-                        [period setStartValueFromObject:boundObject propertyGetter:animationOperation.boundGetter];
-                    }
                 }
 
-                if ( ![expiredOperations containsObject:animationOperation] ) {
-                    CGFloat progress = timingFunction(currentTime - startTime, duration);
+                CGFloat progress = timingFunction(currentTime - startTime, duration);
 
-                    NSValue *tweenedValue = [period tweenedValueForProgress:progress];
-                    SEL boundSetter       = animationOperation.boundSetter;
+                NSValue *tweenedValue = [period tweenedValueForProgress:progress];
+                SEL boundSetter       = animationOperation.boundSetter;
 
-                    @try {
-                        if ( [animationDelegate respondsToSelector:@selector(animationWillUpdate:)] ) {
-                            [animationDelegate performSelector:@selector(animationWillUpdate:)
-                                                    withObject:animationOperation
-                                                    afterDelay:0];
-                        }
+                NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[[boundObject class] instanceMethodSignatureForSelector:boundSetter]];
+                [invocation setTarget:boundObject];
+                [invocation setSelector:boundSetter];
 
-                        if ( [tweenedValue isKindOfClass:decimalClass] ) {
-                            NSDecimal buffer = [(NSDecimalNumber *)tweenedValue decimalValue];
+                if ( [tweenedValue isKindOfClass:valueClass] ) {
+                    NSUInteger bufferSize = 0;
+                    NSGetSizeAndAlignment(tweenedValue.objCType, &bufferSize, NULL);
 
-                            IMP setterMethod = [boundObject methodForSelector:boundSetter];
-                            setterMethod(boundObject, boundSetter, buffer);
-                        }
-                        else if ( [tweenedValue isKindOfClass:valueClass] ) {
-                            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[boundObject methodSignatureForSelector:boundSetter]];
-                            [invocation setTarget:boundObject];
-                            [invocation setSelector:boundSetter];
+                    void *buffer = malloc(bufferSize);
+                    [tweenedValue getValue:buffer];
 
-                            NSUInteger bufferSize = 0;
-                            NSGetSizeAndAlignment(tweenedValue.objCType, &bufferSize, NULL);
+                    [invocation setArgument:buffer atIndex:2];
 
-                            void *buffer = malloc(bufferSize);
-                            [tweenedValue getValue:buffer];
+                    free(buffer);
+                }
+                else {
+                    [invocation setArgument:&tweenedValue atIndex:2];
+                }
 
-                            [invocation setArgument:buffer atIndex:2];
-                            [invocation invoke];
-
-                            free(buffer);
-                        }
-                        else {
-                            IMP setterMethod = [boundObject methodForSelector:boundSetter];
-                            setterMethod(boundObject, boundSetter, tweenedValue);
-                        }
-
-                        if ( [animationDelegate respondsToSelector:@selector(animationDidUpdate:)] ) {
-                            [animationDelegate performSelector:@selector(animationDidUpdate:)
-                                                    withObject:animationOperation
-                                                    afterDelay:0];
-                        }
-
-                        if ( currentTime >= endTime ) {
-                            [expiredOperations addObject:animationOperation];
-
-                            if ( [animationDelegate respondsToSelector:@selector(animationDidFinish:)] ) {
-                                [animationDelegate performSelector:@selector(animationDidFinish:)
-                                                        withObject:animationOperation
-                                                        afterDelay:0];
-                            }
-                        }
+                @try {
+                    if ( [animationDelegate respondsToSelector:@selector(animationWillUpdate:)] ) {
+                        [animationDelegate performSelector:@selector(animationWillUpdate:)
+                                                withObject:animationOperation
+                                                afterDelay:0];
                     }
-                    @catch ( NSException *__unused exception ) {
-                        // something went wrong; don't run this operation any more
-                        [expiredOperations addObject:animationOperation];
 
-                        if ( [animationDelegate respondsToSelector:@selector(animationCancelled:)] ) {
-                            [animationDelegate performSelector:@selector(animationCancelled:)
-                                                    withObject:animationOperation
-                                                    afterDelay:0];
-                        }
+                    [invocation invoke];
+
+                    if ( [animationDelegate respondsToSelector:@selector(animationDidUpdate:)] ) {
+                        [animationDelegate performSelector:@selector(animationDidUpdate:)
+                                                withObject:animationOperation
+                                                afterDelay:0];
+                    }
+                }
+                @catch ( NSException *exception ) {
+                    // something went wrong; don't run this operation any more
+                    [expiredOperations addObject:animationOperation];
+
+                    if ( [animationDelegate respondsToSelector:@selector(animationCancelled:)] ) {
+                        [animationDelegate performSelector:@selector(animationCancelled:)
+                                                withObject:animationOperation
+                                                afterDelay:0];
                     }
                 }
             }
@@ -425,7 +358,7 @@ static CPTAnimation *instance = nil;
 
 /// @endcond
 
-#pragma mark - Timing Functions
+#pragma mark -
 
 /// @cond
 

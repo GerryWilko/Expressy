@@ -1,6 +1,4 @@
 #import "CPTUtilities.h"
-
-#import "CPTLineStyle.h"
 #import <tgmath.h>
 
 // cache common values to improve performance
@@ -190,20 +188,12 @@ NSDecimal CPTDecimalFromChar(int8_t anInt)
 {
     if ( (anInt >= 0) && (anInt < kCacheSize) ) {
         if ( !cacheValueInitialized[anInt] ) {
-            NSString *stringValue = [[NSString alloc] initWithFormat:@"%hhd", anInt];
-            cache[anInt] = CPTDecimalFromString(stringValue);
-            [stringValue release];
-
+            cache[anInt]                 = [[NSNumber numberWithChar:anInt] decimalValue];
             cacheValueInitialized[anInt] = YES;
         }
         return cache[anInt];
     }
-
-    NSString *stringValue = [[NSString alloc] initWithFormat:@"%hhd", anInt];
-    NSDecimal result      = CPTDecimalFromString(stringValue);
-    [stringValue release];
-
-    return result;
+    return [[NSNumber numberWithChar:anInt] decimalValue];
 }
 
 /**
@@ -215,20 +205,12 @@ NSDecimal CPTDecimalFromShort(int16_t anInt)
 {
     if ( (anInt >= 0) && (anInt < kCacheSize) ) {
         if ( !cacheValueInitialized[anInt] ) {
-            NSString *stringValue = [[NSString alloc] initWithFormat:@"%hd", anInt];
-            cache[anInt] = CPTDecimalFromString(stringValue);
-            [stringValue release];
-
+            cache[anInt]                 = [[NSNumber numberWithShort:anInt] decimalValue];
             cacheValueInitialized[anInt] = YES;
         }
         return cache[anInt];
     }
-
-    NSString *stringValue = [[NSString alloc] initWithFormat:@"%hd", anInt];
-    NSDecimal result      = CPTDecimalFromString(stringValue);
-    [stringValue release];
-
-    return result;
+    return [[NSNumber numberWithShort:anInt] decimalValue];
 }
 
 /**
@@ -240,20 +222,12 @@ NSDecimal CPTDecimalFromLong(int32_t anInt)
 {
     if ( (anInt >= 0) && (anInt < kCacheSize) ) {
         if ( !cacheValueInitialized[anInt] ) {
-            NSString *stringValue = [[NSString alloc] initWithFormat:@"%d", anInt];
-            cache[anInt] = CPTDecimalFromString(stringValue);
-            [stringValue release];
-
+            cache[anInt]                 = [[NSNumber numberWithLong:anInt] decimalValue];
             cacheValueInitialized[anInt] = YES;
         }
         return cache[anInt];
     }
-
-    NSString *stringValue = [[NSString alloc] initWithFormat:@"%d", anInt];
-    NSDecimal result      = CPTDecimalFromString(stringValue);
-    [stringValue release];
-
-    return result;
+    return [[NSNumber numberWithLong:anInt] decimalValue];
 }
 
 /**
@@ -265,20 +239,12 @@ NSDecimal CPTDecimalFromLongLong(int64_t anInt)
 {
     if ( (anInt >= 0) && (anInt < kCacheSize) ) {
         if ( !cacheValueInitialized[anInt] ) {
-            NSString *stringValue = [[NSString alloc] initWithFormat:@"%lld", anInt];
-            cache[anInt] = CPTDecimalFromString(stringValue);
-            [stringValue release];
-
+            cache[anInt]                 = [[NSNumber numberWithLongLong:anInt] decimalValue];
             cacheValueInitialized[anInt] = YES;
         }
         return cache[anInt];
     }
-
-    NSString *stringValue = [[NSString alloc] initWithFormat:@"%lld", anInt];
-    NSDecimal result      = CPTDecimalFromString(stringValue);
-    [stringValue release];
-
-    return result;
+    return [[NSNumber numberWithLongLong:anInt] decimalValue];
 }
 
 /**
@@ -290,20 +256,12 @@ NSDecimal CPTDecimalFromInt(int anInt)
 {
     if ( (anInt >= 0) && (anInt < kCacheSize) ) {
         if ( !cacheValueInitialized[anInt] ) {
-            NSString *stringValue = [[NSString alloc] initWithFormat:@"%d", anInt];
-            cache[anInt] = CPTDecimalFromString(stringValue);
-            [stringValue release];
-
+            cache[anInt]                 = [[NSNumber numberWithInt:anInt] decimalValue];
             cacheValueInitialized[anInt] = YES;
         }
         return cache[anInt];
     }
-
-    NSString *stringValue = [[NSString alloc] initWithFormat:@"%d", anInt];
-    NSDecimal result      = CPTDecimalFromString(stringValue);
-    [stringValue release];
-
-    return result;
+    return [[NSNumber numberWithInt:anInt] decimalValue];
 }
 
 /**
@@ -315,20 +273,12 @@ NSDecimal CPTDecimalFromInteger(NSInteger anInt)
 {
     if ( (anInt >= 0) && (anInt < kCacheSize) ) {
         if ( !cacheValueInitialized[anInt] ) {
-            NSString *stringValue = [[NSString alloc] initWithFormat:@"%ld", (long)anInt];
-            cache[anInt] = CPTDecimalFromString(stringValue);
-            [stringValue release];
-
+            cache[anInt]                 = [[NSNumber numberWithInteger:anInt] decimalValue];
             cacheValueInitialized[anInt] = YES;
         }
         return cache[anInt];
     }
-
-    NSString *stringValue = [[NSString alloc] initWithFormat:@"%ld", (long)anInt];
-    NSDecimal result      = CPTDecimalFromString(stringValue);
-    [stringValue release];
-
-    return result;
+    return [[NSNumber numberWithInteger:anInt] decimalValue];
 }
 
 /**
@@ -340,20 +290,12 @@ NSDecimal CPTDecimalFromUnsignedChar(uint8_t anInt)
 {
     if ( anInt < kCacheSize ) {
         if ( !cacheValueInitialized[anInt] ) {
-            NSString *stringValue = [[NSString alloc] initWithFormat:@"%hhu", anInt];
-            cache[anInt] = CPTDecimalFromString(stringValue);
-            [stringValue release];
-
+            cache[anInt]                 = [[NSNumber numberWithUnsignedChar:anInt] decimalValue];
             cacheValueInitialized[anInt] = YES;
         }
         return cache[anInt];
     }
-
-    NSString *stringValue = [[NSString alloc] initWithFormat:@"%hhu", anInt];
-    NSDecimal result      = CPTDecimalFromString(stringValue);
-    [stringValue release];
-
-    return result;
+    return [[NSNumber numberWithUnsignedChar:anInt] decimalValue];
 }
 
 /**
@@ -365,20 +307,12 @@ NSDecimal CPTDecimalFromUnsignedShort(uint16_t anInt)
 {
     if ( anInt < kCacheSize ) {
         if ( !cacheValueInitialized[anInt] ) {
-            NSString *stringValue = [[NSString alloc] initWithFormat:@"%hu", anInt];
-            cache[anInt] = CPTDecimalFromString(stringValue);
-            [stringValue release];
-
+            cache[anInt]                 = [[NSNumber numberWithUnsignedShort:anInt] decimalValue];
             cacheValueInitialized[anInt] = YES;
         }
         return cache[anInt];
     }
-
-    NSString *stringValue = [[NSString alloc] initWithFormat:@"%hu", anInt];
-    NSDecimal result      = CPTDecimalFromString(stringValue);
-    [stringValue release];
-
-    return result;
+    return [[NSNumber numberWithUnsignedShort:anInt] decimalValue];
 }
 
 /**
@@ -390,20 +324,12 @@ NSDecimal CPTDecimalFromUnsignedLong(uint32_t anInt)
 {
     if ( anInt < kCacheSize ) {
         if ( !cacheValueInitialized[anInt] ) {
-            NSString *stringValue = [[NSString alloc] initWithFormat:@"%u", anInt];
-            cache[anInt] = CPTDecimalFromString(stringValue);
-            [stringValue release];
-
+            cache[anInt]                 = [[NSNumber numberWithUnsignedLong:anInt] decimalValue];
             cacheValueInitialized[anInt] = YES;
         }
         return cache[anInt];
     }
-
-    NSString *stringValue = [[NSString alloc] initWithFormat:@"%u", anInt];
-    NSDecimal result      = CPTDecimalFromString(stringValue);
-    [stringValue release];
-
-    return result;
+    return [[NSNumber numberWithUnsignedLong:anInt] decimalValue];
 }
 
 /**
@@ -415,20 +341,12 @@ NSDecimal CPTDecimalFromUnsignedLongLong(uint64_t anInt)
 {
     if ( anInt < kCacheSize ) {
         if ( !cacheValueInitialized[anInt] ) {
-            NSString *stringValue = [[NSString alloc] initWithFormat:@"%llu", anInt];
-            cache[anInt] = CPTDecimalFromString(stringValue);
-            [stringValue release];
-
+            cache[anInt]                 = [[NSNumber numberWithUnsignedLongLong:anInt] decimalValue];
             cacheValueInitialized[anInt] = YES;
         }
         return cache[anInt];
     }
-
-    NSString *stringValue = [[NSString alloc] initWithFormat:@"%llu", anInt];
-    NSDecimal result      = CPTDecimalFromString(stringValue);
-    [stringValue release];
-
-    return result;
+    return [[NSNumber numberWithUnsignedLongLong:anInt] decimalValue];
 }
 
 /**
@@ -440,20 +358,12 @@ NSDecimal CPTDecimalFromUnsignedInt(unsigned int anInt)
 {
     if ( anInt < kCacheSize ) {
         if ( !cacheValueInitialized[anInt] ) {
-            NSString *stringValue = [[NSString alloc] initWithFormat:@"%u", anInt];
-            cache[anInt] = CPTDecimalFromString(stringValue);
-            [stringValue release];
-
+            cache[anInt]                 = [[NSNumber numberWithUnsignedInt:anInt] decimalValue];
             cacheValueInitialized[anInt] = YES;
         }
         return cache[anInt];
     }
-
-    NSString *stringValue = [[NSString alloc] initWithFormat:@"%u", anInt];
-    NSDecimal result      = CPTDecimalFromString(stringValue);
-    [stringValue release];
-
-    return result;
+    return [[NSNumber numberWithUnsignedInt:anInt] decimalValue];
 }
 
 /**
@@ -465,20 +375,12 @@ NSDecimal CPTDecimalFromUnsignedInteger(NSUInteger anInt)
 {
     if ( anInt < kCacheSize ) {
         if ( !cacheValueInitialized[anInt] ) {
-            NSString *stringValue = [[NSString alloc] initWithFormat:@"%lu", (unsigned long)anInt];
-            cache[anInt] = CPTDecimalFromString(stringValue);
-            [stringValue release];
-
+            cache[anInt]                 = [[NSNumber numberWithUnsignedInteger:anInt] decimalValue];
             cacheValueInitialized[anInt] = YES;
         }
         return cache[anInt];
     }
-
-    NSString *stringValue = [[NSString alloc] initWithFormat:@"%lu", (unsigned long)anInt];
-    NSDecimal result      = CPTDecimalFromString(stringValue);
-    [stringValue release];
-
-    return result;
+    return [[NSNumber numberWithUnsignedInteger:anInt] decimalValue];
 }
 
 /**
@@ -488,12 +390,7 @@ NSDecimal CPTDecimalFromUnsignedInteger(NSUInteger anInt)
  **/
 NSDecimal CPTDecimalFromFloat(float aFloat)
 {
-    NSString *stringValue = [[NSString alloc] initWithFormat:@"%f", aFloat];
-    NSDecimal result      = CPTDecimalFromString(stringValue);
-
-    [stringValue release];
-
-    return result;
+    return [[NSNumber numberWithFloat:aFloat] decimalValue];
 }
 
 /**
@@ -503,12 +400,7 @@ NSDecimal CPTDecimalFromFloat(float aFloat)
  **/
 NSDecimal CPTDecimalFromDouble(double aDouble)
 {
-    NSString *stringValue = [[NSString alloc] initWithFormat:@"%f", aDouble];
-    NSDecimal result      = CPTDecimalFromString(stringValue);
-
-    [stringValue release];
-
-    return result;
+    return [[NSNumber numberWithDouble:aDouble] decimalValue];
 }
 
 /**
@@ -518,12 +410,12 @@ NSDecimal CPTDecimalFromDouble(double aDouble)
  **/
 NSDecimal CPTDecimalFromCGFloat(CGFloat aCGFloat)
 {
-    NSString *stringValue = [[NSString alloc] initWithFormat:@"%f", aCGFloat];
-    NSDecimal result      = CPTDecimalFromString(stringValue);
+#if CGFLOAT_IS_DOUBLE
+    return [[NSNumber numberWithDouble:aCGFloat] decimalValue];
 
-    [stringValue release];
-
-    return result;
+#else
+    return [[NSNumber numberWithFloat:aCGFloat] decimalValue];
+#endif
 }
 
 /**
@@ -942,32 +834,6 @@ CGRect CPTAlignIntegralRectToUserSpace(CGContextRef context, CGRect rect)
 #endif
 
     return CGContextConvertRectToUserSpace(context, rect);
-}
-
-CGRect CPTAlignBorderedRectToUserSpace(CGContextRef context, CGRect rect, CPTLineStyle *borderLineStyle)
-{
-    CGRect borderRect;
-    CGFloat contextScale = CPTFloat(1.0);
-
-    if ( rect.size.height != CPTFloat(0.0) ) {
-        CGRect deviceRect = CGContextConvertRectToDeviceSpace(context, rect);
-        contextScale = deviceRect.size.height / rect.size.height;
-    }
-
-    if ( contextScale != CPTFloat(1.0) ) {
-        CGFloat borderWidth = borderLineStyle.lineWidth;
-        if ( ( borderWidth > CPTFloat(0.0) ) && ( borderWidth == round(borderWidth) ) ) {
-            borderRect = CPTAlignIntegralRectToUserSpace(context, rect);
-        }
-        else {
-            borderRect = CPTAlignRectToUserSpace(context, rect);
-        }
-    }
-    else {
-        borderRect = CPTAlignRectToUserSpace(context, rect);
-    }
-
-    return borderRect;
 }
 
 #pragma mark -

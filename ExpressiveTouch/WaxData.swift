@@ -37,6 +37,17 @@ class WaxData {
         touch = true
         self.touchForce = touchForce
     }
+    
+    func getYawPitchRoll() -> (yaw:Float, pitch:Float, roll:Float) {
+        let sgyz = sqrt(grav.y * grav.y + grav.z * grav.z)
+        let sgxz = sqrt(grav.x * grav.x + grav.z * grav.z)
+        
+        let yaw = atan2(2 * q.y * q.z - 2 * q.x * q.w, 2 * q.x * q.x + 2 * q.y * q.y - 1)
+        let pitch = (sgyz < 0.05) ? 0.0 : atan(grav.x / sgyz)
+        let roll = (sgxz < 0.05) ? 0.0 : atan(grav.y / sgxz)
+        
+        return (yaw, pitch, roll)
+    }
 }
 
 enum WaxDataAxis:Int {

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB6321141AB9E4C00080FD68 /* ETMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6321131AB9E4C00080FD68 /* ETMapView.swift */; };
+		CB6321161AB9EC070080FD68 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6321151AB9EC070080FD68 /* MapViewController.swift */; };
 		CB7338771A822CA600FA1121 /* AccViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338601A822CA600FA1121 /* AccViewController.swift */; };
 		CB7338781A822CA600FA1121 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338611A822CA600FA1121 /* AppDelegate.swift */; };
 		CB7338791A822CA600FA1121 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB7338621A822CA600FA1121 /* LaunchScreen.xib */; };
@@ -27,16 +29,7 @@
 		CB983BD51A949A9F0042F946 /* InteractionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB983BD41A949A9F0042F946 /* InteractionView.swift */; };
 		CBA2B0B51AAA1AD1006967EF /* MadgwickAHRS.c in Sources */ = {isa = PBXBuildFile; fileRef = CBA2B0B31AAA1AD1006967EF /* MadgwickAHRS.c */; };
 		CBB6837B1AB9B2C700938059 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = CBB6837A1AB9B2C700938059 /* art.scnassets */; };
-		CBD91A761AB8B89600A9ABBE /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBD91A751AB8B89600A9ABBE /* MessageUI.framework */; };
-		CBD91A7A1AB98C6A00A9ABBE /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBD91A791AB98C6A00A9ABBE /* GLKit.framework */; };
-		CBD91A7C1AB98DDC00A9ABBE /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBD91A7B1AB98DDC00A9ABBE /* OpenGLES.framework */; };
 		CBD91AE01AB9A2BE00A9ABBE /* PlaneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD91ADF1AB9A2BE00A9ABBE /* PlaneViewController.swift */; };
-		CBD91AE21AB9A2F200A9ABBE /* SceneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBD91AE11AB9A2F200A9ABBE /* SceneKit.framework */; };
-		CBF898A919F40D4F0069B2C4 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898A819F40D4F0069B2C4 /* CoreBluetooth.framework */; };
-		CBF898AB19F40D5E0069B2C4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898AA19F40D5E0069B2C4 /* UIKit.framework */; };
-		CBF898AD19F40D670069B2C4 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898AC19F40D670069B2C4 /* CoreFoundation.framework */; };
-		CBF898AF19F410790069B2C4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898AE19F410790069B2C4 /* QuartzCore.framework */; };
-		CBF898B119F410820069B2C4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBF898B019F410820069B2C4 /* CoreData.framework */; };
 		D51750A619E9831C0076F6FA /* ExpressiveTouchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51750A519E9831C0076F6FA /* ExpressiveTouchTests.swift */; };
 		FF8DCC742FC3997524C3C492 /* libPods-ExpressiveTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA315116ED542A1FC9DE226 /* libPods-ExpressiveTouch.a */; };
 /* End PBXBuildFile section */
@@ -52,8 +45,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3F07AA3D3FD6F9107B0DCFD6 /* Pods-ExpressiveTouch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpressiveTouch.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExpressiveTouch/Pods-ExpressiveTouch.release.xcconfig"; sourceTree = "<group>"; };
+		42223EA273833E1276CCAD1F /* Pods-ExpressiveTouch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpressiveTouch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ExpressiveTouch/Pods-ExpressiveTouch.debug.xcconfig"; sourceTree = "<group>"; };
 		7EA315116ED542A1FC9DE226 /* libPods-ExpressiveTouch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExpressiveTouch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		87BA3EA70A344285E7E633B7 /* Pods-ExpressiveTouch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpressiveTouch.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExpressiveTouch/Pods-ExpressiveTouch.release.xcconfig"; sourceTree = "<group>"; };
+		CB6321131AB9E4C00080FD68 /* ETMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETMapView.swift; sourceTree = "<group>"; };
+		CB6321151AB9EC070080FD68 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		CB7338601A822CA600FA1121 /* AccViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccViewController.swift; sourceTree = "<group>"; };
 		CB7338611A822CA600FA1121 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB7338631A822CA600FA1121 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -77,22 +73,11 @@
 		CBA2B0B31AAA1AD1006967EF /* MadgwickAHRS.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MadgwickAHRS.c; sourceTree = "<group>"; };
 		CBA2B0B41AAA1AD1006967EF /* MadgwickAHRS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MadgwickAHRS.h; sourceTree = "<group>"; };
 		CBB6837A1AB9B2C700938059 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; name = art.scnassets; path = ../art.scnassets; sourceTree = "<group>"; };
-		CBD91A751AB8B89600A9ABBE /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		CBD91A791AB98C6A00A9ABBE /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
-		CBD91A7B1AB98DDC00A9ABBE /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		CBD91ADF1AB9A2BE00A9ABBE /* PlaneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaneViewController.swift; sourceTree = "<group>"; };
-		CBD91AE11AB9A2F200A9ABBE /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
-		CBD91AE31AB9A30900A9ABBE /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SceneKit.framework; sourceTree = "<group>"; };
-		CBF898A819F40D4F0069B2C4 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		CBF898AA19F40D5E0069B2C4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		CBF898AC19F40D670069B2C4 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		CBF898AE19F410790069B2C4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		CBF898B019F410820069B2C4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D517508A19E9831C0076F6FA /* ExpressiveTouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpressiveTouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D517509F19E9831C0076F6FA /* ExpressiveTouchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpressiveTouchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D51750A419E9831C0076F6FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D51750A519E9831C0076F6FA /* ExpressiveTouchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressiveTouchTests.swift; sourceTree = "<group>"; };
-		E3FBF42420588FFD1BA314B2 /* Pods-ExpressiveTouch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpressiveTouch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ExpressiveTouch/Pods-ExpressiveTouch.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,15 +85,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CBD91AE21AB9A2F200A9ABBE /* SceneKit.framework in Frameworks */,
-				CBD91A7C1AB98DDC00A9ABBE /* OpenGLES.framework in Frameworks */,
-				CBD91A7A1AB98C6A00A9ABBE /* GLKit.framework in Frameworks */,
-				CBD91A761AB8B89600A9ABBE /* MessageUI.framework in Frameworks */,
-				CBF898B119F410820069B2C4 /* CoreData.framework in Frameworks */,
-				CBF898AF19F410790069B2C4 /* QuartzCore.framework in Frameworks */,
-				CBF898AD19F40D670069B2C4 /* CoreFoundation.framework in Frameworks */,
-				CBF898AB19F40D5E0069B2C4 /* UIKit.framework in Frameworks */,
-				CBF898A919F40D4F0069B2C4 /* CoreBluetooth.framework in Frameworks */,
 				FF8DCC742FC3997524C3C492 /* libPods-ExpressiveTouch.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -126,13 +102,18 @@
 		B33F468FFDB0C5FCAB954B5D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CBD91AE11AB9A2F200A9ABBE /* SceneKit.framework */,
-				CBD91A7B1AB98DDC00A9ABBE /* OpenGLES.framework */,
-				CBD91A791AB98C6A00A9ABBE /* GLKit.framework */,
-				CBD91A751AB8B89600A9ABBE /* MessageUI.framework */,
 				7EA315116ED542A1FC9DE226 /* libPods-ExpressiveTouch.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BB0207245130AB3087DF9D39 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				42223EA273833E1276CCAD1F /* Pods-ExpressiveTouch.debug.xcconfig */,
+				87BA3EA70A344285E7E633B7 /* Pods-ExpressiveTouch.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		CB29A28C1A8E156A009F269A /* Madgwick */ = {
@@ -172,6 +153,7 @@
 				CB7338761A822CA600FA1121 /* WAXScanViewController.swift */,
 				CB7338661A822CA600FA1121 /* ETDetectorViewController.swift */,
 				CBD91ADF1AB9A2BE00A9ABBE /* PlaneViewController.swift */,
+				CB6321151AB9EC070080FD68 /* MapViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -202,6 +184,7 @@
 				CB983BD41A949A9F0042F946 /* InteractionView.swift */,
 				CB82A4291AB1CAA40032F5D6 /* InteractionDetector.swift */,
 				CB82A42B1AB1CAD00032F5D6 /* HandModel.swift */,
+				CB6321131AB9E4C00080FD68 /* ETMapView.swift */,
 			);
 			name = "Expressive Touch";
 			sourceTree = "<group>";
@@ -209,17 +192,11 @@
 		D517508119E9831C0076F6FA = {
 			isa = PBXGroup;
 			children = (
-				CBD91AE31AB9A30900A9ABBE /* SceneKit.framework */,
-				CBF898B019F410820069B2C4 /* CoreData.framework */,
-				CBF898AE19F410790069B2C4 /* QuartzCore.framework */,
-				CBF898AC19F40D670069B2C4 /* CoreFoundation.framework */,
-				CBF898AA19F40D5E0069B2C4 /* UIKit.framework */,
-				CBF898A819F40D4F0069B2C4 /* CoreBluetooth.framework */,
 				CB73385F1A822CA600FA1121 /* ExpressiveTouch */,
 				D51750A219E9831C0076F6FA /* ExpressiveTouchTests */,
 				D517508B19E9831C0076F6FA /* Products */,
-				FA57F3EB9D08941706FD3626 /* Pods */,
 				B33F468FFDB0C5FCAB954B5D /* Frameworks */,
+				BB0207245130AB3087DF9D39 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -247,15 +224,6 @@
 				D51750A419E9831C0076F6FA /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		FA57F3EB9D08941706FD3626 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				E3FBF42420588FFD1BA314B2 /* Pods-ExpressiveTouch.debug.xcconfig */,
-				3F07AA3D3FD6F9107B0DCFD6 /* Pods-ExpressiveTouch.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -395,12 +363,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB6321141AB9E4C00080FD68 /* ETMapView.swift in Sources */,
 				CB983BD51A949A9F0042F946 /* InteractionView.swift in Sources */,
 				CB7338891A822CA600FA1121 /* WaxProcessor.swift in Sources */,
 				CB7338781A822CA600FA1121 /* AppDelegate.swift in Sources */,
 				CB7338871A822CA600FA1121 /* WaxConnectionManager.swift in Sources */,
 				CB73387B1A822CA600FA1121 /* ETDetectorViewController.swift in Sources */,
 				CB7338801A822CA600FA1121 /* GyroViewController.swift in Sources */,
+				CB6321161AB9EC070080FD68 /* MapViewController.swift in Sources */,
 				CB7338771A822CA600FA1121 /* AccViewController.swift in Sources */,
 				CBD91AE01AB9A2BE00A9ABBE /* PlaneViewController.swift in Sources */,
 				CB82A42A1AB1CAA40032F5D6 /* InteractionDetector.swift in Sources */,
@@ -534,7 +504,7 @@
 		};
 		D51750AA19E9831C0076F6FA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E3FBF42420588FFD1BA314B2 /* Pods-ExpressiveTouch.debug.xcconfig */;
+			baseConfigurationReference = 42223EA273833E1276CCAD1F /* Pods-ExpressiveTouch.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -549,12 +519,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CorePlot",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-l\"Pods-ExpressiveTouch-CorePlot\"",
-					"-framework",
-					"\"QuartzCore\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -565,7 +529,7 @@
 		};
 		D51750AB19E9831C0076F6FA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3F07AA3D3FD6F9107B0DCFD6 /* Pods-ExpressiveTouch.release.xcconfig */;
+			baseConfigurationReference = 87BA3EA70A344285E7E633B7 /* Pods-ExpressiveTouch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -580,12 +544,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CorePlot",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-l\"Pods-ExpressiveTouch-CorePlot\"",
-					"-framework",
-					"\"QuartzCore\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -608,6 +566,7 @@
 				);
 				INFOPLIST_FILE = ExpressiveTouchTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExpressiveTouch.app/ExpressiveTouch";
 			};
@@ -623,6 +582,7 @@
 				);
 				INFOPLIST_FILE = ExpressiveTouchTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExpressiveTouch.app/ExpressiveTouch";
 			};

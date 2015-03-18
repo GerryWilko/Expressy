@@ -105,9 +105,10 @@ class PlaneViewController: UIViewController {
     
     @objc func timerCallback(timer:NSTimer) {
         let ship = scnView.scene!.rootNode.childNodeWithName("ship", recursively: true)!
-        let data = WaxProcessor.getProcessor().dataCache.getForTime(NSDate.timeIntervalSinceReferenceDate())
+        let data = WaxProcessor.getProcessor().dataCache.getForTime(NSDate.timeIntervalSinceReferenceDate()).getYawPitchRoll()
+        let scalar:Float = 10.0
         
-        ship.runAction(SCNAction.rotateByX(CGFloat(data.grav.z), y: CGFloat(data.grav.z), z: CGFloat(data.grav.z), duration: 1))
+        ship.runAction(SCNAction.rotateToX(CGFloat(data.pitch * scalar * -1.0), y: CGFloat(data.yaw * scalar), z: CGFloat(data.roll * scalar), duration: 0.1))
     }
     
     override func shouldAutorotate() -> Bool {

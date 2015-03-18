@@ -197,6 +197,12 @@ static const size_t kCPTNumberOfLayers = 6; // number of primary layers to arran
     [super dealloc];
 }
 
+-(void)finalize
+{
+    free(bottomUpLayerOrder);
+    [super finalize];
+}
+
 /// @endcond
 
 #pragma mark -
@@ -622,58 +628,6 @@ static const size_t kCPTNumberOfLayers = 6; // number of primary layers to arran
 
     return idx;
 }
-
-#pragma mark -
-#pragma mark Event Handling
-
-/// @name User Interaction
-/// @{
-
-/**
- *  @brief Informs the receiver that the user has
- *  @if MacOnly pressed the mouse button. @endif
- *  @if iOSOnly touched the screen. @endif
- *
- *
- *  If this plot area has a delegate that responds to the
- *  @link CPTPlotAreaDelegate::plotAreaWasSelected: -plotAreaWasSelected: @endlink and/or
- *  @link CPTPlotAreaDelegate::plotAreaWasSelected:withEvent: -plotAreaWasSelected:withEvent: @endlink
- *  methods, the delegate method will be called and this method returns @YES if the @par{interactionPoint} is within the
- *  plot area bounds.
- *
- *  @param event The OS event.
- *  @param interactionPoint The coordinates of the interaction.
- *  @return Whether the event was handled or not.
- **/
--(BOOL)pointingDeviceDownEvent:(CPTNativeEvent *)event atPoint:(CGPoint)interactionPoint
-{
-    CPTGraph *theGraph = self.graph;
-
-    if ( !theGraph || self.hidden ) {
-        return NO;
-    }
-
-    id<CPTPlotAreaDelegate> theDelegate = self.delegate;
-    if ( [theDelegate respondsToSelector:@selector(plotAreaWasSelected:)] ||
-         [theDelegate respondsToSelector:@selector(plotAreaWasSelected:withEvent:)] ) {
-        // Inform delegate if a point was hit
-        CGPoint plotAreaPoint = [theGraph convertPoint:interactionPoint toLayer:self];
-
-        if ( CGRectContainsPoint(self.bounds, plotAreaPoint) ) {
-            if ( [theDelegate respondsToSelector:@selector(plotAreaWasSelected:)] ) {
-                [theDelegate plotAreaWasSelected:self];
-            }
-            if ( [theDelegate respondsToSelector:@selector(plotAreaWasSelected:withEvent:)] ) {
-                [theDelegate plotAreaWasSelected:self withEvent:event];
-            }
-            return NO; // don't block other events in the responder chain
-        }
-    }
-
-    return [super pointingDeviceDownEvent:event atPoint:interactionPoint];
-}
-
-/// @}
 
 #pragma mark -
 #pragma mark Accessors

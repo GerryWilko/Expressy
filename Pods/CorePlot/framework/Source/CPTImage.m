@@ -180,6 +180,12 @@
     [super dealloc];
 }
 
+-(void)finalize
+{
+    CGImageRelease(image);
+    [super finalize];
+}
+
 /// @endcond
 
 #pragma mark -

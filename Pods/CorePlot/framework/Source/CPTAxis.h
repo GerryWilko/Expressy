@@ -158,7 +158,6 @@ CPTAxisLabelingPolicy;
     NSAttributedString *attributedTitle;
     CGFloat titleOffset;
     CGFloat titleRotation;
-    CPTSign titleDirection;
     NSDecimal titleLocation;
     CPTSign tickDirection;
     BOOL needsRelabel;
@@ -196,7 +195,6 @@ CPTAxisLabelingPolicy;
 @property (nonatomic, readwrite, copy) NSString *title;
 @property (nonatomic, readwrite, copy) NSAttributedString *attributedTitle;
 @property (nonatomic, readwrite, assign) CGFloat titleRotation;
-@property (nonatomic, readwrite, assign) CPTSign titleDirection;
 @property (nonatomic, readwrite, assign) NSDecimal titleLocation;
 @property (nonatomic, readonly, assign) NSDecimal defaultTitleLocation;
 /// @}

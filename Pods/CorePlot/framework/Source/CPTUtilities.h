@@ -2,8 +2,6 @@
 
 /// @file
 
-@class CPTLineStyle;
-
 #if __cplusplus
 extern "C" {
 #endif
@@ -121,8 +119,6 @@ CGRect CPTAlignRectToUserSpace(CGContextRef context, CGRect rect);
 
 CGPoint CPTAlignIntegralPointToUserSpace(CGContextRef context, CGPoint point);
 CGRect CPTAlignIntegralRectToUserSpace(CGContextRef context, CGRect rect);
-
-CGRect CPTAlignBorderedRectToUserSpace(CGContextRef context, CGRect rect, CPTLineStyle *borderLineStyle);
 
 /// @}
 
