@@ -9,9 +9,9 @@
 import Foundation
 
 class WaxData {
-    let time:NSTimeInterval, acc:Vector3D, gyro:Vector3D, mag:Vector3D, q:Vector4D, grav:Vector3D, roll:Float, pitch:Float, yaw:Float
+    let time:NSTimeInterval, acc:Vector3D, gyro:Vector3D, mag:Vector3D, q:Vector4D, grav:Vector3D
     
-    var touch:Bool, touchForce:String!
+    var touch:Bool, touchForce:Float
     
     init(time:NSTimeInterval, ax:Float, ay:Float, az:Float, gx:Float, gy:Float, gz:Float, mx:Float, my:Float, mz:Float, qx:Float, qy:Float, qz:Float, qw:Float) {
         self.time = time
@@ -25,19 +25,17 @@ class WaxData {
         let gravz = q.x * q.x - q.y * q.y - q.z * q.z + q.w * q.w
         grav = Vector3D(x: gravx, y: gravy, z: gravz)
         
-        roll = atan2(2 * q.y * q.w - 2 * q.x * q.z, 1 - 2 * q.y * q.y - 2 * q.z * q.z)
-        pitch = atan2(2 * q.x * q.w - 2 * q.y * q.z, 1 - 2 * q.x * q.x - 2 * q.z * q.z)
-        yaw = asin(2 * q.x * q.y + 2 * q.z * q.w)
-        
         touch = false
+        touchForce = 0.0
     }
     
     func getAccNoGrav() -> Vector3D {
         return Vector3D(x: acc.x - grav.x, y: acc.y - grav.y, z: acc.z - grav.z)
     }
     
-    func touched() {
+    func touched(touchForce:Float) {
         touch = true
+        self.touchForce = touchForce
     }
 }
 

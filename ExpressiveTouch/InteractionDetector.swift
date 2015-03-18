@@ -64,17 +64,14 @@ class InteractionDetector {
         
         let touchForce = calculateTouchForce(touchDownTime)
         let data = dataCache.getForTime(touchDownTime)
-        data.touched()
+        data.touched(touchForce)
         
         if (touchForce > hardForceThreshold) {
             fireHardPress()
-            data.touchForce = "Hard"
         } else if (touchForce > medForceThreshold) {
             fireMediumPress()
-            data.touchForce = "Medium"
         } else {
             fireSoftPress()
-            data.touchForce = "Soft"
         }
     }
     
@@ -139,6 +136,7 @@ class InteractionDetector {
         
         var force:Float = 0.0
         
+        
         for d in data {
             force += d.getAccNoGrav().magnitude()
         }
@@ -152,9 +150,7 @@ class InteractionDetector {
         var flicked = false
         
         for d in data {
-            let vectorLength = sqrt(pow(d.acc.x, 2) + pow(d.acc.y, 2) + pow(d.acc.z, 2))
-            
-            if (vectorLength > flickThreshold) {
+            if (d.acc.magnitude() > flickThreshold) {
                 flicked = true
             }
         }
