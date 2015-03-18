@@ -20,6 +20,10 @@ class InteractionView: UIView {
     @IBOutlet weak var pRollLbl: UILabel!
     @IBOutlet weak var flickedSwitch: UISwitch!
     
+    @IBOutlet weak var gravXLbl: UILabel!
+    @IBOutlet weak var gravYLbl: UILabel!
+    @IBOutlet weak var gravZLbl: UILabel!
+    
     required init(coder aDecoder: NSCoder) {
         detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
         detector.startDetection()
@@ -34,8 +38,6 @@ class InteractionView: UIView {
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         if (!detector.touchDown) {
             detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
-            pPitchLbl.text = String(format: "%.2f", detector.handModel.getPitch())
-            pRollLbl.text = String(format: "%.2f", detector.handModel.getRoll())
             flickedSwitch.setOn(false, animated: true)
             timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("interactionCallback:"), userInfo: nil, repeats: true)
         }
@@ -51,5 +53,13 @@ class InteractionView: UIView {
     func interactionCallback(timer:NSTimer) {
         forceLbl.text = String(format: "%.2f", detector.currentForce)
         rotationLbl.text = String(format: "%.2f", detector.currentRotation)
+        pPitchLbl.text = String(format: "%.2f", detector.handModel.getPitch())
+        pRollLbl.text = String(format: "%.2f", detector.handModel.getRoll())
+        
+        let data = WaxProcessor.getProcessor().dataCache.getForTime(NSDate.timeIntervalSinceReferenceDate())
+        
+        gravXLbl.text = String(format: "%.2f", data.grav.x)
+        gravYLbl.text = String(format: "%.2f", data.grav.y)
+        gravZLbl.text = String(format: "%.2f", data.grav.z)
     }
 }
