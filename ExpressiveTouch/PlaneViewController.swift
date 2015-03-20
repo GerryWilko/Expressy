@@ -67,7 +67,7 @@ class PlaneViewController: UIViewController {
         }
         scnView.gestureRecognizers = gestureRecognizers
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: Selector("timerCallback:"), userInfo: nil, repeats: true)
+        WaxProcessor.getProcessor().dataCache.subscribe(dataCallback)
     }
     
     func handleTap(gestureRecognize: UIGestureRecognizer) {
@@ -103,9 +103,8 @@ class PlaneViewController: UIViewController {
         }
     }
     
-    @objc func timerCallback(timer:NSTimer) {
+    func dataCallback(data:WaxData) {
         let ship = scnView.scene!.rootNode.childNodeWithName("ship", recursively: true)!
-        let data = WaxProcessor.getProcessor().dataCache.getForTime(NSDate.timeIntervalSinceReferenceDate())
         let scalar:Float = 10.0
         
         ship.orientation = SCNQuaternion(x: data.q.x, y: data.q.y, z: data.q.z, w: data.q.w)
@@ -128,7 +127,7 @@ class PlaneViewController: UIViewController {
     }
     
     @IBAction func back(sender: AnyObject) {
-        timer.invalidate()
+        WaxProcessor.getProcessor().dataCache.clearSubscriptions()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
