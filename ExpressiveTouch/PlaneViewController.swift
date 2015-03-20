@@ -107,7 +107,7 @@ class PlaneViewController: UIViewController {
         let ship = scnView.scene!.rootNode.childNodeWithName("ship", recursively: true)!
         let scalar:Float = 10.0
         
-        ship.orientation = SCNQuaternion(x: data.q.x, y: data.q.y, z: data.q.z, w: data.q.w)
+        ship.orientation = SCNQuaternion(x: data.q.y, y: data.q.x, z: data.q.z, w: data.q.w)
     }
     
     override func shouldAutorotate() -> Bool {

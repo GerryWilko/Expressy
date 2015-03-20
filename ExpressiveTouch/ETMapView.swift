@@ -15,7 +15,6 @@ class ETMapView: MKMapView {
     var initialPitch:CGFloat!
     var touchPitch:Float!
     var touchRoll:Float!
-    var timer:NSTimer!
 
     required init(coder aDecoder: NSCoder) {
         detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
@@ -32,29 +31,40 @@ class ETMapView: MKMapView {
             let data = WaxProcessor.getProcessor().dataCache.getForTime(NSDate.timeIntervalSinceReferenceDate()).getYawPitchRoll()
             initialHeading = self.camera.heading
             initialPitch = self.camera.pitch
-            touchPitch = data.pitch
-            touchRoll = data.roll
+            touchPitch = rad2deg(data.pitch)
+            touchRoll = rad2deg(data.roll)
             
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("interactionCallback:"), userInfo: nil, repeats: true)
+            WaxProcessor.getProcessor().dataCache.subscribe(dataCallback)
         }
     }
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         if (detector.touchDown) {
             detector.touchUp(NSDate.timeIntervalSinceReferenceDate())
-            timer.invalidate()
+            WaxProcessor.getProcessor().dataCache.clearSubscriptions()
         }
     }
     
-    @objc func interactionCallback(timer:NSTimer) {
+    func dataCallback(data:WaxData) {
         let userCoordinate = CLLocationCoordinate2D(latitude: 51.5033, longitude: -0.11967)
         let eyeCoordinate = CLLocationCoordinate2D(latitude: 51.5033, longitude: -0.11967)
         let mapCamera = MKMapCamera(lookingAtCenterCoordinate: userCoordinate, fromEyeCoordinate: eyeCoordinate, eyeAltitude: 400.0)
         
-        let data = WaxProcessor.getProcessor().dataCache.getForTime(NSDate.timeIntervalSinceReferenceDate()).getYawPitchRoll()
-        mapCamera.pitch = initialPitch + CGFloat(touchPitch - (data.pitch * 100) * -1.0)
-        mapCamera.heading = initialHeading + CLLocationDirection(touchRoll - (data.roll * 100))
+        let ypr = data.getYawPitchRoll()
+        let pitch = rad2deg(ypr.pitch) * -1.0
+        let roll = rad2deg(ypr.roll)
+        let newPitch = CGFloat(touchPitch - pitch)
+        let newRoll = CLLocationDirection(touchRoll - roll)
+        
+        mapCamera.pitch = initialPitch + newPitch
+        mapCamera.heading = initialHeading + newRoll
+        
+        println("touchPitch: \(touchPitch), touchRoll: \(touchRoll), pitch: \(pitch), roll: \(roll), finalPitch: \(mapCamera.pitch), finalRoll: \(mapCamera.heading)")
         
         self.setCamera(mapCamera, animated: true)
+    }
+    
+    private func rad2deg(radians:Float) -> Float {
+        return radians / Float((M_PI / 180))
     }
 }

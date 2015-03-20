@@ -27,7 +27,7 @@ class WaxProcessor {
 
     
     func updateCache(data:NSData) {
-        var dataLength = data.length
+        let dataLength = data.length
         
         assert( dataLength == 20 )
         
@@ -35,17 +35,17 @@ class WaxProcessor {
         
         data.getBytes(&buffer, length: dataLength)
         
-        var ax = CFloat(CShort(buffer[ 3]) << 8 + CShort(buffer[ 2])) / accNorm
-        var ay = CFloat(CShort(buffer[ 5]) << 8 + CShort(buffer[ 4])) / accNorm
-        var az = CFloat(CShort(buffer[ 7]) << 8 + CShort(buffer[ 6])) / accNorm
+        let ax = CFloat((CShort(buffer[ 3]) << 8) + CShort(buffer[ 2])) / accNorm
+        let ay = CFloat((CShort(buffer[ 5]) << 8) + CShort(buffer[ 4])) / accNorm
+        let az = CFloat((CShort(buffer[ 7]) << 8) + CShort(buffer[ 6])) / accNorm
         
-        var gx = CFloat(CShort(buffer[ 9]) << 8 + CShort(buffer[ 8])) * gyroNorm
-        var gy = CFloat(CShort(buffer[11]) << 8 + CShort(buffer[10])) * gyroNorm
-        var gz = CFloat(CShort(buffer[13]) << 8 + CShort(buffer[12])) * gyroNorm
+        let gx = CFloat((CShort(buffer[ 9]) << 8) + CShort(buffer[ 8])) * gyroNorm
+        let gy = CFloat((CShort(buffer[11]) << 8) + CShort(buffer[10])) * gyroNorm
+        let gz = CFloat((CShort(buffer[13]) << 8) + CShort(buffer[12])) * gyroNorm
         
-        var mx = CFloat(CShort(buffer[15]) << 8 + CShort(buffer[14])) * magNorm
-        var my = CFloat(CShort(buffer[17]) << 8 + CShort(buffer[16])) * magNorm
-        var mz = CFloat(CShort(buffer[19]) << 8 + CShort(buffer[18])) * magNorm
+        let mx = CFloat((CShort(buffer[15]) << 8) + CShort(buffer[14])) * magNorm
+        let my = CFloat((CShort(buffer[17]) << 8) + CShort(buffer[16])) * magNorm
+        let mz = CFloat((CShort(buffer[19]) << 8) + CShort(buffer[18])) * magNorm
         
         MadgwickAHRSupdateIMU(deg2rad(gx), deg2rad(gy), deg2rad(gz), ax, ay, az)
         
