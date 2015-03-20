@@ -17,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let processor = WaxProcessor()
         let conMan = WaxConnectionManager(dataProcessor: processor)
+        
+        //AhrsInit(, 0, 100, 0.1f)
+        
         return true
     }
 

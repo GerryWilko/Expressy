@@ -12,7 +12,6 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
     private var graphView:CPTGraphHostingView!
     private var dataCache:WaxCache!
     private let title:String
-    private var timer:NSTimer!
     private var type:WaxDataType
     
     init(title:String, type:WaxDataType) {
@@ -193,11 +192,15 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
     }
     
     func pause() {
-        timer.invalidate()
+        dataCache.clearSubscriptions()
     }
     
     func resume() {
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "refresh", userInfo: nil, repeats: true)
+        dataCache.subscribe(dataCallback)
+    }
+    
+    func dataCallback(data:WaxData) {
+        refresh()
     }
 }
 

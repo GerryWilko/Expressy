@@ -18,13 +18,13 @@ class WaxProcessor {
     
     init() {
         assert(waxProcessor == nil)
-        
         dataCache = WaxCache()
-        
         waxProcessor = self
     }
     
     class func getProcessor() -> WaxProcessor { return waxProcessor }
+    
+
     
     func updateCache(data:NSData) {
         var dataLength = data.length
@@ -50,8 +50,9 @@ class WaxProcessor {
         MadgwickAHRSupdateIMU(deg2rad(gx), deg2rad(gy), deg2rad(gz), ax, ay, az)
         
         let time = NSDate.timeIntervalSinceReferenceDate()
+        let data = WaxData(time: time, ax: ax, ay: ay, az: az, gx: gx, gy: gy, gz: gz, mx: mx, my: my, mz: mz, qx: q0, qy: q1, qz: q2, qw: q3)
         
-        dataCache.add(WaxData(time: time, ax: ax, ay: ay, az: az, gx: gx, gy: gy, gz: gz, mx: mx, my: my, mz: mz, qx: q0, qy: q1, qz: q2, qw: q3))
+        dataCache.add(data)
     }
     
     private func deg2rad(degrees:Float) -> Float {

@@ -14,9 +14,9 @@ class InteractionDetector {
     var currentRotation:Float
     var touchDown:Bool
     
-    private var continousTimer:NSTimer!
-    private var touchTimer:NSTimer!
+    private var lastDataTime:NSTimeInterval!
     
+    private var metricsCallbacks:Array<() -> Void>
     private var flickedCallbacks:Array<() -> Void>
     private var hardPressCallbacks:Array<() -> Void>
     private var mediumPressCallbacks:Array<() -> Void>
@@ -27,7 +27,6 @@ class InteractionDetector {
     private let hardForceThreshold:Float = 3.0
     private let flickThreshold:Float = 1.5
     
-    
     init(dataCache:WaxCache) {
         self.dataCache = dataCache
         
@@ -37,6 +36,8 @@ class InteractionDetector {
         currentRotation = 0.0
         touchDown = false
         
+        metricsCallbacks = Array<() -> Void>()
+        
         flickedCallbacks = Array<() -> Void>()
         hardPressCallbacks = Array<() -> Void>()
         mediumPressCallbacks = Array<() -> Void>()
@@ -44,23 +45,27 @@ class InteractionDetector {
     }
     
     func startDetection() {
-        continousTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("continousCallback:"), userInfo: nil, repeats: true)
+        dataCache.subscribe(dataCallback)
+    }
+    
+    func dataCallback(data:WaxData) {
+        currentForce = calculateForce(data)
+        handModel.updateState(data)
+        
+        if (touchDown) {
+            currentRotation = calculateRotation(data)
+        }
+        
+        lastDataTime = NSDate.timeIntervalSinceReferenceDate()
+        fireMetrics()
     }
     
     func stopDetection() {
-        continousTimer.invalidate()
-    }
-    
-    @objc func continousCallback(timer:NSTimer) {
-        currentForce = calculateForce()
-        let data = dataCache.getForTime(NSDate.timeIntervalSinceReferenceDate())
-        handModel.updateState(data)
+        dataCache.clearSubscriptions()
     }
     
     func touchDown(touchDownTime:NSTimeInterval) {
         touchDown = true
-        
-        touchTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("touchCallback:"), userInfo: touchDownTime, repeats: true)
         
         let touchForce = calculateTouchForce(touchDownTime)
         let data = dataCache.getForTime(touchDownTime)
@@ -79,19 +84,11 @@ class InteractionDetector {
         touchDown = false
         currentRotation = 0.0
         
-        touchTimer.invalidate()
-        
         NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("touchEndCallback:"), userInfo: touchUpTime, repeats: true)
     }
     
     func touchCancelled() {
         touchDown = false
-    }
-    
-    @objc func touchCallback(timer:NSTimer) {
-        let touchDownTime = timer.userInfo as! NSTimeInterval
-        
-        currentRotation = calculateRotation(touchDownTime)
     }
     
     @objc func touchEndCallback(timer:NSTimer) {
@@ -109,25 +106,15 @@ class InteractionDetector {
         }
     }
     
-    private func calculateRotation(touchDownTime:NSTimeInterval) -> Float {
-        let currentTime = NSDate.timeIntervalSinceReferenceDate()
+    private func calculateRotation(data:WaxData) -> Float {
+        var totalRotation:Float = currentRotation
         
-        let data = dataCache.getRangeForTime(touchDownTime, end: currentTime)
-        
-        var totalRotation:Float = 0.0
-        
-        if (data.count > 1) {
-            for i in 1..<data.count {
-                totalRotation += data[i].gyro.x * Float(NSTimeInterval(data[i].time - data[i-1].time))
-            }
-        }
+        totalRotation += data.gyro.x * Float(NSTimeInterval(data.time - lastDataTime))
         
         return totalRotation
     }
     
-    private func calculateForce() -> Float {
-        let data = dataCache.getForTime(NSDate.timeIntervalSinceReferenceDate())
-        
+    private func calculateForce(data:WaxData) -> Float {
         return data.getAccNoGrav().magnitude()
     }
     
@@ -158,6 +145,10 @@ class InteractionDetector {
         return flicked
     }
     
+    private func fireMetrics() {
+        fireCallbacks(metricsCallbacks)
+    }
+    
     private func fireFlicked() {
        fireCallbacks(flickedCallbacks)
     }
@@ -182,6 +173,9 @@ class InteractionDetector {
     
     func subscribe(event:EventType, callback:() -> Void) {
         switch event {
+        case .Metrics:
+            metricsCallbacks.append(callback)
+            break
         case .Flicked:
             flickedCallbacks.append(callback)
             break
@@ -202,5 +196,5 @@ class InteractionDetector {
 }
 
 enum EventType {
-    case Flicked, HardPress, MediumPress, SoftPress
+    case Metrics, Flicked, HardPress, MediumPress, SoftPress
 }

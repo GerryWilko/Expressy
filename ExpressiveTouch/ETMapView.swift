@@ -11,6 +11,10 @@ import MapKit
 
 class ETMapView: MKMapView {
     let detector:InteractionDetector
+    var initialHeading:CLLocationDirection!
+    var initialPitch:CGFloat!
+    var touchPitch:Float!
+    var touchRoll:Float!
     var timer:NSTimer!
 
     required init(coder aDecoder: NSCoder) {
@@ -18,12 +22,19 @@ class ETMapView: MKMapView {
         detector.startDetection()
         super.init(coder: aDecoder)
         
-        self.mapType = MKMapType.Hybrid
+        self.showsBuildings = true
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         if (!detector.touchDown) {
             detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
+            
+            let data = WaxProcessor.getProcessor().dataCache.getForTime(NSDate.timeIntervalSinceReferenceDate()).getYawPitchRoll()
+            initialHeading = self.camera.heading
+            initialPitch = self.camera.pitch
+            touchPitch = data.pitch
+            touchRoll = data.roll
+            
             timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("interactionCallback:"), userInfo: nil, repeats: true)
         }
     }
@@ -31,13 +42,19 @@ class ETMapView: MKMapView {
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         if (detector.touchDown) {
             detector.touchUp(NSDate.timeIntervalSinceReferenceDate())
+            timer.invalidate()
         }
     }
     
     @objc func interactionCallback(timer:NSTimer) {
-        let data = WaxProcessor.getProcessor().dataCache.getForTime(NSDate.timeIntervalSinceReferenceDate()).getYawPitchRoll()
+        let userCoordinate = CLLocationCoordinate2D(latitude: 51.5033, longitude: -0.11967)
+        let eyeCoordinate = CLLocationCoordinate2D(latitude: 51.5033, longitude: -0.11967)
+        let mapCamera = MKMapCamera(lookingAtCenterCoordinate: userCoordinate, fromEyeCoordinate: eyeCoordinate, eyeAltitude: 400.0)
         
-        self.camera.pitch = CGFloat(data.pitch * -1.0)
-        self.camera.heading = CLLocationDirection(data.roll)
+        let data = WaxProcessor.getProcessor().dataCache.getForTime(NSDate.timeIntervalSinceReferenceDate()).getYawPitchRoll()
+        mapCamera.pitch = initialPitch + CGFloat(touchPitch - (data.pitch * 100) * -1.0)
+        mapCamera.heading = initialHeading + CLLocationDirection(touchRoll - (data.roll * 100))
+        
+        self.setCamera(mapCamera, animated: true)
     }
 }

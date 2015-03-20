@@ -10,11 +10,13 @@ import Foundation
 
 class WaxCache {
     private var data:[WaxData]
+    private var dataCallbacks:[(data:WaxData) -> Void]
     
     private let limit:UInt = 1000
     
     init() {
         data = [WaxData]()
+        dataCallbacks = Array<(data:WaxData) -> Void>()
     }
     
     func add(newData: WaxData) {
@@ -22,6 +24,7 @@ class WaxCache {
             data.removeAtIndex(0)
         }
         data.append(newData)
+        fireDataCallbacks(newData)
     }
     
     subscript(index: Int) -> WaxData {
@@ -32,6 +35,20 @@ class WaxCache {
     
     subscript(startIndex:Int, endIndex:Int) -> Array<WaxData> {
         return Array(data[startIndex..<endIndex])
+    }
+    
+    func subscribe(callback:(data:WaxData) -> Void) {
+        dataCallbacks.append(callback)
+    }
+    
+    func clearSubscriptions() {
+        dataCallbacks.removeAll(keepCapacity: false)
+    }
+    
+    private func fireDataCallbacks(data:WaxData) {
+        for cb in dataCallbacks {
+            cb(data: data)
+        }
     }
     
     func count() -> Int {

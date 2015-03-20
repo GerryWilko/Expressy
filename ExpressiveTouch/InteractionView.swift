@@ -30,6 +30,8 @@ class InteractionView: UIView {
         
         super.init(coder: aDecoder)
         
+        detector.subscribe(.Metrics, callback: dataCallback)
+        
         detector.subscribe(EventType.Flicked, callback: {
             self.flickedSwitch.setOn(true, animated: true)
         })
@@ -39,18 +41,16 @@ class InteractionView: UIView {
         if (!detector.touchDown) {
             detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
             flickedSwitch.setOn(false, animated: true)
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("interactionCallback:"), userInfo: nil, repeats: true)
         }
     }
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         if (detector.touchDown) {
             detector.touchUp(NSDate.timeIntervalSinceReferenceDate())
-            timer.invalidate()
         }
     }
     
-    func interactionCallback(timer:NSTimer) {
+    func dataCallback() {
         forceLbl.text = String(format: "%.2f", detector.currentForce)
         rotationLbl.text = String(format: "%.2f", detector.currentRotation)
         pPitchLbl.text = String(format: "%.2f", detector.handModel.getPitch())

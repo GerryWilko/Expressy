@@ -22,13 +22,14 @@ class ETDetectorViewController: UIViewController, MFMailComposeViewControllerDel
     
     @IBAction func exportData(sender: AnyObject) {
         var csvString = NSMutableString()
-        csvString.appendString("Time,ax,ay,az,gx,gy,gz,mx,my,mz,gravx,gravy,gravz,Touch,Touch Force")
+        csvString.appendString("Time,ax,ay,az,gx,gy,gz,mx,my,mz,gravx,gravy,gravz,yaw,pitch,roll,Touch,Touch Force")
         
         let dataCache = WaxProcessor.getProcessor().dataCache
         
         for i in 0..<dataCache.count() {
             let data = dataCache[i]
-            csvString.appendString("\n\(data.time),\(data.acc.x),\(data.acc.y),\(data.acc.z),\(data.gyro.x),\(data.gyro.y),\(data.gyro.z),\(data.mag.x),\(data.mag.y),\(data.mag.z),\(data.grav.x),\(data.grav.y),\(data.grav.z),\(data.touch),\(data.touchForce)")
+            let ypr = data.getYawPitchRoll()
+            csvString.appendString("\n\(data.time),\(data.acc.x),\(data.acc.y),\(data.acc.z),\(data.gyro.x),\(data.gyro.y),\(data.gyro.z),\(data.mag.x),\(data.mag.y),\(data.mag.z),\(data.grav.x),\(data.grav.y),\(data.grav.z),\(ypr.yaw),\(ypr.pitch),\(ypr.roll),\(data.touch),\(data.touchForce)")
         }
         
         let fileManager = (NSFileManager.defaultManager())

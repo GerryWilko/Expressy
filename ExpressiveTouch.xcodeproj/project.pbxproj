@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB502A4E1ABB288900D62569 /* ahrs.c in Sources */ = {isa = PBXBuildFile; fileRef = CB502A4D1ABB288900D62569 /* ahrs.c */; };
 		CB6321141AB9E4C00080FD68 /* ETMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6321131AB9E4C00080FD68 /* ETMapView.swift */; };
 		CB6321161AB9EC070080FD68 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6321151AB9EC070080FD68 /* MapViewController.swift */; };
 		CB7338771A822CA600FA1121 /* AccViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338601A822CA600FA1121 /* AccViewController.swift */; };
@@ -48,6 +49,8 @@
 		42223EA273833E1276CCAD1F /* Pods-ExpressiveTouch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpressiveTouch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ExpressiveTouch/Pods-ExpressiveTouch.debug.xcconfig"; sourceTree = "<group>"; };
 		7EA315116ED542A1FC9DE226 /* libPods-ExpressiveTouch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExpressiveTouch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		87BA3EA70A344285E7E633B7 /* Pods-ExpressiveTouch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpressiveTouch.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExpressiveTouch/Pods-ExpressiveTouch.release.xcconfig"; sourceTree = "<group>"; };
+		CB502A4D1ABB288900D62569 /* ahrs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ahrs.c; sourceTree = "<group>"; };
+		CB502A4F1ABB28A500D62569 /* ahrs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ahrs.h; sourceTree = "<group>"; };
 		CB6321131AB9E4C00080FD68 /* ETMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETMapView.swift; sourceTree = "<group>"; };
 		CB6321151AB9EC070080FD68 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		CB7338601A822CA600FA1121 /* AccViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccViewController.swift; sourceTree = "<group>"; };
@@ -119,8 +122,10 @@
 		CB29A28C1A8E156A009F269A /* Madgwick */ = {
 			isa = PBXGroup;
 			children = (
-				CBA2B0B31AAA1AD1006967EF /* MadgwickAHRS.c */,
+				CB502A4F1ABB28A500D62569 /* ahrs.h */,
+				CB502A4D1ABB288900D62569 /* ahrs.c */,
 				CBA2B0B41AAA1AD1006967EF /* MadgwickAHRS.h */,
+				CBA2B0B31AAA1AD1006967EF /* MadgwickAHRS.c */,
 			);
 			name = Madgwick;
 			sourceTree = "<group>";
@@ -368,6 +373,7 @@
 				CB7338891A822CA600FA1121 /* WaxProcessor.swift in Sources */,
 				CB7338781A822CA600FA1121 /* AppDelegate.swift in Sources */,
 				CB7338871A822CA600FA1121 /* WaxConnectionManager.swift in Sources */,
+				CB502A4E1ABB288900D62569 /* ahrs.c in Sources */,
 				CB73387B1A822CA600FA1121 /* ETDetectorViewController.swift in Sources */,
 				CB7338801A822CA600FA1121 /* GyroViewController.swift in Sources */,
 				CB6321161AB9EC070080FD68 /* MapViewController.swift in Sources */,

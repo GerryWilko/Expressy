@@ -67,7 +67,7 @@ class PlaneViewController: UIViewController {
         }
         scnView.gestureRecognizers = gestureRecognizers
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("timerCallback:"), userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: Selector("timerCallback:"), userInfo: nil, repeats: true)
     }
     
     func handleTap(gestureRecognize: UIGestureRecognizer) {
@@ -105,10 +105,10 @@ class PlaneViewController: UIViewController {
     
     @objc func timerCallback(timer:NSTimer) {
         let ship = scnView.scene!.rootNode.childNodeWithName("ship", recursively: true)!
-        let data = WaxProcessor.getProcessor().dataCache.getForTime(NSDate.timeIntervalSinceReferenceDate()).getYawPitchRoll()
+        let data = WaxProcessor.getProcessor().dataCache.getForTime(NSDate.timeIntervalSinceReferenceDate())
         let scalar:Float = 10.0
         
-        ship.runAction(SCNAction.rotateToX(CGFloat(data.pitch * scalar * -1.0), y: CGFloat(data.yaw * scalar), z: CGFloat(data.roll * scalar), duration: 0.1))
+        ship.orientation = SCNQuaternion(x: data.q.x, y: data.q.y, z: data.q.z, w: data.q.w)
     }
     
     override func shouldAutorotate() -> Bool {
