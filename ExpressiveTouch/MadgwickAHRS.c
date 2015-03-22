@@ -209,9 +209,7 @@ void MadgwickAHRSupdateIMU(float gx, float gy, float gz, float ax, float ay, flo
 }
 
 void MadgwickAHRSreset() {
-    q0 = 0.0f; q1 = 0.0f; q2 = 0.0f; q3 = 0.0f;
-    
-    MadgwickAHRSupdateIMU(0, 0, 0, 0, 0, 0);
+    q0 = -1.0f; q1 = 0.0f; q2 = 0.0f; q3 = 0.0f;
 }
 
 //---------------------------------------------------------------------------------------------------

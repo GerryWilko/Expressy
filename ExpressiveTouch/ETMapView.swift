@@ -59,8 +59,6 @@ class ETMapView: MKMapView {
         mapCamera.pitch = initialPitch + newPitch
         mapCamera.heading = initialHeading + newRoll
         
-        println("touchPitch: \(touchPitch), touchRoll: \(touchRoll), pitch: \(pitch), roll: \(roll), finalPitch: \(mapCamera.pitch), finalRoll: \(mapCamera.heading)")
-        
         self.setCamera(mapCamera, animated: true)
     }
     
