@@ -62,6 +62,7 @@ class InteractionDetector {
     
     func stopDetection() {
         dataCache.clearSubscriptions()
+        clearSubscriptions()
     }
     
     func touchDown(touchDownTime:NSTimeInterval) {
@@ -192,6 +193,14 @@ class InteractionDetector {
             NSException(name: "InvalidEvent", reason: "Invalid event subscription.", userInfo: nil).raise()
             break
         }
+    }
+    
+    func clearSubscriptions() {
+        metricsCallbacks.removeAll(keepCapacity: false)
+        flickedCallbacks.removeAll(keepCapacity: false)
+        hardPressCallbacks.removeAll(keepCapacity: false)
+        mediumPressCallbacks.removeAll(keepCapacity: false)
+        softPressCallbacks.removeAll(keepCapacity: false)
     }
 }
 

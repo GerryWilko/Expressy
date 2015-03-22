@@ -30,6 +30,7 @@
 		CBA2B0B51AAA1AD1006967EF /* MadgwickAHRS.c in Sources */ = {isa = PBXBuildFile; fileRef = CBA2B0B31AAA1AD1006967EF /* MadgwickAHRS.c */; };
 		CBB6837B1AB9B2C700938059 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = CBB6837A1AB9B2C700938059 /* art.scnassets */; };
 		CBD91AE01AB9A2BE00A9ABBE /* PlaneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD91ADF1AB9A2BE00A9ABBE /* PlaneViewController.swift */; };
+		CBE6BE271ABF12D00099A5C3 /* ControlsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE6BE261ABF12D00099A5C3 /* ControlsViewController.swift */; };
 		D51750A619E9831C0076F6FA /* ExpressiveTouchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51750A519E9831C0076F6FA /* ExpressiveTouchTests.swift */; };
 		FF8DCC742FC3997524C3C492 /* libPods-ExpressiveTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA315116ED542A1FC9DE226 /* libPods-ExpressiveTouch.a */; };
 /* End PBXBuildFile section */
@@ -74,6 +75,7 @@
 		CBA2B0B41AAA1AD1006967EF /* MadgwickAHRS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MadgwickAHRS.h; sourceTree = "<group>"; };
 		CBB6837A1AB9B2C700938059 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; name = art.scnassets; path = ../art.scnassets; sourceTree = "<group>"; };
 		CBD91ADF1AB9A2BE00A9ABBE /* PlaneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaneViewController.swift; sourceTree = "<group>"; };
+		CBE6BE261ABF12D00099A5C3 /* ControlsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlsViewController.swift; sourceTree = "<group>"; };
 		D517508A19E9831C0076F6FA /* ExpressiveTouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpressiveTouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D517509F19E9831C0076F6FA /* ExpressiveTouchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpressiveTouchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D51750A419E9831C0076F6FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				CB7338661A822CA600FA1121 /* ETDetectorViewController.swift */,
 				CBD91ADF1AB9A2BE00A9ABBE /* PlaneViewController.swift */,
 				CB6321151AB9EC070080FD68 /* MapViewController.swift */,
+				CBE6BE261ABF12D00099A5C3 /* ControlsViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				CB73387E1A822CA600FA1121 /* GraphBuilder.swift in Sources */,
 				CB7338861A822CA600FA1121 /* WaxCache.swift in Sources */,
 				CBA2B0B51AAA1AD1006967EF /* MadgwickAHRS.c in Sources */,
+				CBE6BE271ABF12D00099A5C3 /* ControlsViewController.swift in Sources */,
 				CB7338841A822CA600FA1121 /* MagViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

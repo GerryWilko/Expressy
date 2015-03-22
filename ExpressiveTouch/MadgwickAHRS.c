@@ -208,6 +208,12 @@ void MadgwickAHRSupdateIMU(float gx, float gy, float gz, float ax, float ay, flo
 	q3 *= recipNorm;
 }
 
+void MadgwickAHRSreset() {
+    q0 = 0.0f; q1 = 0.0f; q2 = 0.0f; q3 = 0.0f;
+    
+    MadgwickAHRSupdateIMU(0, 0, 0, 0, 0, 0);
+}
+
 //---------------------------------------------------------------------------------------------------
 // Fast inverse square-root
 // See: http://en.wikipedia.org/wiki/Fast_inverse_square_root

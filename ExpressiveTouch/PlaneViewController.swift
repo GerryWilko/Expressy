@@ -126,6 +126,10 @@ class PlaneViewController: UIViewController {
         }
     }
     
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        MadgwickAHRSreset()
+    }
+    
     @IBAction func back(sender: AnyObject) {
         WaxProcessor.getProcessor().dataCache.clearSubscriptions()
         self.dismissViewControllerAnimated(true, completion: nil)
