@@ -11,8 +11,6 @@ import Foundation
 class AccViewController: UIViewController {
     let accGraphBuilder:GraphBuilder
     
-    @IBOutlet weak var accGraphView:CPTGraphHostingView!
-    
     required init(coder aDecoder: NSCoder)
     {
         accGraphBuilder = GraphBuilder(title: "Accelerometer", type: .Accelerometer)
@@ -24,6 +22,7 @@ class AccViewController: UIViewController {
         super.viewDidLoad()
         
         let processor = WaxProcessor.getProcessor()
+        let accGraphView = self.view as! CPTGraphHostingView
         
         accGraphBuilder.initLoad(accGraphView, dataCache: processor.dataCache)
     }

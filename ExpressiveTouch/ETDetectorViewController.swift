@@ -10,7 +10,6 @@ import Foundation
 import MessageUI
 
 class ETDetectorViewController: UIViewController, MFMailComposeViewControllerDelegate {
-    @IBOutlet weak var interactionView: InteractionView!
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -75,6 +74,7 @@ class ETDetectorViewController: UIViewController, MFMailComposeViewControllerDel
     }
     
     override func viewDidDisappear(animated: Bool) {
+        let interactionView = self.view as! InteractionView
         interactionView.detector.stopDetection()
     }
     

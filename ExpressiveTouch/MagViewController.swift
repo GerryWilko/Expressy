@@ -24,6 +24,7 @@ class MagViewController: UIViewController {
         super.viewDidLoad()
         
         let processor = WaxProcessor.getProcessor()
+        let magGraphView = self.view as! CPTGraphHostingView
         
         magGraphBuilder.initLoad(magGraphView, dataCache: processor.dataCache)
     }

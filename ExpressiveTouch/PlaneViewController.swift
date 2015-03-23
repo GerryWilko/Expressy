@@ -12,11 +12,12 @@ import SceneKit
 
 class PlaneViewController: UIViewController {
     private var timer:NSTimer!
-    
-    @IBOutlet weak var scnView: SCNView!
+    private var scnView:SCNView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        scnView = self.view as! SCNView
         
         // create a new scene
         let scene = SCNScene(named: "art.scnassets/ship.dae")!

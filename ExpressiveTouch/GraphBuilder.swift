@@ -31,6 +31,7 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
     
     private func configureHost() {
         graphView.allowPinchScaling = true
+        graphView.backgroundColor = UIColor.whiteColor()
     }
     
     private func configureGraph() {

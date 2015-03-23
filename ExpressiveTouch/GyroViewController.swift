@@ -11,8 +11,6 @@ import Foundation
 class GyroViewController: UIViewController {
     let gyroGraphBuilder:GraphBuilder
     
-    @IBOutlet weak var gyroGraphView:CPTGraphHostingView!
-    
     required init(coder aDecoder: NSCoder)
     {        
         gyroGraphBuilder = GraphBuilder(title: "Gyroscope", type: .Gyroscope)
@@ -24,6 +22,7 @@ class GyroViewController: UIViewController {
         super.viewDidLoad()
         
         let processor = WaxProcessor.getProcessor()
+        let gyroGraphView = self.view as! CPTGraphHostingView
         
         gyroGraphBuilder.initLoad(gyroGraphView, dataCache: processor.dataCache)
     }

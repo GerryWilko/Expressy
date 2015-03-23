@@ -12,34 +12,12 @@
                         <viewControllerLayoutGuide type="top" id="Eaq-3e-jSF"/>
                         <viewControllerLayoutGuide type="bottom" id="9fX-oc-Wrh"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="thJ-ZK-Bg7">
+                    <view key="view" contentMode="scaleToFill" id="thJ-ZK-Bg7" customClass="CPTGraphHostingView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lSi-5O-ANK" customClass="CPTGraphHostingView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="64" width="800" height="287"/>
-                                </variation>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="lSi-5O-ANK"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=compact-widthClass=regular">
-                            <mask key="subviews">
-                                <include reference="lSi-5O-ANK"/>
-                            </mask>
-                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Gyroscope" id="N7h-rr-JdV"/>
-                    <connections>
-                        <outlet property="gyroGraphView" destination="lSi-5O-ANK" id="H0s-1E-fPt"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dmA-2C-9oD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -53,34 +31,12 @@
                         <viewControllerLayoutGuide type="top" id="UvN-HU-ujy"/>
                         <viewControllerLayoutGuide type="bottom" id="GOr-ZN-UaH"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="lzC-wV-g5a">
+                    <view key="view" contentMode="scaleToFill" id="lzC-wV-g5a" customClass="CPTGraphHostingView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CFh-Ox-lbD" customClass="CPTGraphHostingView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="64" width="800" height="287"/>
-                                </variation>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="CFh-Ox-lbD"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=compact-widthClass=regular">
-                            <mask key="subviews">
-                                <include reference="CFh-Ox-lbD"/>
-                            </mask>
-                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Magnetometer" id="R0U-oT-PKV"/>
-                    <connections>
-                        <outlet property="magGraphView" destination="CFh-Ox-lbD" id="YE7-z8-mji"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I6d-CL-edB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -94,34 +50,12 @@
                         <viewControllerLayoutGuide type="top" id="lIJ-IS-B75"/>
                         <viewControllerLayoutGuide type="bottom" id="dE3-Jq-LNd"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="1zx-cS-KrK">
+                    <view key="view" contentMode="scaleToFill" id="1zx-cS-KrK" customClass="CPTGraphHostingView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OcT-bQ-nng" customClass="CPTGraphHostingView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="64" width="800" height="287"/>
-                                </variation>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="OcT-bQ-nng"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=compact-widthClass=regular">
-                            <mask key="subviews">
-                                <include reference="OcT-bQ-nng"/>
-                            </mask>
-                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Accelerometer" id="Azl-h0-2Rf"/>
-                    <connections>
-                        <outlet property="accGraphView" destination="OcT-bQ-nng" id="W0r-A2-IJL"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JsI-IO-8Cl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -339,7 +273,7 @@
                         <viewControllerLayoutGuide type="top" id="i4q-Ui-cwQ"/>
                         <viewControllerLayoutGuide type="bottom" id="qyp-z3-zdC"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="YVb-l1-0j9">
+                    <view key="view" contentMode="scaleToFill" id="YVb-l1-0j9" customClass="InteractionView" customModule="ExpressiveTouch" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -598,34 +532,12 @@
                         <viewControllerLayoutGuide type="top" id="icS-Le-Bo8"/>
                         <viewControllerLayoutGuide type="bottom" id="jEr-r7-0jG"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="9Zc-1m-tMg">
+                    <view key="view" contentMode="scaleToFill" id="9Zc-1m-tMg" customClass="SCNView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P5w-P5-Ten">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="64" width="800" height="336"/>
-                                </variation>
-                            </sceneKitView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="P5w-P5-Ten"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=compact-widthClass=regular">
-                            <mask key="subviews">
-                                <include reference="P5w-P5-Ten"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Plane Model" id="PuQ-r3-Ced"/>
-                    <connections>
-                        <outlet property="scnView" destination="P5w-P5-Ten" id="AJm-mI-Z4r"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y2i-xs-yh2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -634,38 +546,17 @@
         <!--Maps Demo-->
         <scene sceneID="thg-bG-Lqj">
             <objects>
-                <viewController title="Maps Demo" id="4mK-01-RmJ" customClass="MapViewController" customModule="ExpressiveTouch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Maps Demo" id="4mK-01-RmJ" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RVy-Pz-LAV"/>
                         <viewControllerLayoutGuide type="bottom" id="VlH-rq-Kfr"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7Fu-5V-SHz">
+                    <view key="view" contentMode="scaleToFill" id="7Fu-5V-SHz" customClass="ETMapView" customModule="ExpressiveTouch" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Zup-Hf-sKE" customClass="ETMapView" customModule="ExpressiveTouch" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="44" width="800" height="356"/>
-                                </variation>
-                            </mapView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="Zup-Hf-sKE"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=compact-widthClass=regular">
-                            <mask key="subviews">
-                                <include reference="Zup-Hf-sKE"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Maps Demo" id="DD3-rf-gZa"/>
-                    <connections>
-                        <outlet property="map" destination="Zup-Hf-sKE" id="xvG-jU-F1z"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ydy-fQ-rpJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
