@@ -16,10 +16,6 @@ class ETDetectorViewController: UIViewController, MFMailComposeViewControllerDel
         super.init(coder: aDecoder)
     }
     
-    @IBAction func back(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
     @IBAction func exportData(sender: AnyObject) {
         var csvString = NSMutableString()
         csvString.appendString("Time,ax,ay,az,gx,gy,gz,mx,my,mz,gravx,gravy,gravz,yaw,pitch,roll,Touch,Touch Force")

@@ -162,6 +162,9 @@ class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralMan
         let conAlert = UIAlertController(title: "Connection Successful", message: "WAX sensor connected and data now being streamed.", preferredStyle: UIAlertControllerStyle.Alert)
         conAlert.addAction(UIAlertAction(title: "OK", style: .Destructive, handler: nil))
         UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(conAlert, animated: true, completion: nil)
+        let navController = UIApplication.sharedApplication().keyWindow?.rootViewController as! UINavigationController
+        let menu = navController.topViewController as! UITableViewController
+        menu.tableView.userInteractionEnabled = true
     }
     
     func peripheral(peripheral: CBPeripheral!, didUpdateValueForCharacteristic characteristic: CBCharacteristic!,

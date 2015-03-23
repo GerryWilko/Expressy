@@ -20,10 +20,6 @@ class MagViewController: UIViewController {
         super.init(coder: aDecoder)
     }
     
-    @IBAction func back(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

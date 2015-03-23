@@ -130,11 +130,6 @@ class PlaneViewController: UIViewController {
         MadgwickAHRSreset()
     }
     
-    @IBAction func back(sender: AnyObject) {
-        WaxProcessor.getProcessor().dataCache.clearSubscriptions()
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Release any cached data, images, etc that aren't in use.

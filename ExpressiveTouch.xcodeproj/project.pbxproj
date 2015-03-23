@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB35A2591AC05C0B00B1862C /* Knob.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB35A2581AC05C0A00B1862C /* Knob.swift */; };
 		CB6321141AB9E4C00080FD68 /* ETMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6321131AB9E4C00080FD68 /* ETMapView.swift */; };
 		CB6321161AB9EC070080FD68 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6321151AB9EC070080FD68 /* MapViewController.swift */; };
 		CB7338771A822CA600FA1121 /* AccViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338601A822CA600FA1121 /* AccViewController.swift */; };
@@ -49,6 +50,7 @@
 		42223EA273833E1276CCAD1F /* Pods-ExpressiveTouch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpressiveTouch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ExpressiveTouch/Pods-ExpressiveTouch.debug.xcconfig"; sourceTree = "<group>"; };
 		7EA315116ED542A1FC9DE226 /* libPods-ExpressiveTouch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExpressiveTouch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		87BA3EA70A344285E7E633B7 /* Pods-ExpressiveTouch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpressiveTouch.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExpressiveTouch/Pods-ExpressiveTouch.release.xcconfig"; sourceTree = "<group>"; };
+		CB35A2581AC05C0A00B1862C /* Knob.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Knob.swift; sourceTree = "<group>"; };
 		CB6321131AB9E4C00080FD68 /* ETMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETMapView.swift; sourceTree = "<group>"; };
 		CB6321151AB9EC070080FD68 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		CB7338601A822CA600FA1121 /* AccViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				CB7338641A822CA600FA1121 /* Main.storyboard */,
 				CB7338671A822CA600FA1121 /* ExpressiveTouch-Bridging-Header.h */,
 				CB73386A1A822CA600FA1121 /* GraphBuilder.swift */,
+				CB35A2581AC05C0A00B1862C /* Knob.swift */,
 				CB73386D1A822CA600FA1121 /* Images.xcassets */,
 				CBB6837A1AB9B2C700938059 /* art.scnassets */,
 				CB73388E1A822CF700FA1121 /* Supporting Files */,
@@ -379,6 +382,7 @@
 				CB82A42A1AB1CAA40032F5D6 /* InteractionDetector.swift in Sources */,
 				CB7338881A822CA600FA1121 /* WaxData.swift in Sources */,
 				CB73388A1A822CA600FA1121 /* WAXScanViewController.swift in Sources */,
+				CB35A2591AC05C0B00B1862C /* Knob.swift in Sources */,
 				CB9798351AA715BC00124A9D /* Vector.swift in Sources */,
 				CB82A42C1AB1CAD00032F5D6 /* HandModel.swift in Sources */,
 				CB73387E1A822CA600FA1121 /* GraphBuilder.swift in Sources */,
