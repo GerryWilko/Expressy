@@ -511,6 +511,16 @@
                                 <include reference="dif-cZ-GRl"/>
                             </mask>
                         </variation>
+                        <connections>
+                            <outlet property="flickedSwitch" destination="4d1-l8-DC3" id="16u-4K-GcM"/>
+                            <outlet property="forceLbl" destination="EIA-ny-9iu" id="R1u-8J-6dt"/>
+                            <outlet property="gravXLbl" destination="eGC-TM-CsK" id="bob-wV-n0B"/>
+                            <outlet property="gravYLbl" destination="Rnu-u8-5d3" id="sn3-hf-HYk"/>
+                            <outlet property="gravZLbl" destination="guB-59-34o" id="Izy-qz-bTg"/>
+                            <outlet property="pPitchLbl" destination="BK3-tC-OPF" id="nfI-QD-HqJ"/>
+                            <outlet property="pRollLbl" destination="ZD2-02-gmh" id="b1q-gK-6SF"/>
+                            <outlet property="rotationLbl" destination="Cdr-HM-2Ha" id="TC4-uu-zoJ"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Interaction Detector" id="PNx-x6-iMv">
                         <barButtonItem key="rightBarButtonItem" title="Export Data" id="Gc8-mD-1u6">
