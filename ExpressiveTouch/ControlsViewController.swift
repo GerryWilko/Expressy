@@ -11,14 +11,12 @@ import Foundation
 class ControlsViewController: UIViewController {
     let detector:InteractionDetector
     
-    private var touchDownValue:Float!
-    
     @IBOutlet weak var barLbl1: UILabel!
     @IBOutlet weak var barLbl2: UILabel!
     @IBOutlet weak var progressBar1: UIProgressView!
     
-    @IBOutlet var knobPlaceholder: UIView!
-    @IBOutlet var valueLabel: UILabel!
+    @IBOutlet weak var imageETSwitch: UISwitch!
+    @IBOutlet weak var imageView: UIImageView!
     
     required init(coder aDecoder: NSCoder) {
         detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
@@ -28,17 +26,14 @@ class ControlsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let knob = Knob(frame: knobPlaceholder.bounds)
-        knob.addTarget(self, action: "knobValueChanged:", forControlEvents: .ValueChanged)
-        knobPlaceholder.addSubview(knob)
+        imageView.addGestureRecognizer(UIRotationGestureRecognizer(target: self, action: Selector("imageRotated:")))
     }
     
     @IBAction func bar1TouchDown(sender: UIButton) {
         detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
-        touchDownValue = progressBar1.progress * 100
+        let touchDownValue = progressBar1.progress * 100
         detector.subscribe(EventType.Metrics, callback: {
-            var newValue = self.touchDownValue + self.detector.currentRotation
+            var newValue = touchDownValue + self.detector.currentRotation
             
             if (newValue > 100) {
                 newValue = 100.0
@@ -52,15 +47,39 @@ class ControlsViewController: UIViewController {
     }
     
     @IBAction func bar1TouchUp(sender: UIButton) {
-        detector.clearSubscriptions()
         detector.touchUp(NSDate.timeIntervalSinceReferenceDate())
+        detector.clearSubscriptions()
     }
     
     @IBAction func progBar2Changed(sender: UISlider) {
         barLbl2.text = String(format: "%.2f", sender.value)
     }
     
-    func knobValueChanged(knob: Knob) {
-        valueLabel.text = String(format: "%.2f", knob.value)
+    func imageRotated(gesture:UIRotationGestureRecognizer) {
+        if (!imageETSwitch.on) {
+            imageView.transform = CGAffineTransformMakeRotation(gesture.rotation)
+        }
+    }
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        let touch = touches.first as! UITouch
+        
+        if (imageETSwitch.on && touch.view == imageView)
+        {
+            detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
+            detector.subscribe(EventType.Metrics, callback: {
+                self.imageView.transform = CGAffineTransformMakeRotation(CGFloat(self.detector.currentRotation) * CGFloat(M_PI / 180))
+            })
+        }
+    }
+    
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+        let touch = touches.first as! UITouch
+        
+        if (imageETSwitch.on && touch.view == imageView)
+        {
+            detector.touchUp(NSDate.timeIntervalSinceReferenceDate())
+            detector.clearSubscriptions()
+        }
     }
 }
