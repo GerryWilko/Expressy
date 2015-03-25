@@ -624,7 +624,7 @@
                                     <action selector="bar1TouchUp:" destination="GYq-0r-roE" eventType="touchUpInside" id="tC5-kD-Xkz"/>
                                 </connections>
                             </button>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CultureLab" translatesAutoresizingMaskIntoConstraints="NO" id="LuG-GA-pS2">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CultureLab" translatesAutoresizingMaskIntoConstraints="NO" id="LuG-GA-pS2">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="465" y="135" width="300" height="225"/>
