@@ -205,6 +205,10 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
     }
 }
 
+enum WaxDataAxis:Int {
+    case X = 1, Y, Z
+}
+
 enum WaxDataType {
     case Accelerometer, Gyroscope, Magnetometer
 }

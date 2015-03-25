@@ -49,7 +49,3 @@ class WaxData {
         return (yaw, pitch, roll)
     }
 }
-
-enum WaxDataAxis:Int {
-    case X = 1, Y, Z
-}

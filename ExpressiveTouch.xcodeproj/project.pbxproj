@@ -23,6 +23,7 @@
 		CB7338881A822CA600FA1121 /* WaxData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338741A822CA600FA1121 /* WaxData.swift */; };
 		CB7338891A822CA600FA1121 /* WaxProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338751A822CA600FA1121 /* WaxProcessor.swift */; };
 		CB73388A1A822CA600FA1121 /* WAXScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338761A822CA600FA1121 /* WAXScanViewController.swift */; };
+		CB7D5CEF1AC3198E0068BC67 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7D5CEE1AC3198E0068BC67 /* MapViewController.swift */; };
 		CB82A42A1AB1CAA40032F5D6 /* InteractionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB82A4291AB1CAA40032F5D6 /* InteractionDetector.swift */; };
 		CB82A42C1AB1CAD00032F5D6 /* HandModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB82A42B1AB1CAD00032F5D6 /* HandModel.swift */; };
 		CB9798351AA715BC00124A9D /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9798341AA715BC00124A9D /* Vector.swift */; };
@@ -67,6 +68,7 @@
 		CB7338741A822CA600FA1121 /* WaxData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxData.swift; sourceTree = "<group>"; };
 		CB7338751A822CA600FA1121 /* WaxProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaxProcessor.swift; sourceTree = "<group>"; };
 		CB7338761A822CA600FA1121 /* WAXScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WAXScanViewController.swift; sourceTree = "<group>"; };
+		CB7D5CEE1AC3198E0068BC67 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		CB82A4291AB1CAA40032F5D6 /* InteractionDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionDetector.swift; sourceTree = "<group>"; };
 		CB82A42B1AB1CAD00032F5D6 /* HandModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandModel.swift; sourceTree = "<group>"; };
 		CB9798341AA715BC00124A9D /* Vector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				CB7338661A822CA600FA1121 /* ETDetectorViewController.swift */,
 				CBD91ADF1AB9A2BE00A9ABBE /* PlaneViewController.swift */,
 				CBE6BE261ABF12D00099A5C3 /* ControlsViewController.swift */,
+				CB7D5CEE1AC3198E0068BC67 /* MapViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				CB7338881A822CA600FA1121 /* WaxData.swift in Sources */,
 				CB73388A1A822CA600FA1121 /* WAXScanViewController.swift in Sources */,
 				CB35A2591AC05C0B00B1862C /* Knob.swift in Sources */,
+				CB7D5CEF1AC3198E0068BC67 /* MapViewController.swift in Sources */,
 				CB9798351AA715BC00124A9D /* Vector.swift in Sources */,
 				CB82A42C1AB1CAD00032F5D6 /* HandModel.swift in Sources */,
 				CB73387E1A822CA600FA1121 /* GraphBuilder.swift in Sources */,

@@ -82,4 +82,8 @@ class ControlsViewController: UIViewController {
             detector.clearSubscriptions()
         }
     }
+    
+    @IBAction func resetModel(sender: UIBarButtonItem) {
+        MadgwickAHRSreset()
+    }
 }

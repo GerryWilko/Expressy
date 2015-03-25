@@ -10,11 +10,11 @@ import Foundation
 import MapKit
 
 class ETMapView: MKMapView {
+    private var lastPitch:Float!
+    private var lastRoll:Float!
+    
     let detector:InteractionDetector
-    var initialHeading:CLLocationDirection!
-    var initialPitch:CGFloat!
-    var touchPitch:Float!
-    var touchRoll:Float!
+    private let pitchBound:CGFloat = 50.0
 
     required init(coder aDecoder: NSCoder) {
         detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
@@ -35,17 +35,15 @@ class ETMapView: MKMapView {
             detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
             
             let data = WaxProcessor.getProcessor().dataCache.getForTime(NSDate.timeIntervalSinceReferenceDate()).getYawPitchRoll()
-            initialHeading = self.camera.heading
-            initialPitch = self.camera.pitch
-            touchPitch = rad2deg(data.pitch)
-            touchRoll = rad2deg(data.roll)
+            lastPitch = rad2deg(data.pitch)
+            lastRoll = rad2deg(data.roll)
             
             WaxProcessor.getProcessor().dataCache.subscribe(dataCallback)
         }
     }
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-        super.touchesBegan(touches, withEvent: event)
+        super.touchesEnded(touches, withEvent: event)
         if (detector.touchDown) {
             detector.touchUp(NSDate.timeIntervalSinceReferenceDate())
             WaxProcessor.getProcessor().dataCache.clearSubscriptions()
@@ -54,17 +52,25 @@ class ETMapView: MKMapView {
     
     func dataCallback(data:WaxData) {
         let ypr = data.getYawPitchRoll()
-        let pitch = rad2deg(ypr.pitch) * -1.0
+        let pitch = rad2deg(ypr.pitch)
         let roll = rad2deg(ypr.roll)
-        let newPitch = CGFloat(touchPitch - pitch)
-        let newRoll = CLLocationDirection(touchRoll - roll)
+        let pitchChange = CGFloat(pitch - lastPitch)
+        let rollChange = CLLocationDirection(roll - lastRoll)
         
-        let newCamera = self.camera
+        var newPitch = self.camera.pitch + pitchChange
+        var newRoll = self.camera.heading + rollChange
         
-        newCamera.pitch = initialPitch + newPitch
-        newCamera.heading = initialHeading + newRoll
+        if (newPitch < 0) {
+            newPitch = 0
+        } else if (newPitch > pitchBound) {
+            newPitch = pitchBound
+        }
         
-        self.setCamera(newCamera, animated: true)
+        self.camera.pitch = newPitch
+        self.camera.heading = newRoll
+        
+        lastPitch = pitch
+        lastRoll = roll
     }
     
     private func rad2deg(radians:Float) -> Float {

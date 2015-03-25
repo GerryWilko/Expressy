@@ -139,7 +139,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <inset key="separatorInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                         <sections>
                             <tableViewSection id="mHm-H8-vuV">
                                 <cells>
@@ -539,6 +538,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Plane Model" id="PuQ-r3-Ced">
                         <barButtonItem key="backBarButtonItem" title="Back" id="ccq-Vn-WWO"/>
+                        <barButtonItem key="rightBarButtonItem" title="Reset Model" id="jc2-U9-3XU"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y2i-xs-yh2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -548,7 +548,7 @@
         <!--Maps Demo-->
         <scene sceneID="thg-bG-Lqj">
             <objects>
-                <viewController title="Maps Demo" id="4mK-01-RmJ" sceneMemberID="viewController">
+                <viewController title="Maps Demo" id="4mK-01-RmJ" customClass="MapViewController" customModule="ExpressiveTouch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RVy-Pz-LAV"/>
                         <viewControllerLayoutGuide type="bottom" id="VlH-rq-Kfr"/>
@@ -560,6 +560,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Maps Demo" id="DD3-rf-gZa">
                         <barButtonItem key="backBarButtonItem" title="Back" id="1ur-ob-ZVh"/>
+                        <barButtonItem key="rightBarButtonItem" title="Reset Model" id="iPO-5m-hVo">
+                            <connections>
+                                <action selector="resetModel:" destination="4mK-01-RmJ" id="Pdm-BF-do2"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ydy-fQ-rpJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -663,6 +668,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Controls Demo" id="zJH-ok-pfa">
                         <barButtonItem key="backBarButtonItem" title="Back" id="sn2-Ct-P0r"/>
+                        <barButtonItem key="rightBarButtonItem" title="Reset Model" id="P32-gc-drH">
+                            <connections>
+                                <action selector="resetModel:" destination="GYq-0r-roE" id="IBi-Mg-BdS"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="barLbl1" destination="sNl-dc-ay1" id="nhJ-0H-6v5"/>
