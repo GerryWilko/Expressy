@@ -21,7 +21,7 @@ class WAXScanVC: UITableViewController {
         super.viewDidLoad()
         currentTableView = self.tableView
         
-        while (!WaxConnectionManager.getConnectionManager().scan()) {}
+        while (!WaxConnectionManager.getConnectionManager().scan()) {}//
     }
     
     @IBAction func cancel(sender: AnyObject) {
