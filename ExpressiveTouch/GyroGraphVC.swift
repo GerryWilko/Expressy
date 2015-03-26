@@ -1,5 +1,5 @@
 //
-//  GyroViewController.swift
+//  GyroGraphVC.swift
 //  ExpressiveTouch
 //
 //  Created by Gerry Wilkinson on 12/22/14.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class GyroViewController: UIViewController {
+class GyroGraphVC: UIViewController {
     let gyroGraphBuilder:GraphBuilder
     
     required init(coder aDecoder: NSCoder)

@@ -1,5 +1,5 @@
 //
-//  PlaneViewController.swift
+//  PlaneModelVC.swift
 //  ExpressiveTouch
 //
 //  Created by Gerry Wilkinson on 18/03/2015.
@@ -10,7 +10,7 @@ import UIKit
 import QuartzCore
 import SceneKit
 
-class PlaneViewController: UIViewController {
+class PlaneModelVC: UIViewController {
     private var timer:NSTimer!
     private var scnView:SCNView!
     
@@ -48,10 +48,7 @@ class PlaneViewController: UIViewController {
         let ship = scene.rootNode.childNodeWithName("ship", recursively: true)!
         
         // set the scene to the view
-        scnView.scene = scene
-        
-        // allows the user to manipulate the camera
-        scnView.allowsCameraControl = true
+        scnView.scene = scene 
         
         // show statistics such as fps and timing information
         scnView.showsStatistics = true
@@ -127,7 +124,7 @@ class PlaneViewController: UIViewController {
         }
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    @IBAction func resetModel(sender: UIBarButtonItem) {
         MadgwickAHRSreset()
     }
     

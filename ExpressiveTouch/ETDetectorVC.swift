@@ -1,5 +1,5 @@
 //
-//  ETDetectorViewController.swift
+//  ETDetectorVC.swift
 //  ExpressiveTouch
 //
 //  Created by Gerry Wilkinson on 03/02/2015.
@@ -9,7 +9,7 @@
 import Foundation
 import MessageUI
 
-class ETDetectorViewController: UIViewController, MFMailComposeViewControllerDelegate {
+class ETDetectorVC: UIViewController, MFMailComposeViewControllerDelegate {
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

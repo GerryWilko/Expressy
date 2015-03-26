@@ -82,7 +82,7 @@ class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralMan
     func centralManager(central: CBCentralManager!, didDiscoverPeripheral peripheral: CBPeripheral!, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber!) {
         println(peripheral.name);
         
-        WAXScanViewController.addDevice(peripheral)
+        WAXScanVC.addDevice(peripheral)
     }
     
     func connectPeripheral(peripheral: CBPeripheral) {

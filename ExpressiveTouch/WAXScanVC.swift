@@ -1,5 +1,5 @@
 //
-//  WAXScanViewController.swift
+//  WAXScanVC.swift
 //  ExpressiveTouch
 //
 //  Created by Gerry Wilkinson on 30/01/2015.
@@ -12,7 +12,7 @@ import CoreBluetooth
 var deviceList = NSMutableOrderedSet()
 var currentTableView:UITableView!
 
-class WAXScanViewController: UITableViewController {
+class WAXScanVC: UITableViewController {
     required init(coder aDecoder:NSCoder) {
         super.init(coder: aDecoder)
     }

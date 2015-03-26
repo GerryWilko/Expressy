@@ -1,5 +1,5 @@
 //
-//  ControlsViewController.swift
+//  ControlsDemoVC.swift
 //  ExpressiveTouch
 //
 //  Created by Gerry Wilkinson on 22/03/2015.
@@ -8,8 +8,10 @@
 
 import Foundation
 
-class ControlsViewController: UIViewController {
+class ControlsDemoVC: UIViewController {
     let detector:InteractionDetector
+    
+    private var startTransform:CGAffineTransform!
     
     @IBOutlet weak var barLbl1: UILabel!
     @IBOutlet weak var barLbl2: UILabel!
@@ -26,6 +28,7 @@ class ControlsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        startTransform = imageView.transform
         imageView.addGestureRecognizer(UIRotationGestureRecognizer(target: self, action: Selector("imageRotated:")))
     }
     
@@ -57,7 +60,7 @@ class ControlsViewController: UIViewController {
     
     func imageRotated(gesture:UIRotationGestureRecognizer) {
         if (!imageETSwitch.on) {
-            imageView.transform = CGAffineTransformMakeRotation(gesture.rotation)
+            imageView.transform = CGAffineTransformRotate(startTransform, gesture.rotation)
         }
     }
     
@@ -68,7 +71,7 @@ class ControlsViewController: UIViewController {
         {
             detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
             detector.subscribe(EventType.Metrics, callback: {
-                self.imageView.transform = CGAffineTransformMakeRotation(CGFloat(self.detector.currentRotation) * CGFloat(M_PI / 180))
+                self.imageView.transform = CGAffineTransformRotate(self.startTransform, CGFloat(self.detector.currentRotation) * CGFloat(M_PI / 180))
             })
         }
     }
@@ -81,6 +84,8 @@ class ControlsViewController: UIViewController {
             detector.touchUp(NSDate.timeIntervalSinceReferenceDate())
             detector.clearSubscriptions()
         }
+        
+        startTransform = imageView.transform
     }
     
     @IBAction func resetModel(sender: UIBarButtonItem) {

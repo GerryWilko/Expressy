@@ -1,5 +1,5 @@
 //
-//  MapViewController.swift
+//  MapDemoVC.swift
 //  ExpressiveTouch
 //
 //  Created by Gerry Wilkinson on 25/03/2015.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MapViewController: UIViewController {
+class MapDemoVC: UIViewController {
     @IBAction func resetModel(sender: UIBarButtonItem) {
         MadgwickAHRSreset()
     }

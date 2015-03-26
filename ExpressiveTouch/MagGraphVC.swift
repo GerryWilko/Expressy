@@ -1,5 +1,5 @@
 //
-//  AccViewController.swift
+//  MagGraphVC.swift
 //  ExpressiveTouch
 //
 //  Created by Gerry Wilkinson on 12/22/14.
@@ -8,12 +8,14 @@
 
 import Foundation
 
-class AccViewController: UIViewController {
-    let accGraphBuilder:GraphBuilder
+class MagGraphVC: UIViewController {
+    let magGraphBuilder:GraphBuilder
+    
+    @IBOutlet weak var magGraphView:CPTGraphHostingView!
     
     required init(coder aDecoder: NSCoder)
     {
-        accGraphBuilder = GraphBuilder(title: "Accelerometer", type: .Accelerometer)
+        magGraphBuilder = GraphBuilder(title: "Magnetometer", type: .Magnetometer)
         
         super.init(coder: aDecoder)
     }
@@ -22,17 +24,17 @@ class AccViewController: UIViewController {
         super.viewDidLoad()
         
         let processor = WaxProcessor.getProcessor()
-        let accGraphView = self.view as! CPTGraphHostingView
+        let magGraphView = self.view as! CPTGraphHostingView
         
-        accGraphBuilder.initLoad(accGraphView, dataCache: processor.dataCache)
+        magGraphBuilder.initLoad(magGraphView, dataCache: processor.dataCache)
     }
     
     override func viewDidAppear(animated: Bool) {
-        accGraphBuilder.resume()
+        magGraphBuilder.resume()
     }
     
     override func viewDidDisappear(animated: Bool) {
-        accGraphBuilder.pause()
+        magGraphBuilder.pause()
     }
     
     override func didReceiveMemoryWarning() {

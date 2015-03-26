@@ -13,16 +13,12 @@ class InteractionView: UIView {
     
     let detector:InteractionDetector
     
-    @IBOutlet weak var rotationLbl: UILabel!
     @IBOutlet weak var forceLbl: UILabel!
-    
-    @IBOutlet weak var pPitchLbl: UILabel!
-    @IBOutlet weak var pRollLbl: UILabel!
+    @IBOutlet weak var rotationLbl: UILabel!
+    @IBOutlet weak var pitchLbl: UILabel!
+    @IBOutlet weak var rollLbl: UILabel!
+    @IBOutlet weak var yawLbl: UILabel!
     @IBOutlet weak var flickedSwitch: UISwitch!
-    
-    @IBOutlet weak var gravXLbl: UILabel!
-    @IBOutlet weak var gravYLbl: UILabel!
-    @IBOutlet weak var gravZLbl: UILabel!
     
     required init(coder aDecoder: NSCoder) {
         detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
@@ -53,13 +49,7 @@ class InteractionView: UIView {
     func dataCallback() {
         forceLbl.text = String(format: "%.2f", detector.currentForce)
         rotationLbl.text = String(format: "%.2f", detector.currentRotation)
-        pPitchLbl.text = String(format: "%.2f", detector.handModel.getPitch())
-        pRollLbl.text = String(format: "%.2f", detector.handModel.getRoll())
-        
-        let data = WaxProcessor.getProcessor().dataCache.getForTime(NSDate.timeIntervalSinceReferenceDate())
-        
-        gravXLbl.text = String(format: "%.2f", data.grav.x)
-        gravYLbl.text = String(format: "%.2f", data.grav.y)
-        gravZLbl.text = String(format: "%.2f", data.grav.z)
+        pitchLbl.text = String(format: "%.2f", detector.handModel.getPitch())
+        rollLbl.text = String(format: "%.2f", detector.handModel.getRoll())
     }
 }
