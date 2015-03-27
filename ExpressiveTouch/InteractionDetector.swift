@@ -23,8 +23,8 @@ class InteractionDetector {
     private var softPressCallbacks:Array<() -> Void>
     
     private let dataCache:WaxCache
-    private let medForceThreshold:Float = 1.5
-    private let hardForceThreshold:Float = 3.0
+    private let medForceThreshold:Float = 5
+    private let hardForceThreshold:Float = 15
     private let flickThreshold:Float = 1.5
     
     init(dataCache:WaxCache) {
@@ -119,7 +119,7 @@ class InteractionDetector {
         return data.getAccNoGrav().magnitude()
     }
     
-    private func calculateTouchForce(touchDownTime:NSTimeInterval) -> Float {
+    func calculateTouchForce(touchDownTime:NSTimeInterval) -> Float {
         let data = dataCache.getRangeForTime(touchDownTime - 1, end: touchDownTime)
         
         var force:Float = 0.0

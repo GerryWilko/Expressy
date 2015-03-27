@@ -12,7 +12,7 @@ class WaxCache {
     private var data:[WaxData]
     private var dataCallbacks:[(data:WaxData) -> Void]
     
-    private let limit:UInt = 1000
+    private let limit:UInt = 10000
     
     init() {
         data = [WaxData]()
