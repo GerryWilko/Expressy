@@ -7,14 +7,12 @@
 //
 
 import Foundation
+import AudioToolbox
 
 class TapEvalVC: UIViewController {
     private var runStack:[ForceCategory]!
     private var current:ForceCategory
     
-    private let softText = "Tap the screen: Soft"
-    private let medText = "Tap the screen: Medium"
-    private let hardText = "Tap the screen: Hard"
     private let detector:InteractionDetector
     private let csv:CSVBuilder
     
@@ -57,6 +55,7 @@ class TapEvalVC: UIViewController {
     }
     
     func tappedView() {
+        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         if (runStack.count == 29) {
             WaxProcessor.getProcessor().dataCache.subscribe(dataCallback)
         }
@@ -82,6 +81,7 @@ class TapEvalVC: UIViewController {
             detector.stopDetection()
             WaxProcessor.getProcessor().dataCache.clearSubscriptions()
             instructionLbl.text = "Evaluation Complete. Thank you."
+            instructionLbl.textColor = UIColor.blackColor()
             csv.emailCSV(self, subject: "Tap Force Evaluation")
         } else {
             current = runStack[0]
@@ -89,16 +89,20 @@ class TapEvalVC: UIViewController {
             
             switch (current) {
             case .Soft:
-                instructionLbl.text = softText
+                instructionLbl.text = "Tap the screen: Soft"
+                instructionLbl.textColor = UIColor.blueColor()
                 break
             case .Medium:
-                instructionLbl.text = medText
+                instructionLbl.text = "Tap the screen: Medium"
+                instructionLbl.textColor = UIColor.greenColor()
                 break
             case .Hard:
-                instructionLbl.text = hardText
+                instructionLbl.text = "Tap the screen: Hard"
+                instructionLbl.textColor = UIColor.orangeColor()
                 break
             default:
                 instructionLbl.text = "Something went wrong. Try again."
+                instructionLbl.textColor = UIColor.blackColor()
                 break
             }
         }
