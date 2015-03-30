@@ -912,11 +912,14 @@
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
+                                <variation key="heightClass=compact-widthClass=regular" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="25"/>
+                                </variation>
                             </navigationBar>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRa-8D-8KM">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">You will now be asked to perform a number of tap gestures or varying force.
+                                <mutableString key="text">You will now be asked to perform a number of tap gestures or varying force.
 
 The test will ask you to perform the following taps on the screen:
 
@@ -926,13 +929,16 @@ The test will ask you to perform the following taps on the screen:
 
 You will be asked to perform these in a random order until 10 presses of each type have been recorded.
 
-Tap the screen each time with what you deem to be a Soft, Medium or Hard press as requested.
+Tap the screen each time with what you deem to be a Soft, Medium or Hard press as requested. The device will vibrate to confirm a touch has been registered.
 
 Please ensure that your arms are not resting on anything when performing the test.
 
-Press 'Done' when ready to begin.</string>
+Press 'Done' when ready to begin.</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="heightClass=compact-widthClass=regular" misplaced="YES">
+                                    <rect key="frame" x="16" y="35" width="568" height="357"/>
+                                </variation>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1276,6 +1282,8 @@ Press 'Done' when ready to begin.</mutableString>
 You will be shown an image which can be rotated about a fixed point and a placeholder image illustrating the angle to rotate the image to.
 
 Rotate the image as fast as you can, you can lift your finger off the screen and rotate again. The image will snap to the nearest 2 degrees.
+
+The device will vibrate to indicate the image was rotated to the correct angle when the touch ended.
 
 Press 'Done' when ready to begin.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
