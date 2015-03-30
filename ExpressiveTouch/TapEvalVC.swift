@@ -31,6 +31,7 @@ class TapEvalVC: UIViewController {
     override func viewDidLoad() {
         self.performSegueWithIdentifier("tapForceInstructions", sender: self)
         self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("tappedView")))
+        WaxProcessor.getProcessor().dataCache.subscribe(dataCallback)
     }
     
     func buildRunStack() -> [ForceCategory] {
@@ -57,9 +58,6 @@ class TapEvalVC: UIViewController {
     
     func tappedView() {
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-        if (runStack.count == 29) {
-            WaxProcessor.getProcessor().dataCache.subscribe(dataCallback)
-        }
         
         let tapForce = detector.calculateTouchForce(NSDate.timeIntervalSinceReferenceDate())
         
@@ -113,7 +111,6 @@ class TapEvalVC: UIViewController {
     }
     
     func dataCallback(data:WaxData) {
-        let ypr = data.getYawPitchRoll()
         csv.appendRow(data.print(), index: 1)
     }
 }

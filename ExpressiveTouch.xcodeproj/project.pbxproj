@@ -37,6 +37,7 @@
 		CBB6837B1AB9B2C700938059 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = CBB6837A1AB9B2C700938059 /* art.scnassets */; };
 		CBD91AE01AB9A2BE00A9ABBE /* PlaneModelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD91ADF1AB9A2BE00A9ABBE /* PlaneModelVC.swift */; };
 		CBE6BE271ABF12D00099A5C3 /* ControlsDemoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE6BE261ABF12D00099A5C3 /* ControlsDemoVC.swift */; };
+		CBF0EE881AC95A7400D689E2 /* TimeRotateEvalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF0EE871AC95A7400D689E2 /* TimeRotateEvalVC.swift */; };
 		D51750A619E9831C0076F6FA /* ExpressiveTouchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51750A519E9831C0076F6FA /* ExpressiveTouchTests.swift */; };
 		FF8DCC742FC3997524C3C492 /* libPods-ExpressiveTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA315116ED542A1FC9DE226 /* libPods-ExpressiveTouch.a */; };
 /* End PBXBuildFile section */
@@ -88,7 +89,8 @@
 		CBB6837A1AB9B2C700938059 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; name = art.scnassets; path = ../art.scnassets; sourceTree = "<group>"; };
 		CBD91ADF1AB9A2BE00A9ABBE /* PlaneModelVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaneModelVC.swift; sourceTree = "<group>"; };
 		CBE6BE261ABF12D00099A5C3 /* ControlsDemoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlsDemoVC.swift; sourceTree = "<group>"; };
-		D517508A19E9831C0076F6FA /* ExpressiveTouch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpressiveTouch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBF0EE871AC95A7400D689E2 /* TimeRotateEvalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRotateEvalVC.swift; sourceTree = "<group>"; };
+		D517508A19E9831C0076F6FA /* Exp Touch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Exp Touch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D517509F19E9831C0076F6FA /* ExpressiveTouchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpressiveTouchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D51750A419E9831C0076F6FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D51750A519E9831C0076F6FA /* ExpressiveTouchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressiveTouchTests.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				CB4F22951AC456BE006EFF18 /* RotationRngEvalVC.swift */,
 				CB4F22971AC456D7006EFF18 /* PitchRngEvalVC.swift */,
 				CB4F22991AC457B4006EFF18 /* YawRngEvalVC.swift */,
+				CBF0EE871AC95A7400D689E2 /* TimeRotateEvalVC.swift */,
 				CB4F229B1AC45F76006EFF18 /* EvalInstructionsVC.swift */,
 			);
 			name = "View Controllers";
@@ -224,7 +227,7 @@
 		D517508B19E9831C0076F6FA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D517508A19E9831C0076F6FA /* ExpressiveTouch.app */,
+				D517508A19E9831C0076F6FA /* Exp Touch.app */,
 				D517509F19E9831C0076F6FA /* ExpressiveTouchTests.xctest */,
 			);
 			name = Products;
@@ -266,7 +269,7 @@
 			);
 			name = ExpressiveTouch;
 			productName = ExpressiveTouch;
-			productReference = D517508A19E9831C0076F6FA /* ExpressiveTouch.app */;
+			productReference = D517508A19E9831C0076F6FA /* Exp Touch.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D517509E19E9831C0076F6FA /* ExpressiveTouchTests */ = {
@@ -409,6 +412,7 @@
 				CB4F22981AC456D7006EFF18 /* PitchRngEvalVC.swift in Sources */,
 				CBA2B0B51AAA1AD1006967EF /* MadgwickAHRS.c in Sources */,
 				CBE6BE271ABF12D00099A5C3 /* ControlsDemoVC.swift in Sources */,
+				CBF0EE881AC95A7400D689E2 /* TimeRotateEvalVC.swift in Sources */,
 				CB7338841A822CA600FA1121 /* MagGraphVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -488,6 +492,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "Exp Touch";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -524,6 +529,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "Exp Touch";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -548,7 +554,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/CorePlot",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Exp Touch";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ExpressiveTouch/ExpressiveTouch-Bridging-Header.h";
 				VALID_ARCHS = "armv7 armv7s arm64";
@@ -573,7 +579,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/CorePlot",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Exp Touch";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ExpressiveTouch/ExpressiveTouch-Bridging-Header.h";
 				VALID_ARCHS = "armv7 armv7s arm64";

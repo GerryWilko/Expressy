@@ -9,7 +9,7 @@
         <!--Gyroscope-->
         <scene sceneID="tSR-Vl-k1a">
             <objects>
-                <viewController title="Gyroscope" id="ffG-L8-QUD" customClass="GyroGraphVC" customModule="ExpressiveTouch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Gyroscope" id="ffG-L8-QUD" customClass="GyroGraphVC" customModule="Exp_Touch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Eaq-3e-jSF"/>
                         <viewControllerLayoutGuide type="bottom" id="9fX-oc-Wrh"/>
@@ -28,7 +28,7 @@
         <!--Magnetometer-->
         <scene sceneID="FJs-rD-JXX">
             <objects>
-                <viewController title="Magnetometer" id="wwv-KW-iVB" customClass="MagGraphVC" customModule="ExpressiveTouch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Magnetometer" id="wwv-KW-iVB" customClass="MagGraphVC" customModule="Exp_Touch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UvN-HU-ujy"/>
                         <viewControllerLayoutGuide type="bottom" id="GOr-ZN-UaH"/>
@@ -47,7 +47,7 @@
         <!--Tap Force Evaluation-->
         <scene sceneID="OGB-ws-tBZ">
             <objects>
-                <viewController title="Tap Force Evaluation" id="ezw-P1-5xr" customClass="TapEvalVC" customModule="ExpressiveTouch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Tap Force Evaluation" id="ezw-P1-5xr" customClass="TapEvalVC" customModule="Exp_Touch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="P9n-ly-hv7"/>
                         <viewControllerLayoutGuide type="bottom" id="Crn-rh-kDj"/>
@@ -130,7 +130,7 @@
         <!--Accelerometer-->
         <scene sceneID="PeQ-jx-nKG">
             <objects>
-                <viewController title="Accelerometer" id="W3H-qP-x1E" customClass="AccGraphVC" customModule="ExpressiveTouch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Accelerometer" id="W3H-qP-x1E" customClass="AccGraphVC" customModule="Exp_Touch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lIJ-IS-B75"/>
                         <viewControllerLayoutGuide type="bottom" id="dE3-Jq-LNd"/>
@@ -188,7 +188,7 @@
         <!--WAX Scanner-->
         <scene sceneID="ytq-ta-0oX">
             <objects>
-                <tableViewController title="WAX Scanner" id="d86-nE-Dzc" customClass="WAXScanVC" customModule="ExpressiveTouch" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="WAX Scanner" id="d86-nE-Dzc" customClass="WAXScanVC" customModule="Exp_Touch" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="9DP-1B-eIn">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -413,6 +413,24 @@
                                             <segue destination="1Vd-IW-eB3" kind="show" id="vwU-M7-YcT"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="Nej-DI-PDd" style="IBUITableViewCellStyleDefault" id="bhy-nm-0sP">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bhy-nm-0sP" id="Jae-ny-ga4">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Time for Rotation Evaluation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Nej-DI-PDd">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="7oq-cT-tYg" kind="show" id="OKn-CS-swf"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -436,12 +454,12 @@
         <!--Interaction Detector-->
         <scene sceneID="eyc-5y-ISp">
             <objects>
-                <viewController title="Interaction Detector" id="g1C-39-oww" customClass="ETDetectorVC" customModule="ExpressiveTouch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Interaction Detector" id="g1C-39-oww" customClass="ETDetectorVC" customModule="Exp_Touch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="i4q-Ui-cwQ"/>
                         <viewControllerLayoutGuide type="bottom" id="qyp-z3-zdC"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="YVb-l1-0j9" customClass="InteractionView" customModule="ExpressiveTouch" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="YVb-l1-0j9" customClass="InteractionView" customModule="Exp_Touch" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -643,7 +661,7 @@
         <!--Plane Model-->
         <scene sceneID="a4z-gL-ZH9">
             <objects>
-                <viewController title="Plane Model" id="2f9-Wd-xf0" customClass="PlaneModelVC" customModule="ExpressiveTouch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Plane Model" id="2f9-Wd-xf0" customClass="PlaneModelVC" customModule="Exp_Touch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="icS-Le-Bo8"/>
                         <viewControllerLayoutGuide type="bottom" id="jEr-r7-0jG"/>
@@ -669,12 +687,12 @@
         <!--Maps Demo-->
         <scene sceneID="thg-bG-Lqj">
             <objects>
-                <viewController title="Maps Demo" id="4mK-01-RmJ" customClass="MapDemoVC" customModule="ExpressiveTouch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Maps Demo" id="4mK-01-RmJ" customClass="MapDemoVC" customModule="Exp_Touch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RVy-Pz-LAV"/>
                         <viewControllerLayoutGuide type="bottom" id="VlH-rq-Kfr"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7Fu-5V-SHz" customClass="ETMapView" customModule="ExpressiveTouch" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="7Fu-5V-SHz" customClass="ETMapView" customModule="Exp_Touch" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -695,7 +713,7 @@
         <!--Controls Demo-->
         <scene sceneID="Q2W-fN-m5S">
             <objects>
-                <viewController title="Controls Demo" id="GYq-0r-roE" customClass="ControlsDemoVC" customModule="ExpressiveTouch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Controls Demo" id="GYq-0r-roE" customClass="ControlsDemoVC" customModule="Exp_Touch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="r5r-g5-pGq"/>
                         <viewControllerLayoutGuide type="bottom" id="h1a-vV-BQF"/>
@@ -874,7 +892,7 @@
         <!--Tap Force Instructions-->
         <scene sceneID="e0N-yw-D8D">
             <objects>
-                <viewController title="Tap Force Instructions" id="wdt-7e-hqM" customClass="EvalInstructionsVC" customModule="ExpressiveTouch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Tap Force Instructions" id="wdt-7e-hqM" customClass="EvalInstructionsVC" customModule="Exp_Touch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="H1N-ml-I9g"/>
                         <viewControllerLayoutGuide type="bottom" id="Of3-Xa-8QO"/>
@@ -894,9 +912,6 @@
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
-                                <variation key="heightClass=compact-widthClass=regular" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                </variation>
                             </navigationBar>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRa-8D-8KM">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -918,9 +933,6 @@ Please ensure that your arms are not resting on anything when performing the tes
 Press 'Done' when ready to begin.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <variation key="heightClass=compact-widthClass=regular" misplaced="YES">
-                                    <rect key="frame" x="16" y="53" width="568" height="339"/>
-                                </variation>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -971,7 +983,7 @@ Press 'Done' when ready to begin.</string>
         <!--Rotation Range Instructions-->
         <scene sceneID="aMf-H2-36Z">
             <objects>
-                <viewController title="Rotation Range Instructions" id="VWd-8V-0Ba" customClass="EvalInstructionsVC" customModule="ExpressiveTouch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Rotation Range Instructions" id="VWd-8V-0Ba" customClass="EvalInstructionsVC" customModule="Exp_Touch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="05r-AJ-TyH"/>
                         <viewControllerLayoutGuide type="bottom" id="82e-69-0H1"/>
@@ -1059,7 +1071,7 @@ Press 'Done' when ready to begin.</mutableString>
         <!--Pitch Range Instructions-->
         <scene sceneID="Wqe-Lu-fWm">
             <objects>
-                <viewController title="Pitch Range Instructions" id="tPg-rX-0XX" customClass="EvalInstructionsVC" customModule="ExpressiveTouch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Pitch Range Instructions" id="tPg-rX-0XX" customClass="EvalInstructionsVC" customModule="Exp_Touch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4Df-ei-lBP"/>
                         <viewControllerLayoutGuide type="bottom" id="Gbn-n2-xLY"/>
@@ -1147,7 +1159,7 @@ Press 'Done' when ready to begin.</mutableString>
         <!--Yaw Range Intructions-->
         <scene sceneID="dXM-pn-htR">
             <objects>
-                <viewController title="Yaw Range Intructions" id="h1f-xH-Sx9" customClass="EvalInstructionsVC" customModule="ExpressiveTouch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Yaw Range Intructions" id="h1f-xH-Sx9" customClass="EvalInstructionsVC" customModule="Exp_Touch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="F8h-lg-9m4"/>
                         <viewControllerLayoutGuide type="bottom" id="Yqe-WP-HfM"/>
@@ -1232,10 +1244,94 @@ Press 'Done' when ready to begin.</mutableString>
             </objects>
             <point key="canvasLocation" x="615" y="4102.5"/>
         </scene>
+        <!--Time for Rotation Instructions-->
+        <scene sceneID="1S4-YO-0wh">
+            <objects>
+                <viewController title="Time for Rotation Instructions" id="pkf-MK-dMs" customClass="EvalInstructionsVC" customModule="Exp_Touch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xg5-Ap-HO9"/>
+                        <viewControllerLayoutGuide type="bottom" id="8IS-hW-dgc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dbI-GL-Xag">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ht5-gy-au8">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Instructions" id="eGt-eG-6DJ">
+                                        <barButtonItem key="leftBarButtonItem" title="Done" id="lwk-Nb-9xw">
+                                            <connections>
+                                                <action selector="done:" destination="pkf-MK-dMs" id="Wbn-bE-SCW"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edj-QI-6si">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">You will now be asked to rotate an image on the screen to a specified angle.
+
+You will be shown an image which can be rotated about a fixed point and a placeholder image illustrating the angle to rotate the image to.
+
+Rotate the image as fast as you can, you can lift your finger off the screen and rotate again. The image will snap to the nearest 2 degrees.
+
+Press 'Done' when ready to begin.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="edj-QI-6si" firstAttribute="centerX" secondItem="Ht5-gy-au8" secondAttribute="centerX" id="25y-WU-UOG"/>
+                            <constraint firstAttribute="trailing" secondItem="Ht5-gy-au8" secondAttribute="trailing" id="6jb-VX-AoL"/>
+                            <constraint firstItem="edj-QI-6si" firstAttribute="leading" secondItem="dbI-GL-Xag" secondAttribute="leadingMargin" id="NRb-M9-NAG"/>
+                            <constraint firstItem="8IS-hW-dgc" firstAttribute="top" secondItem="edj-QI-6si" secondAttribute="bottom" constant="8" symbolic="YES" id="QVE-9q-Hrp"/>
+                            <constraint firstItem="Ht5-gy-au8" firstAttribute="leading" secondItem="dbI-GL-Xag" secondAttribute="leading" id="eT6-Mm-M3y"/>
+                            <constraint firstItem="Ht5-gy-au8" firstAttribute="top" secondItem="xg5-Ap-HO9" secondAttribute="bottom" id="uOD-wh-ARG"/>
+                            <constraint firstItem="edj-QI-6si" firstAttribute="top" secondItem="Ht5-gy-au8" secondAttribute="bottom" constant="10" id="woT-zT-IZF"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="Ht5-gy-au8"/>
+                                <exclude reference="edj-QI-6si"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="6jb-VX-AoL"/>
+                                <exclude reference="eT6-Mm-M3y"/>
+                                <exclude reference="uOD-wh-ARG"/>
+                                <exclude reference="25y-WU-UOG"/>
+                                <exclude reference="NRb-M9-NAG"/>
+                                <exclude reference="woT-zT-IZF"/>
+                                <exclude reference="QVE-9q-Hrp"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="Ht5-gy-au8"/>
+                                <include reference="edj-QI-6si"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="6jb-VX-AoL"/>
+                                <include reference="eT6-Mm-M3y"/>
+                                <include reference="uOD-wh-ARG"/>
+                                <include reference="25y-WU-UOG"/>
+                                <include reference="NRb-M9-NAG"/>
+                                <include reference="woT-zT-IZF"/>
+                                <include reference="QVE-9q-Hrp"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TlO-Ub-VJD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="615" y="4918.5"/>
+        </scene>
         <!--Rotation Range Evaluation-->
         <scene sceneID="03n-ah-OLv">
             <objects>
-                <viewController title="Rotation Range Evaluation" id="r4u-TY-VaZ" customClass="RotationRngEvalVC" customModule="ExpressiveTouch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Rotation Range Evaluation" id="r4u-TY-VaZ" customClass="RotationRngEvalVC" customModule="Exp_Touch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xMo-ms-K7D"/>
                         <viewControllerLayoutGuide type="bottom" id="gIH-e8-Jgl"/>
@@ -1351,7 +1447,7 @@ Then press and hold.</string>
         <!--Pitch Range Evaluation-->
         <scene sceneID="CT0-3h-5Pl">
             <objects>
-                <viewController title="Pitch Range Evaluation" id="mtr-gZ-TlY" customClass="PitchRngEvalVC" customModule="ExpressiveTouch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Pitch Range Evaluation" id="mtr-gZ-TlY" customClass="PitchRngEvalVC" customModule="Exp_Touch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ufR-g8-IAv"/>
                         <viewControllerLayoutGuide type="bottom" id="JTf-Wh-Dt6"/>
@@ -1467,7 +1563,7 @@ Then press and hold.</string>
         <!--Yaw Range Evaluation-->
         <scene sceneID="qTR-HF-WPJ">
             <objects>
-                <viewController title="Yaw Range Evaluation" id="1Vd-IW-eB3" customClass="YawRngEvalVC" customModule="ExpressiveTouch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Yaw Range Evaluation" id="1Vd-IW-eB3" customClass="YawRngEvalVC" customModule="Exp_Touch" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4q5-SV-kFc"/>
                         <viewControllerLayoutGuide type="bottom" id="VTQ-0t-IGm"/>
@@ -1579,6 +1675,122 @@ Then press and hold.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ptm-4q-lvl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-145.5" y="4102.5"/>
+        </scene>
+        <!--Time for Rotation Evaluation-->
+        <scene sceneID="2ah-xl-yFg">
+            <objects>
+                <viewController title="Time for Rotation Evaluation" id="7oq-cT-tYg" customClass="TimeRotateEvalVC" customModule="Exp_Touch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gzy-dZ-3lX"/>
+                        <viewControllerLayoutGuide type="bottom" id="ffL-pO-dUU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BqO-SE-fDU">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.49999999999999961" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CultureLab" translatesAutoresizingMaskIntoConstraints="NO" id="ZgT-bg-EfT">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="5NT-zU-TpT"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="5NT-zU-TpT"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="5NT-zU-TpT"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CultureLab" translatesAutoresizingMaskIntoConstraints="NO" id="cEB-LW-dLd">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </imageView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="2.7755575615628914e-17" translatesAutoresizingMaskIntoConstraints="NO" id="FsZ-Zk-YEQ">
+                                <rect key="frame" x="0.0" y="-2" width="150" height="2"/>
+                            </progressView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Evaluation Complete. Thank you." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oT0-d4-y3e">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="FsZ-Zk-YEQ" firstAttribute="centerX" secondItem="oT0-d4-y3e" secondAttribute="centerX" id="3e2-Yy-sR8"/>
+                            <constraint firstItem="oT0-d4-y3e" firstAttribute="centerY" secondItem="ZgT-bg-EfT" secondAttribute="centerY" id="4qV-RB-TOf"/>
+                            <constraint firstItem="ZgT-bg-EfT" firstAttribute="centerY" secondItem="BqO-SE-fDU" secondAttribute="centerY" id="6W0-Lk-vQb"/>
+                            <constraint firstItem="ZgT-bg-EfT" firstAttribute="centerX" secondItem="BqO-SE-fDU" secondAttribute="centerX" id="BGo-c9-Qcw"/>
+                            <constraint firstItem="cEB-LW-dLd" firstAttribute="top" secondItem="ZgT-bg-EfT" secondAttribute="top" id="GCi-aw-XKX"/>
+                            <constraint firstItem="FsZ-Zk-YEQ" firstAttribute="top" secondItem="gzy-dZ-3lX" secondAttribute="bottom" constant="8" symbolic="YES" id="MHs-ge-edO"/>
+                            <constraint firstItem="FsZ-Zk-YEQ" firstAttribute="leading" secondItem="BqO-SE-fDU" secondAttribute="leadingMargin" id="TBN-Xk-c9R"/>
+                            <constraint firstItem="cEB-LW-dLd" firstAttribute="trailing" secondItem="ZgT-bg-EfT" secondAttribute="trailing" id="TJw-K4-zla"/>
+                            <constraint firstItem="cEB-LW-dLd" firstAttribute="leading" secondItem="ZgT-bg-EfT" secondAttribute="leading" id="hdv-kQ-1ei"/>
+                            <constraint firstItem="ffL-pO-dUU" firstAttribute="top" secondItem="oT0-d4-y3e" secondAttribute="bottom" constant="138" id="k0F-5h-DVw"/>
+                            <constraint firstItem="cEB-LW-dLd" firstAttribute="bottom" secondItem="ZgT-bg-EfT" secondAttribute="bottom" id="lAQ-c7-fui"/>
+                            <constraint firstItem="oT0-d4-y3e" firstAttribute="centerX" secondItem="cEB-LW-dLd" secondAttribute="centerX" id="p7h-ca-xnE"/>
+                            <constraint firstItem="ZgT-bg-EfT" firstAttribute="top" secondItem="gzy-dZ-3lX" secondAttribute="bottom" constant="23" id="xSl-kf-MJH"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="ZgT-bg-EfT"/>
+                                <exclude reference="cEB-LW-dLd"/>
+                                <exclude reference="FsZ-Zk-YEQ"/>
+                                <exclude reference="oT0-d4-y3e"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="3e2-Yy-sR8"/>
+                                <exclude reference="MHs-ge-edO"/>
+                                <exclude reference="TBN-Xk-c9R"/>
+                                <exclude reference="4qV-RB-TOf"/>
+                                <exclude reference="p7h-ca-xnE"/>
+                                <exclude reference="6W0-Lk-vQb"/>
+                                <exclude reference="BGo-c9-Qcw"/>
+                                <exclude reference="xSl-kf-MJH"/>
+                                <exclude reference="GCi-aw-XKX"/>
+                                <exclude reference="TJw-K4-zla"/>
+                                <exclude reference="hdv-kQ-1ei"/>
+                                <exclude reference="lAQ-c7-fui"/>
+                                <exclude reference="k0F-5h-DVw"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="ZgT-bg-EfT"/>
+                                <include reference="cEB-LW-dLd"/>
+                                <include reference="FsZ-Zk-YEQ"/>
+                                <include reference="oT0-d4-y3e"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="3e2-Yy-sR8"/>
+                                <include reference="MHs-ge-edO"/>
+                                <include reference="TBN-Xk-c9R"/>
+                                <include reference="4qV-RB-TOf"/>
+                                <include reference="p7h-ca-xnE"/>
+                                <include reference="6W0-Lk-vQb"/>
+                                <include reference="BGo-c9-Qcw"/>
+                                <include reference="xSl-kf-MJH"/>
+                                <include reference="GCi-aw-XKX"/>
+                                <include reference="TJw-K4-zla"/>
+                                <include reference="hdv-kQ-1ei"/>
+                                <include reference="lAQ-c7-fui"/>
+                                <include reference="k0F-5h-DVw"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="instructionLbl" destination="oT0-d4-y3e" id="Lgg-jK-ktQ"/>
+                        <outlet property="placeholderImage" destination="ZgT-bg-EfT" id="IgG-HH-aBD"/>
+                        <outlet property="progressBar" destination="FsZ-Zk-YEQ" id="MKI-C5-CbD"/>
+                        <outlet property="rotateImage" destination="cEB-LW-dLd" id="roa-WE-Rcc"/>
+                        <segue destination="pkf-MK-dMs" kind="presentation" identifier="timeRotateInstructions" modalPresentationStyle="pageSheet" id="YWF-ua-aD7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lss-pP-CEV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-145.5" y="4918.5"/>
         </scene>
     </scenes>
     <resources>

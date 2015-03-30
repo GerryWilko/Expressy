@@ -75,6 +75,7 @@ class PitchRngEvalVC: UIViewController {
     
     override func viewDidLoad() {
         self.performSegueWithIdentifier("pitchRngInstructions", sender: self)
+        WaxProcessor.getProcessor().dataCache.subscribe(dataCallback)
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -82,7 +83,6 @@ class PitchRngEvalVC: UIViewController {
             MadgwickAHRSreset()
             progressWheel.startAnimating()
             recording = true
-            WaxProcessor.getProcessor().dataCache.subscribe(dataCallback)
             instructionLbl.text = messageStack[0]
             messageStack.removeAtIndex(0)
             progressBar.setProgress(Float(Float(41 - messageStack.count) / 41.0), animated: true)
@@ -100,7 +100,6 @@ class PitchRngEvalVC: UIViewController {
             }
         }
         
-        let ypr = data.getYawPitchRoll()
         csvBuilder.appendRow(data.print(), index: 1)
     }
     
@@ -108,7 +107,6 @@ class PitchRngEvalVC: UIViewController {
         if (!messageStack.isEmpty && dominantHand.selectedSegmentIndex != UISegmentedControlNoSegment) {
             progressWheel.stopAnimating()
             recording = false
-            WaxProcessor.getProcessor().dataCache.clearSubscriptions()
             
             let dh = dominantHand.selectedSegmentIndex == 0 ? "Left" : "Right"
             
