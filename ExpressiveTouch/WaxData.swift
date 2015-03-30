@@ -1,5 +1,5 @@
 //
-//  SensorData.swift
+//  WaxData.swift
 //  ExpressiveTouch
 //
 //  Created by Gerry Wilkinson on 19/11/2014.
@@ -47,5 +47,11 @@ class WaxData {
         let roll = (sgxz < 0.05) ? 0.0 : atan(grav.y / sgxz)
         
         return (yaw, pitch, roll)
+    }
+    
+    func print() -> String {
+        let ypr = getYawPitchRoll()
+        
+        return "\(time),\(acc.x),\(acc.y),\(acc.z),\(gyro.x),\(gyro.y),\(gyro.z),\(mag.x),\(mag.y),\(mag.z),\(grav.x),\(grav.y),\(grav.z),\(ypr.yaw),\(ypr.pitch),\(ypr.roll)"
     }
 }

@@ -17,6 +17,7 @@ class TapEvalVC: UIViewController {
     private let csv:CSVBuilder
     
     @IBOutlet weak var instructionLbl: UILabel!
+    @IBOutlet weak var progressBar: UIProgressView!
     
     required init(coder aDecoder: NSCoder) {
         detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
@@ -62,6 +63,8 @@ class TapEvalVC: UIViewController {
         
         let tapForce = detector.calculateTouchForce(NSDate.timeIntervalSinceReferenceDate())
         
+        progressBar.setProgress(Float(Float(30 - runStack.count) / 30.0), animated: true)
+        
         switch (current) {
         case .Soft:
             csv.appendRow("Soft,\(tapForce)", index: 0)
@@ -80,6 +83,7 @@ class TapEvalVC: UIViewController {
         if (runStack.isEmpty){
             detector.stopDetection()
             WaxProcessor.getProcessor().dataCache.clearSubscriptions()
+            progressBar.setProgress(1.0, animated: true)
             instructionLbl.text = "Evaluation Complete. Thank you."
             instructionLbl.textColor = UIColor.blackColor()
             csv.emailCSV(self, subject: "Tap Force Evaluation")
@@ -110,7 +114,7 @@ class TapEvalVC: UIViewController {
     
     func dataCallback(data:WaxData) {
         let ypr = data.getYawPitchRoll()
-        csv.appendRow("\(data.time),\(data.acc.x),\(data.acc.y),\(data.acc.z),\(data.gyro.x),\(data.gyro.y),\(data.gyro.z),\(data.mag.x),\(data.mag.y),\(data.mag.z),\(data.grav.x),\(data.grav.y),\(data.grav.z),\(ypr.yaw),\(ypr.pitch),\(ypr.roll)", index: 1)
+        csv.appendRow(data.print(), index: 1)
     }
 }
 

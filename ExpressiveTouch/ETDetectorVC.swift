@@ -23,7 +23,7 @@ class ETDetectorVC: UIViewController {
         for i in 0..<dataCache.count() {
             let data = dataCache[i]
             let ypr = data.getYawPitchRoll()
-            csv.appendRow("\(data.time),\(data.acc.x),\(data.acc.y),\(data.acc.z),\(data.gyro.x),\(data.gyro.y),\(data.gyro.z),\(data.mag.x),\(data.mag.y),\(data.mag.z),\(data.grav.x),\(data.grav.y),\(data.grav.z),\(ypr.yaw),\(ypr.pitch),\(ypr.roll),\(data.touch),\(data.touchForce)", index: 0)
+            csv.appendRow("\(data.print()),\(data.touch),\(data.touchForce)", index: 0)
         }
         
         csv.emailCSV(self, subject: "Interaction Data")

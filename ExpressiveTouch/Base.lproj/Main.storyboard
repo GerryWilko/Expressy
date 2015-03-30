@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7525" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EZQ-rH-WHv">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7516"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -52,6 +53,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Crn-rh-kDj"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="nnH-Lh-jQ7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the screen: Soft" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f9s-TH-7qW">
@@ -73,18 +75,28 @@
                                     </mask>
                                 </variation>
                             </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="2.7755575615628914e-17" translatesAutoresizingMaskIntoConstraints="NO" id="bfJ-93-zRS">
+                                <rect key="frame" x="0.0" y="-2" width="150" height="2"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="f9s-TH-7qW" firstAttribute="centerY" secondItem="nnH-Lh-jQ7" secondAttribute="centerY" id="9b5-Sk-MEI"/>
                             <constraint firstItem="f9s-TH-7qW" firstAttribute="top" secondItem="P9n-ly-hv7" secondAttribute="bottom" constant="113" id="AXD-cT-eY6"/>
                             <constraint firstItem="f9s-TH-7qW" firstAttribute="centerX" secondItem="nnH-Lh-jQ7" secondAttribute="centerX" id="J5V-zt-ltQ"/>
+                            <constraint firstItem="bfJ-93-zRS" firstAttribute="centerX" secondItem="f9s-TH-7qW" secondAttribute="centerX" id="MQX-Sy-nDn"/>
+                            <constraint firstItem="bfJ-93-zRS" firstAttribute="leading" secondItem="nnH-Lh-jQ7" secondAttribute="leadingMargin" id="TkJ-9g-2hy"/>
+                            <constraint firstItem="bfJ-93-zRS" firstAttribute="top" secondItem="P9n-ly-hv7" secondAttribute="bottom" constant="8" symbolic="YES" id="UIC-YV-neN"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="f9s-TH-7qW"/>
+                                <exclude reference="bfJ-93-zRS"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="MQX-Sy-nDn"/>
+                                <exclude reference="TkJ-9g-2hy"/>
+                                <exclude reference="UIC-YV-neN"/>
                                 <exclude reference="9b5-Sk-MEI"/>
                                 <exclude reference="AXD-cT-eY6"/>
                                 <exclude reference="J5V-zt-ltQ"/>
@@ -93,8 +105,12 @@
                         <variation key="heightClass=compact-widthClass=regular">
                             <mask key="subviews">
                                 <include reference="f9s-TH-7qW"/>
+                                <include reference="bfJ-93-zRS"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="MQX-Sy-nDn"/>
+                                <include reference="TkJ-9g-2hy"/>
+                                <include reference="UIC-YV-neN"/>
                                 <include reference="9b5-Sk-MEI"/>
                                 <include reference="AXD-cT-eY6"/>
                                 <include reference="J5V-zt-ltQ"/>
@@ -103,6 +119,7 @@
                     </view>
                     <connections>
                         <outlet property="instructionLbl" destination="f9s-TH-7qW" id="eCl-vG-Mre"/>
+                        <outlet property="progressBar" destination="bfJ-93-zRS" id="swJ-0O-dGW"/>
                         <segue destination="wdt-7e-hqM" kind="presentation" identifier="tapForceInstructions" modalPresentationStyle="pageSheet" id="9yQ-As-VEX"/>
                     </connections>
                 </viewController>
@@ -584,10 +601,10 @@
                                 <exclude reference="FmL-eQ-vwb"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="BAI-bN-UMX"/>
                                 <exclude reference="3lJ-zZ-XgU"/>
                                 <exclude reference="a2q-Ye-1yi"/>
                                 <exclude reference="c8Q-WZ-qwp"/>
-                                <exclude reference="BAI-bN-UMX"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
@@ -595,10 +612,10 @@
                                 <include reference="FmL-eQ-vwb"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="BAI-bN-UMX"/>
                                 <include reference="3lJ-zZ-XgU"/>
                                 <include reference="a2q-Ye-1yi"/>
                                 <include reference="c8Q-WZ-qwp"/>
-                                <include reference="BAI-bN-UMX"/>
                             </mask>
                         </variation>
                         <connections>
@@ -687,7 +704,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="zts-x8-C6y">
+                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="zts-x8-C6y">
                                 <rect key="frame" x="0.0" y="-15" width="118" height="31"/>
                                 <variation key="heightClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="-16" width="118" height="31"/>
@@ -699,22 +716,22 @@
                                     <action selector="progBar2Changed:" destination="GYq-0r-roE" eventType="valueChanged" id="a4P-N9-cLp"/>
                                 </connections>
                             </slider>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="cTq-U2-s3f">
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="cTq-U2-s3f">
                                 <rect key="frame" x="0.0" y="-2" width="150" height="2"/>
                             </progressView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="50.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNl-dc-ay1">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="50.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNl-dc-ay1">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="50.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="34w-Qd-rrs">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="50.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="34w-Qd-rrs">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wka-Ua-uhq">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wka-Ua-uhq">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Hold Here">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -733,7 +750,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CultureLab" translatesAutoresizingMaskIntoConstraints="NO" id="LuG-GA-pS2">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="CultureLab" translatesAutoresizingMaskIntoConstraints="NO" id="LuG-GA-pS2">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="38j-vD-BjN"/>
@@ -780,20 +797,6 @@
                                 <exclude reference="EZ2-S8-cJj"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="YGc-1i-kkE"/>
-                                <exclude reference="4mI-6c-qyC"/>
-                                <exclude reference="H6d-3a-XcP"/>
-                                <exclude reference="SPO-kO-Hej"/>
-                                <exclude reference="Xrg-ak-92q"/>
-                                <exclude reference="kRQ-iN-BZ8"/>
-                                <exclude reference="5k0-Tp-CJO"/>
-                                <exclude reference="Ap3-mH-kyL"/>
-                                <exclude reference="htD-wU-QAC"/>
-                                <exclude reference="4FG-Su-pLe"/>
-                                <exclude reference="GaO-ix-01g"/>
-                                <exclude reference="I9u-yM-JOr"/>
-                                <exclude reference="OXB-qz-bfh"/>
-                                <exclude reference="ndm-Vh-Yxf"/>
                                 <exclude reference="Zts-0C-hBV"/>
                                 <exclude reference="3co-97-wrY"/>
                                 <exclude reference="hMc-0U-3Ea"/>
@@ -801,6 +804,20 @@
                                 <exclude reference="0Xx-Vt-0gz"/>
                                 <exclude reference="oMu-Ku-Lhw"/>
                                 <exclude reference="rWZ-zm-45j"/>
+                                <exclude reference="YGc-1i-kkE"/>
+                                <exclude reference="4mI-6c-qyC"/>
+                                <exclude reference="H6d-3a-XcP"/>
+                                <exclude reference="SPO-kO-Hej"/>
+                                <exclude reference="Xrg-ak-92q"/>
+                                <exclude reference="kRQ-iN-BZ8"/>
+                                <exclude reference="4FG-Su-pLe"/>
+                                <exclude reference="GaO-ix-01g"/>
+                                <exclude reference="I9u-yM-JOr"/>
+                                <exclude reference="OXB-qz-bfh"/>
+                                <exclude reference="ndm-Vh-Yxf"/>
+                                <exclude reference="5k0-Tp-CJO"/>
+                                <exclude reference="Ap3-mH-kyL"/>
+                                <exclude reference="htD-wU-QAC"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
@@ -810,20 +827,6 @@
                                 <include reference="LuG-GA-pS2"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="YGc-1i-kkE"/>
-                                <include reference="4mI-6c-qyC"/>
-                                <include reference="H6d-3a-XcP"/>
-                                <include reference="SPO-kO-Hej"/>
-                                <include reference="Xrg-ak-92q"/>
-                                <include reference="kRQ-iN-BZ8"/>
-                                <include reference="5k0-Tp-CJO"/>
-                                <include reference="Ap3-mH-kyL"/>
-                                <include reference="htD-wU-QAC"/>
-                                <include reference="4FG-Su-pLe"/>
-                                <include reference="GaO-ix-01g"/>
-                                <include reference="I9u-yM-JOr"/>
-                                <include reference="OXB-qz-bfh"/>
-                                <include reference="ndm-Vh-Yxf"/>
                                 <include reference="Zts-0C-hBV"/>
                                 <include reference="3co-97-wrY"/>
                                 <include reference="hMc-0U-3Ea"/>
@@ -831,6 +834,20 @@
                                 <include reference="0Xx-Vt-0gz"/>
                                 <include reference="oMu-Ku-Lhw"/>
                                 <include reference="rWZ-zm-45j"/>
+                                <include reference="YGc-1i-kkE"/>
+                                <include reference="4mI-6c-qyC"/>
+                                <include reference="H6d-3a-XcP"/>
+                                <include reference="SPO-kO-Hej"/>
+                                <include reference="Xrg-ak-92q"/>
+                                <include reference="kRQ-iN-BZ8"/>
+                                <include reference="4FG-Su-pLe"/>
+                                <include reference="GaO-ix-01g"/>
+                                <include reference="I9u-yM-JOr"/>
+                                <include reference="OXB-qz-bfh"/>
+                                <include reference="ndm-Vh-Yxf"/>
+                                <include reference="5k0-Tp-CJO"/>
+                                <include reference="Ap3-mH-kyL"/>
+                                <include reference="htD-wU-QAC"/>
                             </mask>
                         </variation>
                     </view>
@@ -866,7 +883,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dbg-Yz-dhp">
+                            <navigationBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dbg-Yz-dhp">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
                                     <navigationItem title="Instructions" id="gW1-RG-4ae">
@@ -877,6 +894,9 @@
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
+                                <variation key="heightClass=compact-widthClass=regular" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                </variation>
                             </navigationBar>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRa-8D-8KM">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -893,9 +913,14 @@ You will be asked to perform these in a random order until 10 presses of each ty
 
 Tap the screen each time with what you deem to be a Soft, Medium or Hard press as requested.
 
-Please ensure that your arms are not resting on anything when performing the test.</string>
+Please ensure that your arms are not resting on anything when performing the test.
+
+Press 'Done' when ready to begin.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="heightClass=compact-widthClass=regular" misplaced="YES">
+                                    <rect key="frame" x="16" y="53" width="568" height="339"/>
+                                </variation>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -913,13 +938,13 @@ Please ensure that your arms are not resting on anything when performing the tes
                                 <exclude reference="KRa-8D-8KM"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="Voq-ve-kB4"/>
-                                <exclude reference="qSd-Ux-W0Q"/>
+                                <exclude reference="XaO-Cj-KUd"/>
                                 <exclude reference="KC4-hX-QCf"/>
                                 <exclude reference="VVA-D8-9Et"/>
                                 <exclude reference="XLp-Cu-XyC"/>
                                 <exclude reference="rW1-go-WLq"/>
-                                <exclude reference="XaO-Cj-KUd"/>
+                                <exclude reference="Voq-ve-kB4"/>
+                                <exclude reference="qSd-Ux-W0Q"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
@@ -928,13 +953,13 @@ Please ensure that your arms are not resting on anything when performing the tes
                                 <include reference="KRa-8D-8KM"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="Voq-ve-kB4"/>
-                                <include reference="qSd-Ux-W0Q"/>
+                                <include reference="XaO-Cj-KUd"/>
                                 <include reference="KC4-hX-QCf"/>
                                 <include reference="VVA-D8-9Et"/>
                                 <include reference="XLp-Cu-XyC"/>
                                 <include reference="rW1-go-WLq"/>
-                                <include reference="XaO-Cj-KUd"/>
+                                <include reference="Voq-ve-kB4"/>
+                                <include reference="qSd-Ux-W0Q"/>
                             </mask>
                         </variation>
                     </view>
@@ -970,15 +995,17 @@ Please ensure that your arms are not resting on anything when performing the tes
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epG-u6-SrN">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">You will now be asked to demonstrate the range of rotation of your wrist while touching the screen.
+                                <mutableString key="text">You will now be asked to demonstrate the range of rotation of your wrist while touching the screen.
 
-For this demonstration you will first be asked which wrist is your dominant arm.
+For this demonstration you will first be asked which wrist is your dominant arm before you begin.
 
 When starting the range test please start with your palm facing downwards and your index finger outstretched.
 
 Then rotate as far as you can to the right then back to the left. Keep your finger pressed on the screen for the duration of the test.
 
-You will then be asked to swap to your other wrist and repeat the steps above.</string>
+You will then be asked to swap to your other wrist and repeat the steps above.
+
+Press 'Done' when ready to begin.</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -999,13 +1026,13 @@ You will then be asked to swap to your other wrist and repeat the steps above.</
                                 <exclude reference="epG-u6-SrN"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="6Ly-3m-VZ7"/>
                                 <exclude reference="d5k-c7-Qrv"/>
                                 <exclude reference="oMc-i3-qgF"/>
                                 <exclude reference="qFj-Fd-czj"/>
                                 <exclude reference="RMP-hL-WvF"/>
                                 <exclude reference="XHS-XP-7wH"/>
                                 <exclude reference="zCb-8E-jo6"/>
-                                <exclude reference="6Ly-3m-VZ7"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
@@ -1014,13 +1041,13 @@ You will then be asked to swap to your other wrist and repeat the steps above.</
                                 <include reference="epG-u6-SrN"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="6Ly-3m-VZ7"/>
                                 <include reference="d5k-c7-Qrv"/>
                                 <include reference="oMc-i3-qgF"/>
                                 <include reference="qFj-Fd-czj"/>
                                 <include reference="RMP-hL-WvF"/>
                                 <include reference="XHS-XP-7wH"/>
                                 <include reference="zCb-8E-jo6"/>
-                                <include reference="6Ly-3m-VZ7"/>
                             </mask>
                         </variation>
                     </view>
@@ -1056,15 +1083,17 @@ You will then be asked to swap to your other wrist and repeat the steps above.</
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJv-1E-nJM">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">You will now be asked to demonstrate the range of pitch of your wrist while touching the screen.
+                                <mutableString key="text">You will now be asked to demonstrate the range of pitch of your wrist while touching the screen.
 
-For this demonstration you will first be asked which wrist is your dominant arm.
+For this demonstration you will first be asked which wrist is your dominant arm before you begin.
 
 When starting the pitch test please start with your palm facing downwards and your index finger outstretched.
 
 Then pitch as far as you can upwards then back downwards as far as you can. Keep your finger pressed on the screen for the duration of the test.
 
-You will then be asked to swap to your other wrist and repeat the steps above.</string>
+You will then be asked to swap to your other wrist and repeat the steps above.
+
+Press 'Done' when ready to begin.</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -1085,13 +1114,13 @@ You will then be asked to swap to your other wrist and repeat the steps above.</
                                 <exclude reference="qJv-1E-nJM"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="1UM-Ml-Xcz"/>
                                 <exclude reference="3M9-SN-2oK"/>
                                 <exclude reference="ngm-HD-Cq8"/>
                                 <exclude reference="6en-RK-0Vp"/>
                                 <exclude reference="Dvl-de-XMe"/>
                                 <exclude reference="TkD-zW-gkB"/>
                                 <exclude reference="ao1-kM-L3r"/>
-                                <exclude reference="1UM-Ml-Xcz"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
@@ -1100,13 +1129,13 @@ You will then be asked to swap to your other wrist and repeat the steps above.</
                                 <include reference="qJv-1E-nJM"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="1UM-Ml-Xcz"/>
                                 <include reference="3M9-SN-2oK"/>
                                 <include reference="ngm-HD-Cq8"/>
                                 <include reference="6en-RK-0Vp"/>
                                 <include reference="Dvl-de-XMe"/>
                                 <include reference="TkD-zW-gkB"/>
                                 <include reference="ao1-kM-L3r"/>
-                                <include reference="1UM-Ml-Xcz"/>
                             </mask>
                         </variation>
                     </view>
@@ -1142,15 +1171,17 @@ You will then be asked to swap to your other wrist and repeat the steps above.</
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lWp-tK-uuT">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">You will now be asked to demonstrate the range of yaw of your wrist while touching the screen.
+                                <mutableString key="text">You will now be asked to demonstrate the range of yaw of your wrist while touching the screen.
 
-For this demonstration you will first be asked which wrist is your dominant arm.
+For this demonstration you will first be asked which wrist is your dominant arm before you begin.
 
 When starting the yaw test please start with your palm facing downwards and your index finger outstretched.
 
 Then move your wrist as far as you can to the right then back over to the left as far as you can. Keep your finger pressed on the screen for the duration of the test.
 
-You will then be asked to swap to your other wrist and repeat the steps above.</string>
+You will then be asked to swap to your other wrist and repeat the steps above.
+
+Press 'Done' when ready to begin.</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -1171,13 +1202,13 @@ You will then be asked to swap to your other wrist and repeat the steps above.</
                                 <exclude reference="lWp-tK-uuT"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="NHv-oI-XGp"/>
                                 <exclude reference="6ON-PD-WZe"/>
                                 <exclude reference="Xyx-OZ-0Yx"/>
                                 <exclude reference="es8-ZA-5rA"/>
                                 <exclude reference="4CV-2X-u5c"/>
                                 <exclude reference="FNu-IQ-UPj"/>
                                 <exclude reference="fWg-Bi-KDH"/>
-                                <exclude reference="NHv-oI-XGp"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
@@ -1186,13 +1217,13 @@ You will then be asked to swap to your other wrist and repeat the steps above.</
                                 <include reference="lWp-tK-uuT"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="NHv-oI-XGp"/>
                                 <include reference="6ON-PD-WZe"/>
                                 <include reference="Xyx-OZ-0Yx"/>
                                 <include reference="es8-ZA-5rA"/>
                                 <include reference="4CV-2X-u5c"/>
                                 <include reference="FNu-IQ-UPj"/>
                                 <include reference="fWg-Bi-KDH"/>
-                                <include reference="NHv-oI-XGp"/>
                             </mask>
                         </variation>
                     </view>
@@ -1220,9 +1251,6 @@ Then press and hold.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=compact-widthClass=regular" misplaced="YES">
-                                    <rect key="frame" x="145" y="138" width="510" height="124"/>
-                                </variation>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="gOq-qs-Hdv">
                                 <rect key="frame" x="-61" y="-14" width="123" height="29"/>
@@ -1247,45 +1275,72 @@ Then press and hold.</string>
                                     </mask>
                                 </variation>
                             </segmentedControl>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="hkw-FJ-BAo">
+                                <rect key="frame" x="-10" y="-10" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="2.7755575615628914e-17" translatesAutoresizingMaskIntoConstraints="NO" id="uhj-DP-nzL">
+                                <rect key="frame" x="0.0" y="-2" width="150" height="2"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="f0d-9V-jDl" firstAttribute="top" secondItem="gOq-qs-Hdv" secondAttribute="bottom" constant="8" symbolic="YES" id="4C7-sq-nYS"/>
                             <constraint firstAttribute="centerX" secondItem="f0d-9V-jDl" secondAttribute="centerX" id="4te-P0-pMo"/>
                             <constraint firstItem="gOq-qs-Hdv" firstAttribute="centerX" secondItem="f0d-9V-jDl" secondAttribute="centerX" id="7eQ-Ib-0em"/>
+                            <constraint firstItem="hkw-FJ-BAo" firstAttribute="centerX" secondItem="f0d-9V-jDl" secondAttribute="centerX" id="RF4-CO-A1R"/>
+                            <constraint firstItem="uhj-DP-nzL" firstAttribute="top" secondItem="xMo-ms-K7D" secondAttribute="bottom" constant="8" symbolic="YES" id="aV2-pU-fDU"/>
+                            <constraint firstItem="uhj-DP-nzL" firstAttribute="leading" secondItem="hk4-iw-ndX" secondAttribute="leadingMargin" id="bvq-YK-iPe"/>
+                            <constraint firstItem="hkw-FJ-BAo" firstAttribute="top" secondItem="f0d-9V-jDl" secondAttribute="bottom" constant="8" symbolic="YES" id="foI-Wb-umV"/>
                             <constraint firstItem="gOq-qs-Hdv" firstAttribute="top" secondItem="xMo-ms-K7D" secondAttribute="bottom" constant="38" id="gi8-VY-q95"/>
+                            <constraint firstItem="uhj-DP-nzL" firstAttribute="centerX" secondItem="gOq-qs-Hdv" secondAttribute="centerX" id="hpg-ex-fbU"/>
                             <constraint firstAttribute="centerY" secondItem="f0d-9V-jDl" secondAttribute="centerY" id="qm4-6b-d9f"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="f0d-9V-jDl"/>
                                 <exclude reference="gOq-qs-Hdv"/>
+                                <exclude reference="hkw-FJ-BAo"/>
+                                <exclude reference="uhj-DP-nzL"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="aV2-pU-fDU"/>
+                                <exclude reference="bvq-YK-iPe"/>
+                                <exclude reference="hpg-ex-fbU"/>
                                 <exclude reference="4C7-sq-nYS"/>
                                 <exclude reference="4te-P0-pMo"/>
                                 <exclude reference="qm4-6b-d9f"/>
                                 <exclude reference="7eQ-Ib-0em"/>
                                 <exclude reference="gi8-VY-q95"/>
+                                <exclude reference="RF4-CO-A1R"/>
+                                <exclude reference="foI-Wb-umV"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
                             <mask key="subviews">
                                 <include reference="f0d-9V-jDl"/>
                                 <include reference="gOq-qs-Hdv"/>
+                                <include reference="hkw-FJ-BAo"/>
+                                <include reference="uhj-DP-nzL"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="aV2-pU-fDU"/>
+                                <include reference="bvq-YK-iPe"/>
+                                <include reference="hpg-ex-fbU"/>
                                 <include reference="4C7-sq-nYS"/>
                                 <include reference="4te-P0-pMo"/>
                                 <include reference="qm4-6b-d9f"/>
                                 <include reference="7eQ-Ib-0em"/>
                                 <include reference="gi8-VY-q95"/>
+                                <include reference="RF4-CO-A1R"/>
+                                <include reference="foI-Wb-umV"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="dominantHand" destination="gOq-qs-Hdv" id="YwO-Ib-eM0"/>
                         <outlet property="instructionLbl" destination="f0d-9V-jDl" id="sdz-iU-iVI"/>
+                        <outlet property="progressBar" destination="uhj-DP-nzL" id="wZI-GT-4f1"/>
+                        <outlet property="progressWheel" destination="hkw-FJ-BAo" id="bCc-xQ-YI3"/>
                         <segue destination="VWd-8V-0Ba" kind="presentation" identifier="rotationRngInstructions" modalPresentationStyle="pageSheet" id="gAl-gl-czn"/>
                     </connections>
                 </viewController>
@@ -1312,9 +1367,6 @@ Then press and hold.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=compact-widthClass=regular" misplaced="YES">
-                                    <rect key="frame" x="145" y="138" width="510" height="124"/>
-                                </variation>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="zhX-oo-xDD">
                                 <rect key="frame" x="-61" y="-14" width="123" height="29"/>
@@ -1339,45 +1391,72 @@ Then press and hold.</string>
                                     </mask>
                                 </variation>
                             </segmentedControl>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2Mw-9R-d0k">
+                                <rect key="frame" x="-10" y="-10" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="2.7755575615628914e-17" translatesAutoresizingMaskIntoConstraints="NO" id="VRR-DD-cbk">
+                                <rect key="frame" x="0.0" y="-2" width="150" height="2"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="zhX-oo-xDD" firstAttribute="centerX" secondItem="v4s-NL-T4F" secondAttribute="centerX" id="854-Hw-BBU"/>
                             <constraint firstAttribute="centerY" secondItem="v4s-NL-T4F" secondAttribute="centerY" id="BWV-Z2-F3Y"/>
+                            <constraint firstItem="VRR-DD-cbk" firstAttribute="centerX" secondItem="zhX-oo-xDD" secondAttribute="centerX" id="Bqh-5x-MLs"/>
                             <constraint firstItem="v4s-NL-T4F" firstAttribute="top" secondItem="zhX-oo-xDD" secondAttribute="bottom" constant="8" symbolic="YES" id="Lc7-OQ-65m"/>
                             <constraint firstItem="zhX-oo-xDD" firstAttribute="top" secondItem="ufR-g8-IAv" secondAttribute="bottom" constant="38" id="Osl-B1-cyn"/>
+                            <constraint firstItem="VRR-DD-cbk" firstAttribute="top" secondItem="ufR-g8-IAv" secondAttribute="bottom" constant="8" symbolic="YES" id="ROv-ed-jJ7"/>
                             <constraint firstAttribute="centerX" secondItem="v4s-NL-T4F" secondAttribute="centerX" id="gXG-U6-O3b"/>
+                            <constraint firstItem="2Mw-9R-d0k" firstAttribute="centerX" secondItem="v4s-NL-T4F" secondAttribute="centerX" id="gpL-FN-YcN"/>
+                            <constraint firstItem="VRR-DD-cbk" firstAttribute="leading" secondItem="qMh-Ro-zrQ" secondAttribute="leadingMargin" id="oEN-A5-Dpo"/>
+                            <constraint firstItem="2Mw-9R-d0k" firstAttribute="top" secondItem="v4s-NL-T4F" secondAttribute="bottom" constant="8" symbolic="YES" id="yDu-w3-hJz"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="v4s-NL-T4F"/>
                                 <exclude reference="zhX-oo-xDD"/>
+                                <exclude reference="2Mw-9R-d0k"/>
+                                <exclude reference="VRR-DD-cbk"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="Bqh-5x-MLs"/>
+                                <exclude reference="ROv-ed-jJ7"/>
+                                <exclude reference="oEN-A5-Dpo"/>
                                 <exclude reference="BWV-Z2-F3Y"/>
                                 <exclude reference="Lc7-OQ-65m"/>
                                 <exclude reference="gXG-U6-O3b"/>
                                 <exclude reference="854-Hw-BBU"/>
                                 <exclude reference="Osl-B1-cyn"/>
+                                <exclude reference="gpL-FN-YcN"/>
+                                <exclude reference="yDu-w3-hJz"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
                             <mask key="subviews">
                                 <include reference="v4s-NL-T4F"/>
                                 <include reference="zhX-oo-xDD"/>
+                                <include reference="2Mw-9R-d0k"/>
+                                <include reference="VRR-DD-cbk"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="Bqh-5x-MLs"/>
+                                <include reference="ROv-ed-jJ7"/>
+                                <include reference="oEN-A5-Dpo"/>
                                 <include reference="BWV-Z2-F3Y"/>
                                 <include reference="Lc7-OQ-65m"/>
                                 <include reference="gXG-U6-O3b"/>
                                 <include reference="854-Hw-BBU"/>
                                 <include reference="Osl-B1-cyn"/>
+                                <include reference="gpL-FN-YcN"/>
+                                <include reference="yDu-w3-hJz"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="dominantHand" destination="zhX-oo-xDD" id="rzU-Uc-WaU"/>
                         <outlet property="instructionLbl" destination="v4s-NL-T4F" id="X4L-cu-7dj"/>
+                        <outlet property="progressBar" destination="VRR-DD-cbk" id="PB1-fH-nz0"/>
+                        <outlet property="progressWheel" destination="2Mw-9R-d0k" id="pOy-iY-zlW"/>
                         <segue destination="tPg-rX-0XX" kind="presentation" identifier="pitchRngInstructions" modalPresentationStyle="pageSheet" id="jZD-Eg-lMW"/>
                     </connections>
                 </viewController>
@@ -1404,9 +1483,6 @@ Then press and hold.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=compact-widthClass=regular" misplaced="YES">
-                                    <rect key="frame" x="145" y="138" width="510" height="124"/>
-                                </variation>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="Vrb-Jt-jKx">
                                 <rect key="frame" x="-61" y="-14" width="123" height="29"/>
@@ -1431,45 +1507,72 @@ Then press and hold.</string>
                                     </mask>
                                 </variation>
                             </segmentedControl>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="sns-Ze-v6i">
+                                <rect key="frame" x="-10" y="-10" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="2.7755575615628914e-17" translatesAutoresizingMaskIntoConstraints="NO" id="Wig-rV-uVb">
+                                <rect key="frame" x="0.0" y="-2" width="150" height="2"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="0e8-bo-cE8" secondAttribute="centerY" id="0mM-4x-2LH"/>
+                            <constraint firstItem="Wig-rV-uVb" firstAttribute="centerX" secondItem="Vrb-Jt-jKx" secondAttribute="centerX" id="4vq-mg-hqs"/>
                             <constraint firstAttribute="centerX" secondItem="0e8-bo-cE8" secondAttribute="centerX" id="5Pg-gs-q5o"/>
                             <constraint firstItem="Vrb-Jt-jKx" firstAttribute="top" secondItem="4q5-SV-kFc" secondAttribute="bottom" constant="38" id="ATJ-95-AWt"/>
                             <constraint firstItem="0e8-bo-cE8" firstAttribute="top" secondItem="Vrb-Jt-jKx" secondAttribute="bottom" constant="8" symbolic="YES" id="I6m-GP-psj"/>
+                            <constraint firstItem="sns-Ze-v6i" firstAttribute="centerX" secondItem="0e8-bo-cE8" secondAttribute="centerX" id="S1v-EY-mGz"/>
                             <constraint firstItem="Vrb-Jt-jKx" firstAttribute="centerX" secondItem="0e8-bo-cE8" secondAttribute="centerX" id="afx-AV-A5d"/>
+                            <constraint firstItem="Wig-rV-uVb" firstAttribute="leading" secondItem="C8S-g2-OZS" secondAttribute="leadingMargin" id="u8O-FX-fkb"/>
+                            <constraint firstItem="Wig-rV-uVb" firstAttribute="top" secondItem="4q5-SV-kFc" secondAttribute="bottom" constant="8" symbolic="YES" id="yNn-dd-1VN"/>
+                            <constraint firstItem="sns-Ze-v6i" firstAttribute="top" secondItem="0e8-bo-cE8" secondAttribute="bottom" constant="8" symbolic="YES" id="ytT-1v-sMp"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="0e8-bo-cE8"/>
                                 <exclude reference="Vrb-Jt-jKx"/>
+                                <exclude reference="sns-Ze-v6i"/>
+                                <exclude reference="Wig-rV-uVb"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="4vq-mg-hqs"/>
+                                <exclude reference="u8O-FX-fkb"/>
+                                <exclude reference="yNn-dd-1VN"/>
                                 <exclude reference="0mM-4x-2LH"/>
                                 <exclude reference="5Pg-gs-q5o"/>
                                 <exclude reference="I6m-GP-psj"/>
                                 <exclude reference="ATJ-95-AWt"/>
                                 <exclude reference="afx-AV-A5d"/>
+                                <exclude reference="S1v-EY-mGz"/>
+                                <exclude reference="ytT-1v-sMp"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
                             <mask key="subviews">
                                 <include reference="0e8-bo-cE8"/>
                                 <include reference="Vrb-Jt-jKx"/>
+                                <include reference="sns-Ze-v6i"/>
+                                <include reference="Wig-rV-uVb"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="4vq-mg-hqs"/>
+                                <include reference="u8O-FX-fkb"/>
+                                <include reference="yNn-dd-1VN"/>
                                 <include reference="0mM-4x-2LH"/>
                                 <include reference="5Pg-gs-q5o"/>
                                 <include reference="I6m-GP-psj"/>
                                 <include reference="ATJ-95-AWt"/>
                                 <include reference="afx-AV-A5d"/>
+                                <include reference="S1v-EY-mGz"/>
+                                <include reference="ytT-1v-sMp"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="dominantHand" destination="Vrb-Jt-jKx" id="IgU-h5-6Bc"/>
                         <outlet property="instructionLbl" destination="0e8-bo-cE8" id="Ct8-xc-B6H"/>
+                        <outlet property="progressBar" destination="Wig-rV-uVb" id="cy4-3s-Jkd"/>
+                        <outlet property="progressWheel" destination="sns-Ze-v6i" id="rHu-Zg-VPm"/>
                         <segue destination="h1f-xH-Sx9" kind="presentation" identifier="yawRngInstructions" modalPresentationStyle="pageSheet" id="Y2b-lY-0gV"/>
                     </connections>
                 </viewController>
