@@ -28,7 +28,7 @@ class TimeRotateEvalVC: UIViewController {
     required init(coder aDecoder: NSCoder) {
         detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
         evalCount = 0
-        csvBuilder = CSVBuilder(fileNames: ["timeRotate.csv","timeRotateData.csv"], headerLines: ["Time,Angle to Rotate,Placeholder Angle,Image Angle", "Time,ax,ay,az,gx,gy,gz,mx,my,mz,gravx,gravy,gravz,yaw,pitch,roll,Touch,Touch Force"])
+        csvBuilder = CSVBuilder(fileNames: ["timeRotate.csv","timeRotateData.csv"], headerLines: ["Start Time,Complete Time,Time to Complete,Angle to Rotate,Placeholder Angle,Image Angle", "Time,ax,ay,az,gx,gy,gz,mx,my,mz,gravx,gravy,gravz,yaw,pitch,roll,Touch,Touch Force"])
         started = false
         super.init(coder: aDecoder)
         detector.startDetection()
@@ -75,9 +75,10 @@ class TimeRotateEvalVC: UIViewController {
         if (fabs(placeholderDegrees - imageDegrees) < 2) {
             AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
             
-            let time = NSDate.timeIntervalSinceReferenceDate() - rotationStartTime
+            let endTime = NSDate.timeIntervalSinceReferenceDate()
+            let timeToComplete = endTime - rotationStartTime
             
-            csvBuilder.appendRow("\(time),\(angleDifference),\(placeholderDegrees),\(imageDegrees)", index: 0)
+            csvBuilder.appendRow("\(rotationStartTime),\(endTime),\(timeToComplete),\(angleDifference),\(placeholderDegrees),\(imageDegrees)", index: 0)
             
             if (evalCount < 10) {
                 randomiseImages()

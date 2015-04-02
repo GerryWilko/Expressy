@@ -11,7 +11,7 @@ import Foundation
 class WaxData {
     let time:NSTimeInterval, acc:Vector3D, gyro:Vector3D, mag:Vector3D, q:Vector4D, grav:Vector3D
     
-    var touch:Bool, touchForce:Float
+    var touch:TouchEvent, touchForce:Float
     
     init(time:NSTimeInterval, ax:Float, ay:Float, az:Float, gx:Float, gy:Float, gz:Float, mx:Float, my:Float, mz:Float, qx:Float, qy:Float, qz:Float, qw:Float) {
         self.time = time
@@ -25,7 +25,7 @@ class WaxData {
         let gravz = q.x * q.x - q.y * q.y - q.z * q.z + q.w * q.w
         grav = Vector3D(x: gravx, y: gravy, z: gravz)
         
-        touch = false
+        touch = TouchEvent.None
         touchForce = 0.0
     }
     
@@ -33,9 +33,13 @@ class WaxData {
         return Vector3D(x: acc.x - grav.x, y: acc.y - grav.y, z: acc.z - grav.z)
     }
     
-    func touched(touchForce:Float) {
-        touch = true
+    func touchDown(touchForce:Float) {
+        touch = TouchEvent.Down
         self.touchForce = touchForce
+    }
+    
+    func touchUp() {
+        touch = TouchEvent.Up
     }
     
     func getYawPitchRoll() -> (yaw:Float, pitch:Float, roll:Float) {
@@ -52,6 +56,21 @@ class WaxData {
     func print() -> String {
         let ypr = getYawPitchRoll()
         
-        return "\(time),\(acc.x),\(acc.y),\(acc.z),\(gyro.x),\(gyro.y),\(gyro.z),\(mag.x),\(mag.y),\(mag.z),\(grav.x),\(grav.y),\(grav.z),\(ypr.yaw),\(ypr.pitch),\(ypr.roll),\(touch),\(touchForce)"
+        return "\(time),\(acc.x),\(acc.y),\(acc.z),\(gyro.x),\(gyro.y),\(gyro.z),\(mag.x),\(mag.y),\(mag.z),\(grav.x),\(grav.y),\(grav.z),\(ypr.yaw),\(ypr.pitch),\(ypr.roll),\(printTouch()),\(touchForce)"
     }
+    
+    func printTouch() -> String {
+        switch touch {
+        case .Down:
+            return "Down"
+        case .Up:
+            return "Up"
+        default:
+            return "None"
+        }
+    }
+}
+
+enum TouchEvent {
+    case Down, Up, None
 }

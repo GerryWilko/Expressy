@@ -41,22 +41,20 @@ class CSVBuilder: NSObject, MFMailComposeViewControllerDelegate {
                 dataPaths.append(datapath)
             }
             
-            var myMail:MFMailComposeViewController!
-            
             if(MFMailComposeViewController.canSendMail()){
                 
-                myMail = MFMailComposeViewController()
-                myMail.mailComposeDelegate = self
+                let mail = MFMailComposeViewController()
+                mail.mailComposeDelegate = self
                 
-                myMail.setSubject(subject)
+                mail.setSubject(subject)
                 
                 for index in 0..<dataPaths.count {
                     var data: NSData = NSData(contentsOfFile: dataPaths[index])!
                     
-                    myMail.addAttachmentData(data, mimeType: "text/csv", fileName: fileNames[index])
+                    mail.addAttachmentData(data, mimeType: "text/csv", fileName: fileNames[index])
                 }
                 
-                viewController.presentViewController(myMail, animated: true, completion: nil)
+                viewController.presentViewController(mail, animated: true, completion: nil)
             }
             else {
                 var alert = UIAlertController(title: "Error exporting CSV", message: "Your device cannot send emails.", preferredStyle: UIAlertControllerStyle.Alert)

@@ -13,7 +13,6 @@
 		CB4F229A1AC457B4006EFF18 /* YawRngEvalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4F22991AC457B4006EFF18 /* YawRngEvalVC.swift */; };
 		CB4F229C1AC45F77006EFF18 /* EvalInstructionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4F229B1AC45F76006EFF18 /* EvalInstructionsVC.swift */; };
 		CB4F22A01AC563A6006EFF18 /* CSVBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4F229F1AC563A5006EFF18 /* CSVBuilder.swift */; };
-		CB6321141AB9E4C00080FD68 /* ETMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6321131AB9E4C00080FD68 /* ETMapView.swift */; };
 		CB7338771A822CA600FA1121 /* AccGraphVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338601A822CA600FA1121 /* AccGraphVC.swift */; };
 		CB7338781A822CA600FA1121 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338611A822CA600FA1121 /* AppDelegate.swift */; };
 		CB7338791A822CA600FA1121 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB7338621A822CA600FA1121 /* LaunchScreen.xib */; };
@@ -69,7 +68,6 @@
 		CB4F22991AC457B4006EFF18 /* YawRngEvalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YawRngEvalVC.swift; sourceTree = "<group>"; };
 		CB4F229B1AC45F76006EFF18 /* EvalInstructionsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvalInstructionsVC.swift; sourceTree = "<group>"; };
 		CB4F229F1AC563A5006EFF18 /* CSVBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVBuilder.swift; sourceTree = "<group>"; };
-		CB6321131AB9E4C00080FD68 /* ETMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETMapView.swift; sourceTree = "<group>"; };
 		CB7338601A822CA600FA1121 /* AccGraphVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccGraphVC.swift; sourceTree = "<group>"; };
 		CB7338611A822CA600FA1121 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB7338631A822CA600FA1121 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -224,7 +222,6 @@
 				CB983BD41A949A9F0042F946 /* InteractionView.swift */,
 				CB82A4291AB1CAA40032F5D6 /* InteractionDetector.swift */,
 				CB82A42B1AB1CAD00032F5D6 /* HandModel.swift */,
-				CB6321131AB9E4C00080FD68 /* ETMapView.swift */,
 				CBF0EE891AC9A0C500D689E2 /* MapGestureRecognizer.swift */,
 			);
 			name = "Expressive Touch";
@@ -422,7 +419,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB4F22941AC4569F006EFF18 /* TapEvalVC.swift in Sources */,
-				CB6321141AB9E4C00080FD68 /* ETMapView.swift in Sources */,
 				CB983BD51A949A9F0042F946 /* InteractionView.swift in Sources */,
 				CB4F22A01AC563A6006EFF18 /* CSVBuilder.swift in Sources */,
 				CB7338891A822CA600FA1121 /* WaxProcessor.swift in Sources */,

@@ -10,45 +10,43 @@ import Foundation
 import MapKit
 
 class MapGestureRecognizer: UIGestureRecognizer {
-    var map:ETMapView!
-    private var lastPitch:Float!
-    private var lastRoll:Float!
+    var map:MKMapView!
+    private var touchPitch:CGFloat!
+    private var touchHeading:CLLocationDirection!
+    private var touch:Bool = false
     
     private let pitchBound:CGFloat = 50.0
     
     func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        let data = WaxProcessor.getProcessor().dataCache.getForTime(NSDate.timeIntervalSinceReferenceDate()).getYawPitchRoll()
-        lastPitch = rad2deg(data.pitch)
-        lastRoll = rad2deg(data.roll)
-        
+        MadgwickAHRSreset()
+        touchPitch = map.camera.pitch
+        touchHeading = map.camera.heading
         WaxProcessor.getProcessor().dataCache.subscribe(dataCallback)
+        touch = true
     }
     
     func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         WaxProcessor.getProcessor().dataCache.clearSubscriptions()
+        touch = false
     }
     
     func dataCallback(data:WaxData) {
-        let ypr = data.getYawPitchRoll()
-        let pitch = rad2deg(ypr.pitch)
-        let roll = rad2deg(ypr.roll)
-        let pitchChange = CGFloat(pitch - lastPitch)
-        let rollChange = CLLocationDirection(roll - lastRoll)
+        if (touch) {
+            let ypr = data.getYawPitchRoll()
+            let pitch = rad2deg(ypr.pitch)
+            let roll = rad2deg(ypr.roll)
+            var newPitch = touchPitch + CGFloat(pitch)
+            var newRoll = touchHeading + CLLocationDirection(roll)
+            
+            if (newPitch < 0) {
+                newPitch = 0
+            } else if (newPitch > pitchBound) {
+                newPitch = pitchBound
+            }
         
-        var newPitch = map.camera.pitch + pitchChange
-        var newRoll = map.camera.heading + rollChange
-        
-        if (newPitch < 0) {
-            newPitch = 0
-        } else if (newPitch > pitchBound) {
-            newPitch = pitchBound
+            map.camera.pitch = newPitch
+            map.camera.heading = newRoll
         }
-        
-        map.camera.pitch = newPitch
-        map.camera.heading = newRoll
-        
-        lastPitch = pitch
-        lastRoll = roll
     }
     
     private func rad2deg(radians:Float) -> Float {

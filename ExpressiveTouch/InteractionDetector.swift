@@ -70,7 +70,7 @@ class InteractionDetector {
         
         let touchForce = calculateTouchForce(touchDownTime)
         let data = dataCache.getForTime(touchDownTime)
-        data.touched(touchForce)
+        data.touchDown(touchForce)
         
         if (touchForce > hardForceThreshold) {
             fireHardPress()
@@ -84,6 +84,9 @@ class InteractionDetector {
     func touchUp(touchUpTime:NSTimeInterval) {
         touchDown = false
         currentRotation = 0.0
+        
+        let data = dataCache.getForTime(touchUpTime)
+        data.touchUp()
         
         NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("touchEndCallback:"), userInfo: touchUpTime, repeats: true)
     }
