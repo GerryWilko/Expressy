@@ -14,6 +14,7 @@ class RotationRngEvalVC: UIViewController {
     private var minValue:Float
     private var recording:Bool
     
+    private let detector:InteractionDetector
     private let csvBuilder:CSVBuilder
     
     @IBOutlet weak var dominantHand: UISegmentedControl!
@@ -69,7 +70,8 @@ class RotationRngEvalVC: UIViewController {
         minValue = 0.0
         recording = false
         
-        csvBuilder = CSVBuilder(fileNames: ["rotationRange.csv","rotationData.csv"], headerLines: ["Dominant Hand,Wrist,Max Angle,Min Angle", "Time,ax,ay,az,gx,gy,gz,mx,my,mz,gravx,gravy,gravz,yaw,pitch,roll"])
+        detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
+        csvBuilder = CSVBuilder(fileNames: ["rotationRange.csv","rotationData.csv"], headerLines: ["Dominant Hand,Wrist,Max Angle,Min Angle", "Time,ax,ay,az,gx,gy,gz,mx,my,mz,gravx,gravy,gravz,yaw,pitch,roll,Touch,Touch Force"])
         super.init(coder: aDecoder)
     }
     
@@ -79,6 +81,8 @@ class RotationRngEvalVC: UIViewController {
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
+        
         if (!messageStack.isEmpty && dominantHand.selectedSegmentIndex != UISegmentedControlNoSegment) {
             MadgwickAHRSreset()
             progressWheel.startAnimating()
@@ -128,6 +132,13 @@ class RotationRngEvalVC: UIViewController {
                 WaxProcessor.getProcessor().dataCache.clearSubscriptions()
                 csvBuilder.emailCSV(self, subject: "Rotation Range Evaluation")
             }
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "rotationRngInstructions" {
+            let destVC = segue.destinationViewController as! EvalInstructionsVC
+            destVC.videoPath = "Rotation Range Demo"
         }
     }
 }

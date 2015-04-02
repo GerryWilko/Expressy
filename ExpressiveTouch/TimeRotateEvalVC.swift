@@ -27,7 +27,7 @@ class TimeRotateEvalVC: UIViewController {
     required init(coder aDecoder: NSCoder) {
         detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
         evalCount = 0
-        csvBuilder = CSVBuilder(fileNames: ["timeRotate.csv","timeRotateData.csv"], headerLines: ["Time,Angle to Rotate,Placeholder Angle,Image Angle", "Time,ax,ay,az,gx,gy,gz,mx,my,mz,gravx,gravy,gravz,yaw,pitch,roll"])
+        csvBuilder = CSVBuilder(fileNames: ["timeRotate.csv","timeRotateData.csv"], headerLines: ["Time,Angle to Rotate,Placeholder Angle,Image Angle", "Time,ax,ay,az,gx,gy,gz,mx,my,mz,gravx,gravy,gravz,yaw,pitch,roll,Touch,Touch Force"])
         started = false
         super.init(coder: aDecoder)
         detector.startDetection()
@@ -98,5 +98,12 @@ class TimeRotateEvalVC: UIViewController {
         }
         
         lastTransform = rotateImage.transform
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "timeRotateInstructions" {
+            let destVC = segue.destinationViewController as! EvalInstructionsVC
+            destVC.videoPath = "Time to Rotate Demo"
+        }
     }
 }

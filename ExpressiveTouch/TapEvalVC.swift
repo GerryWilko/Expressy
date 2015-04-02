@@ -22,7 +22,7 @@ class TapEvalVC: UIViewController {
     required init(coder aDecoder: NSCoder) {
         detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
         detector.startDetection()
-        csv = CSVBuilder(fileNames: ["tapForce.csv","tapData.csv"], headerLines: ["Requested Force,Tap Force", "Time,ax,ay,az,gx,gy,gz,mx,my,mz,gravx,gravy,gravz,yaw,pitch,roll"])
+        csv = CSVBuilder(fileNames: ["tapForce.csv","tapData.csv"], headerLines: ["Time,Requested Force,Tap Force", "Time,ax,ay,az,gx,gy,gz,mx,my,mz,gravx,gravy,gravz,yaw,pitch,roll,Touch,Touch Force"])
         current = ForceCategory.Soft
         super.init(coder: aDecoder)
         runStack = buildRunStack()
@@ -60,18 +60,19 @@ class TapEvalVC: UIViewController {
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         
         let tapForce = detector.calculateTouchForce(NSDate.timeIntervalSinceReferenceDate())
+        let time = NSDate.timeIntervalSinceReferenceDate()
         
         progressBar.setProgress(Float(Float(30 - runStack.count) / 30.0), animated: true)
         
         switch (current) {
         case .Soft:
-            csv.appendRow("Soft,\(tapForce)", index: 0)
+            csv.appendRow("\(time),Soft,\(tapForce)", index: 0)
             break
         case .Medium:
-            csv.appendRow("Medium,\(tapForce)", index: 0)
+            csv.appendRow("\(time),Medium,\(tapForce)", index: 0)
             break
         case .Hard:
-            csv.appendRow("Hard,\(tapForce)", index: 0)
+            csv.appendRow("\(time),Hard,\(tapForce)", index: 0)
             break
         default:
             instructionLbl.text = "Something went wrong. Try again."
@@ -112,6 +113,13 @@ class TapEvalVC: UIViewController {
     
     func dataCallback(data:WaxData) {
         csv.appendRow(data.print(), index: 1)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "tapForceInstructions" {
+            let destVC = segue.destinationViewController as! EvalInstructionsVC
+            destVC.videoPath = "Tap Force Demo"
+        }
     }
 }
 

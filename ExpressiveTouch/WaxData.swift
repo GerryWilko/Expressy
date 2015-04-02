@@ -52,6 +52,6 @@ class WaxData {
     func print() -> String {
         let ypr = getYawPitchRoll()
         
-        return "\(time),\(acc.x),\(acc.y),\(acc.z),\(gyro.x),\(gyro.y),\(gyro.z),\(mag.x),\(mag.y),\(mag.z),\(grav.x),\(grav.y),\(grav.z),\(ypr.yaw),\(ypr.pitch),\(ypr.roll)"
+        return "\(time),\(acc.x),\(acc.y),\(acc.z),\(gyro.x),\(gyro.y),\(gyro.z),\(mag.x),\(mag.y),\(mag.z),\(grav.x),\(grav.y),\(grav.z),\(ypr.yaw),\(ypr.pitch),\(ypr.roll),\(touch),\(touchForce)"
     }
 }

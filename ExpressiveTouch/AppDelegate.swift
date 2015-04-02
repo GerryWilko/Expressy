@@ -18,8 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let processor = WaxProcessor()
         let conMan = WaxConnectionManager(dataProcessor: processor)
         
-        //AhrsInit(, 0, 100, 0.1f)
-        
         return true
     }
 
