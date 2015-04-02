@@ -13,6 +13,7 @@ class RotationRngEvalVC: UIViewController {
     private var maxValue:Float
     private var minValue:Float
     private var recording:Bool
+    private var startTime:NSTimeInterval!
     
     private let detector:InteractionDetector
     private let csvBuilder:CSVBuilder
@@ -73,11 +74,17 @@ class RotationRngEvalVC: UIViewController {
         detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
         csvBuilder = CSVBuilder(fileNames: ["rotationRange.csv","rotationData.csv"], headerLines: ["Dominant Hand,Wrist,Max Angle,Min Angle", "Time,ax,ay,az,gx,gy,gz,mx,my,mz,gravx,gravy,gravz,yaw,pitch,roll,Touch,Touch Force"])
         super.init(coder: aDecoder)
+        detector.startDetection()
     }
     
     override func viewDidLoad() {
         self.performSegueWithIdentifier("rotationRngInstructions", sender: self)
         WaxProcessor.getProcessor().dataCache.subscribe(dataCallback)
+        startTime = NSDate.timeIntervalSinceReferenceDate()
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        detector.stopDetection()
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -103,11 +110,11 @@ class RotationRngEvalVC: UIViewController {
                 self.minValue = data.getYawPitchRoll().roll
             }
         }
-        
-        csvBuilder.appendRow(data.print(), index: 1)
     }
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+        detector.touchUp(NSDate.timeIntervalSinceReferenceDate())
+        
         if (!messageStack.isEmpty && dominantHand.selectedSegmentIndex != UISegmentedControlNoSegment) {
             progressWheel.stopAnimating()
             recording = false
@@ -130,6 +137,7 @@ class RotationRngEvalVC: UIViewController {
             
             if (messageStack.isEmpty) {
                 WaxProcessor.getProcessor().dataCache.clearSubscriptions()
+                EvalUtils.logDataBetweenTimes(startTime, endTime: NSDate.timeIntervalSinceReferenceDate(), csv: csvBuilder)
                 csvBuilder.emailCSV(self, subject: "Rotation Range Evaluation")
             }
         }

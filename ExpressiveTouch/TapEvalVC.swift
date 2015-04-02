@@ -10,6 +10,7 @@ import Foundation
 import AudioToolbox
 
 class TapEvalVC: UIViewController {
+    private var startTime:NSTimeInterval!
     private var runStack:[ForceCategory]!
     private var current:ForceCategory
     
@@ -21,17 +22,20 @@ class TapEvalVC: UIViewController {
     
     required init(coder aDecoder: NSCoder) {
         detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
-        detector.startDetection()
         csv = CSVBuilder(fileNames: ["tapForce.csv","tapData.csv"], headerLines: ["Time,Requested Force,Tap Force", "Time,ax,ay,az,gx,gy,gz,mx,my,mz,gravx,gravy,gravz,yaw,pitch,roll,Touch,Touch Force"])
         current = ForceCategory.Soft
         super.init(coder: aDecoder)
+        detector.startDetection()
         runStack = buildRunStack()
     }
     
     override func viewDidLoad() {
         self.performSegueWithIdentifier("tapForceInstructions", sender: self)
-        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: Selector("tappedView")))
-        WaxProcessor.getProcessor().dataCache.subscribe(dataCallback)
+        startTime = NSDate.timeIntervalSinceReferenceDate()
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        detector.stopDetection()
     }
     
     func buildRunStack() -> [ForceCategory] {
@@ -56,9 +60,10 @@ class TapEvalVC: UIViewController {
         return runStack
     }
     
-    func tappedView() {
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         
+        detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
         let tapForce = detector.calculateTouchForce(NSDate.timeIntervalSinceReferenceDate())
         let time = NSDate.timeIntervalSinceReferenceDate()
         
@@ -85,6 +90,7 @@ class TapEvalVC: UIViewController {
             progressBar.setProgress(1.0, animated: true)
             instructionLbl.text = "Evaluation Complete. Thank you."
             instructionLbl.textColor = UIColor.blackColor()
+            EvalUtils.logDataBetweenTimes(startTime, endTime: time, csv: csv)
             csv.emailCSV(self, subject: "Tap Force Evaluation")
         } else {
             current = runStack[0]
@@ -111,8 +117,8 @@ class TapEvalVC: UIViewController {
         }
     }
     
-    func dataCallback(data:WaxData) {
-        csv.appendRow(data.print(), index: 1)
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+        detector.touchUp(NSDate.timeIntervalSinceReferenceDate())
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

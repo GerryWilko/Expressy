@@ -14,6 +14,7 @@ class TimeRotateEvalVC: UIViewController {
     private var evalCount:Int
     private var started:Bool
     private var startTime:NSTimeInterval!
+    private var rotationStartTime:NSTimeInterval!
     private var angleDifference:Float!
     
     private let detector:InteractionDetector
@@ -37,7 +38,7 @@ class TimeRotateEvalVC: UIViewController {
         self.performSegueWithIdentifier("timeRotateInstructions", sender: self)
         randomiseImages()
         lastTransform = rotateImage.transform
-        WaxProcessor.getProcessor().dataCache.subscribe(dataCallback)
+        startTime = NSDate.timeIntervalSinceReferenceDate()
     }
     
     func randomiseImages() {
@@ -54,7 +55,7 @@ class TimeRotateEvalVC: UIViewController {
         if (touch.view == rotateImage) {
             if (!started) {
                 started = true
-                startTime = NSDate.timeIntervalSinceReferenceDate()
+                rotationStartTime = NSDate.timeIntervalSinceReferenceDate()
             }
             
             detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
@@ -62,10 +63,6 @@ class TimeRotateEvalVC: UIViewController {
                 self.rotateImage.transform = CGAffineTransformRotate(self.lastTransform, CGFloat(self.detector.currentRotation) * CGFloat(M_PI / 180))
             })
         }
-    }
-    
-    func dataCallback(data:WaxData) {
-        csvBuilder.appendRow(data.print(), index: 1)
     }
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -78,7 +75,7 @@ class TimeRotateEvalVC: UIViewController {
         if (fabs(placeholderDegrees - imageDegrees) < 2) {
             AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
             
-            let time = NSDate.timeIntervalSinceReferenceDate() - startTime
+            let time = NSDate.timeIntervalSinceReferenceDate() - rotationStartTime
             
             csvBuilder.appendRow("\(time),\(angleDifference),\(placeholderDegrees),\(imageDegrees)", index: 0)
             
@@ -91,6 +88,7 @@ class TimeRotateEvalVC: UIViewController {
                 placeholderImage.hidden = true
                 rotateImage.hidden = true
                 instructionLbl.hidden = false
+                EvalUtils.logDataBetweenTimes(startTime, endTime: NSDate.timeIntervalSinceReferenceDate(), csv: csvBuilder)
                 csvBuilder.emailCSV(self, subject: "Time to Rotate Evaluation")
             }
             
