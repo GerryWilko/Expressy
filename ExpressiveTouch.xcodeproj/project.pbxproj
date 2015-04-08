@@ -43,7 +43,7 @@
 		CBD91AE01AB9A2BE00A9ABBE /* PlaneModelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD91ADF1AB9A2BE00A9ABBE /* PlaneModelVC.swift */; };
 		CBE6BE271ABF12D00099A5C3 /* ControlsDemoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE6BE261ABF12D00099A5C3 /* ControlsDemoVC.swift */; };
 		CBF0EE881AC95A7400D689E2 /* TimeRotateEvalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF0EE871AC95A7400D689E2 /* TimeRotateEvalVC.swift */; };
-		CBF0EE8A1AC9A0C500D689E2 /* MapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF0EE891AC9A0C500D689E2 /* MapGestureRecognizer.swift */; };
+		CBF0EE8A1AC9A0C500D689E2 /* ETMapGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF0EE891AC9A0C500D689E2 /* ETMapGestureView.swift */; };
 		D51750A619E9831C0076F6FA /* ExpressiveTouchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51750A519E9831C0076F6FA /* ExpressiveTouchTests.swift */; };
 		FF8DCC742FC3997524C3C492 /* libPods-ExpressiveTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA315116ED542A1FC9DE226 /* libPods-ExpressiveTouch.a */; };
 /* End PBXBuildFile section */
@@ -101,7 +101,7 @@
 		CBD91ADF1AB9A2BE00A9ABBE /* PlaneModelVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaneModelVC.swift; sourceTree = "<group>"; };
 		CBE6BE261ABF12D00099A5C3 /* ControlsDemoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlsDemoVC.swift; sourceTree = "<group>"; };
 		CBF0EE871AC95A7400D689E2 /* TimeRotateEvalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRotateEvalVC.swift; sourceTree = "<group>"; };
-		CBF0EE891AC9A0C500D689E2 /* MapGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapGestureRecognizer.swift; sourceTree = "<group>"; };
+		CBF0EE891AC9A0C500D689E2 /* ETMapGestureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETMapGestureView.swift; sourceTree = "<group>"; };
 		D517508A19E9831C0076F6FA /* Exp Touch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Exp Touch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D517509F19E9831C0076F6FA /* ExpressiveTouchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpressiveTouchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D51750A419E9831C0076F6FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -222,7 +222,7 @@
 				CB983BD41A949A9F0042F946 /* InteractionView.swift */,
 				CB82A4291AB1CAA40032F5D6 /* InteractionDetector.swift */,
 				CB82A42B1AB1CAD00032F5D6 /* HandModel.swift */,
-				CBF0EE891AC9A0C500D689E2 /* MapGestureRecognizer.swift */,
+				CBF0EE891AC9A0C500D689E2 /* ETMapGestureView.swift */,
 			);
 			name = "Expressive Touch";
 			sourceTree = "<group>";
@@ -436,7 +436,7 @@
 				CB73388A1A822CA600FA1121 /* WAXScanVC.swift in Sources */,
 				CB7D5CEF1AC3198E0068BC67 /* MapDemoVC.swift in Sources */,
 				CB9798351AA715BC00124A9D /* Vector.swift in Sources */,
-				CBF0EE8A1AC9A0C500D689E2 /* MapGestureRecognizer.swift in Sources */,
+				CBF0EE8A1AC9A0C500D689E2 /* ETMapGestureView.swift in Sources */,
 				CB82A42C1AB1CAD00032F5D6 /* HandModel.swift in Sources */,
 				CB4F229A1AC457B4006EFF18 /* YawRngEvalVC.swift in Sources */,
 				CB73387E1A822CA600FA1121 /* GraphBuilder.swift in Sources */,

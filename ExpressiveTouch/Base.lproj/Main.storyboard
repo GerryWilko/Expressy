@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7525" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EZQ-rH-WHv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7528.3" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EZQ-rH-WHv">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7516"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7518.3"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Gyroscope" id="N7h-rr-JdV"/>
+                    <tabBarItem key="tabBarItem" title="Gyroscope" selectedImage="GyroIcon" id="N7h-rr-JdV"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dmA-2C-9oD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -38,7 +38,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Magnetometer" id="R0U-oT-PKV"/>
+                    <tabBarItem key="tabBarItem" title="Magnetometer" selectedImage="MagIcon" id="R0U-oT-PKV"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I6d-CL-edB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -140,7 +140,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Accelerometer" id="Azl-h0-2Rf"/>
+                    <tabBarItem key="tabBarItem" title="Accelerometer" selectedImage="AccIcon" id="Azl-h0-2Rf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JsI-IO-8Cl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -599,33 +599,33 @@
                                         <exclude reference="fNo-DK-xel"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <exclude reference="agY-vx-MaH"/>
-                                        <exclude reference="ec1-IT-rhr"/>
-                                        <exclude reference="pFd-fQ-ElU"/>
+                                        <exclude reference="1RA-k3-0dw"/>
+                                        <exclude reference="65G-Fw-QQy"/>
+                                        <exclude reference="oaG-ey-5pr"/>
+                                        <exclude reference="Uqs-S3-4G7"/>
+                                        <exclude reference="iGB-Zl-jgE"/>
                                         <exclude reference="61D-hj-glO"/>
                                         <exclude reference="CsE-8v-2r9"/>
                                         <exclude reference="XdD-tK-F38"/>
                                         <exclude reference="mC0-SS-aTG"/>
+                                        <exclude reference="mfi-T9-C6G"/>
+                                        <exclude reference="OV5-o4-zUE"/>
                                         <exclude reference="HER-tp-aEN"/>
                                         <exclude reference="JS5-bD-28E"/>
                                         <exclude reference="P5h-Ek-Vd2"/>
                                         <exclude reference="csD-Rl-Wb2"/>
                                         <exclude reference="jXB-HC-q42"/>
-                                        <exclude reference="1RA-k3-0dw"/>
-                                        <exclude reference="65G-Fw-QQy"/>
-                                        <exclude reference="oaG-ey-5pr"/>
-                                        <exclude reference="mfi-T9-C6G"/>
-                                        <exclude reference="Uqs-S3-4G7"/>
-                                        <exclude reference="iGB-Zl-jgE"/>
+                                        <exclude reference="agY-vx-MaH"/>
+                                        <exclude reference="ec1-IT-rhr"/>
+                                        <exclude reference="pFd-fQ-ElU"/>
+                                        <exclude reference="DGn-3W-jeW"/>
+                                        <exclude reference="j5l-Dn-eYI"/>
                                         <exclude reference="9YD-Wv-Mm8"/>
                                         <exclude reference="K1x-WH-1tF"/>
                                         <exclude reference="w7k-VG-gAV"/>
                                         <exclude reference="4a9-Fa-XJJ"/>
                                         <exclude reference="RsE-b9-6zK"/>
                                         <exclude reference="wPb-26-UhZ"/>
-                                        <exclude reference="DGn-3W-jeW"/>
-                                        <exclude reference="j5l-Dn-eYI"/>
-                                        <exclude reference="OV5-o4-zUE"/>
                                         <exclude reference="9kk-yG-piA"/>
                                         <exclude reference="XAl-Tv-dKo"/>
                                         <exclude reference="s3Z-ZY-BoK"/>
@@ -648,33 +648,33 @@
                                         <include reference="fNo-DK-xel"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <include reference="agY-vx-MaH"/>
-                                        <include reference="ec1-IT-rhr"/>
-                                        <include reference="pFd-fQ-ElU"/>
+                                        <include reference="1RA-k3-0dw"/>
+                                        <include reference="65G-Fw-QQy"/>
+                                        <include reference="oaG-ey-5pr"/>
+                                        <include reference="Uqs-S3-4G7"/>
+                                        <include reference="iGB-Zl-jgE"/>
                                         <include reference="61D-hj-glO"/>
                                         <include reference="CsE-8v-2r9"/>
                                         <include reference="XdD-tK-F38"/>
                                         <include reference="mC0-SS-aTG"/>
+                                        <include reference="mfi-T9-C6G"/>
+                                        <include reference="OV5-o4-zUE"/>
                                         <include reference="HER-tp-aEN"/>
                                         <include reference="JS5-bD-28E"/>
                                         <include reference="P5h-Ek-Vd2"/>
                                         <include reference="csD-Rl-Wb2"/>
                                         <include reference="jXB-HC-q42"/>
-                                        <include reference="1RA-k3-0dw"/>
-                                        <include reference="65G-Fw-QQy"/>
-                                        <include reference="oaG-ey-5pr"/>
-                                        <include reference="mfi-T9-C6G"/>
-                                        <include reference="Uqs-S3-4G7"/>
-                                        <include reference="iGB-Zl-jgE"/>
+                                        <include reference="agY-vx-MaH"/>
+                                        <include reference="ec1-IT-rhr"/>
+                                        <include reference="pFd-fQ-ElU"/>
+                                        <include reference="DGn-3W-jeW"/>
+                                        <include reference="j5l-Dn-eYI"/>
                                         <include reference="9YD-Wv-Mm8"/>
                                         <include reference="K1x-WH-1tF"/>
                                         <include reference="w7k-VG-gAV"/>
                                         <include reference="4a9-Fa-XJJ"/>
                                         <include reference="RsE-b9-6zK"/>
                                         <include reference="wPb-26-UhZ"/>
-                                        <include reference="DGn-3W-jeW"/>
-                                        <include reference="j5l-Dn-eYI"/>
-                                        <include reference="OV5-o4-zUE"/>
                                         <include reference="9kk-yG-piA"/>
                                         <include reference="XAl-Tv-dKo"/>
                                         <include reference="s3Z-ZY-BoK"/>
@@ -762,10 +762,43 @@
                         <viewControllerLayoutGuide type="top" id="RVy-Pz-LAV"/>
                         <viewControllerLayoutGuide type="bottom" id="VlH-rq-Kfr"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7Fu-5V-SHz" customClass="MKMapView">
+                    <view key="view" userInteractionEnabled="NO" contentMode="scaleToFill" id="7Fu-5V-SHz" customClass="MKMapView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fb9-7b-lnl" customClass="ETMapGestureView" customModule="Exp_Touch" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fb9-7b-lnl" firstAttribute="leading" secondItem="7Fu-5V-SHz" secondAttribute="leading" id="AkX-V6-SgM"/>
+                            <constraint firstItem="fb9-7b-lnl" firstAttribute="bottom" secondItem="VlH-rq-Kfr" secondAttribute="top" id="EHP-YK-zFp"/>
+                            <constraint firstAttribute="trailing" secondItem="fb9-7b-lnl" secondAttribute="trailing" id="Ybj-Le-TEN"/>
+                            <constraint firstItem="fb9-7b-lnl" firstAttribute="top" secondItem="RVy-Pz-LAV" secondAttribute="bottom" id="z1s-Kg-IPr"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="fb9-7b-lnl"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="AkX-V6-SgM"/>
+                                <exclude reference="EHP-YK-zFp"/>
+                                <exclude reference="Ybj-Le-TEN"/>
+                                <exclude reference="z1s-Kg-IPr"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="fb9-7b-lnl"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="AkX-V6-SgM"/>
+                                <include reference="EHP-YK-zFp"/>
+                                <include reference="Ybj-Le-TEN"/>
+                                <include reference="z1s-Kg-IPr"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Maps Demo" id="DD3-rf-gZa">
                         <barButtonItem key="backBarButtonItem" title="Back" id="1ur-ob-ZVh"/>
@@ -775,6 +808,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="gestureView" destination="fb9-7b-lnl" id="oQs-pV-oy5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ydy-fQ-rpJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1041,16 +1077,16 @@ Press 'Done' when ready to begin.</string>
                                 <exclude reference="CSD-ab-cRB"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="hGa-Rg-g49"/>
+                                <exclude reference="2OF-e0-1Lc"/>
+                                <exclude reference="ZA8-j9-qXw"/>
+                                <exclude reference="f53-3a-1t2"/>
+                                <exclude reference="1FK-ei-a5u"/>
+                                <exclude reference="tMk-V6-MdV"/>
                                 <exclude reference="EcQ-Wg-oPa"/>
                                 <exclude reference="GNt-EM-5x7"/>
                                 <exclude reference="bjO-ts-iqq"/>
                                 <exclude reference="uLj-xm-wEZ"/>
-                                <exclude reference="1FK-ei-a5u"/>
-                                <exclude reference="tMk-V6-MdV"/>
-                                <exclude reference="2OF-e0-1Lc"/>
-                                <exclude reference="ZA8-j9-qXw"/>
-                                <exclude reference="f53-3a-1t2"/>
-                                <exclude reference="hGa-Rg-g49"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
@@ -1060,16 +1096,16 @@ Press 'Done' when ready to begin.</string>
                                 <include reference="CSD-ab-cRB"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="hGa-Rg-g49"/>
+                                <include reference="2OF-e0-1Lc"/>
+                                <include reference="ZA8-j9-qXw"/>
+                                <include reference="f53-3a-1t2"/>
+                                <include reference="1FK-ei-a5u"/>
+                                <include reference="tMk-V6-MdV"/>
                                 <include reference="EcQ-Wg-oPa"/>
                                 <include reference="GNt-EM-5x7"/>
                                 <include reference="bjO-ts-iqq"/>
                                 <include reference="uLj-xm-wEZ"/>
-                                <include reference="1FK-ei-a5u"/>
-                                <include reference="tMk-V6-MdV"/>
-                                <include reference="2OF-e0-1Lc"/>
-                                <include reference="ZA8-j9-qXw"/>
-                                <include reference="f53-3a-1t2"/>
-                                <include reference="hGa-Rg-g49"/>
                             </mask>
                         </variation>
                     </view>
@@ -1160,16 +1196,16 @@ Press 'Done' when ready to begin.</string>
                                 <exclude reference="weS-Dj-iBZ"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="fjp-Xh-26t"/>
                                 <exclude reference="DFV-ia-yjC"/>
                                 <exclude reference="Xoh-M5-N9G"/>
                                 <exclude reference="yKE-je-PuO"/>
-                                <exclude reference="5Vl-6D-wxi"/>
-                                <exclude reference="pb7-JZ-cuT"/>
-                                <exclude reference="wuP-bn-4Ac"/>
                                 <exclude reference="BTt-V2-T1t"/>
                                 <exclude reference="LTD-j7-Psg"/>
                                 <exclude reference="MPq-BS-Rgn"/>
-                                <exclude reference="fjp-Xh-26t"/>
+                                <exclude reference="5Vl-6D-wxi"/>
+                                <exclude reference="pb7-JZ-cuT"/>
+                                <exclude reference="wuP-bn-4Ac"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
@@ -1179,16 +1215,16 @@ Press 'Done' when ready to begin.</string>
                                 <include reference="weS-Dj-iBZ"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="fjp-Xh-26t"/>
                                 <include reference="DFV-ia-yjC"/>
                                 <include reference="Xoh-M5-N9G"/>
                                 <include reference="yKE-je-PuO"/>
-                                <include reference="5Vl-6D-wxi"/>
-                                <include reference="pb7-JZ-cuT"/>
-                                <include reference="wuP-bn-4Ac"/>
                                 <include reference="BTt-V2-T1t"/>
                                 <include reference="LTD-j7-Psg"/>
                                 <include reference="MPq-BS-Rgn"/>
-                                <include reference="fjp-Xh-26t"/>
+                                <include reference="5Vl-6D-wxi"/>
+                                <include reference="pb7-JZ-cuT"/>
+                                <include reference="wuP-bn-4Ac"/>
                             </mask>
                         </variation>
                     </view>
@@ -1279,16 +1315,16 @@ Press 'Done' when ready to begin.</string>
                                 <exclude reference="Efi-S4-mBU"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="xZO-hL-cXF"/>
                                 <exclude reference="fD8-3N-6Ru"/>
                                 <exclude reference="tcf-Cs-YKm"/>
                                 <exclude reference="yzF-yA-Wxj"/>
-                                <exclude reference="o6G-j7-BPP"/>
-                                <exclude reference="pYq-hA-t0b"/>
                                 <exclude reference="7OZ-ei-zCk"/>
                                 <exclude reference="TPW-kz-TWH"/>
                                 <exclude reference="V0q-mA-xw8"/>
                                 <exclude reference="lPW-m6-fvE"/>
-                                <exclude reference="xZO-hL-cXF"/>
+                                <exclude reference="o6G-j7-BPP"/>
+                                <exclude reference="pYq-hA-t0b"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
@@ -1298,16 +1334,16 @@ Press 'Done' when ready to begin.</string>
                                 <include reference="Efi-S4-mBU"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="xZO-hL-cXF"/>
                                 <include reference="fD8-3N-6Ru"/>
                                 <include reference="tcf-Cs-YKm"/>
                                 <include reference="yzF-yA-Wxj"/>
-                                <include reference="o6G-j7-BPP"/>
-                                <include reference="pYq-hA-t0b"/>
                                 <include reference="7OZ-ei-zCk"/>
                                 <include reference="TPW-kz-TWH"/>
                                 <include reference="V0q-mA-xw8"/>
                                 <include reference="lPW-m6-fvE"/>
-                                <include reference="xZO-hL-cXF"/>
+                                <include reference="o6G-j7-BPP"/>
+                                <include reference="pYq-hA-t0b"/>
                             </mask>
                         </variation>
                     </view>
@@ -1398,16 +1434,16 @@ Press 'Done' when ready to begin.</string>
                                 <exclude reference="gYZ-QU-i2K"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="MYb-nX-2P3"/>
                                 <exclude reference="7U3-oV-MPW"/>
                                 <exclude reference="Zg8-yE-nrz"/>
                                 <exclude reference="frq-AI-dfl"/>
+                                <exclude reference="Ozq-gM-G7r"/>
                                 <exclude reference="1MQ-TL-eBy"/>
                                 <exclude reference="1lJ-kp-YnT"/>
                                 <exclude reference="O7H-Gp-UCB"/>
                                 <exclude reference="qt4-1G-21D"/>
                                 <exclude reference="wsf-Jw-COj"/>
-                                <exclude reference="Ozq-gM-G7r"/>
-                                <exclude reference="MYb-nX-2P3"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
@@ -1417,16 +1453,16 @@ Press 'Done' when ready to begin.</string>
                                 <include reference="gYZ-QU-i2K"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="MYb-nX-2P3"/>
                                 <include reference="7U3-oV-MPW"/>
                                 <include reference="Zg8-yE-nrz"/>
                                 <include reference="frq-AI-dfl"/>
+                                <include reference="Ozq-gM-G7r"/>
                                 <include reference="1MQ-TL-eBy"/>
                                 <include reference="1lJ-kp-YnT"/>
                                 <include reference="O7H-Gp-UCB"/>
                                 <include reference="qt4-1G-21D"/>
                                 <include reference="wsf-Jw-COj"/>
-                                <include reference="Ozq-gM-G7r"/>
-                                <include reference="MYb-nX-2P3"/>
                             </mask>
                         </variation>
                     </view>
@@ -1515,16 +1551,16 @@ Press 'Done' when ready to begin.</string>
                                 <exclude reference="L2a-XV-qUr"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="UkE-qA-CMO"/>
                                 <exclude reference="4f4-hm-4bV"/>
                                 <exclude reference="QVT-U0-Lqh"/>
                                 <exclude reference="S3f-zO-0Q4"/>
                                 <exclude reference="Up1-mA-6L3"/>
-                                <exclude reference="5WP-oo-CAP"/>
                                 <exclude reference="0BL-65-w33"/>
                                 <exclude reference="JbX-Dp-GTg"/>
                                 <exclude reference="jpz-9I-qcm"/>
                                 <exclude reference="nTl-YK-XAc"/>
-                                <exclude reference="UkE-qA-CMO"/>
+                                <exclude reference="5WP-oo-CAP"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
@@ -1534,16 +1570,16 @@ Press 'Done' when ready to begin.</string>
                                 <include reference="L2a-XV-qUr"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="UkE-qA-CMO"/>
                                 <include reference="4f4-hm-4bV"/>
                                 <include reference="QVT-U0-Lqh"/>
                                 <include reference="S3f-zO-0Q4"/>
                                 <include reference="Up1-mA-6L3"/>
-                                <include reference="5WP-oo-CAP"/>
                                 <include reference="0BL-65-w33"/>
                                 <include reference="JbX-Dp-GTg"/>
                                 <include reference="jpz-9I-qcm"/>
                                 <include reference="nTl-YK-XAc"/>
-                                <include reference="UkE-qA-CMO"/>
+                                <include reference="5WP-oo-CAP"/>
                             </mask>
                         </variation>
                     </view>
@@ -2021,7 +2057,10 @@ Then press and hold.</string>
         </scene>
     </scenes>
     <resources>
+        <image name="AccIcon" width="16" height="16"/>
         <image name="CultureLab" width="1536" height="1152"/>
+        <image name="GyroIcon" width="16" height="16"/>
+        <image name="MagIcon" width="16" height="16"/>
         <image name="UniLogo" width="94" height="110"/>
     </resources>
 </document>

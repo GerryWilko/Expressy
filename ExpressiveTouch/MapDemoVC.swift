@@ -10,6 +10,8 @@ import Foundation
 import MapKit
 
 class MapDemoVC: UIViewController {
+    @IBOutlet weak var gestureView: ETMapGestureView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let map = self.view as! MKMapView
@@ -20,9 +22,7 @@ class MapDemoVC: UIViewController {
         let eyeCoordinate = CLLocationCoordinate2D(latitude: 51.5033, longitude: -0.11967)
         let mapCamera = MKMapCamera(lookingAtCenterCoordinate: userCoordinate, fromEyeCoordinate: eyeCoordinate, eyeAltitude: 400.0)
         map.setCamera(mapCamera, animated: true)
-        let gr = MapGestureRecognizer()
-        gr.map = map
-        map.addGestureRecognizer(gr)
+        gestureView.map = map
     }
     
     @IBAction func resetModel(sender: UIBarButtonItem) {
