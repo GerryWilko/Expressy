@@ -63,9 +63,9 @@ class TapEvalVC: UIViewController {
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         
-        detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
-        let tapForce = detector.calculateTouchForce(NSDate.timeIntervalSinceReferenceDate())
         let time = NSDate.timeIntervalSinceReferenceDate()
+        detector.touchDown(time)
+        let tapForce = detector.calculateTouchForce(time)
         
         progressBar.setProgress(Float(Float(30 - runStack.count) / 30.0), animated: true)
         
@@ -126,6 +126,9 @@ class TapEvalVC: UIViewController {
             let destVC = segue.destinationViewController as! EvalInstructionsVC
             destVC.videoPath = "Tap Force Demo"
         }
+    }
+    
+    @IBAction func next(sender: AnyObject) {
     }
 }
 

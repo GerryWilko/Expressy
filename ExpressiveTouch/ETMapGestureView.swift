@@ -1,5 +1,5 @@
 //
-//  MapGestureRecognizer.swift
+//  ETMapGestureView.swift
 //  ExpressiveTouch
 //
 //  Created by Gerry Wilkinson on 30/03/2015.
@@ -16,26 +16,29 @@ class ETMapGestureView: UIView {
     private var touch:Bool = false
     
     private let pitchBound:CGFloat = 50.0
+    private let detector:InteractionDetector
+    
+    required init(coder aDecoder: NSCoder) {
+        detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
+        detector.startDetection()
+        super.init(coder: aDecoder)
+        detector.subscribe(EventType.Metrics, callback: metricCallback)
+    }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
         MadgwickAHRSreset()
         touchPitch = map.camera.pitch
         touchHeading = map.camera.heading
-        WaxProcessor.getProcessor().dataCache.subscribe(dataCallback)
+        detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
     }
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-        WaxProcessor.getProcessor().dataCache.clearSubscriptions()
+        detector.touchUp(NSDate.timeIntervalSinceReferenceDate())
     }
     
-    func dataCallback(data:WaxData) {
-        let ypr = data.getYawPitchRoll()
-        let pitch = rad2deg(ypr.pitch)
-        let roll = rad2deg(ypr.roll)
-        var newPitch = touchPitch + CGFloat(pitch)
-        var newRoll = touchHeading + CLLocationDirection(roll)
-        
-        println("pitch: \(ypr.pitch), roll: \(ypr.roll)")
+    func metricCallback() {
+        var newPitch = touchPitch + CGFloat(detector.currentPitch)
+        var newRoll = touchHeading + CLLocationDirection(detector.currentForce)
         
         if (newPitch < 0) {
             newPitch = 0
@@ -45,9 +48,5 @@ class ETMapGestureView: UIView {
         
         map.camera.pitch = newPitch
         map.camera.heading = newRoll
-    }
-    
-    private func rad2deg(radians:Float) -> Float {
-        return radians / Float((M_PI / 180))
     }
 }

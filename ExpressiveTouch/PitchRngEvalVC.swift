@@ -149,4 +149,7 @@ class PitchRngEvalVC: UIViewController {
             destVC.videoPath = "Pitch Range Demo"
         }
     }
+    
+    @IBAction func next(sender: AnyObject) {
+    }
 }

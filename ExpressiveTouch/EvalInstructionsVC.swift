@@ -16,14 +16,16 @@ class EvalInstructionsVC: UIViewController {
     @IBOutlet weak var video: UIView!
     
     func playVideo() {
-        let path = NSBundle.mainBundle().pathForResource(videoPath, ofType:"mp4")
-        let url = NSURL.fileURLWithPath(path!)
-        moviePlayer = MPMoviePlayerController(contentURL: url)
-        if let player = moviePlayer {
-            player.view.frame = video.bounds
-            player.prepareToPlay()
-            player.scalingMode = MPMovieScalingMode.AspectFit
-            video.addSubview(player.view)
+        if let videoPath = self.videoPath {
+            let path = NSBundle.mainBundle().pathForResource(videoPath, ofType:"mp4")
+            let url = NSURL.fileURLWithPath(path!)
+            moviePlayer = MPMoviePlayerController(contentURL: url)
+            if let player = moviePlayer {
+                player.view.frame = video.bounds
+                player.prepareToPlay()
+                player.scalingMode = MPMovieScalingMode.AspectFit
+                video.addSubview(player.view)
+            }
         }
     }
     

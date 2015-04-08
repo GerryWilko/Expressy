@@ -149,4 +149,7 @@ class RotationRngEvalVC: UIViewController {
             destVC.videoPath = "Rotation Range Demo"
         }
     }
+    
+    @IBAction func next(sender: AnyObject) {
+    }
 }

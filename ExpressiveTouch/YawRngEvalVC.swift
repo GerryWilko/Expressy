@@ -149,4 +149,7 @@ class YawRngEvalVC: UIViewController {
             destVC.videoPath = "Yaw Range Demo"
         }
     }
+    
+    @IBAction func next(sender: AnyObject) {
+    }
 }

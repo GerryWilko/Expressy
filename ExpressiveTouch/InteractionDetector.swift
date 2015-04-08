@@ -12,6 +12,7 @@ class InteractionDetector {
     var handModel:HandModel
     var currentForce:Float
     var currentRotation:Float
+    var currentPitch:Float
     var touchDown:Bool
     
     private var lastDataTime:NSTimeInterval!
@@ -34,6 +35,7 @@ class InteractionDetector {
         handModel = HandModel(data: data)
         currentForce = 0.0
         currentRotation = 0.0
+        currentPitch = 0.0
         touchDown = false
         
         metricsCallbacks = Array<() -> Void>()
@@ -54,6 +56,7 @@ class InteractionDetector {
         
         if (touchDown) {
             currentRotation = calculateRotation(data)
+            currentPitch = calculatePitch(data)
         }
         
         lastDataTime = NSDate.timeIntervalSinceReferenceDate()
@@ -84,6 +87,7 @@ class InteractionDetector {
     func touchUp(touchUpTime:NSTimeInterval) {
         touchDown = false
         currentRotation = 0.0
+        currentPitch = 0.0
         
         let data = dataCache.getForTime(touchUpTime)
         data.touchUp()
@@ -111,11 +115,19 @@ class InteractionDetector {
     }
     
     private func calculateRotation(data:WaxData) -> Float {
-        var totalRotation:Float = currentRotation
+        var totalRotation = currentRotation
         
         totalRotation += data.gyro.x * Float(NSTimeInterval(data.time - lastDataTime))
         
         return totalRotation
+    }
+    
+    private func calculatePitch(data:WaxData) -> Float {
+        var totalPitch = currentPitch
+        
+        totalPitch += data.gyro.y * Float(NSTimeInterval(data.time - lastDataTime))
+        
+        return totalPitch
     }
     
     private func calculateForce(data:WaxData) -> Float {

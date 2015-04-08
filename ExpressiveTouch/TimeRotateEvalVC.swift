@@ -105,4 +105,7 @@ class TimeRotateEvalVC: UIViewController {
             destVC.videoPath = "Time to Rotate Demo"
         }
     }
+    
+    @IBAction func next(sender: AnyObject) {
+    }
 }
