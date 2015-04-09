@@ -47,15 +47,11 @@ class WaxProcessor {
         let my = CFloat((CShort(buffer[17]) << 8) + CShort(buffer[16])) * magNorm
         let mz = CFloat((CShort(buffer[19]) << 8) + CShort(buffer[18])) * magNorm
         
-        MadgwickAHRSupdateIMU(deg2rad(gx), deg2rad(gy), deg2rad(gz), ax, ay, az)
+        MadgwickAHRSupdateIMU(MathUtils.deg2rad(gx), MathUtils.deg2rad(gy), MathUtils.deg2rad(gz), ax, ay, az)
         
         let time = NSDate.timeIntervalSinceReferenceDate()
         let data = WaxData(time: time, ax: ax, ay: ay, az: az, gx: gx, gy: gy, gz: gz, mx: mx, my: my, mz: mz, qx: q0, qy: q1, qz: q2, qw: q3)
         
         dataCache.add(data)
-    }
-    
-    private func deg2rad(degrees:Float) -> Float {
-        return Float((M_PI / 180)) * degrees
     }
 }

@@ -22,7 +22,7 @@ class TapEvalVC: UIViewController {
     
     required init(coder aDecoder: NSCoder) {
         detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
-        csv = CSVBuilder(fileNames: ["tapForce.csv","tapData.csv"], headerLines: ["Time,Requested Force,Tap Force", "Time,ax,ay,az,gx,gy,gz,mx,my,mz,gravx,gravy,gravz,yaw,pitch,roll,Touch,Touch Force"])
+        csv = CSVBuilder(fileNames: ["tapForce.csv","tapData.csv"], headerLines: ["Time,Requested Force,Tap Force", WaxData.headerLine()])
         current = ForceCategory.Soft
         super.init(coder: aDecoder)
         detector.startDetection()

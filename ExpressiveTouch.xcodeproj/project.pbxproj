@@ -39,6 +39,7 @@
 		CB8894FD1ACC40E000F3FC2F /* Time to Rotate Demo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CB8894F81ACC3C0400F3FC2F /* Time to Rotate Demo.mp4 */; };
 		CB8894FE1ACC40E300F3FC2F /* Yaw Range Demo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CB8894F91ACC3C0400F3FC2F /* Yaw Range Demo.mp4 */; };
 		CB8895001ACD53D100F3FC2F /* EvalUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8894FF1ACD53D100F3FC2F /* EvalUtils.swift */; };
+		CB8F53021AD68DF800EC2917 /* MathUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8F53011AD68DF800EC2917 /* MathUtils.swift */; };
 		CB9798351AA715BC00124A9D /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9798341AA715BC00124A9D /* Vector.swift */; };
 		CB983BD51A949A9F0042F946 /* InteractionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB983BD41A949A9F0042F946 /* InteractionView.swift */; };
 		CBA2B0B51AAA1AD1006967EF /* MadgwickAHRS.c in Sources */ = {isa = PBXBuildFile; fileRef = CBA2B0B31AAA1AD1006967EF /* MadgwickAHRS.c */; };
@@ -99,6 +100,7 @@
 		CB8894F81ACC3C0400F3FC2F /* Time to Rotate Demo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Time to Rotate Demo.mp4"; sourceTree = "<group>"; };
 		CB8894F91ACC3C0400F3FC2F /* Yaw Range Demo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Yaw Range Demo.mp4"; sourceTree = "<group>"; };
 		CB8894FF1ACD53D100F3FC2F /* EvalUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvalUtils.swift; sourceTree = "<group>"; };
+		CB8F53011AD68DF800EC2917 /* MathUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MathUtils.swift; path = ../MathUtils.swift; sourceTree = "<group>"; };
 		CB9798341AA715BC00124A9D /* Vector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
 		CB983BD41A949A9F0042F946 /* InteractionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionView.swift; sourceTree = "<group>"; };
 		CBA2B0B31AAA1AD1006967EF /* MadgwickAHRS.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MadgwickAHRS.c; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				CB7338671A822CA600FA1121 /* ExpressiveTouch-Bridging-Header.h */,
 				CB73386A1A822CA600FA1121 /* GraphBuilder.swift */,
 				CB4F229F1AC563A5006EFF18 /* CSVBuilder.swift */,
+				CB8F53011AD68DF800EC2917 /* MathUtils.swift */,
 				CB8894FF1ACD53D100F3FC2F /* EvalUtils.swift */,
 				CB8894F41ACC3B7C00F3FC2F /* Eval Demo Videos */,
 				CB73386D1A822CA600FA1121 /* Images.xcassets */,
@@ -192,15 +195,7 @@
 				CBD91ADF1AB9A2BE00A9ABBE /* PlaneModelVC.swift */,
 				CBE6BE261ABF12D00099A5C3 /* ControlsDemoVC.swift */,
 				CB7D5CEE1AC3198E0068BC67 /* MapDemoVC.swift */,
-				CB4F22931AC4569F006EFF18 /* TapEvalVC.swift */,
-				CB86E72A1AD56F2400E176F9 /* ForceEvalVC.swift */,
-				CB4F22951AC456BE006EFF18 /* RotationRngEvalVC.swift */,
-				CB86E72C1AD57F2700E176F9 /* RotateTestEvalVC.swift */,
-				CB4F22971AC456D7006EFF18 /* PitchRngEvalVC.swift */,
-				CB86E72E1AD57F3E00E176F9 /* PitchTestEvalVC.swift */,
-				CB4F22991AC457B4006EFF18 /* YawRngEvalVC.swift */,
-				CBF0EE871AC95A7400D689E2 /* TimeRotateEvalVC.swift */,
-				CB4F229B1AC45F76006EFF18 /* EvalInstructionsVC.swift */,
+				CB8F53001AD6817700EC2917 /* Evaluations */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -246,6 +241,22 @@
 				CB8894F91ACC3C0400F3FC2F /* Yaw Range Demo.mp4 */,
 			);
 			name = "Eval Demo Videos";
+			sourceTree = "<group>";
+		};
+		CB8F53001AD6817700EC2917 /* Evaluations */ = {
+			isa = PBXGroup;
+			children = (
+				CB4F22931AC4569F006EFF18 /* TapEvalVC.swift */,
+				CB86E72A1AD56F2400E176F9 /* ForceEvalVC.swift */,
+				CB4F22951AC456BE006EFF18 /* RotationRngEvalVC.swift */,
+				CB86E72C1AD57F2700E176F9 /* RotateTestEvalVC.swift */,
+				CB4F22971AC456D7006EFF18 /* PitchRngEvalVC.swift */,
+				CB86E72E1AD57F3E00E176F9 /* PitchTestEvalVC.swift */,
+				CB4F22991AC457B4006EFF18 /* YawRngEvalVC.swift */,
+				CBF0EE871AC95A7400D689E2 /* TimeRotateEvalVC.swift */,
+				CB4F229B1AC45F76006EFF18 /* EvalInstructionsVC.swift */,
+			);
+			name = Evaluations;
 			sourceTree = "<group>";
 		};
 		D517508119E9831C0076F6FA = {
@@ -432,6 +443,7 @@
 				CB4F22A01AC563A6006EFF18 /* CSVBuilder.swift in Sources */,
 				CB7338891A822CA600FA1121 /* WaxProcessor.swift in Sources */,
 				CB8895001ACD53D100F3FC2F /* EvalUtils.swift in Sources */,
+				CB8F53021AD68DF800EC2917 /* MathUtils.swift in Sources */,
 				CB7338781A822CA600FA1121 /* AppDelegate.swift in Sources */,
 				CB7338871A822CA600FA1121 /* WaxConnectionManager.swift in Sources */,
 				CB73387B1A822CA600FA1121 /* ETDetectorVC.swift in Sources */,

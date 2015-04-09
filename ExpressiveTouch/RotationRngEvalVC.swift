@@ -72,7 +72,7 @@ class RotationRngEvalVC: UIViewController {
         recording = false
         
         detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
-        csvBuilder = CSVBuilder(fileNames: ["rotationRange.csv","rotationData.csv"], headerLines: ["Dominant Hand,Wrist,Max Angle,Min Angle", "Time,ax,ay,az,gx,gy,gz,mx,my,mz,gravx,gravy,gravz,yaw,pitch,roll,Touch,Touch Force"])
+        csvBuilder = CSVBuilder(fileNames: ["rotationRange.csv","rotationData.csv"], headerLines: ["Dominant Hand,Wrist,Max Angle,Min Angle", WaxData.headerLine()])
         super.init(coder: aDecoder)
         detector.startDetection()
     }

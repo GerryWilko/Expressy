@@ -29,6 +29,10 @@ class WaxData {
         touchForce = 0.0
     }
     
+    class func headerLine() -> String {
+        return "Time,ax,ay,az,gx,gy,gz,mx,my,mz,gravx,gravy,gravz,yaw,pitch,roll,Touch,Touch Force"
+    }
+    
     func getAccNoGrav() -> Vector3D {
         return Vector3D(x: acc.x - grav.x, y: acc.y - grav.y, z: acc.z - grav.z)
     }
@@ -56,21 +60,10 @@ class WaxData {
     func print() -> String {
         let ypr = getYawPitchRoll()
         
-        return "\(time),\(acc.x),\(acc.y),\(acc.z),\(gyro.x),\(gyro.y),\(gyro.z),\(mag.x),\(mag.y),\(mag.z),\(grav.x),\(grav.y),\(grav.z),\(ypr.yaw),\(ypr.pitch),\(ypr.roll),\(printTouch()),\(touchForce)"
-    }
-    
-    func printTouch() -> String {
-        switch touch {
-        case .Down:
-            return "Down"
-        case .Up:
-            return "Up"
-        default:
-            return "None"
-        }
+        return "\(time),\(acc.x),\(acc.y),\(acc.z),\(gyro.x),\(gyro.y),\(gyro.z),\(mag.x),\(mag.y),\(mag.z),\(grav.x),\(grav.y),\(grav.z),\(ypr.yaw),\(ypr.pitch),\(ypr.roll),\(touch.rawValue),\(touchForce)"
     }
 }
 
-enum TouchEvent {
-    case Down, Up, None
+enum TouchEvent:Int {
+    case Down = 1, Up = -1, None = 0
 }

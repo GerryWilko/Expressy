@@ -28,7 +28,7 @@ class TimeRotateEvalVC: UIViewController {
     required init(coder aDecoder: NSCoder) {
         detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
         evalCount = 0
-        csvBuilder = CSVBuilder(fileNames: ["timeRotate.csv","timeRotateData.csv"], headerLines: ["Start Time,Complete Time,Time to Complete,Angle to Rotate,Placeholder Angle,Image Angle", "Time,ax,ay,az,gx,gy,gz,mx,my,mz,gravx,gravy,gravz,yaw,pitch,roll,Touch,Touch Force"])
+        csvBuilder = CSVBuilder(fileNames: ["timeRotate.csv","timeRotateData.csv"], headerLines: ["Start Time,Complete Time,Time to Complete,Angle to Rotate,Placeholder Angle,Image Angle", WaxData.headerLine()])
         started = false
         super.init(coder: aDecoder)
         detector.startDetection()

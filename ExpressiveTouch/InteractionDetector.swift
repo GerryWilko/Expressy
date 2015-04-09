@@ -24,6 +24,7 @@ class InteractionDetector {
     private var softPressCallbacks:Array<() -> Void>
     
     private let dataCache:WaxCache
+    private let touchForceFilter:Float = 0.1
     private let medForceThreshold:Float = 5
     private let hardForceThreshold:Float = 15
     private let flickThreshold:Float = 1.5
@@ -50,7 +51,7 @@ class InteractionDetector {
         dataCache.subscribe(dataCallback)
     }
     
-    func dataCallback(data:WaxData) {
+    private func dataCallback(data:WaxData) {
         currentForce = calculateForce(data)
         handModel.updateState(data)
         
@@ -99,7 +100,7 @@ class InteractionDetector {
         touchDown = false
     }
     
-    @objc func touchEndCallback(timer:NSTimer) {
+    @objc private func touchEndCallback(timer:NSTimer) {
         let touchUpTime = timer.userInfo as! NSTimeInterval
         let end = NSDate.timeIntervalSinceReferenceDate()
         
@@ -135,13 +136,24 @@ class InteractionDetector {
     }
     
     func calculateTouchForce(touchDownTime:NSTimeInterval) -> Float {
-        let data = dataCache.getRangeForTime(touchDownTime - 1, end: touchDownTime)
+        let data = dataCache.getRangeForTime(touchDownTime - 0.1, end: touchDownTime)
         
         var force:Float = 0.0
         
+//        if (data[data.count - 1].getAccNoGrav().magnitude() > touchForceFilter) {
+//            for var i = data.count - 1; i >= 0; i-- {
+//                if (data[i].getAccNoGrav().magnitude() > touchForceFilter) {
+//                    force += data[i].getAccNoGrav().magnitude()
+//                } else {
+//                    return force
+//                }
+//            }
+//        }
         
         for d in data {
-            force += d.getAccNoGrav().magnitude()
+            if d.getAccNoGrav().magnitude() > force {
+                force = d.getAccNoGrav().magnitude()
+            }
         }
         
         return force
