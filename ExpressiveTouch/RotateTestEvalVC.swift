@@ -38,7 +38,7 @@ class RotateTestEvalVC: UIViewController {
         detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
         detector.startDetection()
         participant = EvalUtils.generateParticipantID()
-        csvBuilder = CSVBuilder(fileNames: ["rotate-\(participant).csv", "rotateData-\(participant).csv"], headerLines: ["Time,Max Angle,Min Angle,Placeholder Angle,Angle to Rotate,End Image Angle,Time Taken", WaxData.headerLine()])
+        csvBuilder = CSVBuilder(fileNames: ["rotate-\(participant).csv", "rotateData-\(participant).csv"], headerLines: ["Participant ID,Time,Max Angle,Min Angle,Placeholder Angle,Angle to Rotate,End Image Angle,Time Taken", WaxData.headerLine()])
         super.init(coder: aDecoder)
     }
     
@@ -91,7 +91,7 @@ class RotateTestEvalVC: UIViewController {
             if (touch.view == rotateImage) {
                 let placeholderDegrees = atan2f(Float(placeholderImage.transform.b), Float(placeholderImage.transform.a)) * Float(180 / M_PI)
                 let imageDegrees = atan2f(Float(rotateImage.transform.b), Float(rotateImage.transform.a)) * Float(180 / M_PI)
-                csvBuilder.appendRow("\(time),\(maxValue),\(minValue),\(placeholderDegrees),\(angleDifference),\(imageDegrees),\(time - touchTime)", index: 0)
+                csvBuilder.appendRow("\(participant),\(time),\(maxValue),\(minValue),\(placeholderDegrees),\(angleDifference),\(imageDegrees),\(time - touchTime)", index: 0)
                 setNextView()
                 evalCount++
             }

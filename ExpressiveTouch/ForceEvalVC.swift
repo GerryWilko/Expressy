@@ -31,7 +31,7 @@ class ForceEvalVC: UIViewController {
         detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
         detector.startDetection()
         participant = EvalUtils.generateParticipantID()
-        csvBuilder = CSVBuilder(fileNames: ["force-\(participant).csv", "forceData-\(participant).csv"], headerLines: ["Time,Requested Force,Tapped Force", WaxData.headerLine()])
+        csvBuilder = CSVBuilder(fileNames: ["force-\(participant).csv", "forceData-\(participant).csv"], headerLines: ["Participant ID,Time,Requested Force,Attempt,Tapped Force", WaxData.headerLine()])
         super.init(coder: aDecoder)
     }
     
@@ -52,7 +52,7 @@ class ForceEvalVC: UIViewController {
         NSTimer.scheduledTimerWithTimeInterval(1.5, target: self, selector: Selector("resetForce:"), userInfo: nil, repeats: false)
         
         if (stage == 2) {
-            csvBuilder.appendRow("\(time),\(reqTouchForce),\(touchForce)", index: 0)
+            csvBuilder.appendRow("\(participant),\(time),\(reqTouchForce),\(attemptCount + 1),\(touchForce)", index: 0)
             if (attemptCount == 2) {
                 setNextView()
                 evalCount++

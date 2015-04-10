@@ -38,7 +38,7 @@ class PitchTestEvalVC: UIViewController {
         detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
         detector.startDetection()
         participant = EvalUtils.generateParticipantID()
-        csvBuilder = CSVBuilder(fileNames: ["pitch-\(participant).csv", "pitchData-\(participant).csv"], headerLines: ["Time,Max Angle,Min Angle,Requested Angle,End Angle,Time Taken", WaxData.headerLine()])
+        csvBuilder = CSVBuilder(fileNames: ["pitch-\(participant).csv", "pitchData-\(participant).csv"], headerLines: ["Participant ID,Time,Max Angle,Min Angle,Requested Angle,End Angle,Time Taken", WaxData.headerLine()])
         super.init(coder: aDecoder)
     }
     
@@ -99,7 +99,7 @@ class PitchTestEvalVC: UIViewController {
             break
         case 2:
             detector.clearSubscriptions()
-            csvBuilder.appendRow("\(time),\(maxValue),\(minValue),\(reqPitchAngle),\(pitch),\(time - touchTime)", index: 0)
+            csvBuilder.appendRow("\(participant),\(time),\(maxValue),\(minValue),\(reqPitchAngle),\(pitch),\(time - touchTime)", index: 0)
             setNextView()
             evalCount++
             break
