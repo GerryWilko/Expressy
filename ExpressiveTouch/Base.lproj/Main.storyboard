@@ -82,13 +82,13 @@
                                 <exclude reference="f9s-TH-7qW"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="THI-Mc-JD7"/>
                                 <exclude reference="53u-vU-5NC"/>
                                 <exclude reference="EBf-3B-ACp"/>
                                 <exclude reference="EZb-am-OhD"/>
                                 <exclude reference="GSa-X5-pBn"/>
                                 <exclude reference="pIO-Qd-iR1"/>
                                 <exclude reference="wbO-0J-h6j"/>
-                                <exclude reference="THI-Mc-JD7"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
@@ -97,13 +97,13 @@
                                 <include reference="f9s-TH-7qW"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="THI-Mc-JD7"/>
                                 <include reference="53u-vU-5NC"/>
                                 <include reference="EBf-3B-ACp"/>
                                 <include reference="EZb-am-OhD"/>
                                 <include reference="GSa-X5-pBn"/>
                                 <include reference="pIO-Qd-iR1"/>
                                 <include reference="wbO-0J-h6j"/>
-                                <include reference="THI-Mc-JD7"/>
                             </mask>
                         </variation>
                     </view>
@@ -1679,7 +1679,7 @@ Press 'Done' when ready to begin.</string>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMO-w9-LXs">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">This evaluation will asses your ability to perform a tap of a specific force.
+                                <string key="text">This evaluation will asses your ability to perform a tap of a specific force.
 
 The initial screen will show you two circles. The yellow circle represents what we consider to be the maximum force with which the screen can be hit. The red circle denotes the last tap force.
 
@@ -1689,7 +1689,7 @@ When you are ready to move to the next stage press next.
 
 You will then be shown a blue circle representing a force with which you need to tap the screen. Tap the screen with a force that you feel will match the blue circle shown, you will be given 3 attempts at each force.
 
-Press next to advance to the next step, you will be asked to perform this 10 times.</mutableString>
+Press next to advance to the next step, you will be asked to perform this 10 times.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -1767,7 +1767,7 @@ Press next to advance to the next step, you will be asked to perform this 10 tim
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7Y3-uR-BCF">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">In this evaulation you will first be asked to demonstrate the range of rotation of your wrist while touching the screen.
+                                <string key="text">In this evaulation you will first be asked to demonstrate the range of rotation of your wrist while touching the screen.
 
 When starting the range test please start with your palm facing downwards and your index finger outstretched.
 
@@ -1775,7 +1775,7 @@ Then rotate as far as you can to the clockwise, then back anti-clockwise. Keep y
 
 Then you will be asked to rotate an image to a specific angle which is within the range you demonstrated in the last step. You must rotate the image to the angle demonstrated by the placeholder image in one touch.
 
-When you are finished you can press next to advance to the next step. You will be asked to perform this 10 times.</mutableString>
+When you are finished you can press next to advance to the next step. You will be asked to perform this 10 times.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -2657,10 +2657,15 @@ Then press and hold.</string>
                                 <exclude reference="2CL-d0-46z"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="Qux-NN-yEU"/>
+                                <exclude reference="Wjl-Yd-B8y"/>
                                 <exclude reference="3qY-at-3tj"/>
                                 <exclude reference="Rj0-uf-tQi"/>
                                 <exclude reference="UP2-6V-gXZ"/>
                                 <exclude reference="rc6-vJ-jlm"/>
+                                <exclude reference="9U3-fD-sma"/>
+                                <exclude reference="FZc-Sj-3gD"/>
+                                <exclude reference="GXs-jg-0XX"/>
                                 <exclude reference="7H5-cp-cJk"/>
                                 <exclude reference="QS3-U0-PQQ"/>
                                 <exclude reference="aaX-0m-49e"/>
@@ -2670,11 +2675,6 @@ Then press and hold.</string>
                                 <exclude reference="ZUc-Lh-dch"/>
                                 <exclude reference="mlO-U8-vOO"/>
                                 <exclude reference="o34-e0-wbx"/>
-                                <exclude reference="9U3-fD-sma"/>
-                                <exclude reference="FZc-Sj-3gD"/>
-                                <exclude reference="GXs-jg-0XX"/>
-                                <exclude reference="Wjl-Yd-B8y"/>
-                                <exclude reference="Qux-NN-yEU"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
@@ -2687,10 +2687,15 @@ Then press and hold.</string>
                                 <include reference="2CL-d0-46z"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="Qux-NN-yEU"/>
+                                <include reference="Wjl-Yd-B8y"/>
                                 <include reference="3qY-at-3tj"/>
                                 <include reference="Rj0-uf-tQi"/>
                                 <include reference="UP2-6V-gXZ"/>
                                 <include reference="rc6-vJ-jlm"/>
+                                <include reference="9U3-fD-sma"/>
+                                <include reference="FZc-Sj-3gD"/>
+                                <include reference="GXs-jg-0XX"/>
                                 <include reference="7H5-cp-cJk"/>
                                 <include reference="QS3-U0-PQQ"/>
                                 <include reference="aaX-0m-49e"/>
@@ -2700,11 +2705,6 @@ Then press and hold.</string>
                                 <include reference="ZUc-Lh-dch"/>
                                 <include reference="mlO-U8-vOO"/>
                                 <include reference="o34-e0-wbx"/>
-                                <include reference="9U3-fD-sma"/>
-                                <include reference="FZc-Sj-3gD"/>
-                                <include reference="GXs-jg-0XX"/>
-                                <include reference="Wjl-Yd-B8y"/>
-                                <include reference="Qux-NN-yEU"/>
                             </mask>
                         </variation>
                     </view>
@@ -2837,22 +2837,22 @@ and hold.</string>
                                 <exclude reference="x6J-Xc-aMd"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="Sfn-Hd-Et4"/>
-                                <exclude reference="bWQ-h4-ySF"/>
-                                <exclude reference="iTS-7u-7tj"/>
-                                <exclude reference="nC8-Fq-c0L"/>
-                                <exclude reference="AiX-Cx-Ypo"/>
-                                <exclude reference="5iF-ps-Q8L"/>
-                                <exclude reference="DrF-Q6-lhs"/>
-                                <exclude reference="Y2g-2o-qsH"/>
                                 <exclude reference="Eyj-KJ-KV3"/>
                                 <exclude reference="XCz-Tm-u1i"/>
                                 <exclude reference="Z1s-DX-3Tl"/>
                                 <exclude reference="rnC-dm-VIN"/>
+                                <exclude reference="Sfn-Hd-Et4"/>
+                                <exclude reference="bWQ-h4-ySF"/>
+                                <exclude reference="iTS-7u-7tj"/>
+                                <exclude reference="nC8-Fq-c0L"/>
+                                <exclude reference="57b-5n-lzr"/>
+                                <exclude reference="AiX-Cx-Ypo"/>
+                                <exclude reference="5iF-ps-Q8L"/>
+                                <exclude reference="DrF-Q6-lhs"/>
+                                <exclude reference="Y2g-2o-qsH"/>
                                 <exclude reference="9NL-Ia-1aS"/>
                                 <exclude reference="GwV-Y8-H5f"/>
                                 <exclude reference="dUv-XT-wzx"/>
-                                <exclude reference="57b-5n-lzr"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
@@ -2865,22 +2865,22 @@ and hold.</string>
                                 <include reference="x6J-Xc-aMd"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="Sfn-Hd-Et4"/>
-                                <include reference="bWQ-h4-ySF"/>
-                                <include reference="iTS-7u-7tj"/>
-                                <include reference="nC8-Fq-c0L"/>
-                                <include reference="AiX-Cx-Ypo"/>
-                                <include reference="5iF-ps-Q8L"/>
-                                <include reference="DrF-Q6-lhs"/>
-                                <include reference="Y2g-2o-qsH"/>
                                 <include reference="Eyj-KJ-KV3"/>
                                 <include reference="XCz-Tm-u1i"/>
                                 <include reference="Z1s-DX-3Tl"/>
                                 <include reference="rnC-dm-VIN"/>
+                                <include reference="Sfn-Hd-Et4"/>
+                                <include reference="bWQ-h4-ySF"/>
+                                <include reference="iTS-7u-7tj"/>
+                                <include reference="nC8-Fq-c0L"/>
+                                <include reference="57b-5n-lzr"/>
+                                <include reference="AiX-Cx-Ypo"/>
+                                <include reference="5iF-ps-Q8L"/>
+                                <include reference="DrF-Q6-lhs"/>
+                                <include reference="Y2g-2o-qsH"/>
                                 <include reference="9NL-Ia-1aS"/>
                                 <include reference="GwV-Y8-H5f"/>
                                 <include reference="dUv-XT-wzx"/>
-                                <include reference="57b-5n-lzr"/>
                             </mask>
                         </variation>
                     </view>
