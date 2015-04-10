@@ -53,7 +53,7 @@ class CSVBuilder: NSObject, MFMailComposeViewControllerDelegate {
                     
                     mail.addAttachmentData(data, mimeType: "text/csv", fileName: fileNames[index])
                 }
-                
+                mail.setToRecipients(["gerrywilko@googlemail.com"])
                 viewController.presentViewController(mail, animated: true, completion: nil)
             }
             else {

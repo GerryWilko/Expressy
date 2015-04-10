@@ -16,4 +16,8 @@ class EvalUtils {
             csv.appendRow(d.print(), index: 1)
         }
     }
+    
+    class func generateParticipantID() -> UInt32 {
+        return arc4random_uniform(10000)
+    }
 }

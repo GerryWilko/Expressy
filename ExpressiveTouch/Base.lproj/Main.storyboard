@@ -1217,7 +1217,7 @@ Press 'Done' when ready to begin.</string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="184" id="TQI-ML-hWE"/>
                                 </constraints>
-                                <mutableString key="text">You will now be asked to demonstrate the range of rotation of your wrist while touching the screen.
+                                <string key="text">You will now be asked to demonstrate the range of rotation of your wrist while touching the screen.
 
 For this demonstration you will first be asked which wrist is your dominant arm before you begin.
 
@@ -1227,7 +1227,7 @@ Then rotate as far as you can to the right then back to the left. Keep your fing
 
 You will then be asked to swap to your other wrist and repeat the steps above.
 
-Press 'Done' when ready to begin.</mutableString>
+Press 'Done' when ready to begin.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <variation key="default">
@@ -1696,7 +1696,7 @@ The initial screen will show you two circles. The yellow circle represents what 
 
 When you are ready to move to the next stage press next.
 
-You will then be shown a blue circle representing a force with which you need to tap the screen. Tap the screen with a force that you feel will match the blue circle shown.
+You will then be shown a blue circle representing a force with which you need to tap the screen. Tap the screen with a force that you feel will match the blue circle shown, you will be given 3 attempts at each force.
 
 Press next to advance to the next step, you will be asked to perform this 10 times.</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -1719,13 +1719,13 @@ Press next to advance to the next step, you will be asked to perform this 10 tim
                                 <exclude reference="nMO-w9-LXs"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="NrE-HA-alK"/>
                                 <exclude reference="K1A-9B-u1l"/>
                                 <exclude reference="PBH-81-2o6"/>
                                 <exclude reference="aQZ-XO-GFH"/>
                                 <exclude reference="qf8-C3-Qs1"/>
                                 <exclude reference="KUk-OS-Ipk"/>
                                 <exclude reference="fbl-iq-dnV"/>
-                                <exclude reference="NrE-HA-alK"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
@@ -1734,13 +1734,13 @@ Press next to advance to the next step, you will be asked to perform this 10 tim
                                 <include reference="nMO-w9-LXs"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="NrE-HA-alK"/>
                                 <include reference="K1A-9B-u1l"/>
                                 <include reference="PBH-81-2o6"/>
                                 <include reference="aQZ-XO-GFH"/>
                                 <include reference="qf8-C3-Qs1"/>
                                 <include reference="KUk-OS-Ipk"/>
                                 <include reference="fbl-iq-dnV"/>
-                                <include reference="NrE-HA-alK"/>
                             </mask>
                         </variation>
                     </view>
@@ -1780,7 +1780,7 @@ Press next to advance to the next step, you will be asked to perform this 10 tim
 
 When starting the range test please start with your palm facing downwards and your index finger outstretched.
 
-Then rotate as far as you can to the right then back to the left. Keep your finger pressed on the screen for the duration of the test.
+Then rotate as far as you can to the clockwise, then back anti-clockwise. Keep your finger pressed on the screen for the duration of the test.
 
 Then you will be asked to rotate an image to a specific angle which is within the range you demonstrated in the last step. You must rotate the image to the angle demonstrated by the placeholder image in one touch.
 
@@ -1805,13 +1805,13 @@ When you are finished you can press next to advance to the next step. You will b
                                 <exclude reference="7Y3-uR-BCF"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="qhG-NO-Lh1"/>
                                 <exclude reference="8TK-uJ-P0E"/>
                                 <exclude reference="IOH-Wf-01H"/>
                                 <exclude reference="ROU-tt-eeI"/>
                                 <exclude reference="yXL-2D-p2N"/>
                                 <exclude reference="G4b-t4-lUW"/>
                                 <exclude reference="rgZ-Ry-rOi"/>
-                                <exclude reference="qhG-NO-Lh1"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
@@ -1820,13 +1820,13 @@ When you are finished you can press next to advance to the next step. You will b
                                 <include reference="7Y3-uR-BCF"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="qhG-NO-Lh1"/>
                                 <include reference="8TK-uJ-P0E"/>
                                 <include reference="IOH-Wf-01H"/>
                                 <include reference="ROU-tt-eeI"/>
                                 <include reference="yXL-2D-p2N"/>
                                 <include reference="G4b-t4-lUW"/>
                                 <include reference="rgZ-Ry-rOi"/>
-                                <include reference="qhG-NO-Lh1"/>
                             </mask>
                         </variation>
                     </view>
@@ -1862,7 +1862,7 @@ When you are finished you can press next to advance to the next step. You will b
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3Vp-UH-mdR">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">In this evaulation you will first be asked to demonstrate the range of pitch of your wrist while touching the screen.
+                                <string key="text">In this evaulation you will first be asked to demonstrate the range of pitch of your wrist while touching the screen.
 
 When starting the range test please start with your palm facing downwards and your index finger outstretched.
 
@@ -1870,7 +1870,7 @@ Then pitch upwards as far as you can then back downwards as far as you can. Keep
 
 Then you will be asked to pitch to a requested angle, which is within the range you demonstrated in the last step. You must pitch to the angle demonstrated in one touch.
 
-When you are finished you can press next to advance to the next step. You will be asked to perform this 10 times.</mutableString>
+When you are finished you can press next to advance to the next step. You will be asked to perform this 10 times.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -1891,13 +1891,13 @@ When you are finished you can press next to advance to the next step. You will b
                                 <exclude reference="3Vp-UH-mdR"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="aT0-ly-rYC"/>
                                 <exclude reference="3g4-s0-txo"/>
                                 <exclude reference="R4s-75-Ax6"/>
                                 <exclude reference="T1Y-SM-1zp"/>
                                 <exclude reference="3kh-5h-g1u"/>
                                 <exclude reference="FUa-oB-aFS"/>
                                 <exclude reference="qUg-1i-lqI"/>
-                                <exclude reference="aT0-ly-rYC"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
@@ -1906,13 +1906,13 @@ When you are finished you can press next to advance to the next step. You will b
                                 <include reference="3Vp-UH-mdR"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="aT0-ly-rYC"/>
                                 <include reference="3g4-s0-txo"/>
                                 <include reference="R4s-75-Ax6"/>
                                 <include reference="T1Y-SM-1zp"/>
                                 <include reference="3kh-5h-g1u"/>
                                 <include reference="FUa-oB-aFS"/>
                                 <include reference="qUg-1i-lqI"/>
-                                <include reference="aT0-ly-rYC"/>
                             </mask>
                         </variation>
                     </view>
@@ -2498,13 +2498,13 @@ Then press and hold.</string>
                                 <exclude reference="crP-Ay-Vnd"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="7wn-Wv-Fnd"/>
-                                <exclude reference="cF4-PQ-cyH"/>
-                                <exclude reference="jbi-9H-zYx"/>
                                 <exclude reference="Lsl-Vr-T0r"/>
                                 <exclude reference="Vw5-4b-fBj"/>
                                 <exclude reference="hKT-BH-Z51"/>
                                 <exclude reference="y9T-lJ-Riu"/>
+                                <exclude reference="7wn-Wv-Fnd"/>
+                                <exclude reference="cF4-PQ-cyH"/>
+                                <exclude reference="jbi-9H-zYx"/>
                                 <exclude reference="6fq-Lk-e8k"/>
                                 <exclude reference="Gvi-go-PeG"/>
                                 <exclude reference="VxQ-sO-lOE"/>
@@ -2523,13 +2523,13 @@ Then press and hold.</string>
                                 <include reference="crP-Ay-Vnd"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="7wn-Wv-Fnd"/>
-                                <include reference="cF4-PQ-cyH"/>
-                                <include reference="jbi-9H-zYx"/>
                                 <include reference="Lsl-Vr-T0r"/>
                                 <include reference="Vw5-4b-fBj"/>
                                 <include reference="hKT-BH-Z51"/>
                                 <include reference="y9T-lJ-Riu"/>
+                                <include reference="7wn-Wv-Fnd"/>
+                                <include reference="cF4-PQ-cyH"/>
+                                <include reference="jbi-9H-zYx"/>
                                 <include reference="6fq-Lk-e8k"/>
                                 <include reference="Gvi-go-PeG"/>
                                 <include reference="VxQ-sO-lOE"/>
@@ -2540,7 +2540,7 @@ Then press and hold.</string>
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Force Evaluation" id="zji-Wf-H6p">
+                    <navigationItem key="navigationItem" title="Force Evaluation: " id="zji-Wf-H6p">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="sgD-jw-Zup">
                             <connections>
                                 <action selector="next:" destination="vfB-yh-Bp7" id="KWF-9c-lRx"/>
@@ -2551,6 +2551,7 @@ Then press and hold.</string>
                         <outlet property="forceGuide" destination="8ef-RR-GEN" id="SIt-OL-bNb"/>
                         <outlet property="forceImage" destination="JH4-xN-Hbj" id="b6y-Qy-zaW"/>
                         <outlet property="instructionLbl" destination="crP-Ay-Vnd" id="pvi-Gx-6dg"/>
+                        <outlet property="navBar" destination="zji-Wf-H6p" id="1K3-0A-h3q"/>
                         <outlet property="progressBar" destination="dfw-0a-gv3" id="hLD-yD-n03"/>
                         <segue destination="cAs-qc-VWb" kind="presentation" identifier="forceInstructions" modalPresentationStyle="pageSheet" id="x8c-PL-5hY"/>
                     </connections>
@@ -2577,89 +2578,112 @@ Then press and hold.</string>
                             <imageView hidden="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UniLogo" translatesAutoresizingMaskIntoConstraints="NO" id="1xM-O1-Ja5">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="KbM-gN-do8"/>
+                                    <constraint firstAttribute="width" constant="200" id="Njb-i4-F8W"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="KbM-gN-do8"/>
+                                        <exclude reference="Njb-i4-F8W"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact-widthClass=regular">
                                     <mask key="constraints">
-                                        <include reference="KbM-gN-do8"/>
+                                        <include reference="Njb-i4-F8W"/>
                                     </mask>
                                 </variation>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lAs-s5-m5c">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lAs-s5-m5c">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="432" id="Jn3-fN-TJx"/>
-                                </constraints>
                                 <string key="text">Place sensor on right wrist.
 Then press and hold.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                            </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="2.7755575615628914e-17" translatesAutoresizingMaskIntoConstraints="NO" id="FT8-0G-aaS">
+                                <rect key="frame" x="0.0" y="-2" width="150" height="2"/>
+                            </progressView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="2.7755575615628914e-17" translatesAutoresizingMaskIntoConstraints="NO" id="Tzo-ev-O8e">
+                                <rect key="frame" x="0.0" y="-2" width="150" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Xy0-cj-lKv"/>
+                                </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="Jn3-fN-TJx"/>
+                                        <exclude reference="Xy0-cj-lKv"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact-widthClass=regular">
                                     <mask key="constraints">
-                                        <include reference="Jn3-fN-TJx"/>
+                                        <include reference="Xy0-cj-lKv"/>
                                     </mask>
                                 </variation>
-                            </label>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="jWH-hE-x99">
-                                <rect key="frame" x="-10" y="-10" width="20" height="20"/>
-                            </activityIndicatorView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="2.7755575615628914e-17" translatesAutoresizingMaskIntoConstraints="NO" id="FT8-0G-aaS">
+                            </progressView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="2.7755575615628914e-17" translatesAutoresizingMaskIntoConstraints="NO" id="2CL-d0-46z">
                                 <rect key="frame" x="0.0" y="-2" width="150" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="sAM-4L-RFD"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="sAM-4L-RFD"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="sAM-4L-RFD"/>
+                                    </mask>
+                                </variation>
                             </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="P8S-cE-zDM" firstAttribute="leading" secondItem="1xM-O1-Ja5" secondAttribute="leading" id="3DF-sa-BvF"/>
-                            <constraint firstItem="1xM-O1-Ja5" firstAttribute="top" secondItem="FT8-0G-aaS" secondAttribute="bottom" constant="43" id="4gU-7M-XaH"/>
-                            <constraint firstItem="9aS-3g-sL8" firstAttribute="top" secondItem="1xM-O1-Ja5" secondAttribute="bottom" constant="49" id="6RZ-Ci-nMj"/>
-                            <constraint firstItem="lAs-s5-m5c" firstAttribute="centerX" secondItem="FT8-0G-aaS" secondAttribute="centerX" id="Cbk-PQ-BRO"/>
-                            <constraint firstItem="P8S-cE-zDM" firstAttribute="trailing" secondItem="1xM-O1-Ja5" secondAttribute="trailing" id="E4S-nS-ovO"/>
-                            <constraint firstItem="lAs-s5-m5c" firstAttribute="centerX" secondItem="jWH-hE-x99" secondAttribute="centerX" id="HA2-C8-Id8"/>
-                            <constraint firstItem="FT8-0G-aaS" firstAttribute="top" secondItem="oFg-ID-8c7" secondAttribute="bottom" constant="8" symbolic="YES" id="UjK-00-nep"/>
-                            <constraint firstItem="FT8-0G-aaS" firstAttribute="trailing" secondItem="WvA-9j-UP2" secondAttribute="trailingMargin" id="YKf-Bj-5kG"/>
-                            <constraint firstItem="jWH-hE-x99" firstAttribute="top" secondItem="lAs-s5-m5c" secondAttribute="bottom" constant="8" symbolic="YES" id="ae3-Y5-teF"/>
-                            <constraint firstItem="1xM-O1-Ja5" firstAttribute="top" secondItem="P8S-cE-zDM" secondAttribute="top" id="cVf-ni-9eT"/>
-                            <constraint firstItem="jWH-hE-x99" firstAttribute="centerX" secondItem="P8S-cE-zDM" secondAttribute="centerX" id="f1n-Qc-8UW"/>
-                            <constraint firstItem="P8S-cE-zDM" firstAttribute="bottom" secondItem="1xM-O1-Ja5" secondAttribute="bottom" id="g9J-EJ-jKM"/>
-                            <constraint firstItem="FT8-0G-aaS" firstAttribute="leading" secondItem="WvA-9j-UP2" secondAttribute="leadingMargin" id="gsm-m1-Y28"/>
-                            <constraint firstItem="lAs-s5-m5c" firstAttribute="centerY" secondItem="WvA-9j-UP2" secondAttribute="centerY" id="kFr-GH-RcC"/>
-                            <constraint firstItem="lAs-s5-m5c" firstAttribute="top" secondItem="FT8-0G-aaS" secondAttribute="bottom" constant="64" id="wHZ-pt-DYm"/>
+                            <constraint firstItem="FT8-0G-aaS" firstAttribute="top" secondItem="oFg-ID-8c7" secondAttribute="bottom" constant="8" symbolic="YES" id="3qY-at-3tj"/>
+                            <constraint firstItem="lAs-s5-m5c" firstAttribute="centerX" secondItem="P8S-cE-zDM" secondAttribute="centerX" id="7H5-cp-cJk"/>
+                            <constraint firstItem="Tzo-ev-O8e" firstAttribute="top" secondItem="lAs-s5-m5c" secondAttribute="bottom" constant="8" symbolic="YES" id="9U3-fD-sma"/>
+                            <constraint firstAttribute="centerX" secondItem="Tzo-ev-O8e" secondAttribute="centerX" constant="76" id="FZc-Sj-3gD"/>
+                            <constraint firstItem="Tzo-ev-O8e" firstAttribute="top" secondItem="2CL-d0-46z" secondAttribute="top" id="GXs-jg-0XX"/>
+                            <constraint firstItem="1xM-O1-Ja5" firstAttribute="trailing" secondItem="P8S-cE-zDM" secondAttribute="trailing" id="LQK-7t-nHA"/>
+                            <constraint firstItem="lAs-s5-m5c" firstAttribute="top" secondItem="FT8-0G-aaS" secondAttribute="bottom" constant="64" id="QS3-U0-PQQ"/>
+                            <constraint firstAttribute="centerX" secondItem="2CL-d0-46z" secondAttribute="centerX" constant="-76" id="Qux-NN-yEU"/>
+                            <constraint firstItem="FT8-0G-aaS" firstAttribute="leading" secondItem="WvA-9j-UP2" secondAttribute="leadingMargin" id="Rj0-uf-tQi"/>
+                            <constraint firstItem="FT8-0G-aaS" firstAttribute="centerX" secondItem="lAs-s5-m5c" secondAttribute="centerX" id="UP2-6V-gXZ"/>
+                            <constraint firstItem="9aS-3g-sL8" firstAttribute="top" secondItem="P8S-cE-zDM" secondAttribute="bottom" constant="49" id="Wjl-Yd-B8y"/>
+                            <constraint firstItem="P8S-cE-zDM" firstAttribute="top" secondItem="1xM-O1-Ja5" secondAttribute="top" id="ZUc-Lh-dch"/>
+                            <constraint firstItem="lAs-s5-m5c" firstAttribute="centerY" secondItem="WvA-9j-UP2" secondAttribute="centerY" id="aaX-0m-49e"/>
+                            <constraint firstItem="lAs-s5-m5c" firstAttribute="leading" secondItem="WvA-9j-UP2" secondAttribute="leadingMargin" constant="85" id="b5a-e9-1fe"/>
+                            <constraint firstItem="P8S-cE-zDM" firstAttribute="top" secondItem="FT8-0G-aaS" secondAttribute="bottom" constant="43" id="mlO-U8-vOO"/>
+                            <constraint firstItem="P8S-cE-zDM" firstAttribute="leading" secondItem="1xM-O1-Ja5" secondAttribute="leading" id="o34-e0-wbx"/>
+                            <constraint firstItem="FT8-0G-aaS" firstAttribute="trailing" secondItem="WvA-9j-UP2" secondAttribute="trailingMargin" id="rc6-vJ-jlm"/>
+                            <constraint firstItem="1xM-O1-Ja5" firstAttribute="bottom" secondItem="P8S-cE-zDM" secondAttribute="bottom" id="zX4-jW-NA6"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="P8S-cE-zDM"/>
                                 <exclude reference="1xM-O1-Ja5"/>
                                 <exclude reference="lAs-s5-m5c"/>
-                                <exclude reference="jWH-hE-x99"/>
                                 <exclude reference="FT8-0G-aaS"/>
+                                <exclude reference="Tzo-ev-O8e"/>
+                                <exclude reference="2CL-d0-46z"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="6RZ-Ci-nMj"/>
-                                <exclude reference="UjK-00-nep"/>
-                                <exclude reference="YKf-Bj-5kG"/>
-                                <exclude reference="gsm-m1-Y28"/>
-                                <exclude reference="Cbk-PQ-BRO"/>
-                                <exclude reference="HA2-C8-Id8"/>
-                                <exclude reference="kFr-GH-RcC"/>
-                                <exclude reference="wHZ-pt-DYm"/>
-                                <exclude reference="ae3-Y5-teF"/>
-                                <exclude reference="f1n-Qc-8UW"/>
-                                <exclude reference="4gU-7M-XaH"/>
-                                <exclude reference="cVf-ni-9eT"/>
-                                <exclude reference="3DF-sa-BvF"/>
-                                <exclude reference="E4S-nS-ovO"/>
-                                <exclude reference="g9J-EJ-jKM"/>
+                                <exclude reference="3qY-at-3tj"/>
+                                <exclude reference="Rj0-uf-tQi"/>
+                                <exclude reference="UP2-6V-gXZ"/>
+                                <exclude reference="rc6-vJ-jlm"/>
+                                <exclude reference="7H5-cp-cJk"/>
+                                <exclude reference="QS3-U0-PQQ"/>
+                                <exclude reference="aaX-0m-49e"/>
+                                <exclude reference="b5a-e9-1fe"/>
+                                <exclude reference="LQK-7t-nHA"/>
+                                <exclude reference="zX4-jW-NA6"/>
+                                <exclude reference="ZUc-Lh-dch"/>
+                                <exclude reference="mlO-U8-vOO"/>
+                                <exclude reference="o34-e0-wbx"/>
+                                <exclude reference="9U3-fD-sma"/>
+                                <exclude reference="FZc-Sj-3gD"/>
+                                <exclude reference="GXs-jg-0XX"/>
+                                <exclude reference="Wjl-Yd-B8y"/>
+                                <exclude reference="Qux-NN-yEU"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
@@ -2667,29 +2691,33 @@ Then press and hold.</string>
                                 <include reference="P8S-cE-zDM"/>
                                 <include reference="1xM-O1-Ja5"/>
                                 <include reference="lAs-s5-m5c"/>
-                                <include reference="jWH-hE-x99"/>
                                 <include reference="FT8-0G-aaS"/>
+                                <include reference="Tzo-ev-O8e"/>
+                                <include reference="2CL-d0-46z"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="6RZ-Ci-nMj"/>
-                                <include reference="UjK-00-nep"/>
-                                <include reference="YKf-Bj-5kG"/>
-                                <include reference="gsm-m1-Y28"/>
-                                <include reference="Cbk-PQ-BRO"/>
-                                <include reference="HA2-C8-Id8"/>
-                                <include reference="kFr-GH-RcC"/>
-                                <include reference="wHZ-pt-DYm"/>
-                                <include reference="ae3-Y5-teF"/>
-                                <include reference="f1n-Qc-8UW"/>
-                                <include reference="4gU-7M-XaH"/>
-                                <include reference="cVf-ni-9eT"/>
-                                <include reference="3DF-sa-BvF"/>
-                                <include reference="E4S-nS-ovO"/>
-                                <include reference="g9J-EJ-jKM"/>
+                                <include reference="3qY-at-3tj"/>
+                                <include reference="Rj0-uf-tQi"/>
+                                <include reference="UP2-6V-gXZ"/>
+                                <include reference="rc6-vJ-jlm"/>
+                                <include reference="7H5-cp-cJk"/>
+                                <include reference="QS3-U0-PQQ"/>
+                                <include reference="aaX-0m-49e"/>
+                                <include reference="b5a-e9-1fe"/>
+                                <include reference="LQK-7t-nHA"/>
+                                <include reference="zX4-jW-NA6"/>
+                                <include reference="ZUc-Lh-dch"/>
+                                <include reference="mlO-U8-vOO"/>
+                                <include reference="o34-e0-wbx"/>
+                                <include reference="9U3-fD-sma"/>
+                                <include reference="FZc-Sj-3gD"/>
+                                <include reference="GXs-jg-0XX"/>
+                                <include reference="Wjl-Yd-B8y"/>
+                                <include reference="Qux-NN-yEU"/>
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Rotation Test Evaluation" id="cWf-Eq-jfu">
+                    <navigationItem key="navigationItem" title="Rotation Test Evaluation: " id="cWf-Eq-jfu">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="Kda-eg-e6z">
                             <connections>
                                 <action selector="next:" destination="iN7-D6-4Lc" id="hhn-ZQ-KPO"/>
@@ -2698,9 +2726,11 @@ Then press and hold.</string>
                     </navigationItem>
                     <connections>
                         <outlet property="instructionLbl" destination="lAs-s5-m5c" id="bVz-4Q-Io0"/>
+                        <outlet property="leftBar" destination="Tzo-ev-O8e" id="iA3-EO-vbe"/>
+                        <outlet property="navBar" destination="cWf-Eq-jfu" id="kJl-O9-KJZ"/>
                         <outlet property="placeholderImage" destination="P8S-cE-zDM" id="QBd-vJ-TPG"/>
                         <outlet property="progressBar" destination="FT8-0G-aaS" id="blt-ab-uI7"/>
-                        <outlet property="progressWheel" destination="jWH-hE-x99" id="vio-gM-6Fn"/>
+                        <outlet property="rightBar" destination="2CL-d0-46z" id="Jdj-pt-sOx"/>
                         <outlet property="rotateImage" destination="1xM-O1-Ja5" id="U4N-Mk-SIY"/>
                         <segue destination="Ef6-d7-uw2" kind="presentation" identifier="rotateTestInstructions" modalPresentationStyle="pageSheet" id="bqS-W8-3gz"/>
                     </connections>
@@ -2726,12 +2756,25 @@ Then press and hold.</string>
                             </progressView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6wV-hR-nil">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="420" id="Pdq-4R-7jn"/>
+                                </constraints>
                                 <string key="text">Place sensor on right
 wrist. Then press
 and hold.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Pdq-4R-7jn"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="Pdq-4R-7jn"/>
+                                    </mask>
+                                </variation>
                             </label>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="2.7755575615628914e-17" translatesAutoresizingMaskIntoConstraints="NO" id="1XS-8B-jQA">
                                 <rect key="frame" x="0.0" y="-2" width="150" height="2"/>
@@ -2739,16 +2782,16 @@ and hold.</string>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="2.7755575615628914e-17" translatesAutoresizingMaskIntoConstraints="NO" id="v73-hn-ha3">
                                 <rect key="frame" x="0.0" y="-2" width="150" height="2"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="tot-fu-6Iq"/>
+                                    <constraint firstAttribute="width" constant="150" id="D76-xh-UTl"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="tot-fu-6Iq"/>
+                                        <exclude reference="D76-xh-UTl"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact-widthClass=regular">
                                     <mask key="constraints">
-                                        <include reference="tot-fu-6Iq"/>
+                                        <include reference="D76-xh-UTl"/>
                                     </mask>
                                 </variation>
                             </progressView>
@@ -2760,39 +2803,38 @@ and hold.</string>
                                 <rect key="frame" x="0.0" y="-2" width="150" height="2"/>
                                 <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="vMb-0c-nF9"/>
+                                    <constraint firstAttribute="width" constant="150" id="fMd-sh-NzA"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="vMb-0c-nF9"/>
+                                        <exclude reference="fMd-sh-NzA"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=compact-widthClass=regular">
                                     <mask key="constraints">
-                                        <include reference="vMb-0c-nF9"/>
+                                        <include reference="fMd-sh-NzA"/>
                                     </mask>
                                 </variation>
                             </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="5od-JK-VJT" firstAttribute="trailing" secondItem="x6J-Xc-aMd" secondAttribute="trailing" id="1CV-ah-1Zu"/>
-                            <constraint firstItem="v73-hn-ha3" firstAttribute="top" secondItem="1XS-8B-jQA" secondAttribute="bottom" constant="86" id="2EK-sL-jiY"/>
-                            <constraint firstItem="v73-hn-ha3" firstAttribute="leading" secondItem="6wV-hR-nil" secondAttribute="trailing" constant="8" symbolic="YES" id="9QX-Fr-ksX"/>
-                            <constraint firstItem="x6J-Xc-aMd" firstAttribute="leading" secondItem="5od-JK-VJT" secondAttribute="leading" id="Aik-dy-meq"/>
-                            <constraint firstItem="5od-JK-VJT" firstAttribute="leading" secondItem="0Aa-ON-99a" secondAttribute="trailing" constant="8" symbolic="YES" id="MCc-xu-EK9"/>
-                            <constraint firstItem="v73-hn-ha3" firstAttribute="leading" secondItem="0Aa-ON-99a" secondAttribute="leading" id="NaR-p6-xzH"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="x6J-Xc-aMd" secondAttribute="trailing" constant="32" id="Ovj-nz-JXV"/>
-                            <constraint firstItem="6wV-hR-nil" firstAttribute="top" secondItem="1XS-8B-jQA" secondAttribute="bottom" constant="8" symbolic="YES" id="Pm9-sH-k3j"/>
-                            <constraint firstItem="Ri3-JZ-3pp" firstAttribute="top" secondItem="6wV-hR-nil" secondAttribute="bottom" constant="8" symbolic="YES" id="Sfb-yo-diQ"/>
-                            <constraint firstItem="0Aa-ON-99a" firstAttribute="top" secondItem="5od-JK-VJT" secondAttribute="top" id="WrB-Xs-iQz"/>
-                            <constraint firstItem="x6J-Xc-aMd" firstAttribute="leading" secondItem="v73-hn-ha3" secondAttribute="trailing" constant="8" symbolic="YES" id="YAJ-QI-TOL"/>
-                            <constraint firstItem="1XS-8B-jQA" firstAttribute="leading" secondItem="6wV-hR-nil" secondAttribute="leading" id="cTf-Yz-Y11"/>
-                            <constraint firstItem="1XS-8B-jQA" firstAttribute="top" secondItem="zOQ-rp-P1r" secondAttribute="bottom" constant="8" symbolic="YES" id="gkl-V3-i2u"/>
-                            <constraint firstItem="6wV-hR-nil" firstAttribute="leading" secondItem="EMQ-Z3-dEk" secondAttribute="leadingMargin" id="hRe-Cx-k97"/>
-                            <constraint firstItem="1XS-8B-jQA" firstAttribute="trailing" secondItem="EMQ-Z3-dEk" secondAttribute="trailingMargin" id="oy2-ra-Cun"/>
-                            <constraint firstItem="5od-JK-VJT" firstAttribute="top" secondItem="x6J-Xc-aMd" secondAttribute="bottom" constant="150" id="vFT-NC-wcR"/>
-                            <constraint firstItem="v73-hn-ha3" firstAttribute="top" secondItem="x6J-Xc-aMd" secondAttribute="top" id="xCm-3H-HzB"/>
+                            <constraint firstItem="5od-JK-VJT" firstAttribute="leading" secondItem="x6J-Xc-aMd" secondAttribute="leading" id="57b-5n-lzr"/>
+                            <constraint firstItem="Ri3-JZ-3pp" firstAttribute="top" secondItem="6wV-hR-nil" secondAttribute="bottom" constant="8" symbolic="YES" id="5iF-ps-Q8L"/>
+                            <constraint firstItem="x6J-Xc-aMd" firstAttribute="top" secondItem="v73-hn-ha3" secondAttribute="top" id="9NL-Ia-1aS"/>
+                            <constraint firstItem="6wV-hR-nil" firstAttribute="top" secondItem="1XS-8B-jQA" secondAttribute="bottom" constant="8" symbolic="YES" id="AiX-Cx-Ypo"/>
+                            <constraint firstItem="v73-hn-ha3" firstAttribute="top" secondItem="1XS-8B-jQA" secondAttribute="bottom" constant="86" id="DrF-Q6-lhs"/>
+                            <constraint firstItem="0Aa-ON-99a" firstAttribute="trailing" secondItem="v73-hn-ha3" secondAttribute="trailing" id="Eyj-KJ-KV3"/>
+                            <constraint firstItem="x6J-Xc-aMd" firstAttribute="trailing" secondItem="5od-JK-VJT" secondAttribute="trailing" id="GwV-Y8-H5f"/>
+                            <constraint firstItem="1XS-8B-jQA" firstAttribute="trailing" secondItem="EMQ-Z3-dEk" secondAttribute="trailingMargin" id="Sfn-Hd-Et4"/>
+                            <constraint firstItem="0Aa-ON-99a" firstAttribute="top" secondItem="5od-JK-VJT" secondAttribute="top" id="XCz-Tm-u1i"/>
+                            <constraint firstItem="v73-hn-ha3" firstAttribute="leading" secondItem="6wV-hR-nil" secondAttribute="trailing" constant="8" symbolic="YES" id="Y2g-2o-qsH"/>
+                            <constraint firstItem="0Aa-ON-99a" firstAttribute="leading" secondItem="v73-hn-ha3" secondAttribute="leading" id="Z1s-DX-3Tl"/>
+                            <constraint firstItem="1XS-8B-jQA" firstAttribute="leading" secondItem="EMQ-Z3-dEk" secondAttribute="leadingMargin" id="bWQ-h4-ySF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="x6J-Xc-aMd" secondAttribute="trailing" constant="97" id="dUv-XT-wzx"/>
+                            <constraint firstItem="1XS-8B-jQA" firstAttribute="top" secondItem="zOQ-rp-P1r" secondAttribute="bottom" constant="8" symbolic="YES" id="iTS-7u-7tj"/>
+                            <constraint firstItem="1XS-8B-jQA" firstAttribute="leading" secondItem="6wV-hR-nil" secondAttribute="leading" id="nC8-Fq-c0L"/>
+                            <constraint firstItem="0Aa-ON-99a" firstAttribute="top" secondItem="x6J-Xc-aMd" secondAttribute="bottom" constant="150" id="rnC-dm-VIN"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -2804,23 +2846,22 @@ and hold.</string>
                                 <exclude reference="x6J-Xc-aMd"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="cTf-Yz-Y11"/>
-                                <exclude reference="gkl-V3-i2u"/>
-                                <exclude reference="oy2-ra-Cun"/>
-                                <exclude reference="Pm9-sH-k3j"/>
-                                <exclude reference="hRe-Cx-k97"/>
-                                <exclude reference="Sfb-yo-diQ"/>
-                                <exclude reference="2EK-sL-jiY"/>
-                                <exclude reference="9QX-Fr-ksX"/>
-                                <exclude reference="NaR-p6-xzH"/>
-                                <exclude reference="xCm-3H-HzB"/>
-                                <exclude reference="WrB-Xs-iQz"/>
-                                <exclude reference="Aik-dy-meq"/>
-                                <exclude reference="Ovj-nz-JXV"/>
-                                <exclude reference="YAJ-QI-TOL"/>
-                                <exclude reference="1CV-ah-1Zu"/>
-                                <exclude reference="MCc-xu-EK9"/>
-                                <exclude reference="vFT-NC-wcR"/>
+                                <exclude reference="Sfn-Hd-Et4"/>
+                                <exclude reference="bWQ-h4-ySF"/>
+                                <exclude reference="iTS-7u-7tj"/>
+                                <exclude reference="nC8-Fq-c0L"/>
+                                <exclude reference="AiX-Cx-Ypo"/>
+                                <exclude reference="5iF-ps-Q8L"/>
+                                <exclude reference="DrF-Q6-lhs"/>
+                                <exclude reference="Y2g-2o-qsH"/>
+                                <exclude reference="Eyj-KJ-KV3"/>
+                                <exclude reference="XCz-Tm-u1i"/>
+                                <exclude reference="Z1s-DX-3Tl"/>
+                                <exclude reference="rnC-dm-VIN"/>
+                                <exclude reference="9NL-Ia-1aS"/>
+                                <exclude reference="GwV-Y8-H5f"/>
+                                <exclude reference="dUv-XT-wzx"/>
+                                <exclude reference="57b-5n-lzr"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
@@ -2833,27 +2874,26 @@ and hold.</string>
                                 <include reference="x6J-Xc-aMd"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="cTf-Yz-Y11"/>
-                                <include reference="gkl-V3-i2u"/>
-                                <include reference="oy2-ra-Cun"/>
-                                <include reference="Pm9-sH-k3j"/>
-                                <include reference="hRe-Cx-k97"/>
-                                <include reference="Sfb-yo-diQ"/>
-                                <include reference="2EK-sL-jiY"/>
-                                <include reference="9QX-Fr-ksX"/>
-                                <include reference="NaR-p6-xzH"/>
-                                <include reference="xCm-3H-HzB"/>
-                                <include reference="WrB-Xs-iQz"/>
-                                <include reference="Aik-dy-meq"/>
-                                <include reference="Ovj-nz-JXV"/>
-                                <include reference="YAJ-QI-TOL"/>
-                                <include reference="1CV-ah-1Zu"/>
-                                <include reference="MCc-xu-EK9"/>
-                                <include reference="vFT-NC-wcR"/>
+                                <include reference="Sfn-Hd-Et4"/>
+                                <include reference="bWQ-h4-ySF"/>
+                                <include reference="iTS-7u-7tj"/>
+                                <include reference="nC8-Fq-c0L"/>
+                                <include reference="AiX-Cx-Ypo"/>
+                                <include reference="5iF-ps-Q8L"/>
+                                <include reference="DrF-Q6-lhs"/>
+                                <include reference="Y2g-2o-qsH"/>
+                                <include reference="Eyj-KJ-KV3"/>
+                                <include reference="XCz-Tm-u1i"/>
+                                <include reference="Z1s-DX-3Tl"/>
+                                <include reference="rnC-dm-VIN"/>
+                                <include reference="9NL-Ia-1aS"/>
+                                <include reference="GwV-Y8-H5f"/>
+                                <include reference="dUv-XT-wzx"/>
+                                <include reference="57b-5n-lzr"/>
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Pitch Test Evaluation" id="cAo-E8-DJN">
+                    <navigationItem key="navigationItem" title="Pitch Test Evaluation: " id="cAo-E8-DJN">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="7hc-Zh-6op">
                             <connections>
                                 <action selector="next:" destination="de8-68-Jsh" id="nGM-kz-1jb"/>
@@ -2864,6 +2904,7 @@ and hold.</string>
                         <outlet property="instructionLbl" destination="6wV-hR-nil" id="yyW-Yy-RCi"/>
                         <outlet property="leftBarBottom" destination="0Aa-ON-99a" id="RxS-Xh-y0J"/>
                         <outlet property="leftBarTop" destination="v73-hn-ha3" id="fxy-sy-bIf"/>
+                        <outlet property="navBar" destination="cAo-E8-DJN" id="fWy-mu-Hhp"/>
                         <outlet property="progressBar" destination="1XS-8B-jQA" id="6t9-ha-z9A"/>
                         <outlet property="rightBarBottom" destination="5od-JK-VJT" id="w77-ab-BjQ"/>
                         <outlet property="rightBarTop" destination="x6J-Xc-aMd" id="vIr-pd-edX"/>

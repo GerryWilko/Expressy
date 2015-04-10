@@ -11,28 +11,34 @@ import Foundation
 class ForceEvalVC: UIViewController {
     private var stage:Int
     private var evalCount:Int
+    private var attemptCount:Int!
     private var startTime:NSTimeInterval!
     private var reqTouchForce:UInt32!
     
     private let detector:InteractionDetector
     private let csvBuilder:CSVBuilder
+    private let participant:UInt32
     
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var instructionLbl: UILabel!
     @IBOutlet weak var forceImage: UIImageView!
     @IBOutlet weak var forceGuide: UIImageView!
+    @IBOutlet weak var navBar: UINavigationItem!
     
     required init(coder aDecoder: NSCoder) {
         stage = 1
         evalCount = 0
         detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
         detector.startDetection()
-        csvBuilder = CSVBuilder(fileNames: ["force.csv", "forceData.csv"], headerLines: ["Time,Requested Force,Tapped Force", WaxData.headerLine()])
+        participant = EvalUtils.generateParticipantID()
+        csvBuilder = CSVBuilder(fileNames: ["force-\(participant).csv", "forceData-\(participant).csv"], headerLines: ["Time,Requested Force,Tapped Force", WaxData.headerLine()])
         super.init(coder: aDecoder)
     }
     
     override func viewDidLoad() {
         self.performSegueWithIdentifier("forceInstructions", sender: self)
+        startTime = NSDate.timeIntervalSinceReferenceDate()
+        navBar.title = "\(navBar.title!) \(participant)"
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -43,49 +49,70 @@ class ForceEvalVC: UIViewController {
             self.forceImage.transform = CGAffineTransformMakeScale(CGFloat(touchForce), CGFloat(touchForce))
         })
         
-        println(touchForce)
+        NSTimer.scheduledTimerWithTimeInterval(1.5, target: self, selector: Selector("resetForce:"), userInfo: nil, repeats: false)
         
         if (stage == 2) {
-            self.view.userInteractionEnabled = false
             csvBuilder.appendRow("\(time),\(reqTouchForce),\(touchForce)", index: 0)
-            instructionLbl.text = "Press next to advance to next stage."
-            evalCount++
+            if (attemptCount == 2) {
+                setNextView()
+                evalCount++
+            } else {
+                attemptCount = attemptCount + 1
+                instructionLbl.text = "Attempt: \(attemptCount! + 1)"
+            }
         }
+    }
+    
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+        detector.touchUp(NSDate.timeIntervalSinceReferenceDate())
     }
     
     override func viewDidDisappear(animated: Bool) {
         detector.stopDetection()
     }
     
+    @objc func resetForce(timer:NSTimer) {
+        UIView.animateWithDuration(1.0, animations: {
+            self.forceImage.transform = CGAffineTransformMakeScale(0.01, 0.01)
+        })
+    }
+    
     func setRandomForce() {
-        reqTouchForce = arc4random_uniform(25)
+        attemptCount = 0
+        reqTouchForce = arc4random_uniform(20) + 1
         UIView.animateWithDuration(1.0, animations: {
             self.forceGuide.transform = CGAffineTransformMakeScale(CGFloat(self.reqTouchForce), CGFloat(self.reqTouchForce))
         })
     }
     
+    func setNextView() {
+        self.view.userInteractionEnabled = false
+        instructionLbl.text = "Press next to advance to next stage."
+    }
+    
+    func setForceView() {
+        forceGuide.hidden = false
+        setRandomForce()
+        instructionLbl.text = "Tap the screen with a force to match the blue circle."
+        self.view.userInteractionEnabled = true
+    }
+    
     @IBAction func next(sender: AnyObject) {
         switch (stage) {
         case 1:
-            startTime = NSDate.timeIntervalSinceReferenceDate()
-            forceGuide.hidden = false
-            setRandomForce()
-            instructionLbl.text = "Tap the screen with a force to match the blue circle."
+            setForceView()
             stage++
             break
         case 2:
             if (evalCount < 10) {
-                progressBar.setProgress(Float(evalCount) / 10.0, animated: true)
-                setRandomForce()
-                self.view.userInteractionEnabled = true
-                instructionLbl.text = "Tap the screen with a force to match the blue circle."
+                setForceView()
             } else {
-                progressBar.setProgress(1, animated: true)
                 EvalUtils.logDataBetweenTimes(startTime, endTime: NSDate.timeIntervalSinceReferenceDate(), csv: csvBuilder)
                 instructionLbl.text = "Evaluation Complete. Thank you."
-                csvBuilder.emailCSV(self, subject: "Force Evaluation")
+                csvBuilder.emailCSV(self, subject: "Force Evaluation: \(participant)")
                 stage++
             }
+            progressBar.setProgress(Float(evalCount) / 10.0, animated: true)
             break
         default:
             break

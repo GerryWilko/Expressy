@@ -16,9 +16,11 @@ class PitchTestEvalVC: UIViewController {
     private var startTime:NSTimeInterval!
     private var lastTransform:CGAffineTransform!
     private var reqPitchAngle:Float!
+    private var touchTime:NSTimeInterval!
     
     private let detector:InteractionDetector
     private let csvBuilder:CSVBuilder
+    private let participant:UInt32
     
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var instructionLbl: UILabel!
@@ -26,6 +28,7 @@ class PitchTestEvalVC: UIViewController {
     @IBOutlet weak var leftBarBottom: UIProgressView!
     @IBOutlet weak var rightBarTop: UIProgressView!
     @IBOutlet weak var rightBarBottom: UIProgressView!
+    @IBOutlet weak var navBar: UINavigationItem!
     
     required init(coder aDecoder: NSCoder) {
         stage = 1
@@ -34,7 +37,8 @@ class PitchTestEvalVC: UIViewController {
         evalCount = 0
         detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
         detector.startDetection()
-        csvBuilder = CSVBuilder(fileNames: ["rotate.csv", "rotateData.csv"], headerLines: ["Time,Max Angle,Min Angle,Requested Angle,End Angle", WaxData.headerLine()])
+        participant = EvalUtils.generateParticipantID()
+        csvBuilder = CSVBuilder(fileNames: ["pitch-\(participant).csv", "pitchData-\(participant).csv"], headerLines: ["Time,Max Angle,Min Angle,Requested Angle,End Angle,Time Taken", WaxData.headerLine()])
         super.init(coder: aDecoder)
     }
     
@@ -43,7 +47,7 @@ class PitchTestEvalVC: UIViewController {
         rightBarTop.transform = CGAffineTransformMakeRotation(-CGFloat(M_PI / 2))
         leftBarBottom.transform = CGAffineTransformMakeRotation(CGFloat(M_PI / 2))
         rightBarBottom.transform = CGAffineTransformMakeRotation(CGFloat(M_PI / 2))
-        
+        navBar.title = "\(navBar.title!) \(participant)"
         self.performSegueWithIdentifier("pitchTestInstructions", sender: self)
         startTime = NSDate.timeIntervalSinceReferenceDate()
     }
@@ -56,25 +60,25 @@ class PitchTestEvalVC: UIViewController {
             detector.subscribe(EventType.Metrics, callback: {
                 if (self.maxValue < self.detector.currentPitch) {
                     self.maxValue = self.detector.currentPitch
-                    self.leftBarTop.setProgress(self.maxValue / 90, animated: true)
+                    self.leftBarTop.setProgress(self.maxValue / 90, animated: false)
                 }
                 
                 if (self.minValue > self.detector.currentPitch) {
                     self.minValue = self.detector.currentPitch
-                    self.leftBarBottom.setProgress((-self.minValue) / 90, animated: true)
+                    self.leftBarBottom.setProgress((-self.minValue) / 90, animated: false)
                 }
             })
             instructionLbl.text = "Now pitch upwards as far as you can.\nThen back to the downwards again, keep your finger held down."
             break
         case 2:
-            detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
+            touchTime = NSDate.timeIntervalSinceReferenceDate()
             detector.subscribe(EventType.Metrics, callback: {
                 if (self.detector.currentPitch > 0) {
-                    self.leftBarTop.setProgress(self.detector.currentPitch / 90, animated: true)
-                    self.leftBarBottom.setProgress(0.0, animated: true)
+                    self.leftBarTop.setProgress(self.detector.currentPitch / 90, animated: false)
+                    self.leftBarBottom.setProgress(0.0, animated: false)
                 } else {
-                    self.leftBarBottom.setProgress((-self.detector.currentPitch) / 90, animated: true)
-                    self.leftBarTop.setProgress(0.0, animated: true)
+                    self.leftBarBottom.setProgress((-self.detector.currentPitch) / 90, animated: false)
+                    self.leftBarTop.setProgress(0.0, animated: false)
                 }
             })
             break
@@ -85,20 +89,19 @@ class PitchTestEvalVC: UIViewController {
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         let time = NSDate.timeIntervalSinceReferenceDate()
+        let pitch = detector.currentPitch
         detector.touchUp(time)
         
         switch (stage) {
         case 1:
             detector.clearSubscriptions()
-            instructionLbl.text = "Press next to advance to the next stage or try again."
-            self.view.userInteractionEnabled = false
+            setNextView()
             break
         case 2:
             detector.clearSubscriptions()
-            csvBuilder.appendRow("\(time),\(maxValue),\(minValue),\(reqPitchAngle),\(detector.currentPitch)", index: 0)
-            
+            csvBuilder.appendRow("\(time),\(maxValue),\(minValue),\(reqPitchAngle),\(pitch),\(time - touchTime)", index: 0)
+            setNextView()
             evalCount++
-            instructionLbl.text = "Press next to advance to the next step."
             break
         default:
             break
@@ -123,27 +126,39 @@ class PitchTestEvalVC: UIViewController {
         detector.stopDetection()
     }
     
+    func setNextView() {
+        instructionLbl.text = "Press next to advance to the next stage."
+        self.view.userInteractionEnabled = false
+    }
+    
+    func setPitchView() {
+        leftBarTop.setProgress(0.0, animated: false)
+        leftBarBottom.setProgress(0.0, animated: false)
+        rightBarTop.setProgress(0.0, animated: false)
+        rightBarBottom.setProgress(0.0, animated: false)
+        setRandomPitch()
+        instructionLbl.text = "Pitch to the angle demonstrated on the right."
+        self.view.userInteractionEnabled = true
+    }
+    
     @IBAction func next(sender: AnyObject) {
         switch (stage) {
         case 1:
             rightBarTop.hidden = false
             rightBarBottom.hidden = false
-            setRandomPitch()
-            self.view.userInteractionEnabled = true
+            setPitchView()
             stage++
             break
         case 2:
             if (evalCount < 10) {
-                progressBar.setProgress(Float(evalCount) / 10.0, animated: true)
-                setRandomPitch()
-                self.view.userInteractionEnabled = true
-                instructionLbl.text = "Pitch to the angle demonstrated on the right."
+                setPitchView()
             } else {
-                progressBar.setProgress(1.0, animated: true)
                 instructionLbl.text = "Evaluation Complete. Thank you."
                 EvalUtils.logDataBetweenTimes(startTime, endTime: NSDate.timeIntervalSinceReferenceDate(), csv: csvBuilder)
+                csvBuilder.emailCSV(self, subject: "Pitch test evaluation: \(participant)")
                 stage++
             }
+            progressBar.setProgress(Float(evalCount) / 10.0, animated: true)
             break
         default:
             break

@@ -13,17 +13,22 @@ class RotateTestEvalVC: UIViewController {
     private var maxValue:Float
     private var minValue:Float
     private var evalCount:Int
+    private var startTime:NSTimeInterval!
     private var angleDifference:Float!
     private var lastTransform:CGAffineTransform!
+    private var touchTime:NSTimeInterval!
     
     private let detector:InteractionDetector
     private let csvBuilder:CSVBuilder
+    private let participant:UInt32
     
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var placeholderImage: UIImageView!
     @IBOutlet weak var rotateImage: UIImageView!
     @IBOutlet weak var instructionLbl: UILabel!
-    @IBOutlet weak var progressWheel: UIActivityIndicatorView!
+    @IBOutlet weak var leftBar: UIProgressView!
+    @IBOutlet weak var rightBar: UIProgressView!
+    @IBOutlet weak var navBar: UINavigationItem!
     
     required init(coder aDecoder: NSCoder) {
         stage = 1
@@ -32,7 +37,8 @@ class RotateTestEvalVC: UIViewController {
         evalCount = 0
         detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
         detector.startDetection()
-        csvBuilder = CSVBuilder(fileNames: ["rotate.csv", "rotateData.csv"], headerLines: ["Time,Max Angle,Min Angle,Placeholder Angle,Image Angle,End Image Angle", WaxData.headerLine()])
+        participant = EvalUtils.generateParticipantID()
+        csvBuilder = CSVBuilder(fileNames: ["rotate-\(participant).csv", "rotateData-\(participant).csv"], headerLines: ["Time,Max Angle,Min Angle,Placeholder Angle,Angle to Rotate,End Image Angle,Time Taken", WaxData.headerLine()])
         super.init(coder: aDecoder)
     }
     
@@ -44,20 +50,21 @@ class RotateTestEvalVC: UIViewController {
             detector.subscribe(EventType.Metrics, callback: {
                 if (self.maxValue < self.detector.currentRotation) {
                     self.maxValue = self.detector.currentRotation
+                    self.rightBar.setProgress(self.maxValue / 180, animated: true)
                 }
                 
                 if (self.minValue > self.detector.currentRotation) {
                     self.minValue = self.detector.currentRotation
+                    self.leftBar.setProgress((-self.minValue) / 180, animated: true)
                 }
             })
-            instructionLbl.text = "Now rotate as far as you can to the right.\nThen back to the left, keep your finger held down."
-            progressWheel.startAnimating()
+            instructionLbl.text = "Now rotate as far as you can clockwise. Then back anti-clockwise, keep your finger held down."
             break
         case 2:
             let touch = touches.first as! UITouch
             
             if (touch.view == rotateImage) {
-                detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
+                touchTime = NSDate.timeIntervalSinceReferenceDate()
                 detector.subscribe(EventType.Metrics, callback: {
                     self.rotateImage.transform = CGAffineTransformRotate(self.lastTransform, CGFloat(self.detector.currentRotation) * CGFloat(M_PI / 180))
                 })
@@ -69,27 +76,24 @@ class RotateTestEvalVC: UIViewController {
     }
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-        detector.touchUp(NSDate.timeIntervalSinceReferenceDate())
+        let time = NSDate.timeIntervalSinceReferenceDate()
+        detector.touchUp(time)
         
         switch (stage) {
         case 1:
             detector.clearSubscriptions()
-            instructionLbl.text = "Press next to advance to the next stage or try again."
-            progressWheel.stopAnimating()
-            self.view.userInteractionEnabled = false
+            setNextView()
             break
         case 2:
             detector.clearSubscriptions()
-            
             let touch = touches.first as! UITouch
             
             if (touch.view == rotateImage) {
                 let placeholderDegrees = atan2f(Float(placeholderImage.transform.b), Float(placeholderImage.transform.a)) * Float(180 / M_PI)
                 let imageDegrees = atan2f(Float(rotateImage.transform.b), Float(rotateImage.transform.a)) * Float(180 / M_PI)
-                rotateImage.userInteractionEnabled = false
+                csvBuilder.appendRow("\(time),\(maxValue),\(minValue),\(placeholderDegrees),\(angleDifference),\(imageDegrees),\(time - touchTime)", index: 0)
+                setNextView()
                 evalCount++
-                
-                progressBar.setProgress(Float(evalCount) / 10.0, animated: true)
             }
             break
         default:
@@ -98,14 +102,17 @@ class RotateTestEvalVC: UIViewController {
     }
     
     override func viewDidLoad() {
+        leftBar.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
         self.performSegueWithIdentifier("rotateTestInstructions", sender: self)
+        startTime = NSDate.timeIntervalSinceReferenceDate()
+        navBar.title = "\(navBar.title!) \(participant)"
     }
     
     override func viewDidDisappear(animated: Bool) {
         detector.stopDetection()
     }
     
-    func randomiseImages() {
+    private func randomiseImages() {
         let range = UInt32(maxValue - minValue)
         let placeholderAngle = Float(Int(arc4random_uniform(range))) + minValue
         let rotateAngle = Float(Int(arc4random_uniform(range))) + minValue
@@ -115,30 +122,44 @@ class RotateTestEvalVC: UIViewController {
         lastTransform = rotateImage.transform
     }
     
+    private func setNextView() {
+        placeholderImage.hidden = true
+        rotateImage.hidden = true
+        instructionLbl.hidden = false
+        instructionLbl.text = "Press next to advance to the next stage."
+        self.view.userInteractionEnabled = false
+    }
+    
+    private func setRotateImage() {
+        instructionLbl.hidden = true
+        leftBar.hidden = true
+        rightBar.hidden = true
+        placeholderImage.hidden = false
+        rotateImage.hidden = false
+        
+        randomiseImages()
+        self.view.userInteractionEnabled = true
+    }
+    
     @IBAction func next(sender: AnyObject) {
         switch (stage) {
         case 1:
-            instructionLbl.hidden = true
-            placeholderImage.hidden = false
-            rotateImage.hidden = false
-            
-            randomiseImages()
-            self.view.userInteractionEnabled = true
+            setRotateImage()
             stage++
             break
         case 2:
             if (evalCount < 10) {
-                progressBar.setProgress(Float(evalCount) / 10.0, animated: true)
-                randomiseImages()
-                rotateImage.userInteractionEnabled = true
+                setRotateImage()
             } else {
                 instructionLbl.hidden = false
                 placeholderImage.hidden = true
                 rotateImage.hidden = true
-                
+                EvalUtils.logDataBetweenTimes(startTime, endTime: NSDate.timeIntervalSinceReferenceDate(), csv: csvBuilder)
                 instructionLbl.text = "Evaluation Complete. Thank you."
+                csvBuilder.emailCSV(self, subject: "Rotation test evaluation: \(participant)")
                 stage++
             }
+            progressBar.setProgress(Float(evalCount) / 10.0, animated: true)
             break
         default:
             break

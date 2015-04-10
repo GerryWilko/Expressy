@@ -140,16 +140,6 @@ class InteractionDetector {
         
         var force:Float = 0.0
         
-//        if (data[data.count - 1].getAccNoGrav().magnitude() > touchForceFilter) {
-//            for var i = data.count - 1; i >= 0; i-- {
-//                if (data[i].getAccNoGrav().magnitude() > touchForceFilter) {
-//                    force += data[i].getAccNoGrav().magnitude()
-//                } else {
-//                    return force
-//                }
-//            }
-//        }
-        
         for d in data {
             if d.getAccNoGrav().magnitude() > force {
                 force = d.getAccNoGrav().magnitude()
