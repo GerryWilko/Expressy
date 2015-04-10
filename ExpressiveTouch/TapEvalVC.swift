@@ -16,13 +16,16 @@ class TapEvalVC: UIViewController {
     
     private let detector:InteractionDetector
     private let csv:CSVBuilder
+    private let participant:UInt32
     
     @IBOutlet weak var instructionLbl: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
+    @IBOutlet weak var navBar: UINavigationItem!
     
     required init(coder aDecoder: NSCoder) {
         detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
-        csv = CSVBuilder(fileNames: ["tapForce.csv","tapData.csv"], headerLines: ["Time,Requested Force,Tap Force", WaxData.headerLine()])
+        participant = EvalUtils.generateParticipantID()
+        csv = CSVBuilder(fileNames: ["tapForce-\(participant).csv","tapData-\(participant).csv"], headerLines: ["Participant ID,Time,Requested Force,Tap Force", WaxData.headerLine()])
         current = ForceCategory.Soft
         super.init(coder: aDecoder)
         detector.startDetection()
@@ -30,6 +33,7 @@ class TapEvalVC: UIViewController {
     }
     
     override func viewDidLoad() {
+        navBar.title = navBar.title! + " \(participant)"
         self.performSegueWithIdentifier("tapForceInstructions", sender: self)
         startTime = NSDate.timeIntervalSinceReferenceDate()
     }
@@ -61,60 +65,25 @@ class TapEvalVC: UIViewController {
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-        
         let time = NSDate.timeIntervalSinceReferenceDate()
         detector.touchDown(time)
         let tapForce = detector.calculateTouchForce(time)
         
-        progressBar.setProgress(Float(Float(30 - runStack.count) / 30.0), animated: true)
-        
         switch (current) {
         case .Soft:
-            csv.appendRow("\(time),Soft,\(tapForce)", index: 0)
+            csv.appendRow("\(participant),\(time),Soft,\(tapForce)", index: 0)
             break
         case .Medium:
-            csv.appendRow("\(time),Medium,\(tapForce)", index: 0)
+            csv.appendRow("\(participant),\(time),Medium,\(tapForce)", index: 0)
             break
         case .Hard:
-            csv.appendRow("\(time),Hard,\(tapForce)", index: 0)
+            csv.appendRow("\(participant),\(time),Hard,\(tapForce)", index: 0)
             break
         default:
-            instructionLbl.text = "Something went wrong. Try again."
             break
         }
         
-        if (runStack.isEmpty){
-            detector.stopDetection()
-            WaxProcessor.getProcessor().dataCache.clearSubscriptions()
-            progressBar.setProgress(1.0, animated: true)
-            instructionLbl.text = "Evaluation Complete. Thank you."
-            instructionLbl.textColor = UIColor.blackColor()
-            EvalUtils.logDataBetweenTimes(startTime, endTime: time, csv: csv)
-            csv.emailCSV(self, subject: "Tap Force Evaluation")
-        } else {
-            current = runStack[0]
-            runStack.removeAtIndex(0)
-            
-            switch (current) {
-            case .Soft:
-                instructionLbl.text = "Tap the screen: Soft"
-                instructionLbl.textColor = UIColor.blueColor()
-                break
-            case .Medium:
-                instructionLbl.text = "Tap the screen: Medium"
-                instructionLbl.textColor = UIColor.greenColor()
-                break
-            case .Hard:
-                instructionLbl.text = "Tap the screen: Hard"
-                instructionLbl.textColor = UIColor.orangeColor()
-                break
-            default:
-                instructionLbl.text = "Something went wrong. Try again."
-                instructionLbl.textColor = UIColor.blackColor()
-                break
-            }
-        }
+        setNextView()
     }
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -128,7 +97,52 @@ class TapEvalVC: UIViewController {
         }
     }
     
+    func setNextView() {
+        instructionLbl.text = "Press next to advance to next stage."
+        instructionLbl.textColor = UIColor.blackColor()
+        self.view.userInteractionEnabled = false
+    }
+    
+    func setForceView() {
+        current = runStack[0]
+        runStack.removeAtIndex(0)
+        
+        switch (current) {
+        case .Soft:
+            instructionLbl.text = "Tap the screen: Soft"
+            instructionLbl.textColor = UIColor.greenColor()
+            break
+        case .Medium:
+            instructionLbl.text = "Tap the screen: Medium"
+            instructionLbl.textColor = UIColor.orangeColor()
+            break
+        case .Hard:
+            instructionLbl.text = "Tap the screen: Hard"
+            instructionLbl.textColor = UIColor.redColor()
+            break
+        default:
+            instructionLbl.text = "Something went wrong. Try again."
+            instructionLbl.textColor = UIColor.blackColor()
+            break
+        }
+        
+        self.view.userInteractionEnabled = true
+    }
+    
     @IBAction func next(sender: AnyObject) {
+        if (runStack.isEmpty){
+            detector.stopDetection()
+            WaxProcessor.getProcessor().dataCache.clearSubscriptions()
+            progressBar.setProgress(1.0, animated: true)
+            instructionLbl.text = "Evaluation Complete. Thank you."
+            instructionLbl.textColor = UIColor.blackColor()
+            EvalUtils.logDataBetweenTimes(startTime, endTime: NSDate.timeIntervalSinceReferenceDate(), csv: csv)
+            csv.emailCSV(self, subject: "Tap Force Evaluation: \(participant)")
+        } else {
+            setForceView()
+        }
+        
+        progressBar.setProgress(Float(Float(30 - runStack.count) / 30.0), animated: true)
     }
 }
 

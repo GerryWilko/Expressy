@@ -56,68 +56,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the screen: Soft" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f9s-TH-7qW">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="445" id="4sI-5m-hrm"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="4sI-5m-hrm"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=compact-widthClass=regular">
-                                    <mask key="constraints">
-                                        <include reference="4sI-5m-hrm"/>
-                                    </mask>
-                                </variation>
-                            </label>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="2.7755575615628914e-17" translatesAutoresizingMaskIntoConstraints="NO" id="bfJ-93-zRS">
                                 <rect key="frame" x="0.0" y="-2" width="150" height="2"/>
                             </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the screen: Soft" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f9s-TH-7qW">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="f9s-TH-7qW" firstAttribute="centerY" secondItem="nnH-Lh-jQ7" secondAttribute="centerY" id="9b5-Sk-MEI"/>
-                            <constraint firstItem="f9s-TH-7qW" firstAttribute="top" secondItem="P9n-ly-hv7" secondAttribute="bottom" constant="113" id="AXD-cT-eY6"/>
-                            <constraint firstItem="f9s-TH-7qW" firstAttribute="centerX" secondItem="nnH-Lh-jQ7" secondAttribute="centerX" id="J5V-zt-ltQ"/>
-                            <constraint firstItem="bfJ-93-zRS" firstAttribute="centerX" secondItem="f9s-TH-7qW" secondAttribute="centerX" id="MQX-Sy-nDn"/>
-                            <constraint firstItem="bfJ-93-zRS" firstAttribute="leading" secondItem="nnH-Lh-jQ7" secondAttribute="leadingMargin" id="TkJ-9g-2hy"/>
-                            <constraint firstItem="bfJ-93-zRS" firstAttribute="top" secondItem="P9n-ly-hv7" secondAttribute="bottom" constant="8" symbolic="YES" id="UIC-YV-neN"/>
+                            <constraint firstItem="bfJ-93-zRS" firstAttribute="centerX" secondItem="f9s-TH-7qW" secondAttribute="centerX" id="53u-vU-5NC"/>
+                            <constraint firstItem="bfJ-93-zRS" firstAttribute="top" secondItem="P9n-ly-hv7" secondAttribute="bottom" constant="8" symbolic="YES" id="EBf-3B-ACp"/>
+                            <constraint firstItem="bfJ-93-zRS" firstAttribute="trailing" secondItem="nnH-Lh-jQ7" secondAttribute="trailingMargin" id="EZb-am-OhD"/>
+                            <constraint firstItem="bfJ-93-zRS" firstAttribute="leading" secondItem="nnH-Lh-jQ7" secondAttribute="leadingMargin" id="GSa-X5-pBn"/>
+                            <constraint firstItem="Crn-rh-kDj" firstAttribute="top" secondItem="f9s-TH-7qW" secondAttribute="bottom" constant="177" id="THI-Mc-JD7"/>
+                            <constraint firstItem="f9s-TH-7qW" firstAttribute="centerY" secondItem="nnH-Lh-jQ7" secondAttribute="centerY" id="pIO-Qd-iR1"/>
+                            <constraint firstItem="f9s-TH-7qW" firstAttribute="leading" secondItem="nnH-Lh-jQ7" secondAttribute="leadingMargin" constant="70" id="wbO-0J-h6j"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="f9s-TH-7qW"/>
                                 <exclude reference="bfJ-93-zRS"/>
+                                <exclude reference="f9s-TH-7qW"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="MQX-Sy-nDn"/>
-                                <exclude reference="TkJ-9g-2hy"/>
-                                <exclude reference="UIC-YV-neN"/>
-                                <exclude reference="9b5-Sk-MEI"/>
-                                <exclude reference="AXD-cT-eY6"/>
-                                <exclude reference="J5V-zt-ltQ"/>
+                                <exclude reference="53u-vU-5NC"/>
+                                <exclude reference="EBf-3B-ACp"/>
+                                <exclude reference="EZb-am-OhD"/>
+                                <exclude reference="GSa-X5-pBn"/>
+                                <exclude reference="pIO-Qd-iR1"/>
+                                <exclude reference="wbO-0J-h6j"/>
+                                <exclude reference="THI-Mc-JD7"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
                             <mask key="subviews">
-                                <include reference="f9s-TH-7qW"/>
                                 <include reference="bfJ-93-zRS"/>
+                                <include reference="f9s-TH-7qW"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="MQX-Sy-nDn"/>
-                                <include reference="TkJ-9g-2hy"/>
-                                <include reference="UIC-YV-neN"/>
-                                <include reference="9b5-Sk-MEI"/>
-                                <include reference="AXD-cT-eY6"/>
-                                <include reference="J5V-zt-ltQ"/>
+                                <include reference="53u-vU-5NC"/>
+                                <include reference="EBf-3B-ACp"/>
+                                <include reference="EZb-am-OhD"/>
+                                <include reference="GSa-X5-pBn"/>
+                                <include reference="pIO-Qd-iR1"/>
+                                <include reference="wbO-0J-h6j"/>
+                                <include reference="THI-Mc-JD7"/>
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Tap Force Evaluation" id="AyW-oT-ObW">
+                    <navigationItem key="navigationItem" title="Tap Force Evaluation: " id="AyW-oT-ObW">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="tiE-RL-o3W">
                             <connections>
                                 <action selector="next:" destination="ezw-P1-5xr" id="SOa-uq-92R"/>
@@ -126,6 +116,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="instructionLbl" destination="f9s-TH-7qW" id="eCl-vG-Mre"/>
+                        <outlet property="navBar" destination="AyW-oT-ObW" id="qwi-F6-Ewg"/>
                         <outlet property="progressBar" destination="bfJ-93-zRS" id="swJ-0O-dGW"/>
                         <segue destination="wdt-7e-hqM" kind="presentation" identifier="tapForceInstructions" modalPresentationStyle="pageSheet" id="9yQ-As-VEX"/>
                     </connections>
