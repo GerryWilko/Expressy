@@ -26,11 +26,9 @@ class InteractionView: UIView {
         
         super.init(coder: aDecoder)
         
-        detector.subscribe(.Metrics, callback: dataCallback)
+        detector.subscribe(EventType.Metrics, callback: dataCallback)
         
-        detector.subscribe(EventType.Flicked, callback: {
-            self.flickedSwitch.setOn(true, animated: true)
-        })
+        detector.subscribe(EventType.Flicked, callback: flickedCallback)
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -46,10 +44,14 @@ class InteractionView: UIView {
         }
     }
     
-    func dataCallback() {
+    func dataCallback(data:Float!) {
         forceLbl.text = String(format: "%.2f", detector.currentForce)
         rotationLbl.text = String(format: "%.2f", detector.currentRotation)
         pitchLbl.text = String(format: "%.2f", detector.handModel.getPitch())
         rollLbl.text = String(format: "%.2f", detector.handModel.getRoll())
+    }
+    
+    func flickedCallback(data:Float!) {
+        self.flickedSwitch.setOn(true, animated: true)
     }
 }

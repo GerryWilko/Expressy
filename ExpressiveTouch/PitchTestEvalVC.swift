@@ -57,33 +57,37 @@ class PitchTestEvalVC: UIViewController {
         
         switch (stage) {
         case 1:
-            detector.subscribe(EventType.Metrics, callback: {
-                if (self.maxValue < self.detector.currentPitch) {
-                    self.maxValue = self.detector.currentPitch
-                    self.leftBarTop.setProgress(self.maxValue / 90, animated: false)
-                }
-                
-                if (self.minValue > self.detector.currentPitch) {
-                    self.minValue = self.detector.currentPitch
-                    self.leftBarBottom.setProgress((-self.minValue) / 90, animated: false)
-                }
-            })
+            detector.subscribe(EventType.Metrics, callback: rangeMetricsCallback)
             instructionLbl.text = "Now pitch upwards as far as you can.\nThen back to the downwards again, keep your finger held down."
             break
         case 2:
             touchTime = NSDate.timeIntervalSinceReferenceDate()
-            detector.subscribe(EventType.Metrics, callback: {
-                if (self.detector.currentPitch > 0) {
-                    self.leftBarTop.setProgress(self.detector.currentPitch / 90, animated: false)
-                    self.leftBarBottom.setProgress(0.0, animated: false)
-                } else {
-                    self.leftBarBottom.setProgress((-self.detector.currentPitch) / 90, animated: false)
-                    self.leftBarTop.setProgress(0.0, animated: false)
-                }
-            })
+            detector.subscribe(EventType.Metrics, callback: testMetricsCallback)
             break
         default:
             break
+        }
+    }
+    
+    private func rangeMetricsCallback(data:Float!) {
+        if (self.maxValue < self.detector.currentPitch) {
+            self.maxValue = self.detector.currentPitch
+            self.leftBarTop.setProgress(self.maxValue / 90, animated: false)
+        }
+        
+        if (self.minValue > self.detector.currentPitch) {
+            self.minValue = self.detector.currentPitch
+            self.leftBarBottom.setProgress((-self.minValue) / 90, animated: false)
+        }
+    }
+    
+    private func testMetricsCallback(data:Float!) {
+        if (self.detector.currentPitch > 0) {
+            self.leftBarTop.setProgress(self.detector.currentPitch / 90, animated: false)
+            self.leftBarBottom.setProgress(0.0, animated: false)
+        } else {
+            self.leftBarBottom.setProgress((-self.detector.currentPitch) / 90, animated: false)
+            self.leftBarTop.setProgress(0.0, animated: false)
         }
     }
     

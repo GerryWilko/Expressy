@@ -47,17 +47,7 @@ class RotateTestEvalVC: UIViewController {
         
         switch (stage) {
         case 1:
-            detector.subscribe(EventType.Metrics, callback: {
-                if (self.maxValue < self.detector.currentRotation) {
-                    self.maxValue = self.detector.currentRotation
-                    self.rightBar.setProgress(self.maxValue / 180, animated: true)
-                }
-                
-                if (self.minValue > self.detector.currentRotation) {
-                    self.minValue = self.detector.currentRotation
-                    self.leftBar.setProgress((-self.minValue) / 180, animated: true)
-                }
-            })
+            detector.subscribe(EventType.Metrics, callback: rangeMetricsCallback)
             instructionLbl.text = "Now rotate as far as you can clockwise. Then back anti-clockwise, keep your finger held down."
             break
         case 2:
@@ -65,14 +55,28 @@ class RotateTestEvalVC: UIViewController {
             
             if (touch.view == rotateImage) {
                 touchTime = NSDate.timeIntervalSinceReferenceDate()
-                detector.subscribe(EventType.Metrics, callback: {
-                    self.rotateImage.transform = CGAffineTransformRotate(self.lastTransform, CGFloat(self.detector.currentRotation) * CGFloat(M_PI / 180))
-                })
+                detector.subscribe(EventType.Metrics, callback: imageMetricsCallback)
             }
             break
         default:
             break
         }
+    }
+    
+    private func rangeMetricsCallback(data:Float!) {
+        if (self.maxValue < self.detector.currentRotation) {
+            self.maxValue = self.detector.currentRotation
+            self.rightBar.setProgress(self.maxValue / 180, animated: true)
+        }
+        
+        if (self.minValue > self.detector.currentRotation) {
+            self.minValue = self.detector.currentRotation
+            self.leftBar.setProgress((-self.minValue) / 180, animated: true)
+        }
+    }
+    
+    private func imageMetricsCallback(data:Float!) {
+        self.rotateImage.transform = CGAffineTransformRotate(self.lastTransform, CGFloat(self.detector.currentRotation) * CGFloat(M_PI / 180))
     }
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {

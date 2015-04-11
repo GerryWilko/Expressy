@@ -17,17 +17,17 @@ class InteractionDetector {
     
     private var lastDataTime:NSTimeInterval!
     
-    private var metricsCallbacks:Array<() -> Void>
-    private var flickedCallbacks:Array<() -> Void>
-    private var hardPressCallbacks:Array<() -> Void>
-    private var mediumPressCallbacks:Array<() -> Void>
-    private var softPressCallbacks:Array<() -> Void>
+    private var metricsCallbacks:Array<(data:Float!) -> Void>
+    private var flickedCallbacks:Array<(data:Float!) -> Void>
+    private var hardPressCallbacks:Array<(data:Float!) -> Void>
+    private var mediumPressCallbacks:Array<(data:Float!) -> Void>
+    private var softPressCallbacks:Array<(data:Float!) -> Void>
     
     private let dataCache:WaxCache
     private let touchForceFilter:Float = 0.1
     private let medForceThreshold:Float = 5
     private let hardForceThreshold:Float = 15
-    private let flickThreshold:Float = 1.5
+    private let flickThreshold:Float = 0.0 // Set for evaluations
     
     init(dataCache:WaxCache) {
         self.dataCache = dataCache
@@ -39,12 +39,12 @@ class InteractionDetector {
         currentPitch = 0.0
         touchDown = false
         
-        metricsCallbacks = Array<() -> Void>()
+        metricsCallbacks = Array<(data:Float!) -> Void>()
         
-        flickedCallbacks = Array<() -> Void>()
-        hardPressCallbacks = Array<() -> Void>()
-        mediumPressCallbacks = Array<() -> Void>()
-        softPressCallbacks = Array<() -> Void>()
+        flickedCallbacks = Array<(data:Float!) -> Void>()
+        hardPressCallbacks = Array<(data:Float!) -> Void>()
+        mediumPressCallbacks = Array<(data:Float!) -> Void>()
+        softPressCallbacks = Array<(data:Float!) -> Void>()
     }
     
     func startDetection() {
@@ -77,11 +77,11 @@ class InteractionDetector {
         data.touchDown(touchForce)
         
         if (touchForce > hardForceThreshold) {
-            fireHardPress()
+            fireHardPress(touchForce)
         } else if (touchForce > medForceThreshold) {
-            fireMediumPress()
+            fireMediumPress(touchForce)
         } else {
-            fireSoftPress()
+            fireSoftPress(touchForce)
         }
     }
     
@@ -93,7 +93,7 @@ class InteractionDetector {
         let data = dataCache.getForTime(touchUpTime)
         data.touchUp()
         
-        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("touchEndCallback:"), userInfo: touchUpTime, repeats: true)
+        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("touchEndCallback:"), userInfo: touchUpTime, repeats: false)
     }
     
     func touchCancelled() {
@@ -104,14 +104,10 @@ class InteractionDetector {
         let touchUpTime = timer.userInfo as! NSTimeInterval
         let end = NSDate.timeIntervalSinceReferenceDate()
         
-        let flicked = detectFlick(touchUpTime, end: end)
+        let flickForce = detectFlick(touchUpTime, end: end)
         
-        if (flicked) {
-            fireFlicked()
-        }
-        
-        if (NSDate.timeIntervalSinceReferenceDate() - touchUpTime > 1) {
-            timer.invalidate()
+        if (flickForce > flickThreshold) {
+            fireFlicked(flickForce)
         }
     }
     
@@ -149,47 +145,47 @@ class InteractionDetector {
         return force
     }
     
-    private func detectFlick(touchUpTime:NSTimeInterval, end:NSTimeInterval) -> Bool {
+    private func detectFlick(touchUpTime:NSTimeInterval, end:NSTimeInterval) -> Float {
         let data = dataCache.getRangeForTime(touchUpTime, end: end)
         
-        var flicked = false
+        var maxMag:Float = 0.0
         
         for d in data {
-            if (d.acc.magnitude() > flickThreshold) {
-                flicked = true
+            if (d.getAccNoGrav().magnitude() > maxMag) {
+                maxMag = d.getAccNoGrav().magnitude()
             }
         }
         
-        return flicked
+        return maxMag
     }
     
     private func fireMetrics() {
-        fireCallbacks(metricsCallbacks)
+        fireCallbacks(nil, callbacks: metricsCallbacks)
     }
     
-    private func fireFlicked() {
-       fireCallbacks(flickedCallbacks)
+    private func fireFlicked(data:Float) {
+       fireCallbacks(data, callbacks: flickedCallbacks)
     }
     
-    private func fireHardPress() {
-        fireCallbacks(hardPressCallbacks)
+    private func fireHardPress(data:Float) {
+        fireCallbacks(data, callbacks: hardPressCallbacks)
     }
     
-    private func fireMediumPress() {
-        fireCallbacks(mediumPressCallbacks)
+    private func fireMediumPress(data:Float) {
+        fireCallbacks(data, callbacks: mediumPressCallbacks)
     }
     
-    private func fireSoftPress() {
-        fireCallbacks(softPressCallbacks)
+    private func fireSoftPress(data:Float) {
+        fireCallbacks(data, callbacks: softPressCallbacks)
     }
     
-    private func fireCallbacks(callbacks:[() -> Void]) {
+    private func fireCallbacks(data:Float!, callbacks:[(data:Float!) -> Void]) {
         for cb in callbacks {
-            cb()
+            cb(data: data)
         }
     }
     
-    func subscribe(event:EventType, callback:() -> Void) {
+    func subscribe(event:EventType, callback:(data:Float!) -> Void) {
         switch event {
         case .Metrics:
             metricsCallbacks.append(callback)

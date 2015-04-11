@@ -59,10 +59,12 @@ class TimeRotateEvalVC: UIViewController {
             }
             
             detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
-            detector.subscribe(EventType.Metrics, callback: {
-                self.rotateImage.transform = CGAffineTransformRotate(self.lastTransform, CGFloat(self.detector.currentRotation) * CGFloat(M_PI / 180))
-            })
+            detector.subscribe(EventType.Metrics, callback: metricsCallback)
         }
+    }
+    
+    private func metricsCallback(data:Float!) {
+        self.rotateImage.transform = CGAffineTransformRotate(self.lastTransform, CGFloat(self.detector.currentRotation) * CGFloat(M_PI / 180))
     }
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {

@@ -123,7 +123,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eIe-QL-pvF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-145.5" y="1716"/>
+            <point key="canvasLocation" x="-2404.5" y="2500.5"/>
         </scene>
         <!--Accelerometer-->
         <scene sceneID="PeQ-jx-nKG">
@@ -372,27 +372,6 @@
                                             <segue destination="vfB-yh-Bp7" kind="show" id="9UZ-WL-EDu"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="c92-Df-ila" style="IBUITableViewCellStyleDefault" id="4n7-4w-Qjy">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4n7-4w-Qjy" id="Bpy-eK-ghe">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Rotation Range Evaluation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="c92-Df-ila">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=compact-widthClass=regular">
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    </variation>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="r4u-TY-VaZ" kind="show" id="ry8-SH-N09"/>
-                                        </connections>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="QeO-Iu-Itv" style="IBUITableViewCellStyleDefault" id="NAx-fb-POh">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
@@ -412,27 +391,6 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="iN7-D6-4Lc" kind="show" id="odE-dF-cMB"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="KH0-2a-plM" style="IBUITableViewCellStyleDefault" id="mfp-EK-vt4">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mfp-EK-vt4" id="Axz-I1-XdW">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Pitch Range Evaluation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KH0-2a-plM">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=compact-widthClass=regular">
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    </variation>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="mtr-gZ-TlY" kind="show" id="WzQ-mu-lBM"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="ZkN-Gi-v2y" style="IBUITableViewCellStyleDefault" id="fS6-Rn-rlz">
@@ -456,40 +414,22 @@
                                             <segue destination="de8-68-Jsh" kind="show" id="Fae-kh-zNe"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="yGu-9u-bNj" style="IBUITableViewCellStyleDefault" id="5zx-ah-jGm">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="tUQ-xm-JKd" style="IBUITableViewCellStyleDefault" id="Lra-2o-T4F">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5zx-ah-jGm" id="KxS-ve-DFe">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lra-2o-T4F" id="IPA-ee-UZH">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Yaw Range Evaluation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yGu-9u-bNj">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Flick Test Evaluation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tUQ-xm-JKd">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="1Vd-IW-eB3" kind="show" id="vwU-M7-YcT"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="Nej-DI-PDd" style="IBUITableViewCellStyleDefault" id="bhy-nm-0sP">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bhy-nm-0sP" id="Jae-ny-ga4">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Time for Rotation Evaluation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Nej-DI-PDd">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="7oq-cT-tYg" kind="show" id="OKn-CS-swf"/>
+                                            <segue destination="3Ud-8f-7nd" kind="show" id="1am-KG-3MO"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -1176,7 +1116,7 @@ Press 'Done' when ready to begin.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tvP-0z-4LA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="615" y="1716"/>
+            <point key="canvasLocation" x="-1644" y="2500.5"/>
         </scene>
         <!--Rotation Range Instructions-->
         <scene sceneID="aMf-H2-36Z">
@@ -1533,7 +1473,7 @@ Press 'Done' when ready to begin.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cyG-PL-UEA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="615" y="4102.5"/>
+            <point key="canvasLocation" x="615" y="4117.5"/>
         </scene>
         <!--Time for Rotation Instructions-->
         <scene sceneID="1S4-YO-0wh">
@@ -1650,7 +1590,7 @@ Press 'Done' when ready to begin.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TlO-Ub-VJD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="615" y="4918.5"/>
+            <point key="canvasLocation" x="615" y="4927.5"/>
         </scene>
         <!--Force Instructions-->
         <scene sceneID="XwI-yX-qeJ">
@@ -1738,7 +1678,7 @@ Press next to advance to the next step, you will be asked to perform this 10 tim
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IH3-HC-DPq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="615" y="5743.5"/>
+            <point key="canvasLocation" x="-1644" y="3306"/>
         </scene>
         <!--Rotation Test Instructions-->
         <scene sceneID="7WA-lo-3U8">
@@ -1824,7 +1764,7 @@ When you are finished you can press next to advance to the next step. You will b
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jAQ-Af-Fwy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="615" y="6583.5"/>
+            <point key="canvasLocation" x="-1644" y="4117.5"/>
         </scene>
         <!--Pitch Text Instructions-->
         <scene sceneID="f6f-xR-tvH">
@@ -1910,7 +1850,87 @@ When you are finished you can press next to advance to the next step. You will b
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qlq-OP-XjE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="615" y="7414.5"/>
+            <point key="canvasLocation" x="-1644" y="4927.5"/>
+        </scene>
+        <!--Flick Test Instructions-->
+        <scene sceneID="v7x-Vd-E3U">
+            <objects>
+                <viewController title="Flick Test Instructions" id="BJF-AL-LGs" customClass="EvalInstructionsVC" customModule="Exp_Touch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bGl-Ha-CDt"/>
+                        <viewControllerLayoutGuide type="bottom" id="fpU-sm-KSN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="B4q-Gx-LUX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ndV-Zl-Zhf">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Instructions" id="Bai-ZD-PyF">
+                                        <barButtonItem key="leftBarButtonItem" title="Done" id="Lcc-Be-Brg">
+                                            <connections>
+                                                <action selector="done:" destination="BJF-AL-LGs" id="d2R-Iq-Xsm"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="udm-Sg-ZmM">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">This evaluation will assess your ability to perform a flick interaction.
+
+You will be asked to perform a random sequence of lifting off the screen with a flick and without a flick.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fpU-sm-KSN" firstAttribute="top" secondItem="udm-Sg-ZmM" secondAttribute="bottom" constant="8" symbolic="YES" id="2Tp-hl-AaK"/>
+                            <constraint firstItem="ndV-Zl-Zhf" firstAttribute="leading" secondItem="B4q-Gx-LUX" secondAttribute="leading" id="Azp-PW-knC"/>
+                            <constraint firstItem="udm-Sg-ZmM" firstAttribute="leading" secondItem="B4q-Gx-LUX" secondAttribute="leadingMargin" id="B17-Oc-KSz"/>
+                            <constraint firstItem="ndV-Zl-Zhf" firstAttribute="top" secondItem="bGl-Ha-CDt" secondAttribute="bottom" id="DKT-GY-5xo"/>
+                            <constraint firstItem="udm-Sg-ZmM" firstAttribute="top" secondItem="ndV-Zl-Zhf" secondAttribute="bottom" constant="6" id="HZx-dI-S22"/>
+                            <constraint firstAttribute="trailing" secondItem="ndV-Zl-Zhf" secondAttribute="trailing" id="jLw-wR-l5q"/>
+                            <constraint firstItem="udm-Sg-ZmM" firstAttribute="centerX" secondItem="ndV-Zl-Zhf" secondAttribute="centerX" id="qii-fs-hNx"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="ndV-Zl-Zhf"/>
+                                <exclude reference="udm-Sg-ZmM"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="Azp-PW-knC"/>
+                                <exclude reference="DKT-GY-5xo"/>
+                                <exclude reference="jLw-wR-l5q"/>
+                                <exclude reference="B17-Oc-KSz"/>
+                                <exclude reference="HZx-dI-S22"/>
+                                <exclude reference="qii-fs-hNx"/>
+                                <exclude reference="2Tp-hl-AaK"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="ndV-Zl-Zhf"/>
+                                <include reference="udm-Sg-ZmM"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="Azp-PW-knC"/>
+                                <include reference="DKT-GY-5xo"/>
+                                <include reference="jLw-wR-l5q"/>
+                                <include reference="B17-Oc-KSz"/>
+                                <include reference="HZx-dI-S22"/>
+                                <include reference="qii-fs-hNx"/>
+                                <include reference="2Tp-hl-AaK"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f7r-FS-tvE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1644" y="5743.5"/>
         </scene>
         <!--Rotation Range Evaluation-->
         <scene sceneID="03n-ah-OLv">
@@ -2279,7 +2299,7 @@ Then press and hold.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ptm-4q-lvl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-145.5" y="4102.5"/>
+            <point key="canvasLocation" x="-145.5" y="4117.5"/>
         </scene>
         <!--Time for Rotation Evaluation-->
         <scene sceneID="2ah-xl-yFg">
@@ -2402,7 +2422,7 @@ Then press and hold.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lss-pP-CEV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-145.5" y="4918.5"/>
+            <point key="canvasLocation" x="-145.5" y="4927.5"/>
         </scene>
         <!--Force Evaluation-->
         <scene sceneID="QVA-Tr-Knt">
@@ -2549,7 +2569,7 @@ Then press and hold.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XW8-Cy-CKB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-145.5" y="5743.5"/>
+            <point key="canvasLocation" x="-2404.5" y="3306"/>
         </scene>
         <!--Rotation Test Evaluation-->
         <scene sceneID="fw2-BT-hnN">
@@ -2728,7 +2748,7 @@ Then press and hold.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1tL-rj-EwK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-145.5" y="6583.5"/>
+            <point key="canvasLocation" x="-2404.5" y="4117.5"/>
         </scene>
         <!--Pitch Test Evaluation-->
         <scene sceneID="Ct5-A1-fYo">
@@ -2904,7 +2924,89 @@ and hold.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qoi-6L-DJ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-145.5" y="7414.5"/>
+            <point key="canvasLocation" x="-2404.5" y="4927.5"/>
+        </scene>
+        <!--Flick Test Evaluation-->
+        <scene sceneID="4Kh-PJ-pIn">
+            <objects>
+                <viewController title="Flick Test Evaluation" id="3Ud-8f-7nd" customClass="FlickEvalVC" customModule="Exp_Touch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5iw-eZ-BOn"/>
+                        <viewControllerLayoutGuide type="bottom" id="kBT-Sm-BeX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vZc-SW-wqf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfO-Bw-KgH">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <string key="text">Place sensor on right wrist.
+Then press and hold.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="2.7755575615628914e-17" translatesAutoresizingMaskIntoConstraints="NO" id="dZI-x8-amA">
+                                <rect key="frame" x="0.0" y="-2" width="150" height="2"/>
+                            </progressView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wfO-Bw-KgH" firstAttribute="top" secondItem="dZI-x8-amA" secondAttribute="bottom" constant="64" id="Caa-1h-yx9"/>
+                            <constraint firstItem="kBT-Sm-BeX" firstAttribute="top" secondItem="wfO-Bw-KgH" secondAttribute="bottom" constant="139" id="OeY-D3-lJb"/>
+                            <constraint firstItem="wfO-Bw-KgH" firstAttribute="leading" secondItem="vZc-SW-wqf" secondAttribute="leadingMargin" constant="59" id="QNo-mJ-5cA"/>
+                            <constraint firstItem="dZI-x8-amA" firstAttribute="centerX" secondItem="wfO-Bw-KgH" secondAttribute="centerX" id="USl-Zp-mbs"/>
+                            <constraint firstItem="dZI-x8-amA" firstAttribute="trailing" secondItem="vZc-SW-wqf" secondAttribute="trailingMargin" id="Yqu-q5-CpT"/>
+                            <constraint firstItem="dZI-x8-amA" firstAttribute="leading" secondItem="vZc-SW-wqf" secondAttribute="leadingMargin" id="mlb-M7-3m4"/>
+                            <constraint firstItem="dZI-x8-amA" firstAttribute="top" secondItem="5iw-eZ-BOn" secondAttribute="bottom" constant="8" symbolic="YES" id="w0f-oi-yaH"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="wfO-Bw-KgH"/>
+                                <exclude reference="dZI-x8-amA"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="USl-Zp-mbs"/>
+                                <exclude reference="Yqu-q5-CpT"/>
+                                <exclude reference="mlb-M7-3m4"/>
+                                <exclude reference="w0f-oi-yaH"/>
+                                <exclude reference="Caa-1h-yx9"/>
+                                <exclude reference="QNo-mJ-5cA"/>
+                                <exclude reference="OeY-D3-lJb"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="wfO-Bw-KgH"/>
+                                <include reference="dZI-x8-amA"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="USl-Zp-mbs"/>
+                                <include reference="Yqu-q5-CpT"/>
+                                <include reference="mlb-M7-3m4"/>
+                                <include reference="w0f-oi-yaH"/>
+                                <include reference="Caa-1h-yx9"/>
+                                <include reference="QNo-mJ-5cA"/>
+                                <include reference="OeY-D3-lJb"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="Flick Test Evaluation" id="ZQA-7m-jsK">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="loD-fK-Wto">
+                            <connections>
+                                <action selector="next:" destination="3Ud-8f-7nd" id="Zj2-SI-dKC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="instructionLbl" destination="wfO-Bw-KgH" id="5aM-RP-JK7"/>
+                        <outlet property="progressBar" destination="dZI-x8-amA" id="7Ev-L2-OIS"/>
+                        <segue destination="BJF-AL-LGs" kind="presentation" identifier="flickTestInstructions" modalPresentationStyle="pageSheet" id="WhX-2d-dST"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6ek-3J-ctL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2403" y="5743.5"/>
         </scene>
     </scenes>
     <resources>

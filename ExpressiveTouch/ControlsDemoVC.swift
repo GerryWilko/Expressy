@@ -34,19 +34,7 @@ class ControlsDemoVC: UIViewController {
     
     @IBAction func bar1TouchDown(sender: UIButton) {
         detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
-        let touchDownValue = progressBar1.progress * 100
-        detector.subscribe(EventType.Metrics, callback: {
-            var newValue = touchDownValue + self.detector.currentRotation
-            
-            if (newValue > 100) {
-                newValue = 100.0
-            } else if (newValue < 0) {
-                newValue = 0
-            }
-            
-            self.progressBar1.progress = newValue / 100
-            self.barLbl1.text = String(format: "%.2f", newValue)
-        })
+        detector.subscribe(EventType.Metrics, callback: controlMetricsCallback)
     }
     
     @IBAction func bar1TouchUp(sender: UIButton) {
@@ -58,7 +46,20 @@ class ControlsDemoVC: UIViewController {
         barLbl2.text = String(format: "%.2f", sender.value)
     }
     
-    func imageRotated(gesture:UIRotationGestureRecognizer) {
+    private func controlMetricsCallback(data:Float!) {
+        var newValue = progressBar1.progress * 100 + self.detector.currentRotation
+        
+        if (newValue > 100) {
+            newValue = 100.0
+        } else if (newValue < 0) {
+            newValue = 0
+        }
+        
+        self.progressBar1.progress = newValue / 100
+        self.barLbl1.text = String(format: "%.2f", newValue)
+    }
+    
+    private func imageRotated(gesture:UIRotationGestureRecognizer) {
         if (!imageETSwitch.on) {
             imageView.transform = CGAffineTransformRotate(startTransform, gesture.rotation)
         }
@@ -70,10 +71,12 @@ class ControlsDemoVC: UIViewController {
         if (imageETSwitch.on && touch.view == imageView)
         {
             detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
-            detector.subscribe(EventType.Metrics, callback: {
-                self.imageView.transform = CGAffineTransformRotate(self.startTransform, CGFloat(self.detector.currentRotation) * CGFloat(M_PI / 180))
-            })
+            detector.subscribe(EventType.Metrics, callback: imageMetricsCallback)
         }
+    }
+    
+    private func imageMetricsCallback(data:Float!) {
+        self.imageView.transform = CGAffineTransformRotate(self.startTransform, CGFloat(self.detector.currentRotation) * CGFloat(M_PI / 180))
     }
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {

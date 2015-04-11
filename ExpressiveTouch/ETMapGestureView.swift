@@ -22,7 +22,6 @@ class ETMapGestureView: UIView {
         detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
         detector.startDetection()
         super.init(coder: aDecoder)
-        detector.subscribe(EventType.Metrics, callback: metricCallback)
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -30,15 +29,17 @@ class ETMapGestureView: UIView {
         touchPitch = map.camera.pitch
         touchHeading = map.camera.heading
         detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
+        detector.subscribe(EventType.Metrics, callback: metricCallback)
     }
     
     override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         detector.touchUp(NSDate.timeIntervalSinceReferenceDate())
+        detector.clearSubscriptions()
     }
     
-    func metricCallback() {
-        var newPitch = touchPitch + CGFloat(detector.currentPitch)
-        var newRoll = touchHeading + CLLocationDirection(detector.currentForce)
+    func metricCallback(data:Float!) {
+        var newPitch = touchPitch + CGFloat(-detector.currentPitch * 3)
+        var newRoll = touchHeading + CLLocationDirection(detector.currentRotation)
         
         if (newPitch < 0) {
             newPitch = 0
@@ -46,7 +47,12 @@ class ETMapGestureView: UIView {
             newPitch = pitchBound
         }
         
-        map.camera.pitch = newPitch
-        map.camera.heading = newRoll
+        let camera = map.camera.copy() as! MKMapCamera
+        camera.pitch = newPitch
+        camera.heading = newRoll
+        
+        UIView.animateWithDuration(0.001, animations: {
+            self.map.camera = camera
+        })
     }
 }

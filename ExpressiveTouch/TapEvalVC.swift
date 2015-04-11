@@ -42,7 +42,7 @@ class TapEvalVC: UIViewController {
         detector.stopDetection()
     }
     
-    func buildRunStack() -> [ForceCategory] {
+    private func buildRunStack() -> [ForceCategory] {
         var runStack = [ForceCategory.Medium, ForceCategory.Hard]
         var soft = 9, med = 9, hard = 9
         
@@ -97,13 +97,13 @@ class TapEvalVC: UIViewController {
         }
     }
     
-    func setNextView() {
+    private func setNextView() {
         instructionLbl.text = "Press next to advance to next stage."
         instructionLbl.textColor = UIColor.blackColor()
         self.view.userInteractionEnabled = false
     }
     
-    func setForceView() {
+    private func setTapView() {
         current = runStack[0]
         runStack.removeAtIndex(0)
         
@@ -139,7 +139,7 @@ class TapEvalVC: UIViewController {
             EvalUtils.logDataBetweenTimes(startTime, endTime: NSDate.timeIntervalSinceReferenceDate(), csv: csv)
             csv.emailCSV(self, subject: "Tap Force Evaluation: \(participant)")
         } else {
-            setForceView()
+            setTapView()
         }
         
         progressBar.setProgress(Float(Float(30 - runStack.count) / 30.0), animated: true)
