@@ -3,7 +3,7 @@ Interaction with touch screens has always been a very intuitive and simple inter
 
 Expressive Touch aims to provide a system which takes advantage of this new source of information from wrist worn sensors by adding expressiveness to the touch interaction on smartphones and tablets. This project proposes a set of expressive touch interactions which can be detected from a wrist worn device with inertial measurement sensors. These interactions provide developers with a new set of events and interaction modalities which can incorporated into their applications and games. The proposed expressive touch interactions have all been designed to be obvious and simple for end users to perform and developers to utilise.
 
-# Running the Application
+### Running the Application
 Once you have downloaded a copy of the project you need to set up CocoaPods in the project workspace.
 
 1. Install CocoaPods if you havent already using:
