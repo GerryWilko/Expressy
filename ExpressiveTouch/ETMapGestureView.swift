@@ -25,7 +25,6 @@ class ETMapGestureView: UIView {
     }
     
     override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        MadgwickAHRSreset()
         touchPitch = map.camera.pitch
         touchHeading = map.camera.heading
         detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
@@ -37,7 +36,7 @@ class ETMapGestureView: UIView {
         detector.clearSubscriptions()
     }
     
-    func metricCallback(data:Float!) {
+    private func metricCallback(data:Float!) {
         var newPitch = touchPitch + CGFloat(-detector.currentPitch * 3)
         var newRoll = touchHeading + CLLocationDirection(detector.currentRotation)
         

@@ -15,7 +15,7 @@ class EvalInstructionsVC: UIViewController {
     
     @IBOutlet weak var video: UIView!
     
-    func playVideo() {
+    private func playVideo() {
         if let videoPath = self.videoPath {
             let path = NSBundle.mainBundle().pathForResource(videoPath, ofType:"mp4")
             let url = NSURL.fileURLWithPath(path!)

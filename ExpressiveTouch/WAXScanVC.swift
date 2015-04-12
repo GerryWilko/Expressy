@@ -20,8 +20,7 @@ class WAXScanVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         currentTableView = self.tableView
-        
-        while (!WaxConnectionManager.getConnectionManager().scan()) {}
+        WaxConnectionManager.getConnectionManager().scan()
     }
     
     @IBAction func cancel(sender: AnyObject) {
@@ -54,14 +53,7 @@ class WAXScanVC: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let peripheral = deviceList[indexPath.row] as! CBPeripheral
-        
         WaxConnectionManager.getConnectionManager().connectPeripheral(peripheral)
-        
         cancel(self)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }

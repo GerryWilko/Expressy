@@ -16,7 +16,6 @@ class ForceEvalVC: UIViewController {
     private var reqTouchForce:UInt32!
     
     private let scaleFactor = 20
-    
     private let detector:InteractionDetector
     private let csvBuilder:CSVBuilder
     private let participant:UInt32
@@ -47,11 +46,15 @@ class ForceEvalVC: UIViewController {
         let time = NSDate.timeIntervalSinceReferenceDate()
         detector.touchDown(time)
         let touchForce = detector.calculateTouchForce(time)
+        
         UIView.animateWithDuration(1.0, animations: {
             self.forceImage.transform = CGAffineTransformMakeScale(CGFloat(touchForce * Float(self.scaleFactor)), CGFloat(touchForce * Float(self.scaleFactor)))
+        }, completion: {
+            (value: Bool) in
+            UIView.animateWithDuration(1.0, animations: {
+                self.forceImage.transform = CGAffineTransformMakeScale(0.01, 0.01)
+            })
         })
-        
-        NSTimer.scheduledTimerWithTimeInterval(1.5, target: self, selector: Selector("resetForce:"), userInfo: nil, repeats: false)
         
         if (stage == 2) {
             csvBuilder.appendRow("\(participant),\(time),\(reqTouchForce / UInt32(scaleFactor)),\(attemptCount + 1),\(touchForce)", index: 0)
@@ -71,12 +74,6 @@ class ForceEvalVC: UIViewController {
     
     override func viewDidDisappear(animated: Bool) {
         detector.stopDetection()
-    }
-    
-    @objc func resetForce(timer:NSTimer) {
-        UIView.animateWithDuration(1.0, animations: {
-            self.forceImage.transform = CGAffineTransformMakeScale(0.01, 0.01)
-        })
     }
     
     func setRandomForce() {

@@ -19,6 +19,7 @@ class FlickEvalVC: UIViewController {
     
     @IBOutlet weak var instructionLbl: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
+    @IBOutlet weak var navBar: UINavigationItem!
     
     required init(coder aDecoder: NSCoder) {
         detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
@@ -33,6 +34,7 @@ class FlickEvalVC: UIViewController {
         self.performSegueWithIdentifier("flickTestInstructions", sender: self)
         detector.subscribe(EventType.Flicked, callback: flickedCallback)
         startTime = NSDate.timeIntervalSinceReferenceDate()
+        navBar.title = "\(navBar.title!) \(participant)"
     }
     
     override func viewDidDisappear(animated: Bool) {

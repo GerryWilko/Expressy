@@ -24,8 +24,4 @@ class MapDemoVC: UIViewController {
         map.setCamera(mapCamera, animated: true)
         gestureView.map = map
     }
-    
-    @IBAction func resetModel(sender: UIBarButtonItem) {
-        MadgwickAHRSreset()
-    }
 }

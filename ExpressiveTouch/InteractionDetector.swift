@@ -9,7 +9,6 @@
 import Foundation
 
 class InteractionDetector {
-    var handModel:HandModel
     var currentForce:Float
     var currentRotation:Float
     var currentPitch:Float
@@ -32,8 +31,6 @@ class InteractionDetector {
     init(dataCache:WaxCache) {
         self.dataCache = dataCache
         
-        var data = dataCache.getForTime(NSDate.timeIntervalSinceReferenceDate())
-        handModel = HandModel(data: data)
         currentForce = 0.0
         currentRotation = 0.0
         currentPitch = 0.0
@@ -53,7 +50,6 @@ class InteractionDetector {
     
     private func dataCallback(data:WaxData) {
         currentForce = calculateForce(data)
-        handModel.updateState(data)
         
         if (touchDown) {
             currentRotation = calculateRotation(data)

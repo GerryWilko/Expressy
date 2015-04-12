@@ -24,8 +24,6 @@ class WaxProcessor {
     
     class func getProcessor() -> WaxProcessor { return waxProcessor }
     
-
-    
     func updateCache(data:NSData) {
         let dataLength = data.length
         

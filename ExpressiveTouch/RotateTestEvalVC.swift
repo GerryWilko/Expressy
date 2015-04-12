@@ -18,6 +18,7 @@ class RotateTestEvalVC: UIViewController {
     private var lastTransform:CGAffineTransform!
     private var touchTime:NSTimeInterval!
     
+    private let minAngle:Float = 5.0
     private let detector:InteractionDetector
     private let csvBuilder:CSVBuilder
     private let participant:UInt32
@@ -124,6 +125,10 @@ class RotateTestEvalVC: UIViewController {
         rotateImage.transform = CGAffineTransformMakeRotation(CGFloat(MathUtils.deg2rad(rotateAngle)))
         angleDifference = placeholderAngle - rotateAngle
         lastTransform = rotateImage.transform
+        
+        if angleDifference < minAngle {
+            randomiseImages()
+        }
     }
     
     private func setNextView() {

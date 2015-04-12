@@ -112,7 +112,7 @@ class PitchTestEvalVC: UIViewController {
         }
     }
     
-    func setRandomPitch() {
+    private func setRandomPitch() {
         let range = UInt32(maxValue - minValue)
         let randomPitch = Float(Int(arc4random_uniform(range))) + minValue
         if (randomPitch > 0) {
@@ -130,12 +130,12 @@ class PitchTestEvalVC: UIViewController {
         detector.stopDetection()
     }
     
-    func setNextView() {
+    private func setNextView() {
         instructionLbl.text = "Press next to advance to the next stage."
         self.view.userInteractionEnabled = false
     }
     
-    func setPitchView() {
+    private func setPitchView() {
         leftBarTop.setProgress(0.0, animated: false)
         leftBarBottom.setProgress(0.0, animated: false)
         rightBarTop.setProgress(0.0, animated: false)

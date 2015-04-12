@@ -12,7 +12,6 @@ import AudioToolbox
 class TapEvalVC: UIViewController {
     private var startTime:NSTimeInterval!
     private var runStack:[ForceCategory]!
-    private var current:ForceCategory
     
     private let detector:InteractionDetector
     private let csv:CSVBuilder
@@ -26,7 +25,6 @@ class TapEvalVC: UIViewController {
         detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
         participant = EvalUtils.generateParticipantID()
         csv = CSVBuilder(fileNames: ["tapForce-\(participant).csv","tapData-\(participant).csv"], headerLines: ["Participant ID,Time,Requested Force,Tap Force", WaxData.headerLine()])
-        current = ForceCategory.Soft
         super.init(coder: aDecoder)
         detector.startDetection()
         runStack = buildRunStack()
@@ -43,7 +41,7 @@ class TapEvalVC: UIViewController {
     }
     
     private func buildRunStack() -> [ForceCategory] {
-        var runStack = [ForceCategory.Medium, ForceCategory.Hard]
+        var runStack = [ForceCategory.Soft, ForceCategory.Medium, ForceCategory.Hard]
         var soft = 9, med = 9, hard = 9
         
         while (soft != 0 || med != 0 || hard != 0) {
@@ -69,7 +67,7 @@ class TapEvalVC: UIViewController {
         detector.touchDown(time)
         let tapForce = detector.calculateTouchForce(time)
         
-        switch (current) {
+        switch (runStack[0]) {
         case .Soft:
             csv.appendRow("\(participant),\(time),Soft,\(tapForce)", index: 0)
             break
@@ -98,16 +96,14 @@ class TapEvalVC: UIViewController {
     }
     
     private func setNextView() {
+        runStack.removeAtIndex(0)
         instructionLbl.text = "Press next to advance to next stage."
         instructionLbl.textColor = UIColor.blackColor()
         self.view.userInteractionEnabled = false
     }
     
     private func setTapView() {
-        current = runStack[0]
-        runStack.removeAtIndex(0)
-        
-        switch (current) {
+        switch (runStack[0]) {
         case .Soft:
             instructionLbl.text = "Tap the screen: Soft"
             instructionLbl.textColor = UIColor.greenColor()
@@ -146,6 +142,6 @@ class TapEvalVC: UIViewController {
     }
 }
 
-enum ForceCategory {
+private enum ForceCategory {
     case Soft, Medium, Hard
 }

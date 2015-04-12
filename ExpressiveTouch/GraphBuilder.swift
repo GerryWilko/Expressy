@@ -10,18 +10,19 @@ import Foundation
 
 class GraphBuilder : NSObject, CPTPlotDataSource {
     private var graphView:CPTGraphHostingView!
-    private var dataCache:WaxCache!
-    private let title:String
+    private var dataCache:WaxCache
     private var type:WaxDataType
     
-    init(title:String, type:WaxDataType) {
+    private let title:String
+    
+    init(title:String, type:WaxDataType, dataCache:WaxCache) {
         self.title = title
         self.type = type
+        self.dataCache = dataCache
     }
     
-    func initLoad(graphView:CPTGraphHostingView, dataCache:WaxCache) {
+    func initLoad(graphView:CPTGraphHostingView) {
         self.graphView = graphView
-        self.dataCache = dataCache
         
         configureHost()
         configureGraph()

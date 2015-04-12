@@ -9,9 +9,9 @@
 import Foundation
 
 class ControlsDemoVC: UIViewController {
-    let detector:InteractionDetector
-    
     private var startTransform:CGAffineTransform!
+    
+    private let detector:InteractionDetector
     
     @IBOutlet weak var barLbl1: UILabel!
     @IBOutlet weak var barLbl2: UILabel!
@@ -27,7 +27,6 @@ class ControlsDemoVC: UIViewController {
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         startTransform = imageView.transform
         imageView.addGestureRecognizer(UIRotationGestureRecognizer(target: self, action: Selector("imageRotated:")))
     }
@@ -89,9 +88,5 @@ class ControlsDemoVC: UIViewController {
         }
         
         startTransform = imageView.transform
-    }
-    
-    @IBAction func resetModel(sender: UIBarButtonItem) {
-        MadgwickAHRSreset()
     }
 }

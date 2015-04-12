@@ -9,22 +9,16 @@
 import Foundation
 
 class AccGraphVC: UIViewController {
-    let accGraphBuilder:GraphBuilder
+    private let accGraphBuilder:GraphBuilder
     
-    required init(coder aDecoder: NSCoder)
-    {
-        accGraphBuilder = GraphBuilder(title: "Accelerometer", type: .Accelerometer)
-        
+    required init(coder aDecoder: NSCoder) {
+        accGraphBuilder = GraphBuilder(title: "Accelerometer", type: .Accelerometer, dataCache: WaxProcessor.getProcessor().dataCache)
         super.init(coder: aDecoder)
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let processor = WaxProcessor.getProcessor()
         let accGraphView = self.view as! CPTGraphHostingView
-        
-        accGraphBuilder.initLoad(accGraphView, dataCache: processor.dataCache)
+        accGraphBuilder.initLoad(accGraphView)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -33,10 +27,5 @@ class AccGraphVC: UIViewController {
     
     override func viewDidDisappear(animated: Bool) {
         accGraphBuilder.pause()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }

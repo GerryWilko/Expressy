@@ -91,7 +91,6 @@ class RotationRngEvalVC: UIViewController {
         detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
         
         if (!messageStack.isEmpty && dominantHand.selectedSegmentIndex != UISegmentedControlNoSegment) {
-            MadgwickAHRSreset()
             progressWheel.startAnimating()
             recording = true
             instructionLbl.text = messageStack[0]

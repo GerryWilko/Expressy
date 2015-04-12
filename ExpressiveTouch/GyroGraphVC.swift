@@ -9,22 +9,16 @@
 import Foundation
 
 class GyroGraphVC: UIViewController {
-    let gyroGraphBuilder:GraphBuilder
+    private let gyroGraphBuilder:GraphBuilder
     
-    required init(coder aDecoder: NSCoder)
-    {        
-        gyroGraphBuilder = GraphBuilder(title: "Gyroscope", type: .Gyroscope)
-        
+    required init(coder aDecoder: NSCoder) {
+        gyroGraphBuilder = GraphBuilder(title: "Gyroscope", type: .Gyroscope, dataCache: WaxProcessor.getProcessor().dataCache)
         super.init(coder: aDecoder)
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        let processor = WaxProcessor.getProcessor()
         let gyroGraphView = self.view as! CPTGraphHostingView
-        
-        gyroGraphBuilder.initLoad(gyroGraphView, dataCache: processor.dataCache)
+        gyroGraphBuilder.initLoad(gyroGraphView)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -33,10 +27,5 @@ class GyroGraphVC: UIViewController {
     
     override func viewDidDisappear(animated: Bool) {
         gyroGraphBuilder.pause()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
