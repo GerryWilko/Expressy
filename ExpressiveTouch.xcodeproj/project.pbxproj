@@ -47,19 +47,8 @@
 		CBE6BE271ABF12D00099A5C3 /* ControlsDemoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE6BE261ABF12D00099A5C3 /* ControlsDemoVC.swift */; };
 		CBF0EE881AC95A7400D689E2 /* TimeRotateEvalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF0EE871AC95A7400D689E2 /* TimeRotateEvalVC.swift */; };
 		CBF0EE8A1AC9A0C500D689E2 /* ETMapGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF0EE891AC9A0C500D689E2 /* ETMapGestureView.swift */; };
-		D51750A619E9831C0076F6FA /* ExpressiveTouchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51750A519E9831C0076F6FA /* ExpressiveTouchTests.swift */; };
 		FF8DCC742FC3997524C3C492 /* libPods-ExpressiveTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA315116ED542A1FC9DE226 /* libPods-ExpressiveTouch.a */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		D51750A019E9831C0076F6FA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D517508219E9831C0076F6FA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D517508919E9831C0076F6FA;
-			remoteInfo = ExpressiveTouch;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		42223EA273833E1276CCAD1F /* Pods-ExpressiveTouch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpressiveTouch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ExpressiveTouch/Pods-ExpressiveTouch.debug.xcconfig"; sourceTree = "<group>"; };
@@ -109,9 +98,6 @@
 		CBF0EE871AC95A7400D689E2 /* TimeRotateEvalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRotateEvalVC.swift; sourceTree = "<group>"; };
 		CBF0EE891AC9A0C500D689E2 /* ETMapGestureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETMapGestureView.swift; sourceTree = "<group>"; };
 		D517508A19E9831C0076F6FA /* Exp Touch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Exp Touch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D517509F19E9831C0076F6FA /* ExpressiveTouchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpressiveTouchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D51750A419E9831C0076F6FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D51750A519E9831C0076F6FA /* ExpressiveTouchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpressiveTouchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,13 +106,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF8DCC742FC3997524C3C492 /* libPods-ExpressiveTouch.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D517509C19E9831C0076F6FA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,7 +247,6 @@
 			isa = PBXGroup;
 			children = (
 				CB73385F1A822CA600FA1121 /* ExpressiveTouch */,
-				D51750A219E9831C0076F6FA /* ExpressiveTouchTests */,
 				D517508B19E9831C0076F6FA /* Products */,
 				B33F468FFDB0C5FCAB954B5D /* Frameworks */,
 				BB0207245130AB3087DF9D39 /* Pods */,
@@ -279,26 +257,8 @@
 			isa = PBXGroup;
 			children = (
 				D517508A19E9831C0076F6FA /* Exp Touch.app */,
-				D517509F19E9831C0076F6FA /* ExpressiveTouchTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		D51750A219E9831C0076F6FA /* ExpressiveTouchTests */ = {
-			isa = PBXGroup;
-			children = (
-				D51750A519E9831C0076F6FA /* ExpressiveTouchTests.swift */,
-				D51750A319E9831C0076F6FA /* Supporting Files */,
-			);
-			path = ExpressiveTouchTests;
-			sourceTree = "<group>";
-		};
-		D51750A319E9831C0076F6FA /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D51750A419E9831C0076F6FA /* Info.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,24 +283,6 @@
 			productReference = D517508A19E9831C0076F6FA /* Exp Touch.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D517509E19E9831C0076F6FA /* ExpressiveTouchTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D51750AC19E9831C0076F6FA /* Build configuration list for PBXNativeTarget "ExpressiveTouchTests" */;
-			buildPhases = (
-				D517509B19E9831C0076F6FA /* Sources */,
-				D517509C19E9831C0076F6FA /* Frameworks */,
-				D517509D19E9831C0076F6FA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D51750A119E9831C0076F6FA /* PBXTargetDependency */,
-			);
-			name = ExpressiveTouchTests;
-			productName = ExpressiveTouchTests;
-			productReference = D517509F19E9831C0076F6FA /* ExpressiveTouchTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -353,10 +295,6 @@
 					D517508919E9831C0076F6FA = {
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = WF6EGE63BW;
-					};
-					D517509E19E9831C0076F6FA = {
-						CreatedOnToolsVersion = 6.1;
-						TestTargetID = D517508919E9831C0076F6FA;
 					};
 				};
 			};
@@ -374,7 +312,6 @@
 			projectRoot = "";
 			targets = (
 				D517508919E9831C0076F6FA /* ExpressiveTouch */,
-				D517509E19E9831C0076F6FA /* ExpressiveTouchTests */,
 			);
 		};
 /* End PBXProject section */
@@ -393,13 +330,6 @@
 				CB8894FC1ACC40DD00F3FC2F /* Tap Force Demo.mp4 in Resources */,
 				CB8894FD1ACC40E000F3FC2F /* Time to Rotate Demo.mp4 in Resources */,
 				CB8894FE1ACC40E300F3FC2F /* Yaw Range Demo.mp4 in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D517509D19E9831C0076F6FA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,23 +407,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D517509B19E9831C0076F6FA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D51750A619E9831C0076F6FA /* ExpressiveTouchTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		D51750A119E9831C0076F6FA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D517508919E9831C0076F6FA /* ExpressiveTouch */;
-			targetProxy = D51750A019E9831C0076F6FA /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		CB7338621A822CA600FA1121 /* LaunchScreen.xib */ = {
@@ -646,42 +560,6 @@
 			};
 			name = Release;
 		};
-		D51750AD19E9831C0076F6FA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = ExpressiveTouchTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExpressiveTouch.app/ExpressiveTouch";
-			};
-			name = Debug;
-		};
-		D51750AE19E9831C0076F6FA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = ExpressiveTouchTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExpressiveTouch.app/ExpressiveTouch";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -699,15 +577,6 @@
 			buildConfigurations = (
 				D51750AA19E9831C0076F6FA /* Debug */,
 				D51750AB19E9831C0076F6FA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D51750AC19E9831C0076F6FA /* Build configuration list for PBXNativeTarget "ExpressiveTouchTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D51750AD19E9831C0076F6FA /* Debug */,
-				D51750AE19E9831C0076F6FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

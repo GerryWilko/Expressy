@@ -14,7 +14,6 @@ class InteractionDetectorVC: UIViewController {
     @IBOutlet weak var forceLbl: UILabel!
     @IBOutlet weak var rotationLbl: UILabel!
     @IBOutlet weak var pitchLbl: UILabel!
-    @IBOutlet weak var rollLbl: UILabel!
     @IBOutlet weak var flickedSwitch: UISwitch!
     
     required init(coder aDecoder: NSCoder) {

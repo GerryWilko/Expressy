@@ -58,7 +58,7 @@ class ControlsDemoVC: UIViewController {
         self.barLbl1.text = String(format: "%.2f", newValue)
     }
     
-    private func imageRotated(gesture:UIRotationGestureRecognizer) {
+    func imageRotated(gesture:UIRotationGestureRecognizer) {
         if (!imageETSwitch.on) {
             imageView.transform = CGAffineTransformRotate(startTransform, gesture.rotation)
         }
