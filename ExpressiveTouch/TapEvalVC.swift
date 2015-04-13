@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import AudioToolbox
 
 class TapEvalVC: UIViewController {
     private var startTime:NSTimeInterval!
@@ -20,6 +19,7 @@ class TapEvalVC: UIViewController {
     @IBOutlet weak var instructionLbl: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var navBar: UINavigationItem!
+    @IBOutlet weak var nextBtn: UIBarButtonItem!
     
     required init(coder aDecoder: NSCoder) {
         detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
@@ -127,8 +127,7 @@ class TapEvalVC: UIViewController {
     
     @IBAction func next(sender: AnyObject) {
         if (runStack.isEmpty){
-            detector.stopDetection()
-            WaxProcessor.getProcessor().dataCache.clearSubscriptions()
+            nextBtn.enabled = false
             progressBar.setProgress(1.0, animated: true)
             instructionLbl.text = "Evaluation Complete. Thank you."
             instructionLbl.textColor = UIColor.blackColor()

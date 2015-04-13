@@ -117,6 +117,7 @@
                     <connections>
                         <outlet property="instructionLbl" destination="f9s-TH-7qW" id="eCl-vG-Mre"/>
                         <outlet property="navBar" destination="AyW-oT-ObW" id="qwi-F6-Ewg"/>
+                        <outlet property="nextBtn" destination="tiE-RL-o3W" id="Hlg-5v-lIc"/>
                         <outlet property="progressBar" destination="bfJ-93-zRS" id="swJ-0O-dGW"/>
                         <segue destination="wdt-7e-hqM" kind="presentation" identifier="tapForceInstructions" modalPresentationStyle="pageSheet" id="9yQ-As-VEX"/>
                     </connections>
@@ -423,7 +424,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Flick Test Evaluation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tUQ-xm-JKd">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -580,26 +581,26 @@
                                         <exclude reference="9mC-lj-dsh"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <exclude reference="HTj-Bo-fS5"/>
-                                        <exclude reference="aQE-A3-nTo"/>
-                                        <exclude reference="XWE-FC-PEk"/>
-                                        <exclude reference="3tV-K3-GiK"/>
-                                        <exclude reference="w1R-3z-nZW"/>
-                                        <exclude reference="Hvj-na-qif"/>
-                                        <exclude reference="RjG-wu-nFo"/>
-                                        <exclude reference="udD-Nm-kMv"/>
                                         <exclude reference="PcO-RQ-5ZX"/>
                                         <exclude reference="Q2W-xt-nwv"/>
                                         <exclude reference="QbW-2v-CB5"/>
-                                        <exclude reference="Lim-YA-GyO"/>
-                                        <exclude reference="W8t-E4-fgh"/>
-                                        <exclude reference="tU3-lp-rVd"/>
+                                        <exclude reference="HTj-Bo-fS5"/>
+                                        <exclude reference="aQE-A3-nTo"/>
                                         <exclude reference="13k-O9-4Ko"/>
                                         <exclude reference="DPJ-Z3-94T"/>
                                         <exclude reference="OWC-Rr-LuZ"/>
                                         <exclude reference="QZa-zX-rln"/>
+                                        <exclude reference="3tV-K3-GiK"/>
+                                        <exclude reference="w1R-3z-nZW"/>
+                                        <exclude reference="Lim-YA-GyO"/>
+                                        <exclude reference="W8t-E4-fgh"/>
+                                        <exclude reference="tU3-lp-rVd"/>
                                         <exclude reference="2l7-XD-VfD"/>
                                         <exclude reference="CgS-Yi-ctg"/>
+                                        <exclude reference="Hvj-na-qif"/>
+                                        <exclude reference="RjG-wu-nFo"/>
+                                        <exclude reference="udD-Nm-kMv"/>
+                                        <exclude reference="XWE-FC-PEk"/>
                                         <exclude reference="R5y-mR-7Ls"/>
                                         <exclude reference="ihF-Cj-Fpg"/>
                                         <exclude reference="5z0-tm-8l2"/>
@@ -621,26 +622,26 @@
                                         <include reference="9mC-lj-dsh"/>
                                     </mask>
                                     <mask key="constraints">
-                                        <include reference="HTj-Bo-fS5"/>
-                                        <include reference="aQE-A3-nTo"/>
-                                        <include reference="XWE-FC-PEk"/>
-                                        <include reference="3tV-K3-GiK"/>
-                                        <include reference="w1R-3z-nZW"/>
-                                        <include reference="Hvj-na-qif"/>
-                                        <include reference="RjG-wu-nFo"/>
-                                        <include reference="udD-Nm-kMv"/>
                                         <include reference="PcO-RQ-5ZX"/>
                                         <include reference="Q2W-xt-nwv"/>
                                         <include reference="QbW-2v-CB5"/>
-                                        <include reference="Lim-YA-GyO"/>
-                                        <include reference="W8t-E4-fgh"/>
-                                        <include reference="tU3-lp-rVd"/>
+                                        <include reference="HTj-Bo-fS5"/>
+                                        <include reference="aQE-A3-nTo"/>
                                         <include reference="13k-O9-4Ko"/>
                                         <include reference="DPJ-Z3-94T"/>
                                         <include reference="OWC-Rr-LuZ"/>
                                         <include reference="QZa-zX-rln"/>
+                                        <include reference="3tV-K3-GiK"/>
+                                        <include reference="w1R-3z-nZW"/>
+                                        <include reference="Lim-YA-GyO"/>
+                                        <include reference="W8t-E4-fgh"/>
+                                        <include reference="tU3-lp-rVd"/>
                                         <include reference="2l7-XD-VfD"/>
                                         <include reference="CgS-Yi-ctg"/>
+                                        <include reference="Hvj-na-qif"/>
+                                        <include reference="RjG-wu-nFo"/>
+                                        <include reference="udD-Nm-kMv"/>
+                                        <include reference="XWE-FC-PEk"/>
                                         <include reference="R5y-mR-7Ls"/>
                                         <include reference="ihF-Cj-Fpg"/>
                                         <include reference="5z0-tm-8l2"/>
@@ -661,9 +662,9 @@
                                 <exclude reference="FmL-eQ-vwb"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="Img-v8-a25"/>
                                 <exclude reference="4H7-Ww-tbW"/>
                                 <exclude reference="RQ5-AR-Ffm"/>
-                                <exclude reference="Img-v8-a25"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
@@ -671,9 +672,9 @@
                                 <include reference="FmL-eQ-vwb"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="Img-v8-a25"/>
                                 <include reference="4H7-Ww-tbW"/>
                                 <include reference="RQ5-AR-Ffm"/>
-                                <include reference="Img-v8-a25"/>
                             </mask>
                         </variation>
                         <connections>
@@ -1867,13 +1868,13 @@ You will be asked to perform a random sequence of lifting off the screen with a 
                                 <exclude reference="udm-Sg-ZmM"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="2Tp-hl-AaK"/>
                                 <exclude reference="Azp-PW-knC"/>
                                 <exclude reference="DKT-GY-5xo"/>
                                 <exclude reference="jLw-wR-l5q"/>
                                 <exclude reference="B17-Oc-KSz"/>
                                 <exclude reference="HZx-dI-S22"/>
                                 <exclude reference="qii-fs-hNx"/>
-                                <exclude reference="2Tp-hl-AaK"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
@@ -1882,13 +1883,13 @@ You will be asked to perform a random sequence of lifting off the screen with a 
                                 <include reference="udm-Sg-ZmM"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="2Tp-hl-AaK"/>
                                 <include reference="Azp-PW-knC"/>
                                 <include reference="DKT-GY-5xo"/>
                                 <include reference="jLw-wR-l5q"/>
                                 <include reference="B17-Oc-KSz"/>
                                 <include reference="HZx-dI-S22"/>
                                 <include reference="qii-fs-hNx"/>
-                                <include reference="2Tp-hl-AaK"/>
                             </mask>
                         </variation>
                     </view>
@@ -2528,6 +2529,7 @@ Then press and hold.</string>
                         <outlet property="forceImage" destination="JH4-xN-Hbj" id="b6y-Qy-zaW"/>
                         <outlet property="instructionLbl" destination="crP-Ay-Vnd" id="pvi-Gx-6dg"/>
                         <outlet property="navBar" destination="zji-Wf-H6p" id="1K3-0A-h3q"/>
+                        <outlet property="nextBtn" destination="sgD-jw-Zup" id="Kpx-Cc-v7X"/>
                         <outlet property="progressBar" destination="dfw-0a-gv3" id="hLD-yD-n03"/>
                         <segue destination="cAs-qc-VWb" kind="presentation" identifier="forceInstructions" modalPresentationStyle="pageSheet" id="x8c-PL-5hY"/>
                     </connections>
@@ -2704,6 +2706,7 @@ Then press and hold.</string>
                         <outlet property="instructionLbl" destination="lAs-s5-m5c" id="bVz-4Q-Io0"/>
                         <outlet property="leftBar" destination="Tzo-ev-O8e" id="iA3-EO-vbe"/>
                         <outlet property="navBar" destination="cWf-Eq-jfu" id="kJl-O9-KJZ"/>
+                        <outlet property="nextBtn" destination="Kda-eg-e6z" id="APc-Co-B1i"/>
                         <outlet property="placeholderImage" destination="P8S-cE-zDM" id="QBd-vJ-TPG"/>
                         <outlet property="progressBar" destination="FT8-0G-aaS" id="blt-ab-uI7"/>
                         <outlet property="rightBar" destination="2CL-d0-46z" id="Jdj-pt-sOx"/>
@@ -2881,6 +2884,7 @@ and hold.</string>
                         <outlet property="leftBarBottom" destination="0Aa-ON-99a" id="RxS-Xh-y0J"/>
                         <outlet property="leftBarTop" destination="v73-hn-ha3" id="fxy-sy-bIf"/>
                         <outlet property="navBar" destination="cAo-E8-DJN" id="fWy-mu-Hhp"/>
+                        <outlet property="nextBtn" destination="7hc-Zh-6op" id="nng-a2-iTb"/>
                         <outlet property="progressBar" destination="1XS-8B-jQA" id="6t9-ha-z9A"/>
                         <outlet property="rightBarBottom" destination="5od-JK-VJT" id="w77-ab-BjQ"/>
                         <outlet property="rightBarTop" destination="x6J-Xc-aMd" id="vIr-pd-edX"/>
@@ -2908,7 +2912,7 @@ and hold.</string>
                                 <string key="text">Place sensor on right wrist.
 Then press and hold.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="2.7755575615628914e-17" translatesAutoresizingMaskIntoConstraints="NO" id="dZI-x8-amA">
@@ -2935,9 +2939,9 @@ Then press and hold.</string>
                                 <exclude reference="Yqu-q5-CpT"/>
                                 <exclude reference="mlb-M7-3m4"/>
                                 <exclude reference="w0f-oi-yaH"/>
+                                <exclude reference="OeY-D3-lJb"/>
                                 <exclude reference="Caa-1h-yx9"/>
                                 <exclude reference="QNo-mJ-5cA"/>
-                                <exclude reference="OeY-D3-lJb"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
@@ -2950,9 +2954,9 @@ Then press and hold.</string>
                                 <include reference="Yqu-q5-CpT"/>
                                 <include reference="mlb-M7-3m4"/>
                                 <include reference="w0f-oi-yaH"/>
+                                <include reference="OeY-D3-lJb"/>
                                 <include reference="Caa-1h-yx9"/>
                                 <include reference="QNo-mJ-5cA"/>
-                                <include reference="OeY-D3-lJb"/>
                             </mask>
                         </variation>
                     </view>
@@ -2966,6 +2970,7 @@ Then press and hold.</string>
                     <connections>
                         <outlet property="instructionLbl" destination="wfO-Bw-KgH" id="5aM-RP-JK7"/>
                         <outlet property="navBar" destination="ZQA-7m-jsK" id="WDM-a9-7tT"/>
+                        <outlet property="nextBtn" destination="loD-fK-Wto" id="74T-SU-Sfn"/>
                         <outlet property="progressBar" destination="dZI-x8-amA" id="7Ev-L2-OIS"/>
                         <segue destination="BJF-AL-LGs" kind="presentation" identifier="flickTestInstructions" modalPresentationStyle="pageSheet" id="WhX-2d-dST"/>
                     </connections>

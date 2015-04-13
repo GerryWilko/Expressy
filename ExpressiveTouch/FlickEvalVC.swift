@@ -20,6 +20,7 @@ class FlickEvalVC: UIViewController {
     @IBOutlet weak var instructionLbl: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var navBar: UINavigationItem!
+    @IBOutlet weak var nextBtn: UIBarButtonItem!
     
     required init(coder aDecoder: NSCoder) {
         detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
@@ -108,6 +109,7 @@ class FlickEvalVC: UIViewController {
     
     @IBAction func next(sender: AnyObject) {
         if runStack.isEmpty {
+            nextBtn.enabled = false
             instructionLbl.text = "Evaluation complete. Thank you."
             instructionLbl.textColor = UIColor.blackColor()
             EvalUtils.logDataBetweenTimes(startTime, endTime: NSDate.timeIntervalSinceReferenceDate(), csv: csvBuilder)

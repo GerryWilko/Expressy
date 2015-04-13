@@ -15,7 +15,7 @@ class ForceEvalVC: UIViewController {
     private var startTime:NSTimeInterval!
     private var reqTouchForce:UInt32!
     
-    private let scaleFactor = 20
+    private let scaleFactor:Float = 20.0
     private let detector:InteractionDetector
     private let csvBuilder:CSVBuilder
     private let participant:UInt32
@@ -25,6 +25,7 @@ class ForceEvalVC: UIViewController {
     @IBOutlet weak var forceImage: UIImageView!
     @IBOutlet weak var forceGuide: UIImageView!
     @IBOutlet weak var navBar: UINavigationItem!
+    @IBOutlet weak var nextBtn: UIBarButtonItem!
     
     required init(coder aDecoder: NSCoder) {
         stage = 1
@@ -48,7 +49,7 @@ class ForceEvalVC: UIViewController {
         let touchForce = detector.calculateTouchForce(time)
         
         UIView.animateWithDuration(1.0, animations: {
-            self.forceImage.transform = CGAffineTransformMakeScale(CGFloat(touchForce * Float(self.scaleFactor)), CGFloat(touchForce * Float(self.scaleFactor)))
+            self.forceImage.transform = CGAffineTransformMakeScale(CGFloat(touchForce * self.scaleFactor), CGFloat(touchForce * self.scaleFactor))
         }, completion: {
             (value: Bool) in
             UIView.animateWithDuration(1.0, animations: {
@@ -57,7 +58,7 @@ class ForceEvalVC: UIViewController {
         })
         
         if (stage == 2) {
-            csvBuilder.appendRow("\(participant),\(time),\(reqTouchForce / UInt32(scaleFactor)),\(attemptCount + 1),\(touchForce)", index: 0)
+            csvBuilder.appendRow("\(participant),\(time),\(Float(reqTouchForce) / scaleFactor),\(attemptCount + 1),\(touchForce)", index: 0)
             if (attemptCount == 2) {
                 setNextView()
                 evalCount++
@@ -106,6 +107,7 @@ class ForceEvalVC: UIViewController {
             if (evalCount < 10) {
                 setForceView()
             } else {
+                nextBtn.enabled = false
                 EvalUtils.logDataBetweenTimes(startTime, endTime: NSDate.timeIntervalSinceReferenceDate(), csv: csvBuilder)
                 instructionLbl.text = "Evaluation Complete. Thank you."
                 csvBuilder.emailCSV(self, subject: "Force Evaluation: \(participant)")

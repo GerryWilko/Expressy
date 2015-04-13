@@ -30,6 +30,7 @@ class RotateTestEvalVC: UIViewController {
     @IBOutlet weak var leftBar: UIProgressView!
     @IBOutlet weak var rightBar: UIProgressView!
     @IBOutlet weak var navBar: UINavigationItem!
+    @IBOutlet weak var nextBtn: UIBarButtonItem!
     
     required init(coder aDecoder: NSCoder) {
         stage = 1
@@ -160,6 +161,7 @@ class RotateTestEvalVC: UIViewController {
             if (evalCount < 10) {
                 setRotateImage()
             } else {
+                nextBtn.enabled = false
                 instructionLbl.hidden = false
                 placeholderImage.hidden = true
                 rotateImage.hidden = true

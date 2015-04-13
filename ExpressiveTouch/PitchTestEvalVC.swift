@@ -29,6 +29,7 @@ class PitchTestEvalVC: UIViewController {
     @IBOutlet weak var rightBarTop: UIProgressView!
     @IBOutlet weak var rightBarBottom: UIProgressView!
     @IBOutlet weak var navBar: UINavigationItem!
+    @IBOutlet weak var nextBtn: UIBarButtonItem!
     
     required init(coder aDecoder: NSCoder) {
         stage = 1
@@ -157,6 +158,7 @@ class PitchTestEvalVC: UIViewController {
             if (evalCount < 10) {
                 setPitchView()
             } else {
+                nextBtn.enabled = false
                 instructionLbl.text = "Evaluation Complete. Thank you."
                 EvalUtils.logDataBetweenTimes(startTime, endTime: NSDate.timeIntervalSinceReferenceDate(), csv: csvBuilder)
                 csvBuilder.emailCSV(self, subject: "Pitch test evaluation: \(participant)")
