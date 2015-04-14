@@ -9,6 +9,7 @@
 import Foundation
 
 class ControlsDemoVC: UIViewController {
+    private var touchValue:Float!
     private var startTransform:CGAffineTransform!
     
     private let detector:InteractionDetector
@@ -32,6 +33,8 @@ class ControlsDemoVC: UIViewController {
     }
     
     @IBAction func bar1TouchDown(sender: UIButton) {
+        touchValue = progressBar1.progress * 100
+        
         detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
         detector.subscribe(EventType.Metrics, callback: controlMetricsCallback)
     }
@@ -46,7 +49,7 @@ class ControlsDemoVC: UIViewController {
     }
     
     private func controlMetricsCallback(data:Float!) {
-        var newValue = progressBar1.progress * 100 + self.detector.currentRotation
+        var newValue = touchValue + self.detector.currentRotation
         
         if (newValue > 100) {
             newValue = 100.0
