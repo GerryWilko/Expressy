@@ -837,20 +837,20 @@
                                 <exclude reference="EZ2-S8-cJj"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="4P1-YP-Qv3"/>
+                                <exclude reference="2n9-Za-mIQ"/>
+                                <exclude reference="GoS-tX-ngD"/>
+                                <exclude reference="lb1-34-oUx"/>
                                 <exclude reference="3Kd-By-aRE"/>
                                 <exclude reference="Pqc-R8-zKY"/>
                                 <exclude reference="2p8-Zd-adC"/>
                                 <exclude reference="z1J-2F-vdd"/>
                                 <exclude reference="cEn-vn-0DD"/>
                                 <exclude reference="fRy-aO-mpt"/>
-                                <exclude reference="4P1-YP-Qv3"/>
                                 <exclude reference="Amr-oN-B66"/>
                                 <exclude reference="6Ed-iP-L1v"/>
                                 <exclude reference="NY9-bm-QkY"/>
                                 <exclude reference="TmG-f4-UiA"/>
-                                <exclude reference="2n9-Za-mIQ"/>
-                                <exclude reference="GoS-tX-ngD"/>
-                                <exclude reference="lb1-34-oUx"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
@@ -860,20 +860,20 @@
                                 <include reference="EZ2-S8-cJj"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="4P1-YP-Qv3"/>
+                                <include reference="2n9-Za-mIQ"/>
+                                <include reference="GoS-tX-ngD"/>
+                                <include reference="lb1-34-oUx"/>
                                 <include reference="3Kd-By-aRE"/>
                                 <include reference="Pqc-R8-zKY"/>
                                 <include reference="2p8-Zd-adC"/>
                                 <include reference="z1J-2F-vdd"/>
                                 <include reference="cEn-vn-0DD"/>
                                 <include reference="fRy-aO-mpt"/>
-                                <include reference="4P1-YP-Qv3"/>
                                 <include reference="Amr-oN-B66"/>
                                 <include reference="6Ed-iP-L1v"/>
                                 <include reference="NY9-bm-QkY"/>
                                 <include reference="TmG-f4-UiA"/>
-                                <include reference="2n9-Za-mIQ"/>
-                                <include reference="GoS-tX-ngD"/>
-                                <include reference="lb1-34-oUx"/>
                             </mask>
                         </variation>
                     </view>
