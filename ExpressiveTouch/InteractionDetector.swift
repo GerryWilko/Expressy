@@ -104,7 +104,7 @@ class InteractionDetector {
         let touchUpTime = timer.userInfo as! NSTimeInterval
         let end = NSDate.timeIntervalSinceReferenceDate()
         
-        let flickForce = detectFlick(touchUpTime, end: end)
+        let flickForce = calculateFlickForce(touchUpTime, end: end)
         
         if (flickForce > flickThreshold) {
             fireFlicked(flickForce)
@@ -145,7 +145,7 @@ class InteractionDetector {
         return force
     }
     
-    private func detectFlick(touchUpTime:NSTimeInterval, end:NSTimeInterval) -> Float {
+    private func calculateFlickForce(touchUpTime:NSTimeInterval, end:NSTimeInterval) -> Float {
         let data = dataCache.getRangeForTime(touchUpTime, end: end)
         
         var maxMag:Float = 0.0
