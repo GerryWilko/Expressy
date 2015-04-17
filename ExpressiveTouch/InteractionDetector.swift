@@ -24,9 +24,9 @@ class InteractionDetector {
     
     private let dataCache:WaxCache
     private let touchForceFilter:Float = 0.1
-    private let medForceThreshold:Float = 5
-    private let hardForceThreshold:Float = 15
-    private let flickThreshold:Float = 1.0
+    private let medForceThreshold:Float = 0.2
+    private let hardForceThreshold:Float = 0.5
+    private let flickThreshold:Float = 0.5
     
     init(dataCache:WaxCache) {
         self.dataCache = dataCache
