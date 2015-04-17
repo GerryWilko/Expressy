@@ -47,20 +47,6 @@ class PlaneModelVC: UIViewController {
         // retrieve the ship node
         let ship = scene.rootNode.childNodeWithName("ship", recursively: true)!
         
-//        let axes = [
-//            SCNVector3(x: 0, y: 0, z: 0), SCNVector3(x: 1, y: 0, z: 0),
-//            SCNVector3(x: 0, y: 0, z: 0), SCNVector3(x: 0, y: 1, z: 0),
-//            SCNVector3(x: 0, y: 0, z: 0), SCNVector3(x: 0, y: 0, z: 1)
-//        ]
-//        
-//        let vertexSource = SCNGeometrySource(vertices: axes, count: 6)
-//        let indicies = [0, 1, 2]
-//        let indexData = NSData(bytes: indicies, length: sizeof(Int) * indicies.count)
-//        let element = SCNGeometryElement(data: indexData, primitiveType: SCNGeometryPrimitiveType.Line, primitiveCount: 3, bytesPerIndex: sizeof(Int))
-//        let line = SCNGeometry(sources: [vertexSource], elements: [element])
-//        let lineNode = SCNNode(geometry: line)
-//        scene.rootNode.addChildNode(lineNode)
-        
         // set the scene to the view
         scnView.scene = scene 
         
