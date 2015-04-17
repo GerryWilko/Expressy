@@ -44,6 +44,10 @@ class InteractionDetector {
         softPressCallbacks = Array<(data:Float!) -> Void>()
     }
     
+    deinit {
+        stopDetection()
+    }
+    
     func startDetection() {
         dataCache.subscribe(dataCallback)
     }
@@ -56,7 +60,7 @@ class InteractionDetector {
             currentPitch = calculatePitch(data)
         }
         
-        lastDataTime = NSDate.timeIntervalSinceReferenceDate()
+        lastDataTime = data.time
         fireMetrics()
     }
     
