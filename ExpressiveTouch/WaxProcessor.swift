@@ -11,19 +11,26 @@ import Foundation
 var waxProcessor:WaxProcessor!
 
 class WaxProcessor {
+    /// Central application data cache.
     let dataCache:WaxCache
     private let accNorm:Float = 4096.0
     private let gyroNorm:Float = 0.07
     private let magNorm:Float = 0.1
     
+    /// Initialises a new sensor data processor for processing Bluetooth packets into sensor data objects.
+    /// :returns: New WaxProcessor instance.
     init() {
         assert(waxProcessor == nil)
         dataCache = WaxCache()
         waxProcessor = self
     }
     
+    /// Function to retrieve instance of WaxProcessor (currently required due to lack of static variable support in Swift).
+    /// :returns: Instance of WaxProcessor.
     class func getProcessor() -> WaxProcessor { return waxProcessor }
     
+    /// Function to pass new Bluetooth packet to be processed into raw sensor data. Also handles calculation of Madgwick quaternion.
+    /// :param: data Bluetooth packet.
     func updateCache(data:NSData) {
         let dataLength = data.length
         

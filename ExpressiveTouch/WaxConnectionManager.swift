@@ -18,6 +18,8 @@ class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralMan
     private var dataProcessor:WaxProcessor!
     private var ready:Bool
     
+    /// Initialises a new connection manager to handle Bluetooth connection to sensor.
+    /// :returns: New WaxConnectionManager instance.
     init(dataProcessor:WaxProcessor) {
         assert(connectionManager == nil)
         
@@ -33,8 +35,12 @@ class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralMan
         connectionManager = self
     }
     
+    /// Function to retrieve instance of WaxConnectionManager (currently required due to lack of static variable support in Swift).
+    /// :returns: Instance of WaxConnectionManager.
     class func getConnectionManager() -> WaxConnectionManager { return connectionManager }
     
+    /// Function to initiate Bluetooth scan for sensors.
+    /// :returns: Denotes wether a scan occured.
     func scan() -> Bool {
         if (ready) {
             cManager.scanForPeripheralsWithServices(nil, options: nil)
@@ -43,6 +49,7 @@ class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralMan
         return ready
     }
     
+    /// Function to stop scanning for sensors.
     func stop() {
         cManager.stopScan()
     }
@@ -85,6 +92,8 @@ class WaxConnectionManager : NSObject, CBCentralManagerDelegate, CBPeripheralMan
         WAXScanVC.addDevice(peripheral)
     }
     
+    /// Function to connect to specfied peripheral.
+    /// :param: peripheral Peripheral to connect to.
     func connectPeripheral(peripheral: CBPeripheral) {
         cManager.connectPeripheral(peripheral, options: nil)
     }

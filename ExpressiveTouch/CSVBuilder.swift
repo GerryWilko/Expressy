@@ -13,6 +13,9 @@ class CSVBuilder: NSObject, MFMailComposeViewControllerDelegate {
     private let fileNames:[String]
     private var csvStrings:[String]
     
+    /// Initialises a CSV builder for logging of data and exporting via email.
+    /// :param: fileNames Array of file names for CSV files.
+    /// :param: headerLines Array of headerLines for CSV files.
     init(fileNames:[String], headerLines:[String]) {
         assert(fileNames.count == headerLines.count)
         
@@ -20,10 +23,16 @@ class CSVBuilder: NSObject, MFMailComposeViewControllerDelegate {
         csvStrings = headerLines
     }
     
+    /// Function to append new row of data.
+    /// :param: data CSV formatted data string to append.
+    /// :param: index Index of CSV file to append data to.
     func appendRow(data:String, index:Int) {
         csvStrings[index] += "\n" + data
     }
     
+    /// Function to setup email and present to passed view controller.
+    /// :param: viewController View controller to present email view to.
+    /// :param: subject Subject of email.
     func emailCSV(viewController:UIViewController, subject:String) {
         let fileManager = (NSFileManager.defaultManager())
         let directorys : [String]? = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory,NSSearchPathDomainMask.AllDomainsMask, true) as? [String]

@@ -15,12 +15,19 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
     
     private let title:String
     
+    /// Initialises a new graph builder for setting up of a CorePlot graph.
+    /// :param: title Title of CorePlot graph.
+    /// :param: type Type of sensor data to be displayed.
+    /// :param: dataCache Sensor data cache to be used.
+    /// :returns: New GraphBuilder instance.
     init(title:String, type:WaxDataType, dataCache:WaxCache) {
         self.title = title
         self.type = type
         self.dataCache = dataCache
     }
     
+    /// Function to initiate loading of graph view.
+    /// graphView CPTGraphHostingView to be used.
     func initLoad(graphView:CPTGraphHostingView) {
         self.graphView = graphView
         
@@ -30,11 +37,13 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         configureAxes()
     }
     
+    /// Internal function to configure host view of graph.
     private func configureHost() {
         graphView.allowPinchScaling = true
         graphView.backgroundColor = UIColor.whiteColor()
     }
     
+    /// Internal function to configure graph container properties.
     private func configureGraph() {
         var graph = CPTXYGraph(frame: CGRectZero)
         graphView.hostedGraph = graph
@@ -57,6 +66,7 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         graph.paddingRight = 40.0
     }
     
+    /// Internal function to configure plot space for each axis.
     private func configurePlots() {
         var graph = graphView.hostedGraph
         var plotSpace = graph.defaultPlotSpace
@@ -97,6 +107,7 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         dataPlotZ.dataLineStyle = dataZLineStyle
     }
     
+    /// Internal function to configure x and y axes.
     private func configureAxes() {
         var axisTitleStyle = CPTMutableTextStyle.textStyle() as! CPTMutableTextStyle
         axisTitleStyle.color =  CPTColor.blackColor()
@@ -188,28 +199,40 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         return 0
     }
     
+    /// Function to reload map data.
     func refresh() {
         graphView.hostedGraph.reloadData()
         graphView.hostedGraph.defaultPlotSpace.scaleToFitPlots(graphView.hostedGraph.allPlots())
     }
     
+    /// Function to pause loading of sensor data.
     func pause() {
         dataCache.clearSubscriptions()
     }
     
+    /// Function to resume loading of sensor data.
     func resume() {
         dataCache.subscribe(dataCallback)
     }
     
-    func dataCallback(data:WaxData) {
+    /// Internal function to process new sensor data.
+    private func dataCallback(data:WaxData) {
         refresh()
     }
 }
 
+/// Enum for axes of sensor data.
+/// - X: Value for x-axis.
+/// - Y: Value for y-axis.
+/// - Z: Value for z-axis.
 enum WaxDataAxis:Int {
     case X = 1, Y, Z
 }
 
+/// Enum for sensor data type.
+/// - Accelerometer: Value for accelerometer.
+/// - Gyroscope: Value for gyroscope.
+/// - Magnetometer: Value for magnetometer.
 enum WaxDataType {
     case Accelerometer, Gyroscope, Magnetometer
 }
