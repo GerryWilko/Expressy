@@ -19,7 +19,7 @@ class ETMapGestureView: UIView {
     private let detector:InteractionDetector
     
     required init(coder aDecoder: NSCoder) {
-        detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
+        detector = InteractionDetector(dataCache: SensorProcessor.getProcessor().dataCache)
         detector.startDetection()
         super.init(coder: aDecoder)
     }

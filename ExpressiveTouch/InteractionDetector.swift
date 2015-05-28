@@ -26,7 +26,7 @@ class InteractionDetector {
     private var mediumPressCallbacks:Array<(data:Float!) -> Void>
     private var softPressCallbacks:Array<(data:Float!) -> Void>
     
-    private let dataCache:WaxCache
+    private let dataCache:SensorCache
     private let touchForceFilter:Float = 0.1
     private let medForceThreshold:Float = 0.2
     private let hardForceThreshold:Float = 0.5
@@ -35,7 +35,7 @@ class InteractionDetector {
     /// Initialises a new InteractionDetector analysing sensor data from the provided data cache.
     /// :param: Sensor data cache to be used.
     /// :returns: InteractionDetector instance.
-    init(dataCache:WaxCache) {
+    init(dataCache:SensorCache) {
         self.dataCache = dataCache
         
         currentForce = 0.0
@@ -55,14 +55,14 @@ class InteractionDetector {
         stopDetection()
     }
     
-    /// Initiates detection by subscribing to data callbacks from WaxProcessor.
+    /// Initiates detection by subscribing to data callbacks from SensorProcessor.
     func startDetection() {
         dataCache.subscribe(dataCallback)
     }
     
-    /// Internal function for processing of data callbacks from WaxProcessor.
+    /// Internal function for processing of data callbacks from SensorProcessor.
     /// :param: data Sensor data recieved from sensor.
-    private func dataCallback(data:WaxData) {
+    private func dataCallback(data:SensorData) {
         currentForce = calculateForce(data)
         
         if (touchDown) {
@@ -74,7 +74,7 @@ class InteractionDetector {
         fireMetrics()
     }
     
-    /// Stops detection by unsubscribing from WaxProcessor and clearing subscriptions to InteractionDetector.
+    /// Stops detection by unsubscribing from SensorProcessor and clearing subscriptions to InteractionDetector.
     func stopDetection() {
         dataCache.clearSubscriptions()
         clearSubscriptions()
@@ -132,7 +132,7 @@ class InteractionDetector {
     /// Internal function for calculation of rotation changes based upon new sensor data and time since last reading.
     /// :param: Sensor data to be analysed.
     /// :returns: New calculation for rotation from touch down.
-    private func calculateRotation(data:WaxData) -> Float {
+    private func calculateRotation(data:SensorData) -> Float {
         var totalRotation = currentRotation
         
         totalRotation += data.gyro.x * Float(NSTimeInterval(data.time - lastDataTime))
@@ -143,7 +143,7 @@ class InteractionDetector {
     /// Internal function for calculation of pitch changes based upon new sensor data and time since last reading.
     /// :param: Sensor data to be analysed.
     /// :returns: New calcuation for pitch from touch down.
-    private func calculatePitch(data:WaxData) -> Float {
+    private func calculatePitch(data:SensorData) -> Float {
         var totalPitch = currentPitch
         
         totalPitch += data.gyro.y * Float(NSTimeInterval(data.time - lastDataTime))
@@ -154,7 +154,7 @@ class InteractionDetector {
     /// Internal function for calculation of instantaneous force based upon new sensor data and time since last reading.
     /// :param: Sensor data to be analysed.
     /// :returns: New calculation for instantaneous force.
-    private func calculateForce(data:WaxData) -> Float {
+    private func calculateForce(data:SensorData) -> Float {
         return data.getAccNoGrav().magnitude()
     }
     

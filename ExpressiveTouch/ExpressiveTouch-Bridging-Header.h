@@ -11,5 +11,6 @@
 
 #import "CorePlot-CocoaTouch.h"
 #import "MadgwickAHRS.h"
+#import <MicrosoftBandKit_iOS/MicrosoftBandKit_iOS.h>
 
 #endif

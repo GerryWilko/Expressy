@@ -65,7 +65,7 @@ class PlaneModelVC: UIViewController {
         }
         scnView.gestureRecognizers = gestureRecognizers
         
-        WaxProcessor.getProcessor().dataCache.subscribe(dataCallback)
+        SensorProcessor.getProcessor().dataCache.subscribe(dataCallback)
     }
     
     func handleTap(gestureRecognize: UIGestureRecognizer) {
@@ -101,7 +101,7 @@ class PlaneModelVC: UIViewController {
         }
     }
     
-    func dataCallback(data:WaxData) {
+    func dataCallback(data:SensorData) {
         let ship = scnView.scene!.rootNode.childNodeWithName("ship", recursively: true)!
         let scalar:Float = 10.0
         

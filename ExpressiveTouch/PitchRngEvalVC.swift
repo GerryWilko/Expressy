@@ -71,15 +71,15 @@ class PitchRngEvalVC: UIViewController {
         minValue = 0.0
         recording = false
         
-        detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
-        csvBuilder = CSVBuilder(fileNames: ["pitchRange.csv","pitchData.csv"], headerLines: ["Dominant Hand,Wrist,Max Angle,Min Angle", WaxData.headerLine()])
+        detector = InteractionDetector(dataCache: SensorProcessor.getProcessor().dataCache)
+        csvBuilder = CSVBuilder(fileNames: ["pitchRange.csv","pitchData.csv"], headerLines: ["Dominant Hand,Wrist,Max Angle,Min Angle", SensorData.headerLine()])
         super.init(coder: aDecoder)
         detector.startDetection()
     }
     
     override func viewDidLoad() {
         self.performSegueWithIdentifier("pitchRngInstructions", sender: self)
-        WaxProcessor.getProcessor().dataCache.subscribe(dataCallback)
+        SensorProcessor.getProcessor().dataCache.subscribe(dataCallback)
         startTime = NSDate.timeIntervalSinceReferenceDate()
     }
     
@@ -99,7 +99,7 @@ class PitchRngEvalVC: UIViewController {
         }
     }
     
-    func dataCallback(data:WaxData) {
+    func dataCallback(data:SensorData) {
         if (recording) {
             if (self.maxValue < data.getYawPitchRoll().pitch) {
                 self.maxValue = data.getYawPitchRoll().pitch
@@ -135,7 +135,7 @@ class PitchRngEvalVC: UIViewController {
             progressBar.setProgress(Float(Float(41 - messageStack.count) / 41.0), animated: true)
             
             if (messageStack.isEmpty) {
-                WaxProcessor.getProcessor().dataCache.clearSubscriptions()
+                SensorProcessor.getProcessor().dataCache.clearSubscriptions()
                 EvalUtils.logDataBetweenTimes(startTime, endTime: NSDate.timeIntervalSinceReferenceDate(), csv: csvBuilder)
                 csvBuilder.emailCSV(self, subject: "Pitch Range Evaluation")
             }

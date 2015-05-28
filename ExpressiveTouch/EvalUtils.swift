@@ -14,7 +14,7 @@ class EvalUtils {
     /// :param: endTime Time of end of range.
     /// :param: csv CSV builder to append data to.
     class func logDataBetweenTimes(startTime:NSTimeInterval, endTime:NSTimeInterval, csv:CSVBuilder) {
-        let data = WaxProcessor.getProcessor().dataCache.getRangeForTime(startTime, end: endTime)
+        let data = SensorProcessor.getProcessor().dataCache.getRangeForTime(startTime, end: endTime)
         
         for d in data {
             csv.appendRow(d.print(), index: 1)

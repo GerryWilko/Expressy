@@ -12,7 +12,7 @@ class AccGraphVC: UIViewController {
     private let accGraphBuilder:GraphBuilder
     
     required init(coder aDecoder: NSCoder) {
-        accGraphBuilder = GraphBuilder(title: "Accelerometer", type: .Accelerometer, dataCache: WaxProcessor.getProcessor().dataCache)
+        accGraphBuilder = GraphBuilder(title: "Accelerometer", type: .Accelerometer, dataCache: SensorProcessor.getProcessor().dataCache)
         super.init(coder: aDecoder)
     }
     

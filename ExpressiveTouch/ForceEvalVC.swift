@@ -30,10 +30,10 @@ class ForceEvalVC: UIViewController {
     required init(coder aDecoder: NSCoder) {
         stage = 1
         evalCount = 0
-        detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
+        detector = InteractionDetector(dataCache: SensorProcessor.getProcessor().dataCache)
         detector.startDetection()
         participant = EvalUtils.generateParticipantID()
-        csvBuilder = CSVBuilder(fileNames: ["force-\(participant).csv", "forceData-\(participant).csv"], headerLines: ["Participant ID,Time,Requested Force,Attempt,Tapped Force", WaxData.headerLine()])
+        csvBuilder = CSVBuilder(fileNames: ["force-\(participant).csv", "forceData-\(participant).csv"], headerLines: ["Participant ID,Time,Requested Force,Attempt,Tapped Force", SensorData.headerLine()])
         super.init(coder: aDecoder)
     }
     

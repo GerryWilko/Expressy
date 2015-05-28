@@ -22,9 +22,9 @@ class TapEvalVC: UIViewController {
     @IBOutlet weak var nextBtn: UIBarButtonItem!
     
     required init(coder aDecoder: NSCoder) {
-        detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
+        detector = InteractionDetector(dataCache: SensorProcessor.getProcessor().dataCache)
         participant = EvalUtils.generateParticipantID()
-        csv = CSVBuilder(fileNames: ["tapForce-\(participant).csv","tapData-\(participant).csv"], headerLines: ["Participant ID,Time,Requested Force,Tap Force", WaxData.headerLine()])
+        csv = CSVBuilder(fileNames: ["tapForce-\(participant).csv","tapData-\(participant).csv"], headerLines: ["Participant ID,Time,Requested Force,Tap Force", SensorData.headerLine()])
         super.init(coder: aDecoder)
         detector.startDetection()
         runStack = buildRunStack()

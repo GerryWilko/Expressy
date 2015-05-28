@@ -17,7 +17,7 @@ class InteractionDetectorVC: UIViewController {
     @IBOutlet weak var flickedSwitch: UISwitch!
     
     required init(coder aDecoder: NSCoder) {
-        detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
+        detector = InteractionDetector(dataCache: SensorProcessor.getProcessor().dataCache)
         detector.startDetection()
         
         super.init(coder: aDecoder)
@@ -46,9 +46,9 @@ class InteractionDetectorVC: UIViewController {
     }
     
     @IBAction func exportData(sender: AnyObject) {
-        let csv = CSVBuilder(fileNames: ["data.csv"], headerLines: [WaxData.headerLine()])
+        let csv = CSVBuilder(fileNames: ["data.csv"], headerLines: [SensorData.headerLine()])
         
-        let dataCache = WaxProcessor.getProcessor().dataCache
+        let dataCache = SensorProcessor.getProcessor().dataCache
         
         for i in 0..<dataCache.count() {
             let data = dataCache[i]

@@ -10,8 +10,8 @@ import Foundation
 
 class GraphBuilder : NSObject, CPTPlotDataSource {
     private var graphView:CPTGraphHostingView!
-    private var dataCache:WaxCache
-    private var type:WaxDataType
+    private var dataCache:SensorCache
+    private var type:SensorDataType
     
     private let title:String
     
@@ -20,7 +20,7 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
     /// :param: type Type of sensor data to be displayed.
     /// :param: dataCache Sensor data cache to be used.
     /// :returns: New GraphBuilder instance.
-    init(title:String, type:WaxDataType, dataCache:WaxCache) {
+    init(title:String, type:SensorDataType, dataCache:SensorCache) {
         self.title = title
         self.type = type
         self.dataCache = dataCache
@@ -79,9 +79,9 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         dataPlotY.dataSource = self
         dataPlotZ.dataSource = self
         
-        dataPlotX.identifier = WaxDataAxis.X.rawValue
-        dataPlotY.identifier = WaxDataAxis.Y.rawValue
-        dataPlotZ.identifier = WaxDataAxis.Z.rawValue
+        dataPlotX.identifier = SensorDataAxis.X.rawValue
+        dataPlotY.identifier = SensorDataAxis.Y.rawValue
+        dataPlotZ.identifier = SensorDataAxis.Z.rawValue
         
         graph.addPlot(dataPlotX, toPlotSpace: plotSpace)
         graph.addPlot(dataPlotY, toPlotSpace: plotSpace)
@@ -183,11 +183,11 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
             }
             
             switch plot.identifier as! Int {
-            case WaxDataAxis.X.rawValue:
+            case SensorDataAxis.X.rawValue:
                 return data.x
-            case WaxDataAxis.Y.rawValue:
+            case SensorDataAxis.Y.rawValue:
                 return data.y
-            case WaxDataAxis.Z.rawValue:
+            case SensorDataAxis.Z.rawValue:
                 return data.z
             default:
                 break
@@ -216,7 +216,7 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
     }
     
     /// Internal function to process new sensor data.
-    private func dataCallback(data:WaxData) {
+    private func dataCallback(data:SensorData) {
         refresh()
     }
 }
@@ -225,7 +225,7 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
 /// - X: Value for x-axis.
 /// - Y: Value for y-axis.
 /// - Z: Value for z-axis.
-enum WaxDataAxis:Int {
+enum SensorDataAxis:Int {
     case X = 1, Y, Z
 }
 
@@ -233,6 +233,6 @@ enum WaxDataAxis:Int {
 /// - Accelerometer: Value for accelerometer.
 /// - Gyroscope: Value for gyroscope.
 /// - Magnetometer: Value for magnetometer.
-enum WaxDataType {
+enum SensorDataType {
     case Accelerometer, Gyroscope, Magnetometer
 }

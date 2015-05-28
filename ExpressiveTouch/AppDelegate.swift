@@ -15,8 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        let processor = WaxProcessor()
-        let conMan = WaxConnectionManager(dataProcessor: processor)
+        let processor = SensorProcessor()
+        let conMan = SensorConnectionManager(dataProcessor: processor)
         
         return true
     }

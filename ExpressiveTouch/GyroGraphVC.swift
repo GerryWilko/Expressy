@@ -12,7 +12,7 @@ class GyroGraphVC: UIViewController {
     private let gyroGraphBuilder:GraphBuilder
     
     required init(coder aDecoder: NSCoder) {
-        gyroGraphBuilder = GraphBuilder(title: "Gyroscope", type: .Gyroscope, dataCache: WaxProcessor.getProcessor().dataCache)
+        gyroGraphBuilder = GraphBuilder(title: "Gyroscope", type: .Gyroscope, dataCache: SensorProcessor.getProcessor().dataCache)
         super.init(coder: aDecoder)
     }
     

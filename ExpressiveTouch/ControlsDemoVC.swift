@@ -22,7 +22,7 @@ class ControlsDemoVC: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     
     required init(coder aDecoder: NSCoder) {
-        detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
+        detector = InteractionDetector(dataCache: SensorProcessor.getProcessor().dataCache)
         detector.startDetection()
         super.init(coder: aDecoder)
     }

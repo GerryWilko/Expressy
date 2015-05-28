@@ -12,7 +12,7 @@ class MagGraphVC: UIViewController {
     private let magGraphBuilder:GraphBuilder
     
     required init(coder aDecoder: NSCoder) {
-        magGraphBuilder = GraphBuilder(title: "Magnetometer", type: .Magnetometer, dataCache: WaxProcessor.getProcessor().dataCache)
+        magGraphBuilder = GraphBuilder(title: "Magnetometer", type: .Magnetometer, dataCache: SensorProcessor.getProcessor().dataCache)
         super.init(coder: aDecoder)
     }
     

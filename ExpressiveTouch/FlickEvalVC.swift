@@ -23,10 +23,10 @@ class FlickEvalVC: UIViewController {
     @IBOutlet weak var nextBtn: UIBarButtonItem!
     
     required init(coder aDecoder: NSCoder) {
-        detector = InteractionDetector(dataCache: WaxProcessor.getProcessor().dataCache)
+        detector = InteractionDetector(dataCache: SensorProcessor.getProcessor().dataCache)
         detector.startDetection()
         participant = EvalUtils.generateParticipantID()
-        csvBuilder = CSVBuilder(fileNames: ["flick-\(participant).csv", "flickData-\(participant).csv"], headerLines: ["Participant ID,Time,Requested,Flick Force", WaxData.headerLine()])
+        csvBuilder = CSVBuilder(fileNames: ["flick-\(participant).csv", "flickData-\(participant).csv"], headerLines: ["Participant ID,Time,Requested,Flick Force", SensorData.headerLine()])
         super.init(coder: aDecoder)
         runStack = buildRunStack()
     }
