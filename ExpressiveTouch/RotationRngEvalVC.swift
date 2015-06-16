@@ -87,7 +87,7 @@ class RotationRngEvalVC: UIViewController {
         detector.stopDetection()
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
         
         if (!messageStack.isEmpty && dominantHand.selectedSegmentIndex != UISegmentedControlNoSegment) {
@@ -111,7 +111,7 @@ class RotationRngEvalVC: UIViewController {
         }
     }
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         detector.touchUp(NSDate.timeIntervalSinceReferenceDate())
         
         if (!messageStack.isEmpty && dominantHand.selectedSegmentIndex != UISegmentedControlNoSegment) {

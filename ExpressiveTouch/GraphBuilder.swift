@@ -16,10 +16,10 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
     private let title:String
     
     /// Initialises a new graph builder for setting up of a CorePlot graph.
-    /// :param: title Title of CorePlot graph.
-    /// :param: type Type of sensor data to be displayed.
-    /// :param: dataCache Sensor data cache to be used.
-    /// :returns: New GraphBuilder instance.
+    /// - parameter title: Title of CorePlot graph.
+    /// - parameter type: Type of sensor data to be displayed.
+    /// - parameter dataCache: Sensor data cache to be used.
+    /// - returns: New GraphBuilder instance.
     init(title:String, type:SensorDataType, dataCache:SensorCache) {
         self.title = title
         self.type = type
@@ -45,10 +45,10 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
     
     /// Internal function to configure graph container properties.
     private func configureGraph() {
-        var graph = CPTXYGraph(frame: CGRectZero)
+        let graph = CPTXYGraph(frame: CGRectZero)
         graphView.hostedGraph = graph
         
-        var titleStyle = CPTMutableTextStyle()
+        let titleStyle = CPTMutableTextStyle()
         titleStyle.color = CPTColor.blackColor()
         titleStyle.fontName = "HelveticaNeue-Medium"
         titleStyle.fontSize = 16.0
@@ -68,12 +68,12 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
     
     /// Internal function to configure plot space for each axis.
     private func configurePlots() {
-        var graph = graphView.hostedGraph
-        var plotSpace = graph.defaultPlotSpace
+        let graph = graphView.hostedGraph
+        let plotSpace = graph.defaultPlotSpace
         
-        var dataPlotX = CPTScatterPlot()
-        var dataPlotY = CPTScatterPlot()
-        var dataPlotZ = CPTScatterPlot()
+        let dataPlotX = CPTScatterPlot()
+        let dataPlotY = CPTScatterPlot()
+        let dataPlotZ = CPTScatterPlot()
         
         dataPlotX.dataSource = self
         dataPlotY.dataSource = self
@@ -87,21 +87,21 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         graph.addPlot(dataPlotY, toPlotSpace: plotSpace)
         graph.addPlot(dataPlotZ, toPlotSpace: plotSpace)
         
-        var dataXColor = CPTColor.redColor()
-        var dataYColor = CPTColor.greenColor()
-        var dataZColor = CPTColor.blueColor()
+        let dataXColor = CPTColor.redColor()
+        let dataYColor = CPTColor.greenColor()
+        let dataZColor = CPTColor.blueColor()
         
-        var dataXLineStyle = dataPlotX.dataLineStyle.mutableCopy() as! CPTMutableLineStyle
+        let dataXLineStyle = dataPlotX.dataLineStyle.mutableCopy() as! CPTMutableLineStyle
         dataXLineStyle.lineWidth = 2.5
         dataXLineStyle.lineColor = dataXColor
         dataPlotX.dataLineStyle = dataXLineStyle
         
-        var dataYLineStyle = dataPlotY.dataLineStyle.mutableCopy() as! CPTMutableLineStyle
+        let dataYLineStyle = dataPlotY.dataLineStyle.mutableCopy() as! CPTMutableLineStyle
         dataYLineStyle.lineWidth = 2.5
         dataYLineStyle.lineColor = dataYColor
         dataPlotY.dataLineStyle = dataYLineStyle
         
-        var dataZLineStyle = dataPlotZ.dataLineStyle.mutableCopy() as! CPTMutableLineStyle
+        let dataZLineStyle = dataPlotZ.dataLineStyle.mutableCopy() as! CPTMutableLineStyle
         dataZLineStyle.lineWidth = 2.5
         dataZLineStyle.lineColor = dataZColor
         dataPlotZ.dataLineStyle = dataZLineStyle
@@ -109,21 +109,21 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
     
     /// Internal function to configure x and y axes.
     private func configureAxes() {
-        var axisTitleStyle = CPTMutableTextStyle.textStyle() as! CPTMutableTextStyle
+        let axisTitleStyle = CPTMutableTextStyle.textStyle() as! CPTMutableTextStyle
         axisTitleStyle.color =  CPTColor.blackColor()
         axisTitleStyle.fontName = "HelveticaNeue-Medium"
         axisTitleStyle.fontSize = 12.0
-        var axisLineStyle = CPTMutableLineStyle.lineStyle() as! CPTMutableLineStyle
+        let axisLineStyle = CPTMutableLineStyle.lineStyle() as! CPTMutableLineStyle
         axisLineStyle.lineWidth = 2.0
         axisLineStyle.lineColor = CPTColor.blackColor()
-        var axisTextStyle = CPTMutableTextStyle()
+        let axisTextStyle = CPTMutableTextStyle()
         axisTextStyle.color = CPTColor.blackColor()
         axisTextStyle.fontName = "HelveticaNeue-Medium"
         axisTextStyle.fontSize = 11.0
         
-        var axisSet = graphView.hostedGraph.axisSet as! CPTXYAxisSet
+        let axisSet = graphView.hostedGraph.axisSet as! CPTXYAxisSet
         
-        var x = axisSet.xAxis as CPTAxis
+        let x = axisSet.xAxis as CPTAxis
         x.title = "Time"
         x.titleTextStyle = axisTitleStyle
         x.titleOffset = 15.0
@@ -134,7 +134,7 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         x.majorTickLength = 4.0
         x.tickDirection = CPTSignNegative
         
-        var y = axisSet.yAxis as CPTAxis
+        let y = axisSet.yAxis as CPTAxis
         y.title = "Value"
         y.titleTextStyle = axisTitleStyle
         y.titleOffset = -20.0
@@ -158,12 +158,12 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
     
     func numberForPlot(plot: CPTPlot!, field fieldEnum: UInt, recordIndex idx: UInt) -> NSNumber! {
         switch (UInt32(fieldEnum)) {
-        case CPTScatterPlotFieldX.value:
+        case CPTScatterPlotFieldX.rawValue:
             return idx
-        case CPTScatterPlotFieldY.value:
+        case CPTScatterPlotFieldY.rawValue:
             var index = Int(idx)
             if (dataCache.count() > 100) {
-                var shift = dataCache.count() - 100
+                let shift = dataCache.count() - 100
                 
                 index = index + shift
             }

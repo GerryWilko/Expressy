@@ -43,7 +43,7 @@ class ForceEvalVC: UIViewController {
         navBar.title = "\(navBar.title!) \(participant)"
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let time = NSDate.timeIntervalSinceReferenceDate()
         detector.touchDown(time)
         let touchForce = detector.calculateTouchForce(time)
@@ -69,7 +69,7 @@ class ForceEvalVC: UIViewController {
         }
     }
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         detector.touchUp(NSDate.timeIntervalSinceReferenceDate())
     }
     

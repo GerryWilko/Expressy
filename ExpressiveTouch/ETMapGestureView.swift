@@ -24,21 +24,21 @@ class ETMapGestureView: UIView {
         super.init(coder: aDecoder)
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         touchPitch = map.camera.pitch
         touchHeading = map.camera.heading
         detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
         detector.subscribe(EventType.Metrics, callback: metricCallback)
     }
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         detector.touchUp(NSDate.timeIntervalSinceReferenceDate())
         detector.clearSubscriptions()
     }
     
     private func metricCallback(data:Float!) {
         var newPitch = touchPitch + CGFloat(-detector.currentPitch * 3)
-        var newRoll = touchHeading + CLLocationDirection(detector.currentRotation)
+        let newRoll = touchHeading + CLLocationDirection(detector.currentRotation)
         
         if (newPitch < 0) {
             newPitch = 0

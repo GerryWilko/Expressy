@@ -33,8 +33,8 @@ class InteractionDetector {
     private let flickThreshold:Float = 0.5
     
     /// Initialises a new InteractionDetector analysing sensor data from the provided data cache.
-    /// :param: Sensor data cache to be used.
-    /// :returns: InteractionDetector instance.
+    /// - parameter Sensor: data cache to be used.
+    /// - returns: InteractionDetector instance.
     init(dataCache:SensorCache) {
         self.dataCache = dataCache
         
@@ -61,7 +61,7 @@ class InteractionDetector {
     }
     
     /// Internal function for processing of data callbacks from SensorProcessor.
-    /// :param: data Sensor data recieved from sensor.
+    /// - parameter data: Sensor data recieved from sensor.
     private func dataCallback(data:SensorData) {
         currentForce = calculateForce(data)
         
@@ -81,7 +81,7 @@ class InteractionDetector {
     }
     
     /// Function for passing touch down events, used for detection of touch down related events and calcuation of continous interactions (roll, pitch).
-    /// :param: touchDownTime Time touch down event occured.
+    /// - parameter touchDownTime: Time touch down event occured.
     func touchDown(touchDownTime:NSTimeInterval) {
         touchDown = true
         
@@ -99,7 +99,7 @@ class InteractionDetector {
     }
     
     /// Function for passing touch up events, used for detection of touch up related events.
-    /// :param: touchUpTime Time touch up event occured.
+    /// - parameter touchUpTime: Time touch up event occured.
     func touchUp(touchUpTime:NSTimeInterval) {
         touchDown = false
         currentRotation = 0.0
@@ -117,7 +117,7 @@ class InteractionDetector {
     }
     
     /// Timer callback function for detection of events after touch up event.
-    /// :param: timer Timer that fired.
+    /// - parameter timer: Timer that fired.
     @objc private func touchEndCallback(timer:NSTimer) {
         let touchUpTime = timer.userInfo as! NSTimeInterval
         let end = NSDate.timeIntervalSinceReferenceDate()
@@ -130,8 +130,8 @@ class InteractionDetector {
     }
     
     /// Internal function for calculation of rotation changes based upon new sensor data and time since last reading.
-    /// :param: Sensor data to be analysed.
-    /// :returns: New calculation for rotation from touch down.
+    /// - parameter Sensor: data to be analysed.
+    /// - returns: New calculation for rotation from touch down.
     private func calculateRotation(data:SensorData) -> Float {
         var totalRotation = currentRotation
         
@@ -141,8 +141,8 @@ class InteractionDetector {
     }
     
     /// Internal function for calculation of pitch changes based upon new sensor data and time since last reading.
-    /// :param: Sensor data to be analysed.
-    /// :returns: New calcuation for pitch from touch down.
+    /// - parameter Sensor: data to be analysed.
+    /// - returns: New calcuation for pitch from touch down.
     private func calculatePitch(data:SensorData) -> Float {
         var totalPitch = currentPitch
         
@@ -152,8 +152,8 @@ class InteractionDetector {
     }
     
     /// Internal function for calculation of instantaneous force based upon new sensor data and time since last reading.
-    /// :param: Sensor data to be analysed.
-    /// :returns: New calculation for instantaneous force.
+    /// - parameter Sensor: data to be analysed.
+    /// - returns: New calculation for instantaneous force.
     private func calculateForce(data:SensorData) -> Float {
         return data.getAccNoGrav().magnitude()
     }
@@ -173,9 +173,9 @@ class InteractionDetector {
     }
     
     /// Internal function for calculation of flick force after the touch up event.
-    /// :param: touchUpTime Time touch up event occured.
-    /// :param: end End time of window for analysis.
-    /// :returns: New calculation of flick force.
+    /// - parameter touchUpTime: Time touch up event occured.
+    /// - parameter end: End time of window for analysis.
+    /// - returns: New calculation of flick force.
     private func calculateFlickForce(touchUpTime:NSTimeInterval, end:NSTimeInterval) -> Float {
         let data = dataCache.getRangeForTime(touchUpTime, end: end)
         
@@ -196,32 +196,32 @@ class InteractionDetector {
     }
     
     /// Internal function to fire flicked callbacks.
-    /// :param: data Value representing flicked force.
+    /// - parameter data: Value representing flicked force.
     private func fireFlicked(data:Float) {
        fireCallbacks(data, callbacks: flickedCallbacks)
     }
     
     /// Internal function to fire hard press callbacks.
-    /// :param: data Value representing touch force.
+    /// - parameter data: Value representing touch force.
     private func fireHardPress(data:Float) {
         fireCallbacks(data, callbacks: hardPressCallbacks)
     }
     
     /// Internal function to fire medium press callbacks.
-    /// :param: data Value representing touch force.
+    /// - parameter data: Value representing touch force.
     private func fireMediumPress(data:Float) {
         fireCallbacks(data, callbacks: mediumPressCallbacks)
     }
     
     /// Internal function to fire soft press callbacks.
-    /// :param: data Value representing touch force.
+    /// - parameter data: Value representing touch force.
     private func fireSoftPress(data:Float) {
         fireCallbacks(data, callbacks: softPressCallbacks)
     }
     
     /// Internal function to fire a set of callbacks.
-    /// :param: data Data to be passed to callbacks.
-    /// :param: callbacks Set of callbacks to be fired.
+    /// - parameter data: Data to be passed to callbacks.
+    /// - parameter callbacks: Set of callbacks to be fired.
     private func fireCallbacks(data:Float!, callbacks:[(data:Float!) -> Void]) {
         for cb in callbacks {
             cb(data: data)
@@ -229,8 +229,8 @@ class InteractionDetector {
     }
     
     /// Event subscription system, subscribing to defined events causes callback to be fired when specified event occurs.
-    /// :param: event Type of event to be subscribed.
-    /// :param: callback Function with data parameter to be called on event occurence.
+    /// - parameter event: Type of event to be subscribed.
+    /// - parameter callback: Function with data parameter to be called on event occurence.
     func subscribe(event:EventType, callback:(data:Float!) -> Void) {
         switch event {
         case .Metrics:

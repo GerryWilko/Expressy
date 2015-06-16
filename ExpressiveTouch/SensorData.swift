@@ -25,21 +25,21 @@ class SensorData {
     var touch:TouchEvent, touchForce:Float
     
     /// Initialises a new sensor data instance for encapsulation of sensor data.
-    /// :param: time Time data was recieved.
-    /// :param: ax Accelerometer x-axis.
-    /// :param: ay Accelerometer y-axis.
-    /// :param: az Accelerometer z-axis.
-    /// :param: gx Gyroscope x-axis.
-    /// :param: gy Gyroscope y-axis.
-    /// :param: gz Gyroscope z-axis.
-    /// :param: mx Magnetometer x-axis.
-    /// :param: my Magnetometer y-axis.
-    /// :param: mz Magnetometer z-axis.
-    /// :param: qx Quaternion x-axis.
-    /// :param: qy Quaternion y-axis.
-    /// :param: qz Quaternion z-axis.
-    /// :param: qw Quaternion w-axis.
-    /// :returns: SensorData instance.
+    /// - parameter time: Time data was recieved.
+    /// - parameter ax: Accelerometer x-axis.
+    /// - parameter ay: Accelerometer y-axis.
+    /// - parameter az: Accelerometer z-axis.
+    /// - parameter gx: Gyroscope x-axis.
+    /// - parameter gy: Gyroscope y-axis.
+    /// - parameter gz: Gyroscope z-axis.
+    /// - parameter mx: Magnetometer x-axis.
+    /// - parameter my: Magnetometer y-axis.
+    /// - parameter mz: Magnetometer z-axis.
+    /// - parameter qx: Quaternion x-axis.
+    /// - parameter qy: Quaternion y-axis.
+    /// - parameter qz: Quaternion z-axis.
+    /// - parameter qw: Quaternion w-axis.
+    /// - returns: SensorData instance.
     init(time:NSTimeInterval, ax:Float, ay:Float, az:Float, gx:Float, gy:Float, gz:Float, mx:Float, my:Float, mz:Float, qx:Float, qy:Float, qz:Float, qw:Float) {
         self.time = time
         acc = Vector3D(x: ax, y: ay, z: az)
@@ -57,19 +57,19 @@ class SensorData {
     }
     
     /// Function to retrieve formatted header line for CSV export of sensor data.
-    /// :returns: Comma-separated formatted header line for CSV export.
+    /// - returns: Comma-separated formatted header line for CSV export.
     class func headerLine() -> String {
         return "Time,ax,ay,az,gx,gy,gz,mx,my,mz,gravx,gravy,gravz,yaw,pitch,roll,Touch,Touch Force"
     }
     
     /// Function to retrieve the accelerometer values with the estimation of gravity removed providing 'pure' acceleration.
-    /// :returns: Vector of 'pure' accelerometer values.
+    /// - returns: Vector of 'pure' accelerometer values.
     func getAccNoGrav() -> Vector3D {
         return Vector3D(x: acc.x - grav.x, y: acc.y - grav.y, z: acc.z - grav.z)
     }
     
     /// Function to pass touch down event, places mark in sensor data for debugging purposes.
-    /// :param: touchForce Value denoting force screen was struck.
+    /// - parameter touchForce: Value denoting force screen was struck.
     func touchDown(touchForce:Float) {
         touch = TouchEvent.Down
         self.touchForce = touchForce
@@ -81,7 +81,7 @@ class SensorData {
     }
     
     /// Function to retrieve yaw, pitch and roll from Madgwick Quaternion decomposition.
-    /// :returns: Tuple of yaw, pitch and roll in radians.
+    /// - returns: Tuple of yaw, pitch and roll in radians.
     func getYawPitchRoll() -> (yaw:Float, pitch:Float, roll:Float) {
         let sgyz = sqrt(grav.y * grav.y + grav.z * grav.z)
         let sgxz = sqrt(grav.x * grav.x + grav.z * grav.z)
@@ -94,7 +94,7 @@ class SensorData {
     }
     
     /// Function to print sensor data in CSV format.
-    /// :returns: Formatted string of sensor data.
+    /// - returns: Formatted string of sensor data.
     func print() -> String {
         let ypr = getYawPitchRoll()
         

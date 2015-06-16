@@ -67,10 +67,10 @@ class ControlsDemoVC: UIViewController {
         }
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        let touch = touches.first as! UITouch
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        let touch = touches.first
         
-        if (imageETSwitch.on && touch.view == imageView)
+        if (imageETSwitch.on && touch!.view == imageView)
         {
             detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
             detector.subscribe(EventType.Metrics, callback: imageMetricsCallback)
@@ -81,10 +81,10 @@ class ControlsDemoVC: UIViewController {
         self.imageView.transform = CGAffineTransformRotate(self.startTransform, CGFloat(self.detector.currentRotation) * CGFloat(M_PI / 180))
     }
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-        let touch = touches.first as! UITouch
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        let touch = touches.first
         
-        if (imageETSwitch.on && touch.view == imageView)
+        if (imageETSwitch.on && touch!.view == imageView)
         {
             detector.touchUp(NSDate.timeIntervalSinceReferenceDate())
             detector.clearSubscriptions()

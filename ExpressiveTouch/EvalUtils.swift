@@ -10,9 +10,9 @@ import Foundation
 
 class EvalUtils {
     /// Function to log a range of data between two time intervals.
-    /// :param: startTime Time of start of range.
-    /// :param: endTime Time of end of range.
-    /// :param: csv CSV builder to append data to.
+    /// - parameter startTime: Time of start of range.
+    /// - parameter endTime: Time of end of range.
+    /// - parameter csv: CSV builder to append data to.
     class func logDataBetweenTimes(startTime:NSTimeInterval, endTime:NSTimeInterval, csv:CSVBuilder) {
         let data = SensorProcessor.getProcessor().dataCache.getRangeForTime(startTime, end: endTime)
         
@@ -22,7 +22,7 @@ class EvalUtils {
     }
     
     /// Function to retrive random particiapant ID.
-    /// :returns: Random particiapnt ID.
+    /// - returns: Random particiapnt ID.
     class func generateParticipantID() -> UInt32 {
         return arc4random_uniform(10000)
     }

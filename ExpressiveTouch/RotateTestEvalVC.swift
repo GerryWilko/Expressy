@@ -44,7 +44,7 @@ class RotateTestEvalVC: UIViewController {
         super.init(coder: aDecoder)
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
         
         switch (stage) {
@@ -53,9 +53,9 @@ class RotateTestEvalVC: UIViewController {
             instructionLbl.text = "Now rotate as far as you can clockwise. Then back anti-clockwise, keep your finger held down."
             break
         case 2:
-            let touch = touches.first as! UITouch
+            let touch = touches.first
             
-            if (touch.view == rotateImage) {
+            if (touch!.view == rotateImage) {
                 touchTime = NSDate.timeIntervalSinceReferenceDate()
                 detector.subscribe(EventType.Metrics, callback: imageMetricsCallback)
             }
@@ -81,7 +81,7 @@ class RotateTestEvalVC: UIViewController {
         self.rotateImage.transform = CGAffineTransformRotate(self.lastTransform, CGFloat(self.detector.currentRotation) * CGFloat(M_PI / 180))
     }
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let time = NSDate.timeIntervalSinceReferenceDate()
         detector.touchUp(time)
         
@@ -92,9 +92,9 @@ class RotateTestEvalVC: UIViewController {
             break
         case 2:
             detector.clearSubscriptions()
-            let touch = touches.first as! UITouch
+            let touch = touches.first
             
-            if (touch.view == rotateImage) {
+            if (touch!.view == rotateImage) {
                 let placeholderDegrees = atan2f(Float(placeholderImage.transform.b), Float(placeholderImage.transform.a)) * Float(180 / M_PI)
                 let imageDegrees = atan2f(Float(rotateImage.transform.b), Float(rotateImage.transform.a)) * Float(180 / M_PI)
                 csvBuilder.appendRow("\(participant),\(time),\(maxValue),\(minValue),\(placeholderDegrees),\(angleDifference),\(imageDegrees),\(time - touchTime)", index: 0)

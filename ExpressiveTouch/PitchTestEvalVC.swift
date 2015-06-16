@@ -53,7 +53,7 @@ class PitchTestEvalVC: UIViewController {
         startTime = NSDate.timeIntervalSinceReferenceDate()
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
         
         switch (stage) {
@@ -92,7 +92,7 @@ class PitchTestEvalVC: UIViewController {
         }
     }
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let time = NSDate.timeIntervalSinceReferenceDate()
         let pitch = detector.currentPitch
         detector.touchUp(time)

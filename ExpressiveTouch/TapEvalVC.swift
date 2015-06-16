@@ -62,7 +62,7 @@ class TapEvalVC: UIViewController {
         return runStack
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let time = NSDate.timeIntervalSinceReferenceDate()
         detector.touchDown(time)
         let tapForce = detector.calculateTouchForce(time)
@@ -84,7 +84,7 @@ class TapEvalVC: UIViewController {
         setNextView()
     }
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         detector.touchUp(NSDate.timeIntervalSinceReferenceDate())
     }
     

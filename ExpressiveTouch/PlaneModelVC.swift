@@ -44,9 +44,6 @@ class PlaneModelVC: UIViewController {
         ambientLightNode.light!.color = UIColor.darkGrayColor()
         scene.rootNode.addChildNode(ambientLightNode)
         
-        // retrieve the ship node
-        let ship = scene.rootNode.childNodeWithName("ship", recursively: true)!
-        
         // set the scene to the view
         scnView.scene = scene 
         
@@ -58,7 +55,7 @@ class PlaneModelVC: UIViewController {
         
         // add a tap gesture recognizer
         let tapGesture = UITapGestureRecognizer(target: self, action: "handleTap:")
-        var gestureRecognizers = [AnyObject]()
+        var gestureRecognizers = [UIGestureRecognizer]()
         gestureRecognizers.append(tapGesture)
         if let existingGestureRecognizers = scnView.gestureRecognizers {
             gestureRecognizers.extend(existingGestureRecognizers)
@@ -103,7 +100,6 @@ class PlaneModelVC: UIViewController {
     
     func dataCallback(data:SensorData) {
         let ship = scnView.scene!.rootNode.childNodeWithName("ship", recursively: true)!
-        let scalar:Float = 10.0
         
         ship.orientation = SCNQuaternion(x: -data.q.y, y: -data.q.x, z: data.q.z, w: data.q.w)
     }
@@ -116,11 +112,11 @@ class PlaneModelVC: UIViewController {
         return true
     }
     
-    override func supportedInterfaceOrientations() -> Int {
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-            return Int(UIInterfaceOrientationMask.AllButUpsideDown.rawValue)
+            return UIInterfaceOrientationMask.AllButUpsideDown
         } else {
-            return Int(UIInterfaceOrientationMask.All.rawValue)
+            return UIInterfaceOrientationMask.All
         }
     }
     

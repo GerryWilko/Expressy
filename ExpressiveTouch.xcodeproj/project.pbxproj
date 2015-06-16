@@ -293,7 +293,8 @@
 		D517508219E9831C0076F6FA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Newcastle University";
 				TargetAttributes = {
 					D517508919E9831C0076F6FA = {
@@ -453,6 +454,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -532,6 +534,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/CorePlot",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.ncl.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "Exp Touch";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ExpressiveTouch/ExpressiveTouch-Bridging-Header.h";
@@ -557,6 +560,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/CorePlot",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.ncl.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "Exp Touch";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ExpressiveTouch/ExpressiveTouch-Bridging-Header.h";

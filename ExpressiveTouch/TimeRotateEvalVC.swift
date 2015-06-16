@@ -49,10 +49,10 @@ class TimeRotateEvalVC: UIViewController {
         angleDifference = placeholderAngle - rotateAngle
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
-        let touch = touches.first as! UITouch
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        let touch = touches.first
         
-        if (touch.view == rotateImage) {
+        if (touch!.view == rotateImage) {
             if (!started) {
                 started = true
                 rotationStartTime = NSDate.timeIntervalSinceReferenceDate()
@@ -67,7 +67,7 @@ class TimeRotateEvalVC: UIViewController {
         self.rotateImage.transform = CGAffineTransformRotate(self.lastTransform, CGFloat(self.detector.currentRotation) * CGFloat(M_PI / 180))
     }
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         detector.touchUp(NSDate.timeIntervalSinceReferenceDate())
         detector.clearSubscriptions()
         

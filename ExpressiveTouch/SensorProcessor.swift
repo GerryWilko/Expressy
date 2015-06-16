@@ -18,7 +18,7 @@ class SensorProcessor {
     private let magNorm:Float = 0.1
     
     /// Initialises a new sensor data processor for processing Bluetooth packets into sensor data objects.
-    /// :returns: New SensorProcessor instance.
+    /// - returns: New SensorProcessor instance.
     init() {
         assert(sensorProcessor == nil)
         dataCache = SensorCache()
@@ -26,11 +26,11 @@ class SensorProcessor {
     }
     
     /// Function to retrieve instance of SensorProcessor (currently required due to lack of static variable support in Swift).
-    /// :returns: Instance of SensorProcessor.
+    /// - returns: Instance of SensorProcessor.
     class func getProcessor() -> SensorProcessor { return sensorProcessor }
     
     /// Function to pass new Bluetooth packet to be processed into raw sensor data. Also handles calculation of Madgwick quaternion.
-    /// :param: data Bluetooth packet.
+    /// - parameter data: Bluetooth packet.
     func updateCache(data:NSData) {
         let dataLength = data.length
         
