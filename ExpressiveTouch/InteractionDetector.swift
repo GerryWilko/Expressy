@@ -248,9 +248,6 @@ class InteractionDetector {
         case .SoftPress:
             softPressCallbacks.append(callback)
             break
-        default:
-            NSException(name: "InvalidEvent", reason: "Invalid event subscription.", userInfo: nil).raise()
-            break
         }
     }
     

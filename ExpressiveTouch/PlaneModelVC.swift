@@ -62,39 +62,38 @@ class PlaneModelVC: UIViewController {
         }
         scnView.gestureRecognizers = gestureRecognizers
         
-        SensorProcessor.getProcessor().dataCache.subscribe(dataCallback)
+        SensorProcessor.dataCache.subscribe(dataCallback)
     }
     
     func handleTap(gestureRecognize: UIGestureRecognizer) {
         // check what nodes are tapped
         let p = gestureRecognize.locationInView(scnView)
-        if let hitResults = scnView.hitTest(p, options: nil) {
-            // check that we clicked on at least one object
-            if hitResults.count > 0 {
-                // retrieved the first clicked object
-                let result: AnyObject! = hitResults[0]
-                
-                // get its material
-                let material = result.node!.geometry!.firstMaterial!
-                
-                // highlight it
+        let hitResults = scnView.hitTest(p, options: nil)
+        // check that we clicked on at least one object
+        if hitResults.count > 0 {
+            // retrieved the first clicked object
+            let result: AnyObject! = hitResults[0]
+            
+            // get its material
+            let material = result.node!.geometry!.firstMaterial!
+            
+            // highlight it
+            SCNTransaction.begin()
+            SCNTransaction.setAnimationDuration(0.5)
+            
+            // on completion - unhighlight
+            SCNTransaction.setCompletionBlock {
                 SCNTransaction.begin()
                 SCNTransaction.setAnimationDuration(0.5)
                 
-                // on completion - unhighlight
-                SCNTransaction.setCompletionBlock {
-                    SCNTransaction.begin()
-                    SCNTransaction.setAnimationDuration(0.5)
-                    
-                    material.emission.contents = UIColor.blackColor()
-                    
-                    SCNTransaction.commit()
-                }
-                
-                material.emission.contents = UIColor.redColor()
+                material.emission.contents = UIColor.blackColor()
                 
                 SCNTransaction.commit()
             }
+            
+            material.emission.contents = UIColor.redColor()
+            
+            SCNTransaction.commit()
         }
     }
     

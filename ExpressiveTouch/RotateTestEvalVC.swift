@@ -37,7 +37,7 @@ class RotateTestEvalVC: UIViewController {
         maxValue = 0.0
         minValue = 0.0
         evalCount = 0
-        detector = InteractionDetector(dataCache: SensorProcessor.getProcessor().dataCache)
+        detector = InteractionDetector(dataCache: SensorProcessor.dataCache)
         detector.startDetection()
         participant = EvalUtils.generateParticipantID()
         csvBuilder = CSVBuilder(fileNames: ["rotate-\(participant).csv", "rotateData-\(participant).csv"], headerLines: ["Participant ID,Time,Max Angle,Min Angle,Placeholder Angle,Angle to Rotate,End Image Angle,Time Taken", SensorData.headerLine()])

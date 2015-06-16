@@ -9,17 +9,18 @@
 import Foundation
 import CoreBluetooth
 
-var deviceList = NSMutableOrderedSet()
-var currentTableView:UITableView!
-
 class SensorScanVC: UITableViewController {
+    static var microsoftBand:Bool = false
+    static var deviceList:NSMutableOrderedSet = []
+    private static var currentTableView:UITableView!
+    
     required init(coder aDecoder:NSCoder) {
         super.init(coder: aDecoder)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentTableView = self.tableView
+        SensorScanVC.currentTableView = self.tableView
         SensorConnectionManager.getConnectionManager().scan()
     }
     
@@ -38,11 +39,20 @@ class SensorScanVC: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return deviceList.count
+        return SensorScanVC.deviceList.count + (SensorScanVC.microsoftBand ? 1 : 0)
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let peripheral = deviceList[indexPath.row] as! CBPeripheral
+        if (indexPath.row >= SensorScanVC.deviceList.count && SensorScanVC.microsoftBand) {
+            let cell = UITableViewCell()
+            
+            cell.textLabel!.text = "Microsoft Band"
+            cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+            
+            return cell
+        }
+        
+        let peripheral = SensorScanVC.deviceList[indexPath.row] as! CBPeripheral
         let cell = UITableViewCell()
         
         cell.textLabel!.text = peripheral.name
@@ -52,8 +62,13 @@ class SensorScanVC: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let peripheral = deviceList[indexPath.row] as! CBPeripheral
-        SensorConnectionManager.getConnectionManager().connectPeripheral(peripheral)
+        if (indexPath.row >= SensorScanVC.deviceList.count && SensorScanVC.microsoftBand) {
+            SensorConnectionManager.getConnectionManager().connectMSB()
+        } else {
+            let peripheral = SensorScanVC.deviceList[indexPath.row] as! CBPeripheral
+            SensorConnectionManager.getConnectionManager().connectPeripheral(peripheral)
+        }
+        
         cancel(self)
     }
 }

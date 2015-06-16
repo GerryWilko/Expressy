@@ -16,7 +16,7 @@ class SensorData {
     /// Vector of gyroscope values.
     let gyro:Vector3D
     /// Vector of magnetometer values.
-    let mag:Vector3D
+    let mag:Vector3D?
     /// Madgwick quaternion representing sensor orientation.
     let q:Vector4D
     /// Vector of estimation of gravity.
@@ -40,11 +40,17 @@ class SensorData {
     /// - parameter qz: Quaternion z-axis.
     /// - parameter qw: Quaternion w-axis.
     /// - returns: SensorData instance.
-    init(time:NSTimeInterval, ax:Float, ay:Float, az:Float, gx:Float, gy:Float, gz:Float, mx:Float, my:Float, mz:Float, qx:Float, qy:Float, qz:Float, qw:Float) {
+    init(time:NSTimeInterval, ax:Float, ay:Float, az:Float, gx:Float, gy:Float, gz:Float, mx:Float?, my:Float?, mz:Float?, qx:Float, qy:Float, qz:Float, qw:Float) {
         self.time = time
         acc = Vector3D(x: ax, y: ay, z: az)
         gyro = Vector3D(x: gx, y: gy, z: gz)
-        mag = Vector3D(x: mx, y: my, z: mz)
+        
+        if let magx = mx, magy = my, magz = mz {
+            mag = Vector3D(x: magx, y: magy, z: magz)
+        } else {
+            mag = nil
+        }
+        
         q = Vector4D(x: qx, y: qy, z: qz, w: qw)
         
         let gravx = 2 * (q.y * q.w - q.x * q.z)
@@ -59,7 +65,7 @@ class SensorData {
     /// Function to retrieve formatted header line for CSV export of sensor data.
     /// - returns: Comma-separated formatted header line for CSV export.
     class func headerLine() -> String {
-        return "Time,ax,ay,az,gx,gy,gz,mx,my,mz,gravx,gravy,gravz,yaw,pitch,roll,Touch,Touch Force"
+        return "Time,ax,ay,az,gx,gy,gz,gravx,gravy,gravz,yaw,pitch,roll,Touch,Touch Force"
     }
     
     /// Function to retrieve the accelerometer values with the estimation of gravity removed providing 'pure' acceleration.
@@ -98,7 +104,7 @@ class SensorData {
     func print() -> String {
         let ypr = getYawPitchRoll()
         
-        return "\(time),\(acc.x),\(acc.y),\(acc.z),\(gyro.x),\(gyro.y),\(gyro.z),\(mag.x),\(mag.y),\(mag.z),\(grav.x),\(grav.y),\(grav.z),\(ypr.yaw),\(ypr.pitch),\(ypr.roll),\(touch.rawValue),\(touchForce)"
+        return "\(time),\(acc.x),\(acc.y),\(acc.z),\(gyro.x),\(gyro.y),\(gyro.z),\(grav.x),\(grav.y),\(grav.z),\(ypr.yaw),\(ypr.pitch),\(ypr.roll),\(touch.rawValue),\(touchForce)"
     }
 }
 

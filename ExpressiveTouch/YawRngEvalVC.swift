@@ -71,7 +71,7 @@ class YawRngEvalVC: UIViewController {
         minValue = 0.0
         recording = false
         
-        detector = InteractionDetector(dataCache: SensorProcessor.getProcessor().dataCache)
+        detector = InteractionDetector(dataCache: SensorProcessor.dataCache)
         csvBuilder = CSVBuilder(fileNames: ["yawRange.csv","yawData.csv"], headerLines: ["Dominant Hand,Wrist,Max Angle,Min Angle", SensorData.headerLine()])
         super.init(coder: aDecoder)
         detector.startDetection()
@@ -79,7 +79,7 @@ class YawRngEvalVC: UIViewController {
     
     override func viewDidLoad() {
         self.performSegueWithIdentifier("yawRngInstructions", sender: self)
-        SensorProcessor.getProcessor().dataCache.subscribe(dataCallback)
+        SensorProcessor.dataCache.subscribe(dataCallback)
         startTime = NSDate.timeIntervalSinceReferenceDate()
     }
     
@@ -135,7 +135,7 @@ class YawRngEvalVC: UIViewController {
             progressBar.setProgress(Float(Float(41 - messageStack.count) / 41.0), animated: true)
             
             if (messageStack.isEmpty) {
-                SensorProcessor.getProcessor().dataCache.clearSubscriptions()
+                SensorProcessor.dataCache.clearSubscriptions()
                 EvalUtils.logDataBetweenTimes(startTime, endTime: NSDate.timeIntervalSinceReferenceDate(), csv: csvBuilder)
                 csvBuilder.emailCSV(self, subject: "Yaw Range Evaluation")
             }

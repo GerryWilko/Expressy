@@ -36,7 +36,7 @@ class PitchTestEvalVC: UIViewController {
         maxValue = 0.0
         minValue = 0.0
         evalCount = 0
-        detector = InteractionDetector(dataCache: SensorProcessor.getProcessor().dataCache)
+        detector = InteractionDetector(dataCache: SensorProcessor.dataCache)
         detector.startDetection()
         participant = EvalUtils.generateParticipantID()
         csvBuilder = CSVBuilder(fileNames: ["pitch-\(participant).csv", "pitchData-\(participant).csv"], headerLines: ["Participant ID,Time,Max Angle,Min Angle,Requested Angle,End Angle,Time Taken", SensorData.headerLine()])

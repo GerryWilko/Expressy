@@ -23,7 +23,7 @@ class FlickEvalVC: UIViewController {
     @IBOutlet weak var nextBtn: UIBarButtonItem!
     
     required init(coder aDecoder: NSCoder) {
-        detector = InteractionDetector(dataCache: SensorProcessor.getProcessor().dataCache)
+        detector = InteractionDetector(dataCache: SensorProcessor.dataCache)
         detector.startDetection()
         participant = EvalUtils.generateParticipantID()
         csvBuilder = CSVBuilder(fileNames: ["flick-\(participant).csv", "flickData-\(participant).csv"], headerLines: ["Participant ID,Time,Requested,Flick Force", SensorData.headerLine()])
@@ -101,8 +101,6 @@ class FlickEvalVC: UIViewController {
         case .NoFlick:
             instructionLbl.text = "Lift off the screen, without flicking."
             instructionLbl.textColor = UIColor.redColor()
-            break
-        default:
             break
         }
     }

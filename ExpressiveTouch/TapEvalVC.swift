@@ -22,7 +22,7 @@ class TapEvalVC: UIViewController {
     @IBOutlet weak var nextBtn: UIBarButtonItem!
     
     required init(coder aDecoder: NSCoder) {
-        detector = InteractionDetector(dataCache: SensorProcessor.getProcessor().dataCache)
+        detector = InteractionDetector(dataCache: SensorProcessor.dataCache)
         participant = EvalUtils.generateParticipantID()
         csv = CSVBuilder(fileNames: ["tapForce-\(participant).csv","tapData-\(participant).csv"], headerLines: ["Participant ID,Time,Requested Force,Tap Force", SensorData.headerLine()])
         super.init(coder: aDecoder)
@@ -77,8 +77,6 @@ class TapEvalVC: UIViewController {
         case .Hard:
             csv.appendRow("\(participant),\(time),Hard,\(tapForce)", index: 0)
             break
-        default:
-            break
         }
         
         setNextView()
@@ -115,10 +113,6 @@ class TapEvalVC: UIViewController {
         case .Hard:
             instructionLbl.text = "Tap the screen: Hard"
             instructionLbl.textColor = UIColor.redColor()
-            break
-        default:
-            instructionLbl.text = "Something went wrong. Try again."
-            instructionLbl.textColor = UIColor.blackColor()
             break
         }
         

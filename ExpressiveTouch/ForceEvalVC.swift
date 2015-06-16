@@ -30,7 +30,7 @@ class ForceEvalVC: UIViewController {
     required init(coder aDecoder: NSCoder) {
         stage = 1
         evalCount = 0
-        detector = InteractionDetector(dataCache: SensorProcessor.getProcessor().dataCache)
+        detector = InteractionDetector(dataCache: SensorProcessor.dataCache)
         detector.startDetection()
         participant = EvalUtils.generateParticipantID()
         csvBuilder = CSVBuilder(fileNames: ["force-\(participant).csv", "forceData-\(participant).csv"], headerLines: ["Participant ID,Time,Requested Force,Attempt,Tapped Force", SensorData.headerLine()])

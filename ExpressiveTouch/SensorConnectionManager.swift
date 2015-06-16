@@ -9,44 +9,44 @@
 import Foundation
 import CoreBluetooth
 
-var connectionManager:SensorConnectionManager!
-
 class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralManagerDelegate, CBPeripheralDelegate, MSBClientManagerDelegate
 {
+    private static var connectionManager:SensorConnectionManager!
+    
     private var cManager = CBCentralManager()
     private var peripheralManager = CBPeripheralManager()
     private var ready:Bool
     
-    private let dataProcessor:SensorProcessor
-    private let msbClient:MSBClient
+    private var msAccData:MSBSensorAccelerometerData?
+    private var msGyroData:MSBSensorGyroscopeData?
     
     /// Initialises a new connection manager to handle Bluetooth connection to sensor.
     /// - returns: New SensorConnectionManager instance.
-    init(dataProcessor:SensorProcessor) {
-        assert(connectionManager == nil)
+    override init() {
+        assert(SensorConnectionManager.connectionManager == nil)
         
-        self.dataProcessor = dataProcessor
         ready = false
-        
-        self.msbClient = MSBClient()
         
         super.init()
         
         cManager = CBCentralManager(delegate: self, queue:nil)
         peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
-        
         MSBClientManager.sharedManager().delegate = self
         
-        connectionManager = self
+        SensorConnectionManager.connectionManager = self
     }
     
-    /// Function to retrieve instance of SensorConnectionManager (currently required due to lack of static variable support in Swift).
+    /// Function to retrieve instance of SensorConnectionManager.
     /// - returns: Instance of SensorConnectionManager.
     class func getConnectionManager() -> SensorConnectionManager { return connectionManager }
     
     /// Function to initiate Bluetooth scan for sensors.
     /// - returns: Denotes wether a scan occured.
     func scan() -> Bool {
+        if (!MSBClientManager.sharedManager().attachedClients().isEmpty) {
+            SensorScanVC.microsoftBand = true
+        }
+        
         if (ready) {
             cManager.scanForPeripheralsWithServices(nil, options: nil)
         }
@@ -181,7 +181,7 @@ class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralM
     
     func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic,
         error: NSError?) {
-        dataProcessor.updateCache(characteristic.value!)
+        SensorProcessor.updateCache(characteristic.value!)
     }
     
     func peripheral(peripheral: CBPeripheral, didUpdateNotificationStateForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
@@ -191,15 +191,43 @@ class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralM
         }
     }
     
+    func connectMSB() {
+        let client = MSBClientManager.sharedManager().attachedClients().first as! MSBClient
+        MSBClientManager.sharedManager().connectClient(client)
+    }
+    
     func clientManager(clientManager: MSBClientManager!, clientDidConnect client: MSBClient!) {
-        
+        do {
+            try client.sensorManager.startAccelerometerUpdatesToQueue(nil, withHandler: accDataCallback)
+            try client.sensorManager.startGyroscopeUpdatesToQueue(nil, withHandler: gyroDataCallback)
+        } catch let error as NSError {
+            print(error)
+        }
+    }
+    
+    func accDataCallback(data:MSBSensorAccelerometerData!, error:NSError!) {
+        if let gyro = msGyroData {
+            SensorProcessor.updateCache(Float(data.x), ay: Float(data.y), az: Float(data.z), gx: Float(gyro.x), gy: Float(gyro.y), gz: Float(gyro.z), mx: nil, my: nil, mz: nil)
+            msGyroData = nil
+        } else {
+            msAccData = data
+        }
+    }
+    
+    func gyroDataCallback(data:MSBSensorGyroscopeData!, error:NSError!) {
+        if let acc = msAccData {
+            SensorProcessor.updateCache(Float(acc.x), ay: Float(acc.y), az: Float(acc.z), gx: Float(data.x), gy: Float(data.y), gz: Float(data.z), mx: nil, my: nil, mz: nil)
+            msAccData = nil
+        } else {
+            msGyroData = data
+        }
     }
     
     func clientManager(clientManager: MSBClientManager!, clientDidDisconnect client: MSBClient!) {
-        
+        print("Microsoft Band disconnected.")
     }
     
     func clientManager(clientManager: MSBClientManager!, client: MSBClient!, didFailToConnectWithError error: NSError!) {
-        
+        print(error)
     }
 }

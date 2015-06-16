@@ -26,7 +26,7 @@ class TimeRotateEvalVC: UIViewController {
     @IBOutlet weak var rotateImage: UIImageView!
     
     required init(coder aDecoder: NSCoder) {
-        detector = InteractionDetector(dataCache: SensorProcessor.getProcessor().dataCache)
+        detector = InteractionDetector(dataCache: SensorProcessor.dataCache)
         evalCount = 0
         csvBuilder = CSVBuilder(fileNames: ["timeRotate.csv","timeRotateData.csv"], headerLines: ["Start Time,Complete Time,Time to Complete,Angle to Rotate,Placeholder Angle,Image Angle", SensorData.headerLine()])
         started = false
@@ -87,7 +87,7 @@ class TimeRotateEvalVC: UIViewController {
                 evalCount++
                 started = false
             } else if (evalCount == 10) {
-                SensorProcessor.getProcessor().dataCache.clearSubscriptions()
+                SensorProcessor.dataCache.clearSubscriptions()
                 placeholderImage.hidden = true
                 rotateImage.hidden = true
                 instructionLbl.hidden = false

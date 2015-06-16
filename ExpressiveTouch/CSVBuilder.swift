@@ -34,48 +34,37 @@ class CSVBuilder: NSObject, MFMailComposeViewControllerDelegate {
     /// - parameter viewController: View controller to present email view to.
     /// - parameter subject: Subject of email.
     func emailCSV(viewController:UIViewController, subject:String) {
-        let fileManager = (NSFileManager.defaultManager())
-        let directorys : [String]? = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory,NSSearchPathDomainMask.AllDomainsMask, true) as? [String]
+        let directories = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory,NSSearchPathDomainMask.AllDomainsMask, true)
+        let dictionary = directories[0]
+        var dataPaths = [String]()
         
-        if ((directorys) != nil) {
+        for index in 0..<fileNames.count {
+            let datapath = dictionary.stringByAppendingPathComponent(fileNames[index])
             
-            let directories:[String] = directorys!
-            let dictionary = directories[0]
-            var dataPaths = [String]()
-            
-            for index in 0..<fileNames.count {
-                let datapath = dictionary.stringByAppendingPathComponent(fileNames[index])
-            
-                do {
-                    try csvStrings[index].writeToFile(datapath, atomically: true, encoding: NSUTF8StringEncoding)
-                } catch _ {
-                }
-                dataPaths.append(datapath)
+            do {
+                try csvStrings[index].writeToFile(datapath, atomically: true, encoding: NSUTF8StringEncoding)
+            } catch _ {
             }
+            dataPaths.append(datapath)
+        }
+        
+        if(MFMailComposeViewController.canSendMail()){
             
-            if(MFMailComposeViewController.canSendMail()){
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            
+            mail.setSubject(subject)
+            
+            for index in 0..<dataPaths.count {
+                let data: NSData = NSData(contentsOfFile: dataPaths[index])!
                 
-                let mail = MFMailComposeViewController()
-                mail.mailComposeDelegate = self
-                
-                mail.setSubject(subject)
-                
-                for index in 0..<dataPaths.count {
-                    let data: NSData = NSData(contentsOfFile: dataPaths[index])!
-                    
-                    mail.addAttachmentData(data, mimeType: "text/csv", fileName: fileNames[index])
-                }
-                mail.setToRecipients(["gerrywilko@googlemail.com"])
-                viewController.presentViewController(mail, animated: true, completion: nil)
+                mail.addAttachmentData(data, mimeType: "text/csv", fileName: fileNames[index])
             }
-            else {
-                let alert = UIAlertController(title: "Error exporting CSV", message: "Your device cannot send emails.", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-                viewController.presentViewController(alert, animated: true, completion: nil)
-            }
+            mail.setToRecipients(["gerrywilko@googlemail.com"])
+            viewController.presentViewController(mail, animated: true, completion: nil)
         }
         else {
-            let alert = UIAlertController(title: "Error exporting CSV", message: "There was an error storing the CSV.", preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title: "Error exporting CSV", message: "Your device cannot send emails.", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
             viewController.presentViewController(alert, animated: true, completion: nil)
         }
