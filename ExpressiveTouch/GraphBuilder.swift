@@ -54,7 +54,7 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         titleStyle.fontSize = 16.0
         
         graph.titleTextStyle = titleStyle
-        graph.titlePlotAreaFrameAnchor = CPTRectAnchorTop
+        graph.titlePlotAreaFrameAnchor = CPTRectAnchor.Top
         graph.titleDisplacement = CGPointMake(0.0, 10.0)
         
         graph.plotAreaFrame.paddingBottom = 30.0
@@ -71,9 +71,9 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         let graph = graphView.hostedGraph
         let plotSpace = graph.defaultPlotSpace
         
-        let dataPlotX = CPTScatterPlot()
-        let dataPlotY = CPTScatterPlot()
-        let dataPlotZ = CPTScatterPlot()
+        let dataPlotX = CPTScatterPlot(frame: graphView.frame)
+        let dataPlotY = CPTScatterPlot(frame: graphView.frame)
+        let dataPlotZ = CPTScatterPlot(frame: graphView.frame)
         
         dataPlotX.dataSource = self
         dataPlotY.dataSource = self
@@ -109,11 +109,11 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
     
     /// Internal function to configure x and y axes.
     private func configureAxes() {
-        let axisTitleStyle = CPTMutableTextStyle.textStyle() as! CPTMutableTextStyle
+        let axisTitleStyle = CPTMutableTextStyle()
         axisTitleStyle.color =  CPTColor.blackColor()
         axisTitleStyle.fontName = "HelveticaNeue-Medium"
         axisTitleStyle.fontSize = 12.0
-        let axisLineStyle = CPTMutableLineStyle.lineStyle() as! CPTMutableLineStyle
+        let axisLineStyle = CPTMutableLineStyle()
         axisLineStyle.lineWidth = 2.0
         axisLineStyle.lineColor = CPTColor.blackColor()
         let axisTextStyle = CPTMutableTextStyle()
@@ -128,24 +128,24 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         x.titleTextStyle = axisTitleStyle
         x.titleOffset = 15.0
         x.axisLineStyle = axisLineStyle
-        x.labelingPolicy = CPTAxisLabelingPolicyNone
+        x.labelingPolicy = CPTAxisLabelingPolicy.None
         x.labelTextStyle = axisTextStyle
         x.majorTickLineStyle = axisLineStyle
         x.majorTickLength = 4.0
-        x.tickDirection = CPTSignNegative
+        x.tickDirection = CPTSign.Negative
         
         let y = axisSet.yAxis as CPTAxis
         y.title = "Value"
         y.titleTextStyle = axisTitleStyle
         y.titleOffset = -20.0
         y.axisLineStyle = axisLineStyle
-        y.labelingPolicy = CPTAxisLabelingPolicyNone;
+        y.labelingPolicy = CPTAxisLabelingPolicy.None;
         y.labelTextStyle = axisTextStyle
         y.labelOffset = 16.0
         y.majorTickLineStyle = axisLineStyle
         y.majorTickLength = 4.0
         y.minorTickLength = 2.0
-        y.tickDirection = CPTSignPositive
+        y.tickDirection = CPTSign.Positive
     }
     
     func numberOfRecordsForPlot(plot: CPTPlot!) -> UInt {
@@ -156,11 +156,11 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         return 100
     }
     
-    func numberForPlot(plot: CPTPlot!, field fieldEnum: UInt, recordIndex idx: UInt) -> NSNumber! {
-        switch (UInt32(fieldEnum)) {
-        case CPTScatterPlotFieldX.rawValue:
+    func numberForPlot(plot: CPTPlot!, field fieldEnum: UInt, recordIndex idx: UInt) -> AnyObject! {
+        switch (Int(fieldEnum)) {
+        case CPTScatterPlotField.X.rawValue:
             return idx
-        case CPTScatterPlotFieldY.rawValue:
+        case CPTScatterPlotField.Y.rawValue:
             var index = Int(idx)
             if (dataCache.count() > 100) {
                 let shift = dataCache.count() - 100

@@ -1,6 +1,57 @@
 #import "_CPTAnimationCGRectPeriod.h"
 
+/// @cond
+@interface _CPTAnimationCGRectPeriod()
+
+CGRect currentRectValue(id boundObject, SEL boundGetter);
+
+@end
+/// @endcond
+
+#pragma mark -
+
 @implementation _CPTAnimationCGRectPeriod
+
+CGRect currentRectValue(id boundObject, SEL boundGetter)
+{
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[boundObject methodSignatureForSelector:boundGetter]];
+
+    [invocation setTarget:boundObject];
+    [invocation setSelector:boundGetter];
+
+    [invocation invoke];
+
+    CGRect value;
+    [invocation getReturnValue:&value];
+
+    return value;
+}
+
+-(void)setStartValueFromObject:(id)boundObject propertyGetter:(SEL)boundGetter
+{
+    CGRect start = currentRectValue(boundObject, boundGetter);
+
+    self.startValue = [NSValue valueWithBytes:&start objCType:@encode(CGRect)];
+}
+
+-(BOOL)canStartWithValueFromObject:(id)boundObject propertyGetter:(SEL)boundGetter
+{
+    CGRect current = currentRectValue(boundObject, boundGetter);
+    CGRect start;
+    CGRect end;
+
+    if ( !self.startValue ) {
+        [self setStartValueFromObject:boundObject propertyGetter:boundGetter];
+    }
+
+    [self.startValue getValue:&start];
+    [self.endValue getValue:&end];
+
+    return ( ( (current.origin.x >= start.origin.x) && (current.origin.x <= end.origin.x) ) || ( (current.origin.x >= end.origin.x) && (current.origin.x <= start.origin.x) ) ) &&
+           ( ( (current.origin.y >= start.origin.y) && (current.origin.y <= end.origin.y) ) || ( (current.origin.y >= end.origin.y) && (current.origin.y <= start.origin.y) ) ) &&
+           ( ( (current.size.width >= start.size.width) && (current.size.width <= end.size.width) ) || ( (current.size.width >= end.size.width) && (current.size.width <= start.size.width) ) ) &&
+           ( ( (current.size.height >= start.size.height) && (current.size.height <= end.size.height) ) || ( (current.size.height >= end.size.height) && (current.size.height <= start.size.height) ) );
+}
 
 -(NSValue *)tweenedValueForProgress:(CGFloat)progress
 {

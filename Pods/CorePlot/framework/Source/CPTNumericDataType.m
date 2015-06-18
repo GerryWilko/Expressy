@@ -117,9 +117,12 @@ BOOL CPTDataTypeIsSupported(CPTNumericDataType format)
     }
 
     if ( result ) {
+        BOOL valid = NO;
+
         switch ( format.dataTypeFormat ) {
             case CPTUndefinedDataType:
                 // valid; any sampleBytes is ok
+                valid = YES;
                 break;
 
             case CPTIntegerDataType:
@@ -128,11 +131,7 @@ BOOL CPTDataTypeIsSupported(CPTNumericDataType format)
                     case sizeof(int16_t):
                     case sizeof(int32_t):
                     case sizeof(int64_t):
-                        // valid
-                        break;
-
-                    default:
-                        result = NO;
+                        valid = YES;
                         break;
                 }
                 break;
@@ -143,11 +142,7 @@ BOOL CPTDataTypeIsSupported(CPTNumericDataType format)
                     case sizeof(uint16_t):
                     case sizeof(uint32_t):
                     case sizeof(uint64_t):
-                        // valid
-                        break;
-
-                    default:
-                        result = NO;
+                        valid = YES;
                         break;
                 }
                 break;
@@ -156,11 +151,7 @@ BOOL CPTDataTypeIsSupported(CPTNumericDataType format)
                 switch ( format.sampleBytes ) {
                     case sizeof(float):
                     case sizeof(double):
-                        // valid
-                        break;
-
-                    default:
-                        result = NO;
+                        valid = YES;
                         break;
                 }
                 break;
@@ -170,25 +161,18 @@ BOOL CPTDataTypeIsSupported(CPTNumericDataType format)
                     case sizeof(float complex):
                     case sizeof(double complex):
                         // only the native byte order is supported
-                        result = ( format.byteOrder == CFByteOrderGetCurrent() );
-                        break;
-
-                    default:
-                        result = NO;
+                        valid = ( format.byteOrder == CFByteOrderGetCurrent() );
                         break;
                 }
                 break;
 
             case CPTDecimalDataType:
                 // only the native byte order is supported
-                result = ( format.sampleBytes == sizeof(NSDecimal) ) && ( format.byteOrder == CFByteOrderGetCurrent() );
-                break;
-
-            default:
-                // unrecognized data type format
-                result = NO;
+                valid = ( format.sampleBytes == sizeof(NSDecimal) ) && ( format.byteOrder == CFByteOrderGetCurrent() );
                 break;
         }
+
+        result = valid;
     }
 
     return result;
@@ -211,7 +195,7 @@ BOOL CPTDataTypeEqualToDataType(CPTNumericDataType dataType1, CPTNumericDataType
 
 CPTDataTypeFormat DataTypeForDataTypeString(NSString *dataTypeString)
 {
-    CPTDataTypeFormat result;
+    CPTDataTypeFormat result = CPTUndefinedDataType;
 
     NSCAssert([dataTypeString length] >= 3, @"dataTypeString is too short");
 
@@ -256,7 +240,7 @@ size_t SampleBytesForDataTypeString(NSString *dataTypeString)
 CFByteOrder ByteOrderForDataTypeString(NSString *dataTypeString)
 {
     NSCAssert([dataTypeString length] >= 3, @"dataTypeString is too short");
-    CFByteOrder result;
+    CFByteOrder result = CFByteOrderUnknown;
 
     switch ( [[dataTypeString lowercaseString] characterAtIndex:0] ) {
         case '=':

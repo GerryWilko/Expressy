@@ -70,9 +70,9 @@ class PlaneModelVC: UIViewController {
         let p = gestureRecognize.locationInView(scnView)
         let hitResults = scnView.hitTest(p, options: nil)
         // check that we clicked on at least one object
-        if hitResults.count > 0 {
+        if let hitRes = hitResults {
             // retrieved the first clicked object
-            let result: AnyObject! = hitResults[0]
+            let result: AnyObject! = hitRes[0]
             
             // get its material
             let material = result.node!.geometry!.firstMaterial!

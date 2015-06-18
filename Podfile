@@ -4,11 +4,6 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'ExpressiveTouch' do
-    pod 'CorePlot', '1.4'
+    pod 'CorePlot'
 
 end
-
-target 'ExpressiveTouchTests' do
-
-end
-
