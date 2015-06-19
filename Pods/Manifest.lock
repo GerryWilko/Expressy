@@ -2,7 +2,16 @@ PODS:
   - CorePlot (1.6)
 
 DEPENDENCIES:
-  - CorePlot
+  - CorePlot (from `https://github.com/core-plot/core-plot.git`)
+
+EXTERNAL SOURCES:
+  CorePlot:
+    :git: https://github.com/core-plot/core-plot.git
+
+CHECKOUT OPTIONS:
+  CorePlot:
+    :commit: c76ee5026c5bc0a20e11f864d80f04a5fa0d7ef6
+    :git: https://github.com/core-plot/core-plot.git
 
 SPEC CHECKSUMS:
   CorePlot: 820901f6c147f2d84549ffa1f0902869f980d74d

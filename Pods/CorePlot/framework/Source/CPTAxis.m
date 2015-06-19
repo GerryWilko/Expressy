@@ -35,10 +35,10 @@
 @interface CPTAxis()
 
 @property (nonatomic, readwrite, assign) BOOL needsRelabel;
-@property (nonatomic, readwrite, cpt_weak_property) __cpt_weak CPTGridLines *minorGridLines;
-@property (nonatomic, readwrite, cpt_weak_property) __cpt_weak CPTGridLines *majorGridLines;
-@property (nonatomic, readwrite, cpt_weak_property) __cpt_weak CPTAxisLabel *pointingDeviceDownLabel;
-@property (nonatomic, readwrite, cpt_weak_property) __cpt_weak CPTAxisLabel *pointingDeviceDownTickLabel;
+@property (nonatomic, readwrite, cpt_weak_property) cpt_weak CPTGridLines *minorGridLines;
+@property (nonatomic, readwrite, cpt_weak_property) cpt_weak CPTGridLines *majorGridLines;
+@property (nonatomic, readwrite, cpt_weak_property) cpt_weak CPTAxisLabel *pointingDeviceDownLabel;
+@property (nonatomic, readwrite, cpt_weak_property) cpt_weak CPTAxisLabel *pointingDeviceDownTickLabel;
 @property (nonatomic, readwrite, assign) BOOL labelFormatterChanged;
 @property (nonatomic, readwrite, assign) BOOL minorLabelFormatterChanged;
 @property (nonatomic, readwrite, strong) NSMutableArray *mutableBackgroundLimitBands;
@@ -55,8 +55,8 @@
 -(void)updateMajorTickLabelOffsets;
 -(void)updateMinorTickLabelOffsets;
 
-NSDecimal niceNum(NSDecimal x);
-NSDecimal niceLength(NSDecimal length);
+NSDecimal CPTNiceNum(NSDecimal x);
+NSDecimal CPTNiceLength(NSDecimal length);
 
 @end
 
@@ -432,17 +432,17 @@ NSDecimal niceLength(NSDecimal length);
  **/
 @synthesize separateLayers;
 
-/** @property __cpt_weak CPTPlotArea *plotArea
+/** @property cpt_weak CPTPlotArea *plotArea
  *  @brief The plot area that the axis belongs to.
  **/
 @synthesize plotArea;
 
-/** @property __cpt_weak CPTGridLines *minorGridLines
+/** @property cpt_weak CPTGridLines *minorGridLines
  *  @brief The layer that draws the minor grid lines.
  **/
 @synthesize minorGridLines;
 
-/** @property __cpt_weak CPTGridLines *majorGridLines
+/** @property cpt_weak CPTGridLines *majorGridLines
  *  @brief The layer that draws the major grid lines.
  **/
 @synthesize majorGridLines;
@@ -453,13 +453,13 @@ NSDecimal niceLength(NSDecimal length);
 @dynamic axisSet;
 
 /** @internal
- *  @property __cpt_weak CPTAxisLabel *pointingDeviceDownLabel
+ *  @property cpt_weak CPTAxisLabel *pointingDeviceDownLabel
  *  @brief The label that was selected on the pointing device down event.
  **/
 @synthesize pointingDeviceDownLabel;
 
 /** @internal
- *  @property __cpt_weak CPTAxisLabel *pointingDeviceDownTickLabel
+ *  @property cpt_weak CPTAxisLabel *pointingDeviceDownTickLabel
  *  @brief The tick label that was selected on the pointing device down event.
  **/
 @synthesize pointingDeviceDownTickLabel;
@@ -1024,11 +1024,11 @@ NSDecimal niceLength(NSDecimal length);
 
                 NSDecimal majorInterval;
                 if ( numTicks == 2 ) {
-                    majorInterval = niceLength(range.length);
+                    majorInterval = CPTNiceLength(range.length);
                 }
                 else {
                     majorInterval = CPTDecimalDivide( range.length, CPTDecimalFromUnsignedInteger(numTicks - 1) );
-                    majorInterval = niceNum(majorInterval);
+                    majorInterval = CPTNiceNum(majorInterval);
                 }
                 if ( CPTDecimalLessThan(majorInterval, zero) ) {
                     majorInterval = CPTDecimalMultiply( majorInterval, CPTDecimalFromInteger(-1) );
@@ -1097,7 +1097,7 @@ NSDecimal niceLength(NSDecimal length);
                     length = log10(maxLimit / minLimit);
 
                     if ( fabs(length) >= numTicks ) {
-                        interval = CPTDecimalDoubleValue( niceNum( CPTDecimalFromDouble( length / (numTicks - 1) ) ) );
+                        interval = CPTDecimalDoubleValue( CPTNiceNum( CPTDecimalFromDouble( length / (numTicks - 1) ) ) );
                     }
                     else {
                         interval = signbit(length) ? -1.0 : 1.0;
@@ -1225,7 +1225,7 @@ NSDecimal niceLength(NSDecimal length);
  *  @brief Determines a @quote{nice} number (a multiple of @num{2}, @num{5}, or @num{10}) near the given number.
  *  @param x The number to round.
  */
-NSDecimal niceNum(NSDecimal x)
+NSDecimal CPTNiceNum(NSDecimal x)
 {
     NSDecimal zero = CPTDecimalFromInteger(0);
     NSDecimal minusOne;
@@ -1275,7 +1275,7 @@ NSDecimal niceNum(NSDecimal x)
  *  @brief Determines a @quote{nice} range length (a multiple of @num{2}, @num{5}, or @num{10}) less than or equal to the given length.
  *  @param x The length to round.
  */
-NSDecimal niceLength(NSDecimal length)
+NSDecimal CPTNiceLength(NSDecimal length)
 {
     NSDecimal zero = CPTDecimalFromInteger(0);
     NSDecimal minusOne;
@@ -1863,6 +1863,16 @@ NSDecimal niceLength(NSDecimal length)
         CPTPlotArea *thePlotArea = self.plotArea;
         [thePlotArea setNeedsDisplay];
     }
+}
+
+/** @brief Remove all background limit bands.
+**/
+-(void)removeAllBackgroundLimitBands
+{
+    [self.mutableBackgroundLimitBands removeAllObjects];
+
+    CPTPlotArea *thePlotArea = self.plotArea;
+    [thePlotArea setNeedsDisplay];
 }
 
 #pragma mark -

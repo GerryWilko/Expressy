@@ -4,6 +4,6 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'ExpressiveTouch' do
-    pod 'CorePlot'
+    pod 'CorePlot', :git => 'https://github.com/core-plot/core-plot.git'
 
 end
