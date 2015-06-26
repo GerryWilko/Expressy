@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "UnivNcle-shield.png",
+      "filename" : "bluetooth.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "UnivNcle-shield@2x.png",
+      "filename" : "bluetooth@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "UnivNcle-shield@3x.png",
+      "filename" : "bluetooth@3x.png",
       "scale" : "3x"
     }
   ],

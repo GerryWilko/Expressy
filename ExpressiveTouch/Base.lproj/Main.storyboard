@@ -214,6 +214,124 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yqK-5h-gbx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-1657.5" y="102"/>
+        </scene>
+        <!--Sensor SelectionVC-->
+        <scene sceneID="KP7-ZL-erf">
+            <objects>
+                <viewController id="RtO-ky-0MU" customClass="SensorSelectionVC" customModule="Exp_Touch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Hs5-hc-FKM"/>
+                        <viewControllerLayoutGuide type="bottom" id="IVy-Hn-V7z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="z34-DP-31t">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hgL-Gd-Noc">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Select Device Type" id="5Ho-r3-T8E">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="mYr-JE-ZQp">
+                                            <connections>
+                                                <action selector="cancelBtn:" destination="RtO-ky-0MU" id="1C7-xc-PqI"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                </variation>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apple Watch" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QMk-iT-xUJ">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="60" y="283" width="150" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Microsoft Band" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MDJ-kg-sJk">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="225" y="283" width="150" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other Bluetooth" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nJe-hy-qdV">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="390" y="283" width="150" height="21"/>
+                                </variation>
+                            </label>
+                            <button opaque="NO" contentMode="scaleAspectFit" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pd1-3B-eM1">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button" image="AppleWatch"/>
+                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="60" y="125" width="150" height="150"/>
+                                </variation>
+                                <connections>
+                                    <action selector="appleWatchPressed:" destination="RtO-ky-0MU" eventType="touchUpInside" id="Ch6-hb-lhg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fAz-F0-ipy">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button" image="MicrosoftBand"/>
+                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="225" y="125" width="150" height="150"/>
+                                </variation>
+                                <connections>
+                                    <action selector="msbPressed:" destination="RtO-ky-0MU" eventType="touchUpInside" id="LDu-Qn-uYP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wQv-W2-gU9">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Button" image="Bluetooth"/>
+                                <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="390" y="125" width="150" height="150"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="d86-nE-Dzc" kind="presentation" modalPresentationStyle="pageSheet" id="5VA-xX-aS5"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="hgL-Gd-Noc"/>
+                                <exclude reference="QMk-iT-xUJ"/>
+                                <exclude reference="MDJ-kg-sJk"/>
+                                <exclude reference="nJe-hy-qdV"/>
+                                <exclude reference="pd1-3B-eM1"/>
+                                <exclude reference="fAz-F0-ipy"/>
+                                <exclude reference="wQv-W2-gU9"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=regular">
+                            <mask key="subviews">
+                                <include reference="hgL-Gd-Noc"/>
+                                <include reference="QMk-iT-xUJ"/>
+                                <include reference="MDJ-kg-sJk"/>
+                                <include reference="nJe-hy-qdV"/>
+                                <include reference="pd1-3B-eM1"/>
+                                <include reference="fAz-F0-ipy"/>
+                                <include reference="wQv-W2-gU9"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="appleWatchBtn" destination="pd1-3B-eM1" id="Tmp-f6-98u"/>
+                        <outlet property="msbBtn" destination="fAz-F0-ipy" id="GGe-qi-TVm"/>
+                        <outlet property="otherBluetoothBtn" destination="wQv-W2-gU9" id="O7A-Pd-iAg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OQe-y1-KNk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="-1657.5" y="901.5"/>
         </scene>
         <!--Expressive Touch-->
@@ -463,9 +581,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Expressive Touch" id="yrq-DK-ak8">
-                        <barButtonItem key="leftBarButtonItem" title="Scan for Devices" id="A7W-Tf-8Yq">
+                        <barButtonItem key="leftBarButtonItem" title="Connect Device" id="A7W-Tf-8Yq">
                             <connections>
-                                <segue destination="d86-nE-Dzc" kind="presentation" modalPresentationStyle="pageSheet" id="t2r-CI-WxE"/>
+                                <segue destination="RtO-ky-0MU" kind="presentation" modalPresentationStyle="pageSheet" id="cnf-iA-9Xc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -2937,10 +3055,13 @@ Then press and hold.</string>
     </scenes>
     <resources>
         <image name="AccIcon" width="16" height="16"/>
+        <image name="AppleWatch" width="154" height="154"/>
         <image name="BlueCircle" width="200" height="200"/>
+        <image name="Bluetooth" width="666" height="1017"/>
         <image name="CultureLab" width="1536" height="1152"/>
         <image name="GyroIcon" width="16" height="16"/>
         <image name="MagIcon" width="16" height="16"/>
+        <image name="MicrosoftBand" width="170" height="170"/>
         <image name="RedCircle" width="200" height="200"/>
         <image name="UniLogo" width="94" height="110"/>
         <image name="YellowCircle" width="200" height="200"/>

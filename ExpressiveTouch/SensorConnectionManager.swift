@@ -43,10 +43,6 @@ class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralM
     /// Function to initiate Bluetooth scan for sensors.
     /// - returns: Denotes wether a scan occured.
     func scan() -> Bool {
-        if (!MSBClientManager.sharedManager().attachedClients().isEmpty) {
-            SensorScanVC.microsoftBand = true
-        }
-        
         if (ready) {
             cManager.scanForPeripheralsWithServices(nil, options: nil)
         }

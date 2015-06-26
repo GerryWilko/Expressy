@@ -48,8 +48,58 @@
 		CBE6BE271ABF12D00099A5C3 /* ControlsDemoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE6BE261ABF12D00099A5C3 /* ControlsDemoVC.swift */; };
 		CBF0EE881AC95A7400D689E2 /* TimeRotateEvalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF0EE871AC95A7400D689E2 /* TimeRotateEvalVC.swift */; };
 		CBF0EE8A1AC9A0C500D689E2 /* ETMapGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF0EE891AC9A0C500D689E2 /* ETMapGestureView.swift */; };
+		D5F1FC001B3D7ED900C86D38 /* SensorSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F1FBFF1B3D7ED900C86D38 /* SensorSelectionVC.swift */; };
+		D5F1FC071B3D8E6500C86D38 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5F1FC051B3D8E6500C86D38 /* Interface.storyboard */; };
+		D5F1FC091B3D8E6500C86D38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5F1FC081B3D8E6500C86D38 /* Assets.xcassets */; };
+		D5F1FC101B3D8E6500C86D38 /* Exp Touch Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D5F1FC0F1B3D8E6500C86D38 /* Exp Touch Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D5F1FC171B3D8E6500C86D38 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F1FC161B3D8E6500C86D38 /* ExtensionDelegate.swift */; };
+		D5F1FC191B3D8E6500C86D38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5F1FC181B3D8E6500C86D38 /* Assets.xcassets */; };
+		D5F1FC1D1B3D8E6500C86D38 /* Exp Touch Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D5F1FC031B3D8E6500C86D38 /* Exp Touch Watch.app */; };
+		D5F1FC271B3D916D00C86D38 /* SensorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F1FC261B3D916D00C86D38 /* SensorController.swift */; };
 		FF8DCC742FC3997524C3C492 /* libPods-ExpressiveTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA315116ED542A1FC9DE226 /* libPods-ExpressiveTouch.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D5F1FC111B3D8E6500C86D38 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D517508219E9831C0076F6FA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5F1FC0E1B3D8E6500C86D38;
+			remoteInfo = "Exp Touch Watch Extension";
+		};
+		D5F1FC1B1B3D8E6500C86D38 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D517508219E9831C0076F6FA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D5F1FC021B3D8E6500C86D38;
+			remoteInfo = "Exp Touch Watch";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D5F1FC211B3D8E6500C86D38 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D5F1FC101B3D8E6500C86D38 /* Exp Touch Watch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5F1FC251B3D8E6500C86D38 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				D5F1FC1D1B3D8E6500C86D38 /* Exp Touch Watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		42223EA273833E1276CCAD1F /* Pods-ExpressiveTouch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpressiveTouch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ExpressiveTouch/Pods-ExpressiveTouch.debug.xcconfig"; sourceTree = "<group>"; };
@@ -100,6 +150,16 @@
 		CBF0EE871AC95A7400D689E2 /* TimeRotateEvalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRotateEvalVC.swift; sourceTree = "<group>"; };
 		CBF0EE891AC9A0C500D689E2 /* ETMapGestureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETMapGestureView.swift; sourceTree = "<group>"; };
 		D517508A19E9831C0076F6FA /* Exp Touch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Exp Touch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5F1FBFF1B3D7ED900C86D38 /* SensorSelectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorSelectionVC.swift; sourceTree = "<group>"; };
+		D5F1FC031B3D8E6500C86D38 /* Exp Touch Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Exp Touch Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5F1FC061B3D8E6500C86D38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		D5F1FC081B3D8E6500C86D38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D5F1FC0A1B3D8E6500C86D38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5F1FC0F1B3D8E6500C86D38 /* Exp Touch Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Exp Touch Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5F1FC161B3D8E6500C86D38 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		D5F1FC181B3D8E6500C86D38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D5F1FC1A1B3D8E6500C86D38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5F1FC261B3D916D00C86D38 /* SensorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +169,13 @@
 			files = (
 				FF8DCC742FC3997524C3C492 /* libPods-ExpressiveTouch.a in Frameworks */,
 				CB1A61A01B161DE100D7E099 /* MicrosoftBandKit_iOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5F1FC0C1B3D8E6500C86D38 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,10 +235,8 @@
 		CB73388C1A822CE700FA1121 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				CB7338601A822CA600FA1121 /* AccGraphVC.swift */,
-				CB73386C1A822CA600FA1121 /* GyroGraphVC.swift */,
-				CB7338701A822CA600FA1121 /* MagGraphVC.swift */,
-				CB7338761A822CA600FA1121 /* SensorScanVC.swift */,
+				D5F1FBFE1B3D7EA000C86D38 /* Live Data */,
+				D5F1FBFD1B3D7E8B00C86D38 /* Sensor Connection */,
 				CB7338661A822CA600FA1121 /* InteractionDetectorVC.swift */,
 				CBD91ADF1AB9A2BE00A9ABBE /* PlaneModelVC.swift */,
 				CBE6BE261ABF12D00099A5C3 /* ControlsDemoVC.swift */,
@@ -251,6 +316,8 @@
 			isa = PBXGroup;
 			children = (
 				CB73385F1A822CA600FA1121 /* ExpressiveTouch */,
+				D5F1FC041B3D8E6500C86D38 /* Exp Touch Watch */,
+				D5F1FC131B3D8E6500C86D38 /* Exp Touch Watch Extension */,
 				D517508B19E9831C0076F6FA /* Products */,
 				B33F468FFDB0C5FCAB954B5D /* Frameworks */,
 				BB0207245130AB3087DF9D39 /* Pods */,
@@ -261,8 +328,50 @@
 			isa = PBXGroup;
 			children = (
 				D517508A19E9831C0076F6FA /* Exp Touch.app */,
+				D5F1FC031B3D8E6500C86D38 /* Exp Touch Watch.app */,
+				D5F1FC0F1B3D8E6500C86D38 /* Exp Touch Watch Extension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D5F1FBFD1B3D7E8B00C86D38 /* Sensor Connection */ = {
+			isa = PBXGroup;
+			children = (
+				CB7338761A822CA600FA1121 /* SensorScanVC.swift */,
+				D5F1FBFF1B3D7ED900C86D38 /* SensorSelectionVC.swift */,
+			);
+			name = "Sensor Connection";
+			sourceTree = "<group>";
+		};
+		D5F1FBFE1B3D7EA000C86D38 /* Live Data */ = {
+			isa = PBXGroup;
+			children = (
+				CB7338601A822CA600FA1121 /* AccGraphVC.swift */,
+				CB73386C1A822CA600FA1121 /* GyroGraphVC.swift */,
+				CB7338701A822CA600FA1121 /* MagGraphVC.swift */,
+			);
+			name = "Live Data";
+			sourceTree = "<group>";
+		};
+		D5F1FC041B3D8E6500C86D38 /* Exp Touch Watch */ = {
+			isa = PBXGroup;
+			children = (
+				D5F1FC051B3D8E6500C86D38 /* Interface.storyboard */,
+				D5F1FC081B3D8E6500C86D38 /* Assets.xcassets */,
+				D5F1FC0A1B3D8E6500C86D38 /* Info.plist */,
+			);
+			path = "Exp Touch Watch";
+			sourceTree = "<group>";
+		};
+		D5F1FC131B3D8E6500C86D38 /* Exp Touch Watch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D5F1FC261B3D916D00C86D38 /* SensorController.swift */,
+				D5F1FC161B3D8E6500C86D38 /* ExtensionDelegate.swift */,
+				D5F1FC181B3D8E6500C86D38 /* Assets.xcassets */,
+				D5F1FC1A1B3D8E6500C86D38 /* Info.plist */,
+			);
+			path = "Exp Touch Watch Extension";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,15 +386,51 @@
 				D517508719E9831C0076F6FA /* Frameworks */,
 				D517508819E9831C0076F6FA /* Resources */,
 				7237869B2A3513A014AF60F1 /* Copy Pods Resources */,
+				D5F1FC251B3D8E6500C86D38 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D5F1FC1C1B3D8E6500C86D38 /* PBXTargetDependency */,
 			);
 			name = ExpressiveTouch;
 			productName = ExpressiveTouch;
 			productReference = D517508A19E9831C0076F6FA /* Exp Touch.app */;
 			productType = "com.apple.product-type.application";
+		};
+		D5F1FC021B3D8E6500C86D38 /* Exp Touch Watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5F1FC221B3D8E6500C86D38 /* Build configuration list for PBXNativeTarget "Exp Touch Watch" */;
+			buildPhases = (
+				D5F1FC011B3D8E6500C86D38 /* Resources */,
+				D5F1FC211B3D8E6500C86D38 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D5F1FC121B3D8E6500C86D38 /* PBXTargetDependency */,
+			);
+			name = "Exp Touch Watch";
+			productName = "Exp Touch Watch";
+			productReference = D5F1FC031B3D8E6500C86D38 /* Exp Touch Watch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		D5F1FC0E1B3D8E6500C86D38 /* Exp Touch Watch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D5F1FC1E1B3D8E6500C86D38 /* Build configuration list for PBXNativeTarget "Exp Touch Watch Extension" */;
+			buildPhases = (
+				D5F1FC0B1B3D8E6500C86D38 /* Sources */,
+				D5F1FC0C1B3D8E6500C86D38 /* Frameworks */,
+				D5F1FC0D1B3D8E6500C86D38 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Exp Touch Watch Extension";
+			productName = "Exp Touch Watch Extension";
+			productReference = D5F1FC0F1B3D8E6500C86D38 /* Exp Touch Watch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -300,6 +445,13 @@
 					D517508919E9831C0076F6FA = {
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = WF6EGE63BW;
+					};
+					D5F1FC021B3D8E6500C86D38 = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = WF6EGE63BW;
+					};
+					D5F1FC0E1B3D8E6500C86D38 = {
+						CreatedOnToolsVersion = 7.0;
 					};
 				};
 			};
@@ -317,6 +469,8 @@
 			projectRoot = "";
 			targets = (
 				D517508919E9831C0076F6FA /* ExpressiveTouch */,
+				D5F1FC021B3D8E6500C86D38 /* Exp Touch Watch */,
+				D5F1FC0E1B3D8E6500C86D38 /* Exp Touch Watch Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -335,6 +489,23 @@
 				CB8894FC1ACC40DD00F3FC2F /* Tap Force Demo.mp4 in Resources */,
 				CB8894FD1ACC40E000F3FC2F /* Time to Rotate Demo.mp4 in Resources */,
 				CB8894FE1ACC40E300F3FC2F /* Yaw Range Demo.mp4 in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5F1FC011B3D8E6500C86D38 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5F1FC091B3D8E6500C86D38 /* Assets.xcassets in Resources */,
+				D5F1FC071B3D8E6500C86D38 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5F1FC0D1B3D8E6500C86D38 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5F1FC191B3D8E6500C86D38 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,6 +560,7 @@
 				CB4F229C1AC45F77006EFF18 /* EvalInstructionsVC.swift in Sources */,
 				CB86E72B1AD56F2400E176F9 /* ForceEvalVC.swift in Sources */,
 				CB7338801A822CA600FA1121 /* GyroGraphVC.swift in Sources */,
+				D5F1FC001B3D7ED900C86D38 /* SensorSelectionVC.swift in Sources */,
 				CB7338771A822CA600FA1121 /* AccGraphVC.swift in Sources */,
 				CBD91AE01AB9A2BE00A9ABBE /* PlaneModelVC.swift in Sources */,
 				CB4F22961AC456BE006EFF18 /* RotationRngEvalVC.swift in Sources */,
@@ -412,7 +584,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D5F1FC0B1B3D8E6500C86D38 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D5F1FC171B3D8E6500C86D38 /* ExtensionDelegate.swift in Sources */,
+				D5F1FC271B3D916D00C86D38 /* SensorController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D5F1FC121B3D8E6500C86D38 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D5F1FC0E1B3D8E6500C86D38 /* Exp Touch Watch Extension */;
+			targetProxy = D5F1FC111B3D8E6500C86D38 /* PBXContainerItemProxy */;
+		};
+		D5F1FC1C1B3D8E6500C86D38 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D5F1FC021B3D8E6500C86D38 /* Exp Touch Watch */;
+			targetProxy = D5F1FC1B1B3D8E6500C86D38 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		CB7338621A822CA600FA1121 /* LaunchScreen.xib */ = {
@@ -429,6 +623,14 @@
 				CB7338651A822CA600FA1121 /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D5F1FC051B3D8E6500C86D38 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D5F1FC061B3D8E6500C86D38 /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -528,7 +730,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = ExpressiveTouch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -554,7 +756,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = ExpressiveTouch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -565,6 +767,84 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ExpressiveTouch/ExpressiveTouch-Bridging-Header.h";
 				VALID_ARCHS = "armv7 armv7s arm64";
+			};
+			name = Release;
+		};
+		D5F1FC1F1B3D8E6500C86D38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Exp Touch Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.ncl.Exp-Touch.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		D5F1FC201B3D8E6500C86D38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Exp Touch Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.ncl.Exp-Touch.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		D5F1FC231B3D8E6500C86D38 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IBSC_MODULE = Exp_Touch_Watch_Extension;
+				INFOPLIST_FILE = "Exp Touch Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.ncl.Exp-Touch.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		D5F1FC241B3D8E6500C86D38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IBSC_MODULE = Exp_Touch_Watch_Extension;
+				INFOPLIST_FILE = "Exp Touch Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.ncl.Exp-Touch.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
@@ -588,6 +868,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		D5F1FC1E1B3D8E6500C86D38 /* Build configuration list for PBXNativeTarget "Exp Touch Watch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5F1FC1F1B3D8E6500C86D38 /* Debug */,
+				D5F1FC201B3D8E6500C86D38 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D5F1FC221B3D8E6500C86D38 /* Build configuration list for PBXNativeTarget "Exp Touch Watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D5F1FC231B3D8E6500C86D38 /* Debug */,
+				D5F1FC241B3D8E6500C86D38 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

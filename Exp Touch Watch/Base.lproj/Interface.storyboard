@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="7701"/>
+    </dependencies>
+    <scenes>
+        <!--Home-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller title="Home" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Exp_Touch_Watch" customModuleProvider="target">
+                    <items>
+                        <imageView alignment="center" image="UniLogo" contentMode="scaleAspectFit" id="g8M-cD-NVX"/>
+                        <label width="1" alignment="left" text="All Expressive Touch interactions are performed on your iPhone screen using the Apple Watch sensor data." textAlignment="center" numberOfLines="10" id="AiK-VV-8Yv">
+                            <accessibilityTraits key="accessibilityTraits" none="YES" staticText="YES" notEnabled="YES"/>
+                        </label>
+                        <button width="1" alignment="left" title="View Sensor Data" id="asG-CD-4eJ">
+                            <connections>
+                                <segue destination="mju-Tr-Ekj" kind="push" id="S5b-Hg-hHG"/>
+                            </connections>
+                        </button>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="885" y="565"/>
+        </scene>
+        <!--Sensor View-->
+        <scene sceneID="yRs-BL-pCG">
+            <objects>
+                <controller title="Sensor View" hidesWhenLoading="NO" id="mju-Tr-Ekj" customClass="SensorController" customModule="Exp_Touch_Watch_Extension">
+                    <items>
+                        <label alignment="left" text="Accelerometer" id="q11-ti-iIK">
+                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                        </label>
+                        <label alignment="left" text="X: " id="Edx-Og-PXR">
+                            <fontDescription key="font" style="UICTFontTextStyleSubhead"/>
+                        </label>
+                        <label alignment="right" text="0.00" id="6wj-rx-IKr"/>
+                        <label alignment="left" text="Y: " id="1p5-bc-XtC">
+                            <fontDescription key="font" style="UICTFontTextStyleSubhead"/>
+                        </label>
+                        <label alignment="right" text="0.00" id="5bW-0x-mq3"/>
+                        <label alignment="left" text="Z: " id="72m-8N-Ows">
+                            <fontDescription key="font" style="UICTFontTextStyleSubhead"/>
+                        </label>
+                        <label alignment="right" text="0.00" id="vWm-UD-OPv"/>
+                        <separator alignment="left" id="tRV-FS-kcU">
+                            <color key="color" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        </separator>
+                        <label alignment="left" text="Gyroscope" id="tkr-bi-uC4">
+                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                        </label>
+                        <label alignment="left" text="X: " id="daF-lm-2UT">
+                            <fontDescription key="font" style="UICTFontTextStyleSubhead"/>
+                        </label>
+                        <label alignment="right" text="0.00" id="stL-AY-33u"/>
+                        <label alignment="left" text="Y: " id="wDR-Ii-W8e">
+                            <fontDescription key="font" style="UICTFontTextStyleSubhead"/>
+                        </label>
+                        <label alignment="right" text="0.00" id="c0o-Nf-X4d"/>
+                        <label alignment="left" text="Z: " id="QEM-Zb-lip">
+                            <fontDescription key="font" style="UICTFontTextStyleSubhead"/>
+                        </label>
+                        <label alignment="right" text="0.00" id="qWZ-dj-bU1"/>
+                    </items>
+                    <connections>
+                        <outlet property="accXLbl" destination="6wj-rx-IKr" id="53N-so-yJt"/>
+                        <outlet property="accYLbl" destination="5bW-0x-mq3" id="VqA-Dc-Bwz"/>
+                        <outlet property="accZLbl" destination="vWm-UD-OPv" id="rTM-sf-v72"/>
+                        <outlet property="gyroXLbl" destination="stL-AY-33u" id="wV8-XP-9JN"/>
+                        <outlet property="gyroYLbl" destination="c0o-Nf-X4d" id="xK8-r3-gLA"/>
+                        <outlet property="gyroZLbl" destination="qWZ-dj-bU1" id="wuz-z2-1sZ"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="1184" y="565"/>
+        </scene>
+    </scenes>
+</document>
