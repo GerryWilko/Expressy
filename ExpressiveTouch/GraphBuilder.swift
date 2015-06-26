@@ -57,8 +57,9 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         graph.titlePlotAreaFrameAnchor = CPTRectAnchor.Top
         graph.titleDisplacement = CGPointMake(0.0, 10.0)
         
+        graph.plotAreaFrame.paddingTop = 30.0
         graph.plotAreaFrame.paddingBottom = 30.0
-        graph.plotAreaFrame.paddingLeft = 30.0
+        graph.plotAreaFrame.paddingLeft = 20.0
         
         graph.paddingTop = 40.0
         graph.paddingBottom = 40.0
@@ -130,8 +131,6 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         x.axisLineStyle = axisLineStyle
         x.labelingPolicy = CPTAxisLabelingPolicy.None
         x.labelTextStyle = axisTextStyle
-        x.majorTickLineStyle = axisLineStyle
-        x.majorTickLength = 4.0
         x.tickDirection = CPTSign.Negative
         
         let y = axisSet.yAxis as CPTAxis
@@ -142,9 +141,6 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         y.labelingPolicy = CPTAxisLabelingPolicy.None;
         y.labelTextStyle = axisTextStyle
         y.labelOffset = 16.0
-        y.majorTickLineStyle = axisLineStyle
-        y.majorTickLength = 4.0
-        y.minorTickLength = 2.0
         y.tickDirection = CPTSign.Positive
     }
     

@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Gyroscope" selectedImage="GyroIcon" id="N7h-rr-JdV"/>
+                    <tabBarItem key="tabBarItem" title="Gyroscope" image="GyroIcon" id="N7h-rr-JdV"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dmA-2C-9oD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -39,7 +39,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Magnetometer" selectedImage="MagIcon" id="R0U-oT-PKV"/>
+                    <tabBarItem key="tabBarItem" title="Magnetometer" image="MagIcon" id="R0U-oT-PKV"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I6d-CL-edB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -140,7 +140,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Accelerometer" selectedImage="AccIcon" id="Azl-h0-2Rf"/>
+                    <tabBarItem key="tabBarItem" title="Accelerometer" image="AccIcon" id="Azl-h0-2Rf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JsI-IO-8Cl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
