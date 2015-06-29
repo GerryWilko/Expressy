@@ -12,6 +12,8 @@ import WatchConnectivity
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
     private static var motionManager = CMMotionManager()
+    private var lastAcc:CMAccelerometerData?
+    private var lastGyro:CMGyroData?
     
     func applicationDidFinishLaunching() {
         // Perform any final initialization of your application.
@@ -23,7 +25,12 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         if (ExtensionDelegate.motionManager.accelerometerAvailable) {
             let handler:CMAccelerometerHandler = {(data: CMAccelerometerData?, error: NSError?) -> Void in
                 if let accData = data {
-                    WCSession.defaultSession().sendMessage(["accData": accData], replyHandler: nil, errorHandler: nil)
+                    if let gyroData =  self.lastGyro {
+                        WCSession.defaultSession().sendMessage(["accData": accData, "gyroData": gyroData], replyHandler: nil, errorHandler: nil)
+                        self.lastGyro = nil
+                    } else {
+                        self.lastAcc = accData
+                    }
                 }
             }
             ExtensionDelegate.motionManager.accelerometerUpdateInterval = 0.1
@@ -33,7 +40,12 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         if (ExtensionDelegate.motionManager.gyroAvailable) {
             let handler:CMGyroHandler = {(data: CMGyroData?, error: NSError?) -> Void in
                 if let gyroData = data {
-                    WCSession.defaultSession().sendMessage(["gyroData": gyroData], replyHandler: nil, errorHandler: nil)
+                    if let accData = self.lastAcc {
+                        WCSession.defaultSession().sendMessage(["accData": accData, "gyroData": gyroData], replyHandler: nil, errorHandler: nil)
+                        self.lastAcc = nil
+                    } else {
+                        self.lastGyro = gyroData
+                    }
                 }
             }
             ExtensionDelegate.motionManager.gyroUpdateInterval = 0.1

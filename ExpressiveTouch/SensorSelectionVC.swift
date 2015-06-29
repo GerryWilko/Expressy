@@ -19,6 +19,9 @@ class SensorSelectionVC: UIViewController {
         msbBtn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
         otherBluetoothBtn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
         
+        print(WCSession.defaultSession().paired)
+        print(WCSession.defaultSession().watchAppInstalled)
+        
         appleWatchBtn.enabled = WCSession.defaultSession().paired
         msbBtn.enabled = !MSBClientManager.sharedManager().attachedClients().isEmpty
     }

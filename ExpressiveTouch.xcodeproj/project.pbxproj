@@ -766,6 +766,7 @@
 				PRODUCT_NAME = "Exp Touch";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ExpressiveTouch/ExpressiveTouch-Bridging-Header.h";
+				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Release;
@@ -876,6 +877,7 @@
 				D5F1FC201B3D8E6500C86D38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D5F1FC221B3D8E6500C86D38 /* Build configuration list for PBXNativeTarget "Exp Touch Watch" */ = {
 			isa = XCConfigurationList;
@@ -884,6 +886,7 @@
 				D5F1FC241B3D8E6500C86D38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

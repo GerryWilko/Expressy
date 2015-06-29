@@ -58,7 +58,7 @@ class GraphBuilder : NSObject, CPTPlotDataSource {
         graph.titleDisplacement = CGPointMake(0.0, 10.0)
         
         graph.plotAreaFrame.paddingTop = 30.0
-        graph.plotAreaFrame.paddingBottom = 30.0
+        graph.plotAreaFrame.paddingBottom = 40.0
         graph.plotAreaFrame.paddingLeft = 20.0
         
         graph.paddingTop = 40.0
