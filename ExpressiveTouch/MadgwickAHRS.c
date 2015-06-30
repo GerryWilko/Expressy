@@ -212,6 +212,20 @@ void MadgwickAHRSreset() {
     q0 = -1.0f; q1 = 0.0f; q2 = 0.0f; q3 = 0.0f;
 }
 
+//---------------------------------------------------------------------------------------------------
+// Fast inverse square-root
+// See: http://en.wikipedia.org/wiki/Fast_inverse_square_root
+
+float invSqrt(float x) {
+    float halfx = 0.5f * x;
+    float y = x;
+    long i = *(long*)&y;
+    i = 0x5f3759df - (i>>1);
+    y = *(float*)&i;
+    y = y * (1.5f - (halfx * y * y));
+    return y;
+}
+
 
 //====================================================================================================
 // END OF CODE

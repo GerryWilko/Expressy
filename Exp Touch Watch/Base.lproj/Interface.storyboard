@@ -10,7 +10,6 @@
             <objects>
                 <controller title="Home" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Exp_Touch_Watch" customModuleProvider="target">
                     <items>
-                        <imageView alignment="center" image="UniLogoWatch" contentMode="scaleAspectFit" id="g8M-cD-NVX"/>
                         <label width="1" alignment="left" text="All Expressive Touch interactions are performed on your iPhone screen using the Apple Watch sensor data." textAlignment="center" numberOfLines="10" id="AiK-VV-8Yv">
                             <accessibilityTraits key="accessibilityTraits" staticText="YES" notEnabled="YES"/>
                         </label>

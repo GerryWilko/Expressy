@@ -70,31 +70,29 @@ class PlaneModelVC: UIViewController {
         let p = gestureRecognize.locationInView(scnView)
         let hitResults = scnView.hitTest(p, options: nil)
         // check that we clicked on at least one object
-        if let hitRes = hitResults {
-            // retrieved the first clicked object
-            let result: AnyObject! = hitRes[0]
-            
-            // get its material
-            let material = result.node!.geometry!.firstMaterial!
-            
-            // highlight it
+        // retrieved the first clicked object
+        let result: AnyObject! = hitResults[0]
+        
+        // get its material
+        let material = result.node!.geometry!.firstMaterial!
+        
+        // highlight it
+        SCNTransaction.begin()
+        SCNTransaction.setAnimationDuration(0.5)
+        
+        // on completion - unhighlight
+        SCNTransaction.setCompletionBlock {
             SCNTransaction.begin()
             SCNTransaction.setAnimationDuration(0.5)
             
-            // on completion - unhighlight
-            SCNTransaction.setCompletionBlock {
-                SCNTransaction.begin()
-                SCNTransaction.setAnimationDuration(0.5)
-                
-                material.emission.contents = UIColor.blackColor()
-                
-                SCNTransaction.commit()
-            }
-            
-            material.emission.contents = UIColor.redColor()
+            material.emission.contents = UIColor.blackColor()
             
             SCNTransaction.commit()
         }
+        
+        material.emission.contents = UIColor.redColor()
+        
+        SCNTransaction.commit()
     }
     
     func dataCallback(data:SensorData) {

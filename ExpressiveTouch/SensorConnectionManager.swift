@@ -8,8 +8,10 @@
 
 import Foundation
 import CoreBluetooth
+import WatchConnectivity
+import CoreMotion
 
-class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralManagerDelegate, CBPeripheralDelegate, MSBClientManagerDelegate
+class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralManagerDelegate, CBPeripheralDelegate, MSBClientManagerDelegate, WCSessionDelegate
 {
     private static var connectionManager:SensorConnectionManager!
     
@@ -38,7 +40,13 @@ class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralM
     
     /// Function to retrieve instance of SensorConnectionManager.
     /// - returns: Instance of SensorConnectionManager.
-    class func getConnectionManager() -> SensorConnectionManager { return connectionManager }
+    class func getConnectionManager() -> SensorConnectionManager {
+        if connectionManager == nil {
+            connectionManager = SensorConnectionManager()
+        }
+        
+        return connectionManager
+    }
     
     /// Function to initiate Bluetooth scan for sensors.
     /// - returns: Denotes wether a scan occured.
@@ -195,7 +203,7 @@ class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralM
     func clientManager(clientManager: MSBClientManager!, clientDidConnect client: MSBClient!) {
         do {
             try client.sensorManager.startAccelerometerUpdatesToQueue(nil, withHandler: accDataCallback)
-            try client.sensorManager.startGyroscopeUpdatesToQueue(nil, withHandler: gyroDataCallback)
+            try client.sensorManager.startGyroscopeUpdatesToQueue(nil, withHandler: gyroDataCallback) 
         } catch let error as NSError {
             print(error)
         }
@@ -225,5 +233,16 @@ class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralM
     
     func clientManager(clientManager: MSBClientManager!, client: MSBClient!, didFailToConnectWithError error: NSError!) {
         print(error)
+    }
+    
+    func startAppleWatchSensorUpdates() {
+        WCSession.defaultSession().delegate = self
+        WCSession.defaultSession().activateSession()
+    }
+    
+    func session(session: WCSession, didReceiveMessage message: [String : AnyObject]) {
+        let accData = message["accData"] as! CMAccelerometerData
+        let gyroData = message["gyroData"] as! CMGyroData
+        SensorProcessor.updateCache(Float(accData.acceleration.x), ay: Float(accData.acceleration.y), az: Float(accData.acceleration.z), gx: Float(gyroData.rotationRate.x), gy: Float(gyroData.rotationRate.y), gz: Float(gyroData.rotationRate.z), mx: nil, my: nil, mz: nil)
     }
 }

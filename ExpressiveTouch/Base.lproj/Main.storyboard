@@ -195,7 +195,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apple Watch" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QMk-iT-xUJ">
-                                <rect key="frame" x="161" y="283" width="98" height="21"/>
+                                <rect key="frame" x="161" y="288" width="98" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -204,7 +204,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Microsoft Band" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MDJ-kg-sJk">
-                                <rect key="frame" x="332" y="283" width="117" height="21"/>
+                                <rect key="frame" x="332" y="288" width="117" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -213,7 +213,7 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other Bluetooth" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nJe-hy-qdV">
-                                <rect key="frame" x="238" y="463" width="123" height="21"/>
+                                <rect key="frame" x="238" y="458" width="123" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -222,10 +222,10 @@
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleAspectFit" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pd1-3B-eM1">
-                                <rect key="frame" x="145" y="145" width="130" height="130"/>
+                                <rect key="frame" x="150" y="160" width="120" height="120"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="SDh-ax-Jj3"/>
-                                    <constraint firstAttribute="width" constant="130" id="UnA-AO-Xiv"/>
+                                    <constraint firstAttribute="height" constant="120" id="SDh-ax-Jj3"/>
+                                    <constraint firstAttribute="width" constant="120" id="UnA-AO-Xiv"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="AppleWatch"/>
                                 <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
@@ -236,10 +236,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fAz-F0-ipy">
-                                <rect key="frame" x="325" y="145" width="130" height="130"/>
+                                <rect key="frame" x="330" y="160" width="120" height="120"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="2eA-o8-swQ"/>
-                                    <constraint firstAttribute="height" constant="130" id="Eez-GA-Mbr"/>
+                                    <constraint firstAttribute="width" constant="120" id="2eA-o8-swQ"/>
+                                    <constraint firstAttribute="height" constant="120" id="Eez-GA-Mbr"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="MicrosoftBand"/>
                                 <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
@@ -250,10 +250,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wQv-W2-gU9">
-                                <rect key="frame" x="235" y="325" width="130" height="130"/>
+                                <rect key="frame" x="240" y="330" width="120" height="120"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="130" id="bar-su-gMX"/>
-                                    <constraint firstAttribute="width" constant="130" id="dx2-x7-nTH"/>
+                                    <constraint firstAttribute="height" constant="120" id="bar-su-gMX"/>
+                                    <constraint firstAttribute="width" constant="120" id="dx2-x7-nTH"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="Bluetooth"/>
                                 <variation key="heightClass=compact-widthClass=regular" fixedFrame="YES">
@@ -285,7 +285,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="hgL-Gd-Noc" secondAttribute="trailing" constant="-20" id="7MU-tR-IMl"/>
                             <constraint firstItem="pd1-3B-eM1" firstAttribute="centerX" secondItem="z34-DP-31t" secondAttribute="centerX" constant="-90" id="RAm-d3-UEh"/>
                             <constraint firstItem="nJe-hy-qdV" firstAttribute="top" secondItem="wQv-W2-gU9" secondAttribute="bottom" constant="8" id="REy-ki-0id"/>
-                            <constraint firstItem="fAz-F0-ipy" firstAttribute="centerY" secondItem="z34-DP-31t" secondAttribute="centerY" constant="-90" id="Ufz-Jr-Yiy"/>
+                            <constraint firstItem="fAz-F0-ipy" firstAttribute="centerY" secondItem="z34-DP-31t" secondAttribute="centerY" constant="-80" id="Ufz-Jr-Yiy"/>
                             <constraint firstItem="MDJ-kg-sJk" firstAttribute="centerX" secondItem="fAz-F0-ipy" secondAttribute="centerX" id="V4A-mR-Uk0"/>
                             <constraint firstItem="wQv-W2-gU9" firstAttribute="centerY" secondItem="z34-DP-31t" secondAttribute="centerY" constant="90" id="d36-nw-cum"/>
                             <constraint firstItem="wQv-W2-gU9" firstAttribute="centerX" secondItem="z34-DP-31t" secondAttribute="centerX" id="mW7-DW-kI9"/>
@@ -295,7 +295,7 @@
                             <constraint firstItem="hgL-Gd-Noc" firstAttribute="top" secondItem="Hs5-hc-FKM" secondAttribute="bottom" id="td8-Jf-Jg8"/>
                             <constraint firstItem="QMk-iT-xUJ" firstAttribute="centerX" secondItem="pd1-3B-eM1" secondAttribute="centerX" id="veX-2G-pXT"/>
                             <constraint firstItem="QMk-iT-xUJ" firstAttribute="top" secondItem="pd1-3B-eM1" secondAttribute="bottom" constant="8" id="y0J-aR-dDp"/>
-                            <constraint firstItem="pd1-3B-eM1" firstAttribute="centerY" secondItem="z34-DP-31t" secondAttribute="centerY" constant="-90" id="y6W-7B-oYh"/>
+                            <constraint firstItem="pd1-3B-eM1" firstAttribute="centerY" secondItem="z34-DP-31t" secondAttribute="centerY" constant="-80" id="y6W-7B-oYh"/>
                         </constraints>
                     </view>
                     <connections>
@@ -858,7 +858,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CSD-ab-cRB">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CSD-ab-cRB" customClass="AVPlayerViewController">
                                 <rect key="frame" x="20" y="52" width="560" height="200"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -939,7 +939,7 @@ Press 'Done' when ready to begin.</string>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="weS-Dj-iBZ">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="weS-Dj-iBZ" customClass="AVPlayerViewController">
                                 <rect key="frame" x="20" y="56" width="560" height="200"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -1010,7 +1010,7 @@ Press 'Done' when ready to begin.</string>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Efi-S4-mBU">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Efi-S4-mBU" customClass="AVPlayerViewController">
                                 <rect key="frame" x="20" y="56" width="560" height="200"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -1081,7 +1081,7 @@ Press 'Done' when ready to begin.</string>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gYZ-QU-i2K">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gYZ-QU-i2K" customClass="AVPlayerViewController">
                                 <rect key="frame" x="20" y="53" width="560" height="200"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -1152,7 +1152,7 @@ Press 'Done' when ready to begin.</string>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kaq-oc-3qw">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kaq-oc-3qw" customClass="AVPlayerViewController">
                                 <rect key="frame" x="20" y="52" width="560" height="200"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>

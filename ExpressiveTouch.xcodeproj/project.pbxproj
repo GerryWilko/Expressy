@@ -150,6 +150,7 @@
 		CBF0EE871AC95A7400D689E2 /* TimeRotateEvalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRotateEvalVC.swift; sourceTree = "<group>"; };
 		CBF0EE891AC9A0C500D689E2 /* ETMapGestureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETMapGestureView.swift; sourceTree = "<group>"; };
 		D517508A19E9831C0076F6FA /* Exp Touch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Exp Touch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5D603411B42E3DD00DEE1C1 /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
 		D5F1FBFF1B3D7ED900C86D38 /* SensorSelectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorSelectionVC.swift; sourceTree = "<group>"; };
 		D5F1FC031B3D8E6500C86D38 /* Exp Touch Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Exp Touch Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5F1FC061B3D8E6500C86D38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -185,6 +186,7 @@
 		B33F468FFDB0C5FCAB954B5D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D5D603411B42E3DD00DEE1C1 /* SceneKit.framework */,
 				CB1A619F1B161DE100D7E099 /* MicrosoftBandKit_iOS.framework */,
 				7EA315116ED542A1FC9DE226 /* libPods-ExpressiveTouch.a */,
 			);

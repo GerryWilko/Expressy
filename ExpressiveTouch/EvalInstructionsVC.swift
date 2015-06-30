@@ -7,25 +7,21 @@
 //
 
 import Foundation
-import MediaPlayer
+import AVKit
+import AVFoundation
 
 class EvalInstructionsVC: UIViewController {
-    private var moviePlayer: MPMoviePlayerController?
+    private var moviePlayer: AVPlayer?
     var videoPath:String!
     
-    @IBOutlet weak var video: UIView!
+    @IBOutlet weak var video: AVPlayerViewController!
     
     private func playVideo() {
         if let videoPath = self.videoPath {
             let path = NSBundle.mainBundle().pathForResource(videoPath, ofType:"mp4")
             let url = NSURL.fileURLWithPath(path!)
-            moviePlayer = MPMoviePlayerController(contentURL: url)
-            if let player = moviePlayer {
-                player.view.frame = video.bounds
-                player.prepareToPlay()
-                player.scalingMode = MPMovieScalingMode.AspectFit
-                video.addSubview(player.view)
-            }
+            video.player = AVPlayer(URL: url)
+            video.player?.play()
         }
     }
     
