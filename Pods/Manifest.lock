@@ -1,8 +1,10 @@
 PODS:
   - CorePlot (1.6)
+  - DAScratchPad (0.4)
 
 DEPENDENCIES:
   - CorePlot (from `https://github.com/core-plot/core-plot.git`)
+  - DAScratchPad
 
 EXTERNAL SOURCES:
   CorePlot:
@@ -10,10 +12,11 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   CorePlot:
-    :commit: c76ee5026c5bc0a20e11f864d80f04a5fa0d7ef6
+    :commit: 7b6ee58db3c51a19df4f3028d8c13753687c6567
     :git: https://github.com/core-plot/core-plot.git
 
 SPEC CHECKSUMS:
   CorePlot: 820901f6c147f2d84549ffa1f0902869f980d74d
+  DAScratchPad: 0b772dc02fe8b77d9b75c75f2edb4514f3b7bb1f
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.38.2

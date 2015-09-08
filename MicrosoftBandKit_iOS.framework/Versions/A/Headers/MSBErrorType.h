@@ -37,6 +37,7 @@ typedef NS_ENUM(NSInteger, MSBErrorType) {
     MSBErrorTypeMaxTiles,
     MSBErrorTypeTileAlreadyExist,
     MSBErrorTypeTileNotFound,
+    MSBErrorTypePageElementAlreadyExist,
     
     //Unkown
     MSBErrorTypeUnknown = 900

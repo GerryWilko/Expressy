@@ -9,6 +9,7 @@
 @interface MSBPageTextButton : MSBPageElement
 
 @property (nonatomic, strong) MSBColor *pressedColor;
+@property (nonatomic, assign) MSBPageElementColorSource pressedColorSource;
 
 - (id)initWithRect:(MSBPageRect *)rect;
 

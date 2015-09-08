@@ -16,15 +16,19 @@ class InteractionDetector {
     /// Value for current pitch in degrees.
     var currentPitch:Float
     /// Value denoting if the user has touched down.
-    var touchDown:Bool
+    var touchedDown:Bool
+    /// Value denoting if detection is currently active.
+    var detecting:Bool
     
     private var lastDataTime:NSTimeInterval!
     
-    private var metricsCallbacks:Array<(data:Float!) -> Void>
-    private var flickedCallbacks:Array<(data:Float!) -> Void>
-    private var hardPressCallbacks:Array<(data:Float!) -> Void>
-    private var mediumPressCallbacks:Array<(data:Float!) -> Void>
-    private var softPressCallbacks:Array<(data:Float!) -> Void>
+    private var metricsCallbacks:Array<(data:Float?) -> Void>
+    private var flickCallbacks:Array<(data:Float?) -> Void>
+    private var noFlickCallBacks:Array<(data:Float?) -> Void>
+    private var hardPressCallbacks:Array<(data:Float?) -> Void>
+    private var mediumPressCallbacks:Array<(data:Float?) -> Void>
+    private var softPressCallbacks:Array<(data:Float?) -> Void>
+    private var allPressCallbacks:Array<(data:Float?) -> Void>
     
     private let dataCache:SensorCache
     private let touchForceFilter:Float = 0.1
@@ -41,34 +45,41 @@ class InteractionDetector {
         currentForce = 0.0
         currentRotation = 0.0
         currentPitch = 0.0
-        touchDown = false
+        touchedDown = false
+        detecting = false
         
-        metricsCallbacks = Array<(data:Float!) -> Void>()
+        metricsCallbacks = Array<(data:Float?) -> Void>()
+        flickCallbacks = Array<(data:Float?) -> Void>()
+        noFlickCallBacks = Array<(data:Float?) -> Void>()
+        hardPressCallbacks = Array<(data:Float?) -> Void>()
+        mediumPressCallbacks = Array<(data:Float?) -> Void>()
+        softPressCallbacks = Array<(data:Float?) -> Void>()
+        allPressCallbacks = Array<(data:Float?) -> Void>()
         
-        flickedCallbacks = Array<(data:Float!) -> Void>()
-        hardPressCallbacks = Array<(data:Float!) -> Void>()
-        mediumPressCallbacks = Array<(data:Float!) -> Void>()
-        softPressCallbacks = Array<(data:Float!) -> Void>()
+        lastDataTime = NSDate.timeIntervalSinceReferenceDate()
+        
+        dataCache.subscribe(dataCallback)
     }
     
     deinit {
         stopDetection()
+        dataCache.clearSubscriptions()
+        clearSubscriptions()
     }
     
     /// Initiates detection by subscribing to data callbacks from SensorProcessor.
     func startDetection() {
-        dataCache.subscribe(dataCallback)
+        detecting = true
     }
     
     /// Internal function for processing of data callbacks from SensorProcessor.
     /// - parameter data: Sensor data recieved from sensor.
     private func dataCallback(data:SensorData) {
-        currentForce = calculateForce(data)
+        if (!detecting) { return }
         
-        if (touchDown) {
-            currentRotation = calculateRotation(data)
-            currentPitch = calculatePitch(data)
-        }
+        currentForce = calculateForce(data)
+        currentRotation = calculateRotation(data)
+        currentPitch = calculatePitch(data)
         
         lastDataTime = data.time
         fireMetrics()
@@ -76,18 +87,25 @@ class InteractionDetector {
     
     /// Stops detection by unsubscribing from SensorProcessor and clearing subscriptions to InteractionDetector.
     func stopDetection() {
-        dataCache.clearSubscriptions()
-        clearSubscriptions()
+        detecting = false
     }
     
     /// Function for passing touch down events, used for detection of touch down related events and calcuation of continous interactions (roll, pitch).
     /// - parameter touchDownTime: Time touch down event occured.
-    func touchDown(touchDownTime:NSTimeInterval) {
-        touchDown = true
+    func touchDown() {
+        if (!detecting) { return }
+        
+        let touchDownTime = NSDate.timeIntervalSinceReferenceDate()
+        
+        touchedDown = true
+        currentRotation = 0.0
+        currentPitch = 0.0
         
         let touchForce = calculateTouchForce(touchDownTime)
         let data = dataCache.getForTime(touchDownTime)
         data.touchDown(touchForce)
+        
+        fireAllPress(touchForce)
         
         if (touchForce > hardForceThreshold) {
             fireHardPress(touchForce)
@@ -100,8 +118,12 @@ class InteractionDetector {
     
     /// Function for passing touch up events, used for detection of touch up related events.
     /// - parameter touchUpTime: Time touch up event occured.
-    func touchUp(touchUpTime:NSTimeInterval) {
-        touchDown = false
+    func touchUp() {
+        if (!detecting) { return }
+        
+        let touchUpTime = NSDate.timeIntervalSinceReferenceDate()
+        
+        touchedDown = false
         currentRotation = 0.0
         currentPitch = 0.0
         
@@ -113,7 +135,11 @@ class InteractionDetector {
     
     /// Function for informing of cancelled touch event.
     func touchCancelled() {
-        touchDown = false
+        if (!detecting) { return }
+        
+        touchedDown = false
+        currentRotation = 0.0
+        currentPitch = 0.0
     }
     
     /// Timer callback function for detection of events after touch up event.
@@ -125,7 +151,9 @@ class InteractionDetector {
         let flickForce = calculateFlickForce(touchUpTime, end: end)
         
         if (flickForce > flickThreshold) {
-            fireFlicked(flickForce)
+            fireFlick(flickForce)
+        } else {
+            fireNoFlick(flickForce)
         }
     }
     
@@ -195,10 +223,16 @@ class InteractionDetector {
         fireCallbacks(nil, callbacks: metricsCallbacks)
     }
     
-    /// Internal function to fire flicked callbacks.
+    /// Internal function to fire flick callbacks.
     /// - parameter data: Value representing flicked force.
-    private func fireFlicked(data:Float) {
-       fireCallbacks(data, callbacks: flickedCallbacks)
+    private func fireFlick(data:Float) {
+       fireCallbacks(data, callbacks: flickCallbacks)
+    }
+    
+    /// Internal function to fire no flick callbacks.
+    /// - parameter data: Value representing flicked force.
+    private func fireNoFlick(data:Float) {
+        fireCallbacks(data, callbacks: noFlickCallBacks)
     }
     
     /// Internal function to fire hard press callbacks.
@@ -219,10 +253,16 @@ class InteractionDetector {
         fireCallbacks(data, callbacks: softPressCallbacks)
     }
     
+    /// Internal function to fire all press callbacks.
+    /// - parameter data: Value representing touch force.
+    private func fireAllPress(data:Float) {
+        fireCallbacks(data, callbacks: allPressCallbacks)
+    }
+    
     /// Internal function to fire a set of callbacks.
     /// - parameter data: Data to be passed to callbacks.
     /// - parameter callbacks: Set of callbacks to be fired.
-    private func fireCallbacks(data:Float!, callbacks:[(data:Float!) -> Void]) {
+    private func fireCallbacks(data:Float?, callbacks:[(data:Float?) -> Void]) {
         for cb in callbacks {
             cb(data: data)
         }
@@ -231,13 +271,16 @@ class InteractionDetector {
     /// Event subscription system, subscribing to defined events causes callback to be fired when specified event occurs.
     /// - parameter event: Type of event to be subscribed.
     /// - parameter callback: Function with data parameter to be called on event occurence.
-    func subscribe(event:EventType, callback:(data:Float!) -> Void) {
+    func subscribe(event:EventType, callback:(data:Float?) -> Void) {
         switch event {
         case .Metrics:
             metricsCallbacks.append(callback)
             break
-        case .Flicked:
-            flickedCallbacks.append(callback)
+        case .Flick:
+            flickCallbacks.append(callback)
+            break
+        case .NoFlick:
+            noFlickCallBacks.append(callback)
             break
         case .HardPress:
             hardPressCallbacks.append(callback)
@@ -248,25 +291,32 @@ class InteractionDetector {
         case .SoftPress:
             softPressCallbacks.append(callback)
             break
+        case .AllPress:
+            allPressCallbacks.append(callback)
+            break
         }
     }
     
     /// Function to clear all current event subscriptions.
     func clearSubscriptions() {
-        metricsCallbacks.removeAll(keepCapacity: false)
-        flickedCallbacks.removeAll(keepCapacity: false)
-        hardPressCallbacks.removeAll(keepCapacity: false)
-        mediumPressCallbacks.removeAll(keepCapacity: false)
-        softPressCallbacks.removeAll(keepCapacity: false)
+        metricsCallbacks.removeAll()
+        flickCallbacks.removeAll()
+        noFlickCallBacks.removeAll()
+        hardPressCallbacks.removeAll()
+        mediumPressCallbacks.removeAll()
+        softPressCallbacks.removeAll()
+        allPressCallbacks.removeAll()
     }
 }
 
 /// Enum for Event types.
 /// - Metrics: Event fired each time continous metrics (force, roll, pitch) are updated.
-/// - Flicked: Event fired when a flick event occurs.
+/// - Flick: Event fired when a flick event occurs.
+/// - NoFlick: Event fired when no flick event occurs.
 /// - HardPress: Event fired when the screen is struck hard.
 /// - MediumPress: Event fired when the screen is struck medium.
 /// - SoftPress: Event fired when the screen is struck soft.
+/// - AllPress: Event fired each time the screen is struck.
 enum EventType {
-    case Metrics, Flicked, HardPress, MediumPress, SoftPress
+    case Metrics, Flick, NoFlick, HardPress, MediumPress, SoftPress, AllPress
 }

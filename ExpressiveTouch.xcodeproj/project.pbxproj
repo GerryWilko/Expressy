@@ -7,12 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CB1A61A01B161DE100D7E099 /* MicrosoftBandKit_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB1A619F1B161DE100D7E099 /* MicrosoftBandKit_iOS.framework */; };
-		CB4F22941AC4569F006EFF18 /* TapEvalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4F22931AC4569F006EFF18 /* TapEvalVC.swift */; };
-		CB4F22961AC456BE006EFF18 /* RotationRngEvalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4F22951AC456BE006EFF18 /* RotationRngEvalVC.swift */; };
-		CB4F22981AC456D7006EFF18 /* PitchRngEvalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4F22971AC456D7006EFF18 /* PitchRngEvalVC.swift */; };
-		CB4F229A1AC457B4006EFF18 /* YawRngEvalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4F22991AC457B4006EFF18 /* YawRngEvalVC.swift */; };
-		CB4F229C1AC45F77006EFF18 /* EvalInstructionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4F229B1AC45F76006EFF18 /* EvalInstructionsVC.swift */; };
+		CB4F22941AC4569F006EFF18 /* CatForceEvalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4F22931AC4569F006EFF18 /* CatForceEvalVC.swift */; };
 		CB4F22A01AC563A6006EFF18 /* CSVBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4F229F1AC563A5006EFF18 /* CSVBuilder.swift */; };
 		CB7338771A822CA600FA1121 /* AccGraphVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338601A822CA600FA1121 /* AccGraphVC.swift */; };
 		CB7338781A822CA600FA1121 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338611A822CA600FA1121 /* AppDelegate.swift */; };
@@ -30,14 +25,9 @@
 		CB73388A1A822CA600FA1121 /* SensorScanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338761A822CA600FA1121 /* SensorScanVC.swift */; };
 		CB7D5CEF1AC3198E0068BC67 /* MapDemoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7D5CEE1AC3198E0068BC67 /* MapDemoVC.swift */; };
 		CB82A42A1AB1CAA40032F5D6 /* InteractionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB82A4291AB1CAA40032F5D6 /* InteractionDetector.swift */; };
-		CB86E72B1AD56F2400E176F9 /* ForceEvalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB86E72A1AD56F2400E176F9 /* ForceEvalVC.swift */; };
-		CB86E72D1AD57F2700E176F9 /* RotateTestEvalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB86E72C1AD57F2700E176F9 /* RotateTestEvalVC.swift */; };
-		CB86E72F1AD57F3F00E176F9 /* PitchTestEvalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB86E72E1AD57F3E00E176F9 /* PitchTestEvalVC.swift */; };
-		CB8894FA1ACC40D600F3FC2F /* Pitch Range Demo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CB8894F51ACC3C0400F3FC2F /* Pitch Range Demo.mp4 */; };
-		CB8894FB1ACC40D800F3FC2F /* Rotation Range Demo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CB8894F61ACC3C0400F3FC2F /* Rotation Range Demo.mp4 */; };
-		CB8894FC1ACC40DD00F3FC2F /* Tap Force Demo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CB8894F71ACC3C0400F3FC2F /* Tap Force Demo.mp4 */; };
-		CB8894FD1ACC40E000F3FC2F /* Time to Rotate Demo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CB8894F81ACC3C0400F3FC2F /* Time to Rotate Demo.mp4 */; };
-		CB8894FE1ACC40E300F3FC2F /* Yaw Range Demo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CB8894F91ACC3C0400F3FC2F /* Yaw Range Demo.mp4 */; };
+		CB86E72B1AD56F2400E176F9 /* FreeForceEvalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB86E72A1AD56F2400E176F9 /* FreeForceEvalVC.swift */; };
+		CB86E72D1AD57F2700E176F9 /* RollEvalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB86E72C1AD57F2700E176F9 /* RollEvalVC.swift */; };
+		CB86E72F1AD57F3F00E176F9 /* PitchEvalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB86E72E1AD57F3E00E176F9 /* PitchEvalVC.swift */; };
 		CB8895001ACD53D100F3FC2F /* EvalUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8894FF1ACD53D100F3FC2F /* EvalUtils.swift */; };
 		CB8F53021AD68DF800EC2917 /* MathUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8F53011AD68DF800EC2917 /* MathUtils.swift */; };
 		CB9798351AA715BC00124A9D /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9798341AA715BC00124A9D /* Vector.swift */; };
@@ -46,8 +36,28 @@
 		CBD91AE01AB9A2BE00A9ABBE /* PlaneModelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD91ADF1AB9A2BE00A9ABBE /* PlaneModelVC.swift */; };
 		CBE3C75A1AD9296400F2D7CF /* FlickEvalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE3C7591AD9296400F2D7CF /* FlickEvalVC.swift */; };
 		CBE6BE271ABF12D00099A5C3 /* ControlsDemoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE6BE261ABF12D00099A5C3 /* ControlsDemoVC.swift */; };
-		CBF0EE881AC95A7400D689E2 /* TimeRotateEvalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF0EE871AC95A7400D689E2 /* TimeRotateEvalVC.swift */; };
 		CBF0EE8A1AC9A0C500D689E2 /* ETMapGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF0EE891AC9A0C500D689E2 /* ETMapGestureView.swift */; };
+		D518B2CE1B99E74E004C4735 /* ScrollDemoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D518B2CD1B99E74E004C4735 /* ScrollDemoVC.swift */; };
+		D52F03C71B987DF800C5CE28 /* PaintingDemoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52F03C61B987DF800C5CE28 /* PaintingDemoVC.swift */; };
+		D52F03C91B98963A00C5CE28 /* ETPaintGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52F03C81B98963A00C5CE28 /* ETPaintGestureView.swift */; };
+		D53396781B959C8200EA9389 /* MicrosoftBandKit_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53396771B959C8200EA9389 /* MicrosoftBandKit_iOS.framework */; };
+		D533967A1B95B93800EA9389 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53396791B95B93800EA9389 /* UIViewExtensions.swift */; };
+		D533967C1B95C1C600EA9389 /* DrumsDemoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D533967B1B95C1C600EA9389 /* DrumsDemoVC.swift */; };
+		D542BD311B9DB9F1007C4533 /* EvaluationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D542BD301B9DB9F1007C4533 /* EvaluationVC.swift */; settings = {ASSET_TAGS = (); }; };
+		D57846491B99A0100016FE93 /* PaintingDemoColorPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57846481B99A0100016FE93 /* PaintingDemoColorPickerVC.swift */; };
+		D5869F4C1B95CADC001CF96C /* crash-acoustic.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5869F441B95CADC001CF96C /* crash-acoustic.wav */; };
+		D5869F4D1B95CADC001CF96C /* hihat-acoustic01.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5869F451B95CADC001CF96C /* hihat-acoustic01.wav */; };
+		D5869F4E1B95CADC001CF96C /* hihat-acoustic02.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5869F461B95CADC001CF96C /* hihat-acoustic02.wav */; };
+		D5869F4F1B95CADC001CF96C /* kick-acoustic01.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5869F471B95CADC001CF96C /* kick-acoustic01.wav */; };
+		D5869F501B95CADC001CF96C /* openhat-acoustic01.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5869F481B95CADC001CF96C /* openhat-acoustic01.wav */; };
+		D5869F511B95CADC001CF96C /* ride-acoustic02.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5869F491B95CADC001CF96C /* ride-acoustic02.wav */; };
+		D5869F521B95CADC001CF96C /* tom-acoustic01.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5869F4A1B95CADC001CF96C /* tom-acoustic01.wav */; };
+		D5869F531B95CADC001CF96C /* tom-acoustic02.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5869F4B1B95CADC001CF96C /* tom-acoustic02.wav */; };
+		D5869F551B95D070001CF96C /* snare.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D5869F541B95D070001CF96C /* snare.mp3 */; };
+		D5869F571B95E107001CF96C /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5869F561B95E107001CF96C /* MenuVC.swift */; };
+		D5869F591B95F4C9001CF96C /* EvaluationMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5869F581B95F4C9001CF96C /* EvaluationMenuVC.swift */; };
+		D58FA20F1B9E030600D26488 /* VideoDemoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58FA20E1B9E030600D26488 /* VideoDemoVC.swift */; settings = {ASSET_TAGS = (); }; };
+		D58FA2131B9EF46000D26488 /* bbb_sunflower.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D58FA2121B9ECD9B00D26488 /* bbb_sunflower.mp4 */; };
 		D5F1FC001B3D7ED900C86D38 /* SensorSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F1FBFF1B3D7ED900C86D38 /* SensorSelectionVC.swift */; };
 		D5F1FC071B3D8E6500C86D38 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5F1FC051B3D8E6500C86D38 /* Interface.storyboard */; };
 		D5F1FC091B3D8E6500C86D38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5F1FC081B3D8E6500C86D38 /* Assets.xcassets */; };
@@ -105,12 +115,7 @@
 		42223EA273833E1276CCAD1F /* Pods-ExpressiveTouch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpressiveTouch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ExpressiveTouch/Pods-ExpressiveTouch.debug.xcconfig"; sourceTree = "<group>"; };
 		7EA315116ED542A1FC9DE226 /* libPods-ExpressiveTouch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExpressiveTouch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		87BA3EA70A344285E7E633B7 /* Pods-ExpressiveTouch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpressiveTouch.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExpressiveTouch/Pods-ExpressiveTouch.release.xcconfig"; sourceTree = "<group>"; };
-		CB1A619F1B161DE100D7E099 /* MicrosoftBandKit_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MicrosoftBandKit_iOS.framework; sourceTree = "<group>"; };
-		CB4F22931AC4569F006EFF18 /* TapEvalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapEvalVC.swift; sourceTree = "<group>"; };
-		CB4F22951AC456BE006EFF18 /* RotationRngEvalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotationRngEvalVC.swift; sourceTree = "<group>"; };
-		CB4F22971AC456D7006EFF18 /* PitchRngEvalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchRngEvalVC.swift; sourceTree = "<group>"; };
-		CB4F22991AC457B4006EFF18 /* YawRngEvalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YawRngEvalVC.swift; sourceTree = "<group>"; };
-		CB4F229B1AC45F76006EFF18 /* EvalInstructionsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvalInstructionsVC.swift; sourceTree = "<group>"; };
+		CB4F22931AC4569F006EFF18 /* CatForceEvalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatForceEvalVC.swift; sourceTree = "<group>"; };
 		CB4F229F1AC563A5006EFF18 /* CSVBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVBuilder.swift; sourceTree = "<group>"; };
 		CB7338601A822CA600FA1121 /* AccGraphVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccGraphVC.swift; sourceTree = "<group>"; };
 		CB7338611A822CA600FA1121 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -130,14 +135,9 @@
 		CB7338761A822CA600FA1121 /* SensorScanVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorScanVC.swift; sourceTree = "<group>"; };
 		CB7D5CEE1AC3198E0068BC67 /* MapDemoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapDemoVC.swift; sourceTree = "<group>"; };
 		CB82A4291AB1CAA40032F5D6 /* InteractionDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionDetector.swift; sourceTree = "<group>"; };
-		CB86E72A1AD56F2400E176F9 /* ForceEvalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForceEvalVC.swift; sourceTree = "<group>"; };
-		CB86E72C1AD57F2700E176F9 /* RotateTestEvalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotateTestEvalVC.swift; sourceTree = "<group>"; };
-		CB86E72E1AD57F3E00E176F9 /* PitchTestEvalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchTestEvalVC.swift; sourceTree = "<group>"; };
-		CB8894F51ACC3C0400F3FC2F /* Pitch Range Demo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pitch Range Demo.mp4"; sourceTree = "<group>"; };
-		CB8894F61ACC3C0400F3FC2F /* Rotation Range Demo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rotation Range Demo.mp4"; sourceTree = "<group>"; };
-		CB8894F71ACC3C0400F3FC2F /* Tap Force Demo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Tap Force Demo.mp4"; sourceTree = "<group>"; };
-		CB8894F81ACC3C0400F3FC2F /* Time to Rotate Demo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Time to Rotate Demo.mp4"; sourceTree = "<group>"; };
-		CB8894F91ACC3C0400F3FC2F /* Yaw Range Demo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Yaw Range Demo.mp4"; sourceTree = "<group>"; };
+		CB86E72A1AD56F2400E176F9 /* FreeForceEvalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreeForceEvalVC.swift; sourceTree = "<group>"; };
+		CB86E72C1AD57F2700E176F9 /* RollEvalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RollEvalVC.swift; sourceTree = "<group>"; };
+		CB86E72E1AD57F3E00E176F9 /* PitchEvalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchEvalVC.swift; sourceTree = "<group>"; };
 		CB8894FF1ACD53D100F3FC2F /* EvalUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvalUtils.swift; sourceTree = "<group>"; };
 		CB8F53011AD68DF800EC2917 /* MathUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MathUtils.swift; path = ../MathUtils.swift; sourceTree = "<group>"; };
 		CB9798341AA715BC00124A9D /* Vector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
@@ -147,9 +147,29 @@
 		CBD91ADF1AB9A2BE00A9ABBE /* PlaneModelVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaneModelVC.swift; sourceTree = "<group>"; };
 		CBE3C7591AD9296400F2D7CF /* FlickEvalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickEvalVC.swift; sourceTree = "<group>"; };
 		CBE6BE261ABF12D00099A5C3 /* ControlsDemoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlsDemoVC.swift; sourceTree = "<group>"; };
-		CBF0EE871AC95A7400D689E2 /* TimeRotateEvalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRotateEvalVC.swift; sourceTree = "<group>"; };
 		CBF0EE891AC9A0C500D689E2 /* ETMapGestureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETMapGestureView.swift; sourceTree = "<group>"; };
 		D517508A19E9831C0076F6FA /* Exp Touch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Exp Touch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D518B2CD1B99E74E004C4735 /* ScrollDemoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollDemoVC.swift; sourceTree = "<group>"; };
+		D52F03C61B987DF800C5CE28 /* PaintingDemoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaintingDemoVC.swift; sourceTree = "<group>"; };
+		D52F03C81B98963A00C5CE28 /* ETPaintGestureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETPaintGestureView.swift; sourceTree = "<group>"; };
+		D53396771B959C8200EA9389 /* MicrosoftBandKit_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MicrosoftBandKit_iOS.framework; sourceTree = "<group>"; };
+		D53396791B95B93800EA9389 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		D533967B1B95C1C600EA9389 /* DrumsDemoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrumsDemoVC.swift; sourceTree = "<group>"; };
+		D542BD301B9DB9F1007C4533 /* EvaluationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationVC.swift; sourceTree = "<group>"; };
+		D57846481B99A0100016FE93 /* PaintingDemoColorPickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaintingDemoColorPickerVC.swift; sourceTree = "<group>"; };
+		D5869F441B95CADC001CF96C /* crash-acoustic.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "crash-acoustic.wav"; sourceTree = "<group>"; };
+		D5869F451B95CADC001CF96C /* hihat-acoustic01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "hihat-acoustic01.wav"; sourceTree = "<group>"; };
+		D5869F461B95CADC001CF96C /* hihat-acoustic02.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "hihat-acoustic02.wav"; sourceTree = "<group>"; };
+		D5869F471B95CADC001CF96C /* kick-acoustic01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "kick-acoustic01.wav"; sourceTree = "<group>"; };
+		D5869F481B95CADC001CF96C /* openhat-acoustic01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "openhat-acoustic01.wav"; sourceTree = "<group>"; };
+		D5869F491B95CADC001CF96C /* ride-acoustic02.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "ride-acoustic02.wav"; sourceTree = "<group>"; };
+		D5869F4A1B95CADC001CF96C /* tom-acoustic01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "tom-acoustic01.wav"; sourceTree = "<group>"; };
+		D5869F4B1B95CADC001CF96C /* tom-acoustic02.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "tom-acoustic02.wav"; sourceTree = "<group>"; };
+		D5869F541B95D070001CF96C /* snare.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = snare.mp3; sourceTree = "<group>"; };
+		D5869F561B95E107001CF96C /* MenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
+		D5869F581B95F4C9001CF96C /* EvaluationMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationMenuVC.swift; sourceTree = "<group>"; };
+		D58FA20E1B9E030600D26488 /* VideoDemoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDemoVC.swift; sourceTree = "<group>"; };
+		D58FA2121B9ECD9B00D26488 /* bbb_sunflower.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = bbb_sunflower.mp4; sourceTree = "<group>"; };
 		D5D603411B42E3DD00DEE1C1 /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
 		D5F1FBFF1B3D7ED900C86D38 /* SensorSelectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorSelectionVC.swift; sourceTree = "<group>"; };
 		D5F1FC031B3D8E6500C86D38 /* Exp Touch Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Exp Touch Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -169,7 +189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF8DCC742FC3997524C3C492 /* libPods-ExpressiveTouch.a in Frameworks */,
-				CB1A61A01B161DE100D7E099 /* MicrosoftBandKit_iOS.framework in Frameworks */,
+				D53396781B959C8200EA9389 /* MicrosoftBandKit_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,8 +206,8 @@
 		B33F468FFDB0C5FCAB954B5D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D53396771B959C8200EA9389 /* MicrosoftBandKit_iOS.framework */,
 				D5D603411B42E3DD00DEE1C1 /* SceneKit.framework */,
-				CB1A619F1B161DE100D7E099 /* MicrosoftBandKit_iOS.framework */,
 				7EA315116ED542A1FC9DE226 /* libPods-ExpressiveTouch.a */,
 			);
 			name = Frameworks;
@@ -226,7 +246,9 @@
 				CB4F229F1AC563A5006EFF18 /* CSVBuilder.swift */,
 				CB8F53011AD68DF800EC2917 /* MathUtils.swift */,
 				CB8894FF1ACD53D100F3FC2F /* EvalUtils.swift */,
-				CB8894F41ACC3B7C00F3FC2F /* Eval Demo Videos */,
+				D53396791B95B93800EA9389 /* UIViewExtensions.swift */,
+				D5869F431B95CAA7001CF96C /* Drums Demo Samples */,
+				D58FA2121B9ECD9B00D26488 /* bbb_sunflower.mp4 */,
 				CB73386D1A822CA600FA1121 /* Images.xcassets */,
 				CBB6837A1AB9B2C700938059 /* art.scnassets */,
 				CB73388E1A822CF700FA1121 /* Supporting Files */,
@@ -237,12 +259,18 @@
 		CB73388C1A822CE700FA1121 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D5869F561B95E107001CF96C /* MenuVC.swift */,
 				D5F1FBFE1B3D7EA000C86D38 /* Live Data */,
 				D5F1FBFD1B3D7E8B00C86D38 /* Sensor Connection */,
 				CB7338661A822CA600FA1121 /* InteractionDetectorVC.swift */,
 				CBD91ADF1AB9A2BE00A9ABBE /* PlaneModelVC.swift */,
 				CBE6BE261ABF12D00099A5C3 /* ControlsDemoVC.swift */,
 				CB7D5CEE1AC3198E0068BC67 /* MapDemoVC.swift */,
+				D533967B1B95C1C600EA9389 /* DrumsDemoVC.swift */,
+				D52F03C61B987DF800C5CE28 /* PaintingDemoVC.swift */,
+				D57846481B99A0100016FE93 /* PaintingDemoColorPickerVC.swift */,
+				D518B2CD1B99E74E004C4735 /* ScrollDemoVC.swift */,
+				D58FA20E1B9E030600D26488 /* VideoDemoVC.swift */,
 				CB8F53001AD6817700EC2917 /* Evaluations */,
 			);
 			name = "View Controllers";
@@ -273,45 +301,23 @@
 			children = (
 				CB82A4291AB1CAA40032F5D6 /* InteractionDetector.swift */,
 				CBF0EE891AC9A0C500D689E2 /* ETMapGestureView.swift */,
+				D52F03C81B98963A00C5CE28 /* ETPaintGestureView.swift */,
 			);
 			name = "Expressive Touch";
-			sourceTree = "<group>";
-		};
-		CB8894F41ACC3B7C00F3FC2F /* Eval Demo Videos */ = {
-			isa = PBXGroup;
-			children = (
-				CB8894F51ACC3C0400F3FC2F /* Pitch Range Demo.mp4 */,
-				CB8894F61ACC3C0400F3FC2F /* Rotation Range Demo.mp4 */,
-				CB8894F71ACC3C0400F3FC2F /* Tap Force Demo.mp4 */,
-				CB8894F81ACC3C0400F3FC2F /* Time to Rotate Demo.mp4 */,
-				CB8894F91ACC3C0400F3FC2F /* Yaw Range Demo.mp4 */,
-			);
-			name = "Eval Demo Videos";
 			sourceTree = "<group>";
 		};
 		CB8F53001AD6817700EC2917 /* Evaluations */ = {
 			isa = PBXGroup;
 			children = (
-				CB4F22931AC4569F006EFF18 /* TapEvalVC.swift */,
-				CB86E72A1AD56F2400E176F9 /* ForceEvalVC.swift */,
-				CB86E72C1AD57F2700E176F9 /* RotateTestEvalVC.swift */,
-				CB86E72E1AD57F3E00E176F9 /* PitchTestEvalVC.swift */,
+				D5869F581B95F4C9001CF96C /* EvaluationMenuVC.swift */,
+				D542BD301B9DB9F1007C4533 /* EvaluationVC.swift */,
+				CB86E72A1AD56F2400E176F9 /* FreeForceEvalVC.swift */,
+				CB4F22931AC4569F006EFF18 /* CatForceEvalVC.swift */,
+				CB86E72C1AD57F2700E176F9 /* RollEvalVC.swift */,
+				CB86E72E1AD57F3E00E176F9 /* PitchEvalVC.swift */,
 				CBE3C7591AD9296400F2D7CF /* FlickEvalVC.swift */,
-				CB4F229B1AC45F76006EFF18 /* EvalInstructionsVC.swift */,
-				CBE3C7581AD9190E00F2D7CF /* Old Evaluations */,
 			);
 			name = Evaluations;
-			sourceTree = "<group>";
-		};
-		CBE3C7581AD9190E00F2D7CF /* Old Evaluations */ = {
-			isa = PBXGroup;
-			children = (
-				CB4F22951AC456BE006EFF18 /* RotationRngEvalVC.swift */,
-				CB4F22971AC456D7006EFF18 /* PitchRngEvalVC.swift */,
-				CB4F22991AC457B4006EFF18 /* YawRngEvalVC.swift */,
-				CBF0EE871AC95A7400D689E2 /* TimeRotateEvalVC.swift */,
-			);
-			name = "Old Evaluations";
 			sourceTree = "<group>";
 		};
 		D517508119E9831C0076F6FA = {
@@ -336,11 +342,27 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		D5869F431B95CAA7001CF96C /* Drums Demo Samples */ = {
+			isa = PBXGroup;
+			children = (
+				D5869F541B95D070001CF96C /* snare.mp3 */,
+				D5869F441B95CADC001CF96C /* crash-acoustic.wav */,
+				D5869F451B95CADC001CF96C /* hihat-acoustic01.wav */,
+				D5869F461B95CADC001CF96C /* hihat-acoustic02.wav */,
+				D5869F471B95CADC001CF96C /* kick-acoustic01.wav */,
+				D5869F481B95CADC001CF96C /* openhat-acoustic01.wav */,
+				D5869F491B95CADC001CF96C /* ride-acoustic02.wav */,
+				D5869F4A1B95CADC001CF96C /* tom-acoustic01.wav */,
+				D5869F4B1B95CADC001CF96C /* tom-acoustic02.wav */,
+			);
+			name = "Drums Demo Samples";
+			sourceTree = "<group>";
+		};
 		D5F1FBFD1B3D7E8B00C86D38 /* Sensor Connection */ = {
 			isa = PBXGroup;
 			children = (
-				CB7338761A822CA600FA1121 /* SensorScanVC.swift */,
 				D5F1FBFF1B3D7ED900C86D38 /* SensorSelectionVC.swift */,
+				CB7338761A822CA600FA1121 /* SensorScanVC.swift */,
 			);
 			name = "Sensor Connection";
 			sourceTree = "<group>";
@@ -454,6 +476,7 @@
 					};
 					D5F1FC0E1B3D8E6500C86D38 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = WF6EGE63BW;
 					};
 				};
 			};
@@ -482,15 +505,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D58FA2131B9EF46000D26488 /* bbb_sunflower.mp4 in Resources */,
 				CB7338811A822CA600FA1121 /* Images.xcassets in Resources */,
 				CBB6837B1AB9B2C700938059 /* art.scnassets in Resources */,
 				CB7338791A822CA600FA1121 /* LaunchScreen.xib in Resources */,
+				D5869F531B95CADC001CF96C /* tom-acoustic02.wav in Resources */,
 				CB73387A1A822CA600FA1121 /* Main.storyboard in Resources */,
-				CB8894FA1ACC40D600F3FC2F /* Pitch Range Demo.mp4 in Resources */,
-				CB8894FB1ACC40D800F3FC2F /* Rotation Range Demo.mp4 in Resources */,
-				CB8894FC1ACC40DD00F3FC2F /* Tap Force Demo.mp4 in Resources */,
-				CB8894FD1ACC40E000F3FC2F /* Time to Rotate Demo.mp4 in Resources */,
-				CB8894FE1ACC40E300F3FC2F /* Yaw Range Demo.mp4 in Resources */,
+				D5869F4D1B95CADC001CF96C /* hihat-acoustic01.wav in Resources */,
+				D5869F4C1B95CADC001CF96C /* crash-acoustic.wav in Resources */,
+				D5869F551B95D070001CF96C /* snare.mp3 in Resources */,
+				D5869F521B95CADC001CF96C /* tom-acoustic01.wav in Resources */,
+				D5869F4E1B95CADC001CF96C /* hihat-acoustic02.wav in Resources */,
+				D5869F511B95CADC001CF96C /* ride-acoustic02.wav in Resources */,
+				D5869F4F1B95CADC001CF96C /* kick-acoustic01.wav in Resources */,
+				D5869F501B95CADC001CF96C /* openhat-acoustic01.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,37 +579,42 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB4F22941AC4569F006EFF18 /* TapEvalVC.swift in Sources */,
+				CB4F22941AC4569F006EFF18 /* CatForceEvalVC.swift in Sources */,
 				CB4F22A01AC563A6006EFF18 /* CSVBuilder.swift in Sources */,
 				CB7338891A822CA600FA1121 /* SensorProcessor.swift in Sources */,
 				CB8895001ACD53D100F3FC2F /* EvalUtils.swift in Sources */,
 				CB8F53021AD68DF800EC2917 /* MathUtils.swift in Sources */,
+				D52F03C91B98963A00C5CE28 /* ETPaintGestureView.swift in Sources */,
+				D58FA20F1B9E030600D26488 /* VideoDemoVC.swift in Sources */,
+				D542BD311B9DB9F1007C4533 /* EvaluationVC.swift in Sources */,
+				D533967C1B95C1C600EA9389 /* DrumsDemoVC.swift in Sources */,
+				D518B2CE1B99E74E004C4735 /* ScrollDemoVC.swift in Sources */,
 				CB7338781A822CA600FA1121 /* AppDelegate.swift in Sources */,
+				D52F03C71B987DF800C5CE28 /* PaintingDemoVC.swift in Sources */,
 				CB7338871A822CA600FA1121 /* SensorConnectionManager.swift in Sources */,
 				CB73387B1A822CA600FA1121 /* InteractionDetectorVC.swift in Sources */,
-				CB4F229C1AC45F77006EFF18 /* EvalInstructionsVC.swift in Sources */,
-				CB86E72B1AD56F2400E176F9 /* ForceEvalVC.swift in Sources */,
+				CB86E72B1AD56F2400E176F9 /* FreeForceEvalVC.swift in Sources */,
 				CB7338801A822CA600FA1121 /* GyroGraphVC.swift in Sources */,
 				D5F1FC001B3D7ED900C86D38 /* SensorSelectionVC.swift in Sources */,
 				CB7338771A822CA600FA1121 /* AccGraphVC.swift in Sources */,
 				CBD91AE01AB9A2BE00A9ABBE /* PlaneModelVC.swift in Sources */,
-				CB4F22961AC456BE006EFF18 /* RotationRngEvalVC.swift in Sources */,
+				D5869F591B95F4C9001CF96C /* EvaluationMenuVC.swift in Sources */,
 				CB82A42A1AB1CAA40032F5D6 /* InteractionDetector.swift in Sources */,
 				CB7338881A822CA600FA1121 /* SensorData.swift in Sources */,
 				CBE3C75A1AD9296400F2D7CF /* FlickEvalVC.swift in Sources */,
 				CB73388A1A822CA600FA1121 /* SensorScanVC.swift in Sources */,
 				CB7D5CEF1AC3198E0068BC67 /* MapDemoVC.swift in Sources */,
 				CB9798351AA715BC00124A9D /* Vector.swift in Sources */,
-				CB86E72D1AD57F2700E176F9 /* RotateTestEvalVC.swift in Sources */,
+				D57846491B99A0100016FE93 /* PaintingDemoColorPickerVC.swift in Sources */,
+				CB86E72D1AD57F2700E176F9 /* RollEvalVC.swift in Sources */,
+				D533967A1B95B93800EA9389 /* UIViewExtensions.swift in Sources */,
+				D5869F571B95E107001CF96C /* MenuVC.swift in Sources */,
 				CBF0EE8A1AC9A0C500D689E2 /* ETMapGestureView.swift in Sources */,
-				CB4F229A1AC457B4006EFF18 /* YawRngEvalVC.swift in Sources */,
 				CB73387E1A822CA600FA1121 /* GraphBuilder.swift in Sources */,
 				CB7338861A822CA600FA1121 /* SensorCache.swift in Sources */,
-				CB86E72F1AD57F3F00E176F9 /* PitchTestEvalVC.swift in Sources */,
-				CB4F22981AC456D7006EFF18 /* PitchRngEvalVC.swift in Sources */,
+				CB86E72F1AD57F3F00E176F9 /* PitchEvalVC.swift in Sources */,
 				CBA2B0B51AAA1AD1006967EF /* MadgwickAHRS.c in Sources */,
 				CBE6BE271ABF12D00099A5C3 /* ControlsDemoVC.swift in Sources */,
-				CBF0EE881AC95A7400D689E2 /* TimeRotateEvalVC.swift in Sources */,
 				CB7338841A822CA600FA1121 /* MagGraphVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -727,12 +760,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = ExpressiveTouch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -753,12 +787,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = ExpressiveTouch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -776,6 +811,7 @@
 		D5F1FC1F1B3D8E6500C86D38 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -793,6 +829,7 @@
 		D5F1FC201B3D8E6500C86D38 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";

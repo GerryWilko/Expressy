@@ -111,6 +111,8 @@ typedef NS_ENUM(UInt16, MSBPageElementColorSource)
     MSBPageElementColorSourceTileSecondaryText,
     MSBPageElementColorSourceTileHighContrast,
     MSBPageElementColorSourceTileMuted,
+    
+    MSBPageElementColorSourceMax, // reserved invalid value.
 };
 
 #endif

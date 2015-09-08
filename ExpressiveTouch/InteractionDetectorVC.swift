@@ -16,49 +16,44 @@ class InteractionDetectorVC: UIViewController {
     @IBOutlet weak var pitchLbl: UILabel!
     @IBOutlet weak var flickedSwitch: UISwitch!
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         detector = InteractionDetector(dataCache: SensorProcessor.dataCache)
-        detector.startDetection()
-        
         super.init(coder: aDecoder)
-        
         detector.subscribe(EventType.Metrics, callback: dataCallback)
-        detector.subscribe(EventType.Flicked, callback: flickedCallback)
+        detector.subscribe(EventType.Flick, callback: flickedCallback)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        detector.startDetection()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        detector.stopDetection()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
+        super.touchesBegan(touches, withEvent: event)
+        detector.touchDown()
         flickedSwitch.setOn(false, animated: true)
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        detector.touchUp(NSDate.timeIntervalSinceReferenceDate())
+        super.touchesEnded(touches, withEvent: event)
+        detector.touchUp()
     }
     
-    private func dataCallback(data:Float!) {
+    override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
+        super.touchesCancelled(touches, withEvent: event)
+        detector.touchCancelled()
+    }
+    
+    private func dataCallback(data:Float?) {
         forceLbl.text = String(format: "%.2f", detector.currentForce)
         rotationLbl.text = String(format: "%.2f", detector.currentRotation)
         pitchLbl.text = String(format: "%.2f", detector.currentPitch)
     }
     
-    private func flickedCallback(data:Float!) {
+    private func flickedCallback(data:Float?) {
         self.flickedSwitch.setOn(true, animated: true)
-    }
-    
-    @IBAction func exportData(sender: AnyObject) {
-        let csv = CSVBuilder(fileNames: ["data.csv"], headerLines: [SensorData.headerLine()])
-        
-        let dataCache = SensorProcessor.dataCache
-        
-        for i in 0..<dataCache.count() {
-            let data = dataCache[i]
-            csv.appendRow(data.print(), index: 0)
-        }
-        
-        csv.emailCSV(self, subject: "Interaction Data")
-    }
-    
-    override func viewDidDisappear(animated: Bool) {
-        detector.stopDetection()
     }
 }

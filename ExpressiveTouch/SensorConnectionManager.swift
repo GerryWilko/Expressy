@@ -18,6 +18,8 @@ class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralM
     private var cManager = CBCentralManager()
     private var peripheralManager = CBPeripheralManager()
     private var ready:Bool
+    private var readyCallbacks:[() -> Void]
+    private var connectionCallback:((error:NSError?) -> Void)!
     
     private var msAccData:MSBSensorAccelerometerData?
     private var msGyroData:MSBSensorGyroscopeData?
@@ -28,6 +30,7 @@ class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralM
         assert(SensorConnectionManager.connectionManager == nil)
         
         ready = false
+        readyCallbacks = Array<() -> Void>()
         
         super.init()
         
@@ -46,6 +49,15 @@ class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralM
         }
         
         return connectionManager
+    }
+    
+    func subscribeReady(callback:() -> Void) {
+        readyCallbacks.append(callback)
+    }
+    
+    
+    func clearReadySubscriptions() {
+        readyCallbacks.removeAll(keepCapacity: false)
     }
     
     /// Function to initiate Bluetooth scan for sensors.
@@ -72,6 +84,9 @@ class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralM
         case .PoweredOn:
             print("CoreBluetooth BLE hardware is powered on and ready")
             ready = true
+            readyCallbacks.forEach({ (cb) -> () in
+                cb()
+            })
             break
         case .Resetting:
             print("CoreBluetooth BLE hardware is resetting")
@@ -93,14 +108,15 @@ class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralM
     }
     
     func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
-        print(peripheral.name);
-        
-        SensorScanVC.addDevice(peripheral)
+        if (peripheral.name != nil) {
+            SensorScanVC.addDevice(peripheral)
+        }
     }
     
     /// Function to connect to specfied peripheral.
     /// - parameter peripheral: Peripheral to connect to.
-    func connectPeripheral(peripheral: CBPeripheral) {
+    func connectPeripheral(peripheral: CBPeripheral, completedCallback:(error: NSError?) -> Void) {
+        connectionCallback = completedCallback
         cManager.connectPeripheral(peripheral, options: nil)
     }
     
@@ -112,9 +128,7 @@ class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralM
     func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
         print("FAILED TO CONNECT \(error)")
         
-        let conFailedAlert = UIAlertController(title: "Connection Failed", message: "Failed to connect to peripheral.", preferredStyle: UIAlertControllerStyle.Alert)
-        conFailedAlert.addAction(UIAlertAction(title: "OK", style: .Destructive, handler: nil))
-        UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(conFailedAlert, animated: true, completion: nil)
+        connectionCallback(error: error)
     }
     
     func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager) {
@@ -155,9 +169,7 @@ class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralM
         if (serviceList.count > 0) {
             peripheral.discoverCharacteristics(nil, forService: serviceList[0])
         } else {
-            let conFailedAlert = UIAlertController(title: "Connection Failed", message: "Selected sensor does not have the required services.", preferredStyle: UIAlertControllerStyle.Alert)
-            conFailedAlert.addAction(UIAlertAction(title: "OK", style: .Destructive, handler: nil))
-            UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(conFailedAlert, animated: true, completion: nil)
+            connectionCallback(error: NSError(domain: "bluetooth", code: 1, userInfo: ["message": "Selected sensor does not have the required services."]))
         }
     }
     
@@ -175,12 +187,7 @@ class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralM
             peripheral.writeValue(streamMessage, forCharacteristic: writeCharac, type: CBCharacteristicWriteType.WithoutResponse)
         }
         
-        let conAlert = UIAlertController(title: "Connection Successful", message: "Sensor connected and data now being streamed.", preferredStyle: UIAlertControllerStyle.Alert)
-        conAlert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-        UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(conAlert, animated: true, completion: nil)
-        let navController = UIApplication.sharedApplication().keyWindow?.rootViewController as! UINavigationController
-        let menu = navController.topViewController as! UITableViewController
-        menu.tableView.userInteractionEnabled = true
+        connectionCallback(error: nil)
     }
     
     func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic,
@@ -193,6 +200,18 @@ class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralM
         {
             peripheral.readValueForCharacteristic(characteristic);
         }
+    }
+    
+    func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
+        let nav = (UIApplication.sharedApplication().delegate as! AppDelegate).window?.rootViewController as! UINavigationController
+        nav.popToRootViewControllerAnimated(true)
+        (nav.topViewController as! MenuVC).connectDeviceBtn.enabled = true
+        
+        let alert = UIAlertController(title: "Sensor Disconnected", message: "Connection to the sensor has been lost. You have been returned to the main menu.", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        
+        nav.topViewController!.presentViewController(alert, animated: true, completion: nil)
     }
     
     func connectMSB() {
@@ -228,18 +247,28 @@ class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralM
     }
     
     func clientManager(clientManager: MSBClientManager!, clientDidDisconnect client: MSBClient!) {
-        print("Microsoft Band disconnected.")
+        let nav = (UIApplication.sharedApplication().delegate as! AppDelegate).window?.rootViewController as! UINavigationController
+        nav.popToRootViewControllerAnimated(true)
+        (nav.topViewController as! MenuVC).connectDeviceBtn.enabled = true
+        
+        let alert = UIAlertController(title: "Sensor Disconnected", message: "Connection to the sensor has been lost. You have been returned to the main menu.", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        
+        nav.topViewController!.presentViewController(alert, animated: true, completion: nil)
     }
     
     func clientManager(clientManager: MSBClientManager!, client: MSBClient!, didFailToConnectWithError error: NSError!) {
         print(error)
     }
     
+    @available(iOS 9.0, *)
     func startAppleWatchSensorUpdates() {
         WCSession.defaultSession().delegate = self
         WCSession.defaultSession().activateSession()
     }
     
+    @available(iOS 9.0, *)
     func session(session: WCSession, didReceiveMessage message: [String : AnyObject]) {
         let accData = message["accData"] as! CMAccelerometerData
         let gyroData = message["gyroData"] as! CMGyroData

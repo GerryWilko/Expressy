@@ -11,7 +11,7 @@ import Foundation
 class MagGraphVC: UIViewController {
     private let magGraphBuilder:GraphBuilder
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         magGraphBuilder = GraphBuilder(title: "Magnetometer", type: .Magnetometer, dataCache: SensorProcessor.dataCache)
         super.init(coder: aDecoder)
     }

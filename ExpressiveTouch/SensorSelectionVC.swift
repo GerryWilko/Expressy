@@ -15,19 +15,10 @@ class SensorSelectionVC: UIViewController {
     @IBOutlet weak var otherBluetoothBtn: UIButton!
     
     override func viewDidLoad() {
-        appleWatchBtn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
-        msbBtn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
-        otherBluetoothBtn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
-        
-        print(WCSession.defaultSession().paired)
-        print(WCSession.defaultSession().watchAppInstalled)
-        
-        appleWatchBtn.enabled = WCSession.defaultSession().paired
+        if #available(iOS 9.0, *) {
+            appleWatchBtn.enabled = WCSession.defaultSession().paired
+        }
         msbBtn.enabled = !MSBClientManager.sharedManager().attachedClients().isEmpty
-    }
-    
-    @IBAction func cancelBtn(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func appleWatchPressed(sender: AnyObject) {

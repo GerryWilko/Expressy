@@ -12,22 +12,27 @@
 
 @interface MSBTile : NSObject
 
-@property(nonatomic, readonly)                  NSString            *name;
-@property(nonatomic, readonly)                  NSUUID              *tileId;
-@property(nonatomic, readonly)                  MSBIcon             *smallIcon;
-@property(nonatomic, readonly)                  MSBIcon             *tileIcon;
-@property(nonatomic, strong)                    MSBTheme            *theme;
-@property(nonatomic, assign, getter=isBadgingEnabled)   BOOL        badgingEnabled;
+@property (nonatomic, readonly) NSString *name;
+@property (nonatomic, readonly) NSUUID *tileId;
+@property (nonatomic, readonly) MSBIcon *smallIcon;
+@property (nonatomic, readonly) MSBIcon *tileIcon;
+@property (nonatomic, strong) MSBTheme *theme;
+
+/** specifies if the Band should display badge count if the Tile has unread messages. The default value is NO. */
+@property (nonatomic, assign, getter=isBadgingEnabled) BOOL badgingEnabled;
+
+/** specifies if the Band should enable screen timeout when this Tile is open. The default value is YES. */
+@property (nonatomic, assign, getter=isScreenTimeoutEnabled) BOOL screenTimeoutEnabled;
 
 /**
  * The objects in pageIcons should be MSBIcon and the maximum allowed pageIcons are 8.
  */
-@property(nonatomic, readonly)                  NSMutableArray      *pageIcons;
+@property (nonatomic, readonly) NSMutableArray *pageIcons;
 
 /**
  * The objects in pageLayouts must be MSBPageLayout and the maximum allowed pageLayouts are 8.
  */
-@property(nonatomic, readonly)                  NSMutableArray      *pageLayouts;
+@property (nonatomic, readonly) NSMutableArray *pageLayouts;
 
 
 /*

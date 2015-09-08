@@ -15,15 +15,13 @@ class ControlsDemoVC: UIViewController {
     private let detector:InteractionDetector
     
     @IBOutlet weak var barLbl1: UILabel!
-    @IBOutlet weak var barLbl2: UILabel!
     @IBOutlet weak var progressBar1: UIProgressView!
     
     @IBOutlet weak var imageETSwitch: UISwitch!
     @IBOutlet weak var imageView: UIImageView!
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         detector = InteractionDetector(dataCache: SensorProcessor.dataCache)
-        detector.startDetection()
         super.init(coder: aDecoder)
     }
     
@@ -32,23 +30,27 @@ class ControlsDemoVC: UIViewController {
         imageView.addGestureRecognizer(UIRotationGestureRecognizer(target: self, action: Selector("imageRotated:")))
     }
     
+    override func viewWillAppear(animated: Bool) {
+        detector.startDetection()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        detector.stopDetection()
+    }
+    
     @IBAction func bar1TouchDown(sender: UIButton) {
         touchValue = progressBar1.progress * 100
         
-        detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
+        detector.touchDown()
         detector.subscribe(EventType.Metrics, callback: controlMetricsCallback)
     }
     
     @IBAction func bar1TouchUp(sender: UIButton) {
-        detector.touchUp(NSDate.timeIntervalSinceReferenceDate())
+        detector.touchUp()
         detector.clearSubscriptions()
     }
     
-    @IBAction func progBar2Changed(sender: UISlider) {
-        barLbl2.text = String(format: "%.2f", sender.value)
-    }
-    
-    private func controlMetricsCallback(data:Float!) {
+    private func controlMetricsCallback(data:Float?) {
         var newValue = touchValue + self.detector.currentRotation
         
         if (newValue > 100) {
@@ -72,12 +74,12 @@ class ControlsDemoVC: UIViewController {
         
         if (imageETSwitch.on && touch!.view == imageView)
         {
-            detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
+            detector.touchDown()
             detector.subscribe(EventType.Metrics, callback: imageMetricsCallback)
         }
     }
     
-    private func imageMetricsCallback(data:Float!) {
+    private func imageMetricsCallback(data:Float?) {
         self.imageView.transform = CGAffineTransformRotate(self.startTransform, CGFloat(self.detector.currentRotation) * CGFloat(M_PI / 180))
     }
     
@@ -86,7 +88,7 @@ class ControlsDemoVC: UIViewController {
         
         if (imageETSwitch.on && touch!.view == imageView)
         {
-            detector.touchUp(NSDate.timeIntervalSinceReferenceDate())
+            detector.touchUp()
             detector.clearSubscriptions()
         }
         

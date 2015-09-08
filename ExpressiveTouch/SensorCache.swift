@@ -12,7 +12,7 @@ class SensorCache {
     private var data:[SensorData]
     private var dataCallbacks:[(data:SensorData) -> Void]
     
-    private let limit:UInt = 100
+    private let limit:UInt = 100000
     
     /// Initialises a new data cache for storage of sensor data.
     /// - returns: New SensorCache instance.

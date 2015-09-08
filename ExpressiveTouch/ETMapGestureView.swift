@@ -18,7 +18,7 @@ class ETMapGestureView: UIView {
     private let pitchBound:CGFloat = 50.0
     private let detector:InteractionDetector
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         detector = InteractionDetector(dataCache: SensorProcessor.dataCache)
         detector.startDetection()
         super.init(coder: aDecoder)
@@ -27,16 +27,16 @@ class ETMapGestureView: UIView {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         touchPitch = map.camera.pitch
         touchHeading = map.camera.heading
-        detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
+        detector.touchDown()
         detector.subscribe(EventType.Metrics, callback: metricCallback)
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        detector.touchUp(NSDate.timeIntervalSinceReferenceDate())
+        detector.touchUp()
         detector.clearSubscriptions()
     }
     
-    private func metricCallback(data:Float!) {
+    private func metricCallback(data:Float?) {
         var newPitch = touchPitch + CGFloat(-detector.currentPitch * 3)
         let newRoll = touchHeading + CLLocationDirection(detector.currentRotation)
         

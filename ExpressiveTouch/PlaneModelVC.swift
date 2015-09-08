@@ -58,7 +58,7 @@ class PlaneModelVC: UIViewController {
         var gestureRecognizers = [UIGestureRecognizer]()
         gestureRecognizers.append(tapGesture)
         if let existingGestureRecognizers = scnView.gestureRecognizers {
-            gestureRecognizers.extend(existingGestureRecognizers)
+            gestureRecognizers.appendContentsOf(existingGestureRecognizers)
         }
         scnView.gestureRecognizers = gestureRecognizers
         
@@ -69,30 +69,33 @@ class PlaneModelVC: UIViewController {
         // check what nodes are tapped
         let p = gestureRecognize.locationInView(scnView)
         let hitResults = scnView.hitTest(p, options: nil)
+        
         // check that we clicked on at least one object
-        // retrieved the first clicked object
-        let result: AnyObject! = hitResults[0]
-        
-        // get its material
-        let material = result.node!.geometry!.firstMaterial!
-        
-        // highlight it
-        SCNTransaction.begin()
-        SCNTransaction.setAnimationDuration(0.5)
-        
-        // on completion - unhighlight
-        SCNTransaction.setCompletionBlock {
+        if hitResults.count > 0 {
+            // retrieved the first clicked object
+            let result: AnyObject! = hitResults[0]
+            
+            // get its material
+            let material = result.node!.geometry!.firstMaterial!
+            
+            // highlight it
             SCNTransaction.begin()
             SCNTransaction.setAnimationDuration(0.5)
             
-            material.emission.contents = UIColor.blackColor()
+            // on completion - unhighlight
+            SCNTransaction.setCompletionBlock {
+                SCNTransaction.begin()
+                SCNTransaction.setAnimationDuration(0.5)
+                
+                material.emission.contents = UIColor.blackColor()
+                
+                SCNTransaction.commit()
+            }
+            
+            material.emission.contents = UIColor.redColor()
             
             SCNTransaction.commit()
         }
-        
-        material.emission.contents = UIColor.redColor()
-        
-        SCNTransaction.commit()
     }
     
     func dataCallback(data:SensorData) {

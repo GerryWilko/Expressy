@@ -8,47 +8,30 @@
 
 import Foundation
 
-class FlickEvalVC: UIViewController {
+class FlickEvalVC: EvaluationVC {
     private var runStack:[Flick]!
     private var current:Flick!
-    private var startTime:NSTimeInterval!
     
-    private let detector:InteractionDetector
-    private let csvBuilder:CSVBuilder
-    private let participant:UInt32
-    
-    @IBOutlet weak var instructionLbl: UILabel!
-    @IBOutlet weak var progressBar: UIProgressView!
-    @IBOutlet weak var navBar: UINavigationItem!
-    @IBOutlet weak var nextBtn: UIBarButtonItem!
-    
-    required init(coder aDecoder: NSCoder) {
-        detector = InteractionDetector(dataCache: SensorProcessor.dataCache)
-        detector.startDetection()
-        participant = EvalUtils.generateParticipantID()
-        csvBuilder = CSVBuilder(fileNames: ["flick-\(participant).csv", "flickData-\(participant).csv"], headerLines: ["Participant ID,Time,Requested,Flick Force", SensorData.headerLine()])
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        runStack = buildRunStack()
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        setupCSV("flick", headerLine: "Participant ID,Time,Requested,Flick Force")
+        runStack = buildRunStack()
         self.performSegueWithIdentifier("flickTestInstructions", sender: self)
-        detector.subscribe(EventType.Flicked, callback: flickedCallback)
-        startTime = NSDate.timeIntervalSinceReferenceDate()
-        navBar.title = "\(navBar.title!) \(participant)"
-    }
-    
-    override func viewDidDisappear(animated: Bool) {
-        detector.stopDetection()
+        detector.subscribe(EventType.Flick, callback: flickedCallback)
+        detector.subscribe(EventType.NoFlick, callback: flickedCallback)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        detector.touchDown(NSDate.timeIntervalSinceReferenceDate())
+        super.touchesBegan(touches, withEvent: event)
         setFlickView()
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        detector.touchUp(NSDate.timeIntervalSinceReferenceDate())
+        super.touchesEnded(touches, withEvent: event)
         setWaitView()
     }
     
@@ -71,10 +54,10 @@ class FlickEvalVC: UIViewController {
         return runStack
     }
     
-    private func flickedCallback(data:Float!) {
+    private func flickedCallback(data:Float?) {
         let time = NSDate.timeIntervalSinceReferenceDate()
         let currentString = current == Flick.Flick ? "Flick" : "No Flick"
-        csvBuilder.appendRow("\(participant),\(time),\(currentString),\(data)", index: 0)
+        logEvalData("\(participant),\(time),\(currentString),\(data!)")
         setNextView()
     }
     
@@ -110,8 +93,8 @@ class FlickEvalVC: UIViewController {
             nextBtn.enabled = false
             instructionLbl.text = "Evaluation complete. Thank you."
             instructionLbl.textColor = UIColor.blackColor()
-            EvalUtils.logDataBetweenTimes(startTime, endTime: NSDate.timeIntervalSinceReferenceDate(), csv: csvBuilder)
-            csvBuilder.emailCSV(self, subject: "Flick Evaluation: \(participant)")
+            logSensorData()
+            evalVC.completeFlick(csv)
         } else {
             instructionLbl.text = "Press and hold."
             instructionLbl.textColor = UIColor.blackColor()
@@ -120,6 +103,8 @@ class FlickEvalVC: UIViewController {
         
         progressBar.setProgress(Float(Float(10 - runStack.count) / 10.0), animated: true)
     }
+    
+    @IBAction func unwindToFlickEval(segue:UIStoryboardSegue) {}
 }
 
 private enum Flick {

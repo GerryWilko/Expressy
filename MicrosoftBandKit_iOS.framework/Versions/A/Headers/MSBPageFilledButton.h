@@ -9,6 +9,7 @@
 @interface MSBPageFilledButton : MSBPageElement
 
 @property (nonatomic, strong) MSBColor *backgroundColor;
+@property (nonatomic, assign) MSBPageElementColorSource backgroundColorSource;
 
 - (id)initWithRect:(MSBPageRect *)rect;
 

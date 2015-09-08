@@ -25,7 +25,7 @@
 #import <MicrosoftBandKit_iOS/MSBPageData.h>
 #import <MicrosoftBandKit_iOS/MSBPageElementData.h>
 #import <MicrosoftBandKit_iOS/MSBPageTextData.h>
-#import <MicrosoftBandKit_iOS/MSBpageTextBlockData.h>
+#import <MicrosoftBandKit_iOS/MSBPageTextBlockData.h>
 #import <MicrosoftBandKit_iOS/MSBPageWrappedTextBlockData.h>
 #import <MicrosoftBandKit_iOS/MSBPageIconData.h>
 #import <MicrosoftBandKit_iOS/MSBPageBarcodeData.h>

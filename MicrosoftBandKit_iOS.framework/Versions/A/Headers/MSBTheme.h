@@ -17,5 +17,6 @@
 @property(nonatomic, strong)    MSBColor     *highContrastColor;
 @property(nonatomic, strong)    MSBColor     *mutedColor;
 
++ (MSBTheme *)themeWithDictionary:(NSDictionary *)dictionary error:(NSError **)pError;
 + (MSBTheme *)themeWithBaseColor:(MSBColor *)baseColor highlightColor:(MSBColor *)highlightColor lowlightColor:(MSBColor *)lowlightColor secondaryTextColor:(MSBColor *)secondaryTextColor highContrastColor:(MSBColor *)highContrastColor mutedColor:(MSBColor *)mutedColor;
 @end
