@@ -13,4 +13,5 @@ Once you have downloaded a copy of the project you need to set up CocoaPods in t
 2. Next run the following to set up CocoaPods for Expressive Touch:
 
     `pod update`
-3. Now you can open the generated `ExpressiveTouch.xcworkspace` project and deploy it to your device.
+3. Download Big Buck Bunny video from http://bbb3d.renderfarming.net/download.html and place in `ExpressiveTouch\bbb_sunflower.mp4`.
+4. Now you can open the generated `ExpressiveTouch.xcworkspace` project and deploy it to your device.
