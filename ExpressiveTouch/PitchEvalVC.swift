@@ -80,10 +80,10 @@ class PitchEvalVC: EvaluationVC {
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        let pitch = detector.currentPitch
         super.touchesEnded(touches, withEvent: event)
         
         let time = NSDate.timeIntervalSinceReferenceDate()
-        let pitch = detector.currentPitch
         
         switch (stage) {
         case 1:

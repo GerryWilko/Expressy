@@ -41,6 +41,7 @@ class RollEvalVC: EvaluationVC {
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesBegan(touches, withEvent: event)
+        
         switch (stage) {
         case 1:
             detector.subscribe(EventType.Metrics, callback: rangeMetricsCallback)
@@ -60,6 +61,8 @@ class RollEvalVC: EvaluationVC {
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        super.touchesEnded(touches, withEvent: event)
+        
         switch (stage) {
         case 1:
             detector.clearSubscriptions()

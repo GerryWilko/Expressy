@@ -55,12 +55,7 @@ class PlaneModelVC: UIViewController {
         
         // add a tap gesture recognizer
         let tapGesture = UITapGestureRecognizer(target: self, action: "handleTap:")
-        var gestureRecognizers = [UIGestureRecognizer]()
-        gestureRecognizers.append(tapGesture)
-        if let existingGestureRecognizers = scnView.gestureRecognizers {
-            gestureRecognizers.appendContentsOf(existingGestureRecognizers)
-        }
-        scnView.gestureRecognizers = gestureRecognizers
+        scnView.gestureRecognizers?.append(tapGesture)
         
         SensorProcessor.dataCache.subscribe(dataCallback)
     }
