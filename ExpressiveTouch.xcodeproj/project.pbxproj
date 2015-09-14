@@ -155,6 +155,7 @@
 		D53396791B95B93800EA9389 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		D533967B1B95C1C600EA9389 /* DrumsDemoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrumsDemoVC.swift; sourceTree = "<group>"; };
 		D542BD301B9DB9F1007C4533 /* EvaluationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationVC.swift; sourceTree = "<group>"; };
+		D567C1BC1BA6D22300E7C29F /* bbb_sunflower.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = bbb_sunflower.mp4; sourceTree = "<group>"; };
 		D57846481B99A0100016FE93 /* PaintingDemoColorPickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaintingDemoColorPickerVC.swift; sourceTree = "<group>"; };
 		D5869F441B95CADC001CF96C /* crash-acoustic.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "crash-acoustic.wav"; sourceTree = "<group>"; };
 		D5869F451B95CADC001CF96C /* hihat-acoustic01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "hihat-acoustic01.wav"; sourceTree = "<group>"; };
@@ -246,6 +247,7 @@
 				CB8894FF1ACD53D100F3FC2F /* EvalUtils.swift */,
 				D53396791B95B93800EA9389 /* UIViewExtensions.swift */,
 				D5869F431B95CAA7001CF96C /* Drums Demo Samples */,
+				D567C1BC1BA6D22300E7C29F /* bbb_sunflower.mp4 */,
 				CB73386D1A822CA600FA1121 /* Images.xcassets */,
 				CBB6837A1AB9B2C700938059 /* art.scnassets */,
 				CB73388E1A822CF700FA1121 /* Supporting Files */,
