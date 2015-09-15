@@ -4,7 +4,8 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'ExpressiveTouch' do
-    pod 'CorePlot', :git => 'https://github.com/core-plot/core-plot.git'
+    pod 'CorePlot'
     pod 'DAScratchPad'
+    pod 'MDRadialProgress'
 
 end

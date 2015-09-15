@@ -9,12 +9,12 @@
 import Foundation
 
 class ScrollDemoVC: UICollectionViewController {
-    let detector:InteractionDetector
+    let detector:EXTInteractionDetector
     
     private var scrollPace:CGFloat!
     
     required init?(coder aDecoder: NSCoder) {
-        detector = InteractionDetector(dataCache: SensorProcessor.dataCache)
+        detector = EXTInteractionDetector(dataCache: SensorProcessor.dataCache)
         super.init(coder: aDecoder)
     }
     
@@ -36,7 +36,7 @@ class ScrollDemoVC: UICollectionViewController {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("imageCell", forIndexPath: indexPath) 
         let image = cell.viewWithTag(100) as! UIImageView
         
-        NSURLConnection.sendAsynchronousRequest(NSURLRequest(URL: NSURL(string: "http://lorempixel.com/600/400")!), queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
+        NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration()).dataTaskWithRequest(NSURLRequest(URL: NSURL(string: "http://lorempixel.com/600/400")!)) { (data, response, error) -> Void in
             if error == nil {
                 image.image = UIImage(data: data!)
             }
@@ -52,9 +52,9 @@ class ScrollDemoVC: UICollectionViewController {
     
     override func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         detector.touchUp()
-        scrollPace = velocity.y
-        detector.subscribe(EventType.Metrics) { (data) -> Void in
-            self.scrollPace! += CGFloat(self.detector.currentRotation)
+        scrollPace = velocity.y * 10.0
+        detector.subscribe(.Metrics) { (data) -> Void in
+            self.scrollPace! += CGFloat(self.detector.currentRoll)
             if (velocity.y > 0.0)
             {
                 self.scrollPace = self.scrollPace < 0.0 ? 0.0 : self.scrollPace

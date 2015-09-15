@@ -9,7 +9,7 @@
 import Foundation
 
 class EvaluationVC: UIViewController {
-    let detector:InteractionDetector
+    let detector:EXTInteractionDetector
     var csv:CSVBuilder!
     
     var participant:UInt32!
@@ -24,7 +24,7 @@ class EvaluationVC: UIViewController {
     @IBOutlet weak var nextBtn: UIBarButtonItem!
     
     required init?(coder aDecoder: NSCoder) {
-        detector = InteractionDetector(dataCache: SensorProcessor.dataCache)
+        detector = EXTInteractionDetector(dataCache: SensorProcessor.dataCache)
         super.init(coder: aDecoder)
     }
     

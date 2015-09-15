@@ -1,6 +1,6 @@
 ALWAYS_SEARCH_USER_PATHS = YES
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/CorePlot" "${PODS_ROOT}/Headers/Public/CorePlot/ios" "${PODS_ROOT}/Headers/Public/DAScratchPad"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/CorePlot" -isystem "${PODS_ROOT}/Headers/Public/CorePlot/ios" -isystem "${PODS_ROOT}/Headers/Public/DAScratchPad"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"CorePlot" -l"DAScratchPad" -framework "Accelerate" -framework "Foundation" -framework "QuartzCore" -framework "UIKit"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/CorePlot" "${PODS_ROOT}/Headers/Public/DAScratchPad" "${PODS_ROOT}/Headers/Public/MDRadialProgress"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/CorePlot" -isystem "${PODS_ROOT}/Headers/Public/DAScratchPad" -isystem "${PODS_ROOT}/Headers/Public/MDRadialProgress"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"CorePlot" -l"DAScratchPad" -l"MDRadialProgress" -framework "Accelerate" -framework "Foundation" -framework "QuartzCore" -framework "UIKit"
 PODS_ROOT = ${SRCROOT}/Pods

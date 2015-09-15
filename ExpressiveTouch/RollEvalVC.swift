@@ -44,7 +44,7 @@ class RollEvalVC: EvaluationVC {
         
         switch (stage) {
         case 1:
-            detector.subscribe(EventType.Metrics, callback: rangeMetricsCallback)
+            detector.subscribe(.Metrics, callback: rangeMetricsCallback)
             instructionLbl.text = "Now rotate as far as you can clockwise. Then back anti-clockwise, keep your finger held down."
             break
         case 2:
@@ -52,7 +52,7 @@ class RollEvalVC: EvaluationVC {
             
             if (touch!.view == rotateImage) {
                 touchTime = NSDate.timeIntervalSinceReferenceDate()
-                detector.subscribe(EventType.Metrics, callback: imageMetricsCallback)
+                detector.subscribe(.Metrics, callback: imageMetricsCallback)
             }
             break
         default:
@@ -88,19 +88,19 @@ class RollEvalVC: EvaluationVC {
     }
     
     private func rangeMetricsCallback(data:Float?) {
-        if (self.maxValue < self.detector.currentRotation) {
-            self.maxValue = self.detector.currentRotation
+        if (self.maxValue < self.detector.currentRoll) {
+            self.maxValue = self.detector.currentRoll
             self.rightBar.setProgress(self.maxValue / 180, animated: true)
         }
         
-        if (self.minValue > self.detector.currentRotation) {
-            self.minValue = self.detector.currentRotation
+        if (self.minValue > self.detector.currentRoll) {
+            self.minValue = self.detector.currentRoll
             self.leftBar.setProgress((-self.minValue) / 180, animated: true)
         }
     }
     
     private func imageMetricsCallback(data:Float?) {
-        self.rotateImage.transform = CGAffineTransformRotate(self.lastTransform, CGFloat(self.detector.currentRotation) * CGFloat(M_PI / 180))
+        self.rotateImage.transform = CGAffineTransformRotate(self.lastTransform, CGFloat(self.detector.currentRoll) * CGFloat(M_PI / 180))
     }
     
     private func randomiseImages() {

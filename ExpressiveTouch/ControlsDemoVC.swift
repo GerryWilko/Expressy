@@ -9,89 +9,84 @@
 import Foundation
 
 class ControlsDemoVC: UIViewController {
-    private var touchValue:Float!
-    private var startTransform:CGAffineTransform!
+    private var touchImageTransform:CGAffineTransform!
+    private var touchProgress:UInt
     
-    private let detector:InteractionDetector
+    private var rotationRecognizer:UIRotationGestureRecognizer!
+    private var rollRecognizer:EXTRollGestureRecognizer!
     
-    @IBOutlet weak var barLbl1: UILabel!
-    @IBOutlet weak var progressBar1: UIProgressView!
-    
-    @IBOutlet weak var imageETSwitch: UISwitch!
+    @IBOutlet weak var progressView: MDRadialProgressView!
     @IBOutlet weak var imageView: UIImageView!
     
     required init?(coder aDecoder: NSCoder) {
-        detector = InteractionDetector(dataCache: SensorProcessor.dataCache)
+        touchProgress = 0
+        
         super.init(coder: aDecoder)
+        
+        rotationRecognizer = UIRotationGestureRecognizer(target: self, action: Selector("imageRotated:"))
+        rollRecognizer = EXTRollGestureRecognizer(target: self, action: Selector("imageEXTRoll:"))
     }
     
     override func viewDidLoad() {
-        startTransform = imageView.transform
-        imageView.addGestureRecognizer(UIRotationGestureRecognizer(target: self, action: Selector("imageRotated:")))
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        detector.startDetection()
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        detector.stopDetection()
-    }
-    
-    @IBAction func bar1TouchDown(sender: UIButton) {
-        touchValue = progressBar1.progress * 100
+        super.viewDidLoad()
         
-        detector.touchDown()
-        detector.subscribe(EventType.Metrics, callback: controlMetricsCallback)
-    }
-    
-    @IBAction func bar1TouchUp(sender: UIButton) {
-        detector.touchUp()
-        detector.clearSubscriptions()
-    }
-    
-    private func controlMetricsCallback(data:Float?) {
-        var newValue = touchValue + self.detector.currentRotation
+        progressView.addGestureRecognizer(EXTRollGestureRecognizer(target: self, action: Selector("progressRoll:")))
+        progressView.progressCounter = 0
+        progressView.progressTotal = UInt(100)
         
-        if (newValue > 100) {
-            newValue = 100.0
-        } else if (newValue < 0) {
-            newValue = 0
-        }
+        touchImageTransform = imageView.transform
         
-        self.progressBar1.progress = newValue / 100
-        self.barLbl1.text = String(format: "%.2f", newValue)
+        imageView.addGestureRecognizer(rollRecognizer)
     }
     
-    func imageRotated(gesture:UIRotationGestureRecognizer) {
-        if (!imageETSwitch.on) {
-            imageView.transform = CGAffineTransformRotate(startTransform, gesture.rotation)
+    func progressRoll(recognizer:EXTRollGestureRecognizer) {
+        switch recognizer.state {
+        case .Began:
+            touchProgress = progressView.progressCounter
+        case .Changed:
+            var newValue = Int(touchProgress) + Int(recognizer.currentRoll)
+            
+            if newValue > 100 {
+                newValue = 100
+            } else if newValue < 0 {
+                newValue = 0
+            }
+            
+            progressView.progressCounter = UInt(newValue)
+        default:
+            break
         }
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        let touch = touches.first
-        
-        if (imageETSwitch.on && touch!.view == imageView)
-        {
-            detector.touchDown()
-            detector.subscribe(EventType.Metrics, callback: imageMetricsCallback)
+    @IBAction func imageEXTSwitch(sender: UISwitch) {
+        if sender.on {
+            imageView.removeGestureRecognizer(rotationRecognizer)
+            imageView.addGestureRecognizer(rollRecognizer)
+        } else {
+            imageView.removeGestureRecognizer(rollRecognizer)
+            imageView.addGestureRecognizer(rotationRecognizer)
         }
     }
     
-    private func imageMetricsCallback(data:Float?) {
-        self.imageView.transform = CGAffineTransformRotate(self.startTransform, CGFloat(self.detector.currentRotation) * CGFloat(M_PI / 180))
+    func imageRotated(recognizer:UIRotationGestureRecognizer) {
+        switch recognizer.state {
+        case .Began:
+            touchImageTransform = imageView.transform
+        case .Changed:
+            imageView.transform = CGAffineTransformRotate(touchImageTransform, recognizer.rotation)
+        default:
+            break
+        }
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        let touch = touches.first
-        
-        if (imageETSwitch.on && touch!.view == imageView)
-        {
-            detector.touchUp()
-            detector.clearSubscriptions()
+    func imageEXTRoll(recognizer:EXTRollGestureRecognizer) {
+        switch recognizer.state {
+        case .Began:
+            touchImageTransform = imageView.transform
+        case .Changed:
+            imageView.transform = CGAffineTransformRotate(touchImageTransform, CGFloat(recognizer.currentRoll) * CGFloat(M_PI / 180))
+        default:
+            break
         }
-        
-        startTransform = imageView.transform
     }
 }

@@ -10,7 +10,7 @@ import WatchKit
 import CoreMotion
 import WatchConnectivity
 
-class ExtensionDelegate: NSObject, WKExtensionDelegate {
+class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
     private static var motionManager = CMMotionManager()
     private var lastAcc:CMAccelerometerData?
     private var lastGyro:CMGyroData?
@@ -22,6 +22,9 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     func applicationDidBecomeActive() {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
+        WCSession.defaultSession().delegate = self
+        WCSession.defaultSession().activateSession()
+        
         if (ExtensionDelegate.motionManager.accelerometerAvailable) {
             let handler:CMAccelerometerHandler = {(data: CMAccelerometerData?, error: NSError?) -> Void in
                 if let accData = data {
@@ -30,6 +33,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                         self.lastGyro = nil
                     } else {
                         self.lastAcc = accData
+        
                     }
                 }
             }

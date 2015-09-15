@@ -11,6 +11,8 @@
 
 #import "CorePlot-CocoaTouch.h"
 #import "DAScratchPadView.h"
+#import "MDRadialProgressView.h"
+#import "VKVideoPlayer.h"
 #import "MadgwickAHRS.h"
 #import <MicrosoftBandKit_iOS/MicrosoftBandKit_iOS.h>
 

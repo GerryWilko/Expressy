@@ -45,12 +45,12 @@ class PitchEvalVC: EvaluationVC {
         
         switch (stage) {
         case 1:
-            detector.subscribe(EventType.Metrics, callback: rangeMetricsCallback)
+            detector.subscribe(.Metrics, callback: rangeMetricsCallback)
             instructionLbl.text = "Now pitch upwards as far as you can.\nThen back to the downwards again, keep your finger held down."
             break
         case 2:
             touchTime = NSDate.timeIntervalSinceReferenceDate()
-            detector.subscribe(EventType.Metrics, callback: testMetricsCallback)
+            detector.subscribe(.Metrics, callback: testMetricsCallback)
             break
         default:
             break

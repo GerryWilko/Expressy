@@ -9,7 +9,7 @@
 import Foundation
 
 class PaintingDemoColorPickerVC: UIViewController {
-    var color = UIColor.blackColor()
+    var paintView:DAScratchPadView!
     
     @IBOutlet weak var colorPreview: UIView!
     @IBOutlet weak var redSlider: UISlider!
@@ -24,19 +24,38 @@ class PaintingDemoColorPickerVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        colorPreview.backgroundColor = color
+        colorPreview.backgroundColor = paintView.drawColor
+        
+        var red:CGFloat = 0, green:CGFloat = 0, blue:CGFloat = 0, alpha:CGFloat = 0
+        paintView.drawColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        
+        redSlider.value = Float(red)
+        greenSlider.value = Float(green)
+        blueSlider.value = Float(blue)
+        opacitySlider.value = Float(alpha)
     }
     
     @IBAction func redChanged(sender: AnyObject) {
-        color = UIColor(red: CGFloat(redSlider.value), green: CGFloat(greenSlider.value), blue: CGFloat(blueSlider.value), alpha: CGFloat(opacitySlider.value))
+        let newColor = UIColor(red: CGFloat(redSlider.value), green: CGFloat(greenSlider.value), blue: CGFloat(blueSlider.value), alpha: CGFloat(opacitySlider.value))
+        paintView.drawColor = newColor
+        colorPreview.backgroundColor = newColor
     }
     
     @IBAction func greenChanged(sender: AnyObject) {
+        let newColor = UIColor(red: CGFloat(redSlider.value), green: CGFloat(greenSlider.value), blue: CGFloat(blueSlider.value), alpha: CGFloat(opacitySlider.value))
+        paintView.drawColor = newColor
+        colorPreview.backgroundColor = newColor
     }
     
     @IBAction func blueChanged(sender: AnyObject) {
+        let newColor = UIColor(red: CGFloat(redSlider.value), green: CGFloat(greenSlider.value), blue: CGFloat(blueSlider.value), alpha: CGFloat(opacitySlider.value))
+        paintView.drawColor = newColor
+        colorPreview.backgroundColor = newColor
     }
     
     @IBAction func opacityChanged(sender: AnyObject) {
+        let newColor = UIColor(red: CGFloat(redSlider.value), green: CGFloat(greenSlider.value), blue: CGFloat(blueSlider.value), alpha: CGFloat(opacitySlider.value))
+        paintView.drawColor = newColor
+        colorPreview.backgroundColor = newColor
     }
 }

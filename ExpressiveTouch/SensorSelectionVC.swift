@@ -15,14 +15,17 @@ class SensorSelectionVC: UIViewController {
     @IBOutlet weak var otherBluetoothBtn: UIButton!
     
     override func viewDidLoad() {
-        if #available(iOS 9.0, *) {
-            appleWatchBtn.enabled = WCSession.defaultSession().paired
-        }
+        super.viewDidLoad()
+        SensorConnectionManager.getConnectionManager().startAppleWatchSensorUpdates()
+        appleWatchBtn.enabled = WCSession.defaultSession().paired
         msbBtn.enabled = !MSBClientManager.sharedManager().attachedClients().isEmpty
     }
     
     @IBAction func appleWatchPressed(sender: AnyObject) {
+        let alert = UIAlertController(title: "Not currently available", message: "Unfortunately due to SDK restrictions Expressive Touch cannot work with an Apple Watch. We have support ready to go as soon as Apple open access to Gyroscope data.", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
         
+        presentViewController(alert, animated: true, completion: nil)
     }
     
     @IBAction func msbPressed(sender: AnyObject) {

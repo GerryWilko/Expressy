@@ -67,6 +67,7 @@ class SensorScanVC: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        SensorConnectionManager.getConnectionManager().stop()
         let peripheral = SensorScanVC.deviceList[indexPath.row] as! CBPeripheral
         SensorConnectionManager.getConnectionManager().connectPeripheral(peripheral, completedCallback: { (error) -> Void in
             var alert:UIAlertController

@@ -52,7 +52,11 @@ class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralM
     }
     
     func subscribeReady(callback:() -> Void) {
-        readyCallbacks.append(callback)
+        if (ready) {
+            callback()
+        } else {
+            readyCallbacks.append(callback)
+        }
     }
     
     
@@ -174,17 +178,22 @@ class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralM
     }
     
     func peripheral(peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
-        let notifyUDID = CBUUID(string: "00000002-0008-A8BA-E311-F48C90364D99")
-        let writeUDID = CBUUID(string: "00000001-0008-A8BA-E311-F48C90364D99")
+        let notifyUUID = CBUUID(string: "00000002-0008-A8BA-E311-F48C90364D99")
+        let writeUUID = CBUUID(string: "00000001-0008-A8BA-E311-F48C90364D99")
+        let sampleRateUUID = CBUUID(string: "0000000A-0008-A8BA-E311-F48C90364D99")
         
-        let streamMessage = NSData(bytes: [1] as [UInt8], length: 1)
+        if let sampleRateCharac = service.characteristics?.filter({$0.UUID == sampleRateUUID}).first {
+            let sampleRateMessage = NSData(bytes: [50] as [UInt8], length: 1)
+            peripheral.writeValue(sampleRateMessage, forCharacteristic: sampleRateCharac, type: .WithoutResponse)
+        }
         
-        if let notifyCharac = service.characteristics?.filter({ $0.UUID == notifyUDID }).first {
+        if let notifyCharac = service.characteristics?.filter({ $0.UUID == notifyUUID }).first {
             peripheral.setNotifyValue(true, forCharacteristic: notifyCharac)
         }
         
-        if let writeCharac = service.characteristics?.filter({ $0.UUID == writeUDID }).first {
-            peripheral.writeValue(streamMessage, forCharacteristic: writeCharac, type: CBCharacteristicWriteType.WithoutResponse)
+        if let writeCharac = service.characteristics?.filter({ $0.UUID == writeUUID }).first {
+            let streamMessage = NSData(bytes: [1] as [UInt8], length: 1)
+            peripheral.writeValue(streamMessage, forCharacteristic: writeCharac, type: .WithoutResponse)
         }
         
         connectionCallback(error: nil)

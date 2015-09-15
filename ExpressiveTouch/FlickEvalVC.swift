@@ -21,8 +21,8 @@ class FlickEvalVC: EvaluationVC {
         setupCSV("flick", headerLine: "Participant ID,Time,Requested,Flick Force")
         runStack = buildRunStack()
         self.performSegueWithIdentifier("flickTestInstructions", sender: self)
-        detector.subscribe(EventType.Flick, callback: flickedCallback)
-        detector.subscribe(EventType.NoFlick, callback: flickedCallback)
+        detector.subscribe(.Flick, callback: flickedCallback)
+        detector.subscribe(.NoFlick, callback: flickedCallback)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

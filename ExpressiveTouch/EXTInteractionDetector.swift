@@ -1,5 +1,5 @@
 //
-//  InteractionDetector.swift
+//  EXTInteractionDetector.swift
 //  ExpressiveTouch
 //
 //  Created by Gerry Wilkinson on 12/03/2015.
@@ -8,11 +8,11 @@
 
 import Foundation
 
-class InteractionDetector {
+class EXTInteractionDetector {
     /// Value for current force in G.
     var currentForce:Float
-    /// Value for current rotation in degrees.
-    var currentRotation:Float
+    /// Value for current roll in degrees.
+    var currentRoll:Float
     /// Value for current pitch in degrees.
     var currentPitch:Float
     /// Value denoting if the user has touched down.
@@ -23,6 +23,8 @@ class InteractionDetector {
     private var lastDataTime:NSTimeInterval!
     
     private var metricsCallbacks:Array<(data:Float?) -> Void>
+    private var duringMetricsCallbacks:Array<(data:Float?) -> Void>
+    private var postMetricsCallbacks:Array<(data:Float?) -> Void>
     private var flickCallbacks:Array<(data:Float?) -> Void>
     private var noFlickCallBacks:Array<(data:Float?) -> Void>
     private var hardPressCallbacks:Array<(data:Float?) -> Void>
@@ -43,12 +45,14 @@ class InteractionDetector {
         self.dataCache = dataCache
         
         currentForce = 0.0
-        currentRotation = 0.0
+        currentRoll = 0.0
         currentPitch = 0.0
         touchedDown = false
         detecting = false
         
         metricsCallbacks = Array<(data:Float?) -> Void>()
+        duringMetricsCallbacks = Array<(data:Float?) -> Void>()
+        postMetricsCallbacks = Array<(data:Float?) -> Void>()
         flickCallbacks = Array<(data:Float?) -> Void>()
         noFlickCallBacks = Array<(data:Float?) -> Void>()
         hardPressCallbacks = Array<(data:Float?) -> Void>()
@@ -78,11 +82,17 @@ class InteractionDetector {
         if (!detecting) { return }
         
         currentForce = calculateForce(data)
-        currentRotation = calculateRotation(data)
+        currentRoll = calculateRoll(data)
         currentPitch = calculatePitch(data)
         
         lastDataTime = data.time
         fireMetrics()
+        
+        if (touchedDown){
+            fireDuringMetrics()
+        } else {
+            firePostMetrics()
+        }
     }
     
     /// Stops detection by unsubscribing from SensorProcessor and clearing subscriptions to InteractionDetector.
@@ -98,7 +108,7 @@ class InteractionDetector {
         let touchDownTime = NSDate.timeIntervalSinceReferenceDate()
         
         touchedDown = true
-        currentRotation = 0.0
+        currentRoll = 0.0
         currentPitch = 0.0
         
         let touchForce = calculateTouchForce(touchDownTime)
@@ -124,7 +134,7 @@ class InteractionDetector {
         let touchUpTime = NSDate.timeIntervalSinceReferenceDate()
         
         touchedDown = false
-        currentRotation = 0.0
+        currentRoll = 0.0
         currentPitch = 0.0
         
         let data = dataCache.getForTime(touchUpTime)
@@ -138,7 +148,7 @@ class InteractionDetector {
         if (!detecting) { return }
         
         touchedDown = false
-        currentRotation = 0.0
+        currentRoll = 0.0
         currentPitch = 0.0
     }
     
@@ -160,8 +170,8 @@ class InteractionDetector {
     /// Internal function for calculation of rotation changes based upon new sensor data and time since last reading.
     /// - parameter Sensor: data to be analysed.
     /// - returns: New calculation for rotation from touch down.
-    private func calculateRotation(data:SensorData) -> Float {
-        var totalRotation = currentRotation
+    private func calculateRoll(data:SensorData) -> Float {
+        var totalRotation = currentRoll
         
         totalRotation += data.gyro.x * Float(NSTimeInterval(data.time - lastDataTime))
         
@@ -223,6 +233,16 @@ class InteractionDetector {
         fireCallbacks(nil, callbacks: metricsCallbacks)
     }
     
+    /// Internal function to fire during metric callbacks.
+    private func fireDuringMetrics() {
+        fireCallbacks(nil, callbacks: duringMetricsCallbacks)
+    }
+    
+    /// Internal function to fire post metric callbacks.
+    private func firePostMetrics() {
+        fireCallbacks(nil, callbacks: postMetricsCallbacks)
+    }
+    
     /// Internal function to fire flick callbacks.
     /// - parameter data: Value representing flicked force.
     private func fireFlick(data:Float) {
@@ -271,35 +291,34 @@ class InteractionDetector {
     /// Event subscription system, subscribing to defined events causes callback to be fired when specified event occurs.
     /// - parameter event: Type of event to be subscribed.
     /// - parameter callback: Function with data parameter to be called on event occurence.
-    func subscribe(event:EventType, callback:(data:Float?) -> Void) {
+    func subscribe(event:EXTEvent, callback:(data:Float?) -> Void) {
         switch event {
         case .Metrics:
             metricsCallbacks.append(callback)
-            break
+        case .DuringMetrics:
+            duringMetricsCallbacks.append(callback)
+        case .PostMetrics:
+            postMetricsCallbacks.append(callback)
         case .Flick:
             flickCallbacks.append(callback)
-            break
         case .NoFlick:
             noFlickCallBacks.append(callback)
-            break
         case .HardPress:
             hardPressCallbacks.append(callback)
-            break
         case .MediumPress:
             mediumPressCallbacks.append(callback)
-            break
         case .SoftPress:
             softPressCallbacks.append(callback)
-            break
         case .AllPress:
             allPressCallbacks.append(callback)
-            break
         }
     }
     
     /// Function to clear all current event subscriptions.
     func clearSubscriptions() {
         metricsCallbacks.removeAll()
+        duringMetricsCallbacks.removeAll()
+        postMetricsCallbacks.removeAll()
         flickCallbacks.removeAll()
         noFlickCallBacks.removeAll()
         hardPressCallbacks.removeAll()
@@ -311,12 +330,14 @@ class InteractionDetector {
 
 /// Enum for Event types.
 /// - Metrics: Event fired each time continous metrics (force, roll, pitch) are updated.
+/// - DuringMetrics: Event fired each time continous metrics are updated during touch interaction.
+/// - PostMetrics: Event fired each time continous metrics are updated after a touch interaction.
 /// - Flick: Event fired when a flick event occurs.
 /// - NoFlick: Event fired when no flick event occurs.
 /// - HardPress: Event fired when the screen is struck hard.
 /// - MediumPress: Event fired when the screen is struck medium.
 /// - SoftPress: Event fired when the screen is struck soft.
 /// - AllPress: Event fired each time the screen is struck.
-enum EventType {
-    case Metrics, Flick, NoFlick, HardPress, MediumPress, SoftPress, AllPress
+enum EXTEvent {
+    case Metrics, DuringMetrics, PostMetrics, Flick, NoFlick, HardPress, MediumPress, SoftPress, AllPress
 }

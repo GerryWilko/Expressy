@@ -9,7 +9,7 @@
 import Foundation
 
 class InteractionDetectorVC: UIViewController {
-    private let detector:InteractionDetector
+    private let detector:EXTInteractionDetector
     
     @IBOutlet weak var forceLbl: UILabel!
     @IBOutlet weak var rotationLbl: UILabel!
@@ -17,10 +17,10 @@ class InteractionDetectorVC: UIViewController {
     @IBOutlet weak var flickedSwitch: UISwitch!
     
     required init?(coder aDecoder: NSCoder) {
-        detector = InteractionDetector(dataCache: SensorProcessor.dataCache)
+        detector = EXTInteractionDetector(dataCache: SensorProcessor.dataCache)
         super.init(coder: aDecoder)
-        detector.subscribe(EventType.Metrics, callback: dataCallback)
-        detector.subscribe(EventType.Flick, callback: flickedCallback)
+        detector.subscribe(.Metrics, callback: dataCallback)
+        detector.subscribe(.Flick, callback: flickedCallback)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -49,7 +49,7 @@ class InteractionDetectorVC: UIViewController {
     
     private func dataCallback(data:Float?) {
         forceLbl.text = String(format: "%.2f", detector.currentForce)
-        rotationLbl.text = String(format: "%.2f", detector.currentRotation)
+        rotationLbl.text = String(format: "%.2f", detector.currentRoll)
         pitchLbl.text = String(format: "%.2f", detector.currentPitch)
     }
     

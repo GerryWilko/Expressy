@@ -24,7 +24,7 @@
 		CB7338891A822CA600FA1121 /* SensorProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338751A822CA600FA1121 /* SensorProcessor.swift */; };
 		CB73388A1A822CA600FA1121 /* SensorScanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338761A822CA600FA1121 /* SensorScanVC.swift */; };
 		CB7D5CEF1AC3198E0068BC67 /* MapDemoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7D5CEE1AC3198E0068BC67 /* MapDemoVC.swift */; };
-		CB82A42A1AB1CAA40032F5D6 /* InteractionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB82A4291AB1CAA40032F5D6 /* InteractionDetector.swift */; };
+		CB82A42A1AB1CAA40032F5D6 /* EXTInteractionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB82A4291AB1CAA40032F5D6 /* EXTInteractionDetector.swift */; };
 		CB86E72B1AD56F2400E176F9 /* FreeForceEvalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB86E72A1AD56F2400E176F9 /* FreeForceEvalVC.swift */; };
 		CB86E72D1AD57F2700E176F9 /* RollEvalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB86E72C1AD57F2700E176F9 /* RollEvalVC.swift */; };
 		CB86E72F1AD57F3F00E176F9 /* PitchEvalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB86E72E1AD57F3E00E176F9 /* PitchEvalVC.swift */; };
@@ -36,14 +36,17 @@
 		CBD91AE01AB9A2BE00A9ABBE /* PlaneModelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD91ADF1AB9A2BE00A9ABBE /* PlaneModelVC.swift */; };
 		CBE3C75A1AD9296400F2D7CF /* FlickEvalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE3C7591AD9296400F2D7CF /* FlickEvalVC.swift */; };
 		CBE6BE271ABF12D00099A5C3 /* ControlsDemoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE6BE261ABF12D00099A5C3 /* ControlsDemoVC.swift */; };
-		CBF0EE8A1AC9A0C500D689E2 /* ETMapGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBF0EE891AC9A0C500D689E2 /* ETMapGestureView.swift */; };
 		D518B2CE1B99E74E004C4735 /* ScrollDemoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D518B2CD1B99E74E004C4735 /* ScrollDemoVC.swift */; };
 		D52F03C71B987DF800C5CE28 /* PaintingDemoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52F03C61B987DF800C5CE28 /* PaintingDemoVC.swift */; };
-		D52F03C91B98963A00C5CE28 /* ETPaintGestureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52F03C81B98963A00C5CE28 /* ETPaintGestureView.swift */; };
 		D53396781B959C8200EA9389 /* MicrosoftBandKit_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53396771B959C8200EA9389 /* MicrosoftBandKit_iOS.framework */; };
 		D533967A1B95B93800EA9389 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53396791B95B93800EA9389 /* UIViewExtensions.swift */; };
 		D533967C1B95C1C600EA9389 /* DrumsDemoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D533967B1B95C1C600EA9389 /* DrumsDemoVC.swift */; };
 		D542BD311B9DB9F1007C4533 /* EvaluationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D542BD301B9DB9F1007C4533 /* EvaluationVC.swift */; settings = {ASSET_TAGS = (); }; };
+		D567C1BD1BA6D6C900E7C29F /* bbb_sunflower.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D567C1BC1BA6D22300E7C29F /* bbb_sunflower.mp4 */; };
+		D567C1BF1BA6F64500E7C29F /* EXTForceGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D567C1BE1BA6F64500E7C29F /* EXTForceGestureRecognizer.swift */; settings = {ASSET_TAGS = (); }; };
+		D567C1C11BA71A8D00E7C29F /* EXTRollGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D567C1C01BA71A8D00E7C29F /* EXTRollGestureRecognizer.swift */; settings = {ASSET_TAGS = (); }; };
+		D567C1C31BA7296300E7C29F /* EXTPitchGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D567C1C21BA7296300E7C29F /* EXTPitchGestureRecognizer.swift */; settings = {ASSET_TAGS = (); }; };
+		D567C1C51BA81F3A00E7C29F /* EXTFlickGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D567C1C41BA81F3A00E7C29F /* EXTFlickGestureRecognizer.swift */; settings = {ASSET_TAGS = (); }; };
 		D57846491B99A0100016FE93 /* PaintingDemoColorPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57846481B99A0100016FE93 /* PaintingDemoColorPickerVC.swift */; };
 		D5869F4C1B95CADC001CF96C /* crash-acoustic.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5869F441B95CADC001CF96C /* crash-acoustic.wav */; };
 		D5869F4D1B95CADC001CF96C /* hihat-acoustic01.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5869F451B95CADC001CF96C /* hihat-acoustic01.wav */; };
@@ -133,7 +136,7 @@
 		CB7338751A822CA600FA1121 /* SensorProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorProcessor.swift; sourceTree = "<group>"; };
 		CB7338761A822CA600FA1121 /* SensorScanVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorScanVC.swift; sourceTree = "<group>"; };
 		CB7D5CEE1AC3198E0068BC67 /* MapDemoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapDemoVC.swift; sourceTree = "<group>"; };
-		CB82A4291AB1CAA40032F5D6 /* InteractionDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractionDetector.swift; sourceTree = "<group>"; };
+		CB82A4291AB1CAA40032F5D6 /* EXTInteractionDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EXTInteractionDetector.swift; sourceTree = "<group>"; };
 		CB86E72A1AD56F2400E176F9 /* FreeForceEvalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreeForceEvalVC.swift; sourceTree = "<group>"; };
 		CB86E72C1AD57F2700E176F9 /* RollEvalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RollEvalVC.swift; sourceTree = "<group>"; };
 		CB86E72E1AD57F3E00E176F9 /* PitchEvalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchEvalVC.swift; sourceTree = "<group>"; };
@@ -146,16 +149,18 @@
 		CBD91ADF1AB9A2BE00A9ABBE /* PlaneModelVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaneModelVC.swift; sourceTree = "<group>"; };
 		CBE3C7591AD9296400F2D7CF /* FlickEvalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickEvalVC.swift; sourceTree = "<group>"; };
 		CBE6BE261ABF12D00099A5C3 /* ControlsDemoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlsDemoVC.swift; sourceTree = "<group>"; };
-		CBF0EE891AC9A0C500D689E2 /* ETMapGestureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETMapGestureView.swift; sourceTree = "<group>"; };
 		D517508A19E9831C0076F6FA /* Exp Touch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Exp Touch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D518B2CD1B99E74E004C4735 /* ScrollDemoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollDemoVC.swift; sourceTree = "<group>"; };
 		D52F03C61B987DF800C5CE28 /* PaintingDemoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaintingDemoVC.swift; sourceTree = "<group>"; };
-		D52F03C81B98963A00C5CE28 /* ETPaintGestureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ETPaintGestureView.swift; sourceTree = "<group>"; };
 		D53396771B959C8200EA9389 /* MicrosoftBandKit_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MicrosoftBandKit_iOS.framework; sourceTree = "<group>"; };
 		D53396791B95B93800EA9389 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		D533967B1B95C1C600EA9389 /* DrumsDemoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrumsDemoVC.swift; sourceTree = "<group>"; };
 		D542BD301B9DB9F1007C4533 /* EvaluationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationVC.swift; sourceTree = "<group>"; };
 		D567C1BC1BA6D22300E7C29F /* bbb_sunflower.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = bbb_sunflower.mp4; sourceTree = "<group>"; };
+		D567C1BE1BA6F64500E7C29F /* EXTForceGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EXTForceGestureRecognizer.swift; sourceTree = "<group>"; };
+		D567C1C01BA71A8D00E7C29F /* EXTRollGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EXTRollGestureRecognizer.swift; sourceTree = "<group>"; };
+		D567C1C21BA7296300E7C29F /* EXTPitchGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EXTPitchGestureRecognizer.swift; sourceTree = "<group>"; };
+		D567C1C41BA81F3A00E7C29F /* EXTFlickGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EXTFlickGestureRecognizer.swift; sourceTree = "<group>"; };
 		D57846481B99A0100016FE93 /* PaintingDemoColorPickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaintingDemoColorPickerVC.swift; sourceTree = "<group>"; };
 		D5869F441B95CADC001CF96C /* crash-acoustic.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "crash-acoustic.wav"; sourceTree = "<group>"; };
 		D5869F451B95CADC001CF96C /* hihat-acoustic01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "hihat-acoustic01.wav"; sourceTree = "<group>"; };
@@ -263,8 +268,8 @@
 				D5F1FBFD1B3D7E8B00C86D38 /* Sensor Connection */,
 				CB7338661A822CA600FA1121 /* InteractionDetectorVC.swift */,
 				CBD91ADF1AB9A2BE00A9ABBE /* PlaneModelVC.swift */,
-				CBE6BE261ABF12D00099A5C3 /* ControlsDemoVC.swift */,
 				CB7D5CEE1AC3198E0068BC67 /* MapDemoVC.swift */,
+				CBE6BE261ABF12D00099A5C3 /* ControlsDemoVC.swift */,
 				D533967B1B95C1C600EA9389 /* DrumsDemoVC.swift */,
 				D52F03C61B987DF800C5CE28 /* PaintingDemoVC.swift */,
 				D57846481B99A0100016FE93 /* PaintingDemoColorPickerVC.swift */,
@@ -298,9 +303,11 @@
 		CB73388F1A822D0F00FA1121 /* Expressive Touch */ = {
 			isa = PBXGroup;
 			children = (
-				CB82A4291AB1CAA40032F5D6 /* InteractionDetector.swift */,
-				CBF0EE891AC9A0C500D689E2 /* ETMapGestureView.swift */,
-				D52F03C81B98963A00C5CE28 /* ETPaintGestureView.swift */,
+				CB82A4291AB1CAA40032F5D6 /* EXTInteractionDetector.swift */,
+				D567C1BE1BA6F64500E7C29F /* EXTForceGestureRecognizer.swift */,
+				D567C1C01BA71A8D00E7C29F /* EXTRollGestureRecognizer.swift */,
+				D567C1C21BA7296300E7C29F /* EXTPitchGestureRecognizer.swift */,
+				D567C1C41BA81F3A00E7C29F /* EXTFlickGestureRecognizer.swift */,
 			);
 			name = "Expressive Touch";
 			sourceTree = "<group>";
@@ -504,6 +511,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D567C1BD1BA6D6C900E7C29F /* bbb_sunflower.mp4 in Resources */,
 				CB7338811A822CA600FA1121 /* Images.xcassets in Resources */,
 				CBB6837B1AB9B2C700938059 /* art.scnassets in Resources */,
 				CB7338791A822CA600FA1121 /* LaunchScreen.xib in Resources */,
@@ -582,7 +590,6 @@
 				CB7338891A822CA600FA1121 /* SensorProcessor.swift in Sources */,
 				CB8895001ACD53D100F3FC2F /* EvalUtils.swift in Sources */,
 				CB8F53021AD68DF800EC2917 /* MathUtils.swift in Sources */,
-				D52F03C91B98963A00C5CE28 /* ETPaintGestureView.swift in Sources */,
 				D58FA20F1B9E030600D26488 /* VideoDemoVC.swift in Sources */,
 				D542BD311B9DB9F1007C4533 /* EvaluationVC.swift in Sources */,
 				D533967C1B95C1C600EA9389 /* DrumsDemoVC.swift in Sources */,
@@ -597,20 +604,23 @@
 				CB7338771A822CA600FA1121 /* AccGraphVC.swift in Sources */,
 				CBD91AE01AB9A2BE00A9ABBE /* PlaneModelVC.swift in Sources */,
 				D5869F591B95F4C9001CF96C /* EvaluationMenuVC.swift in Sources */,
-				CB82A42A1AB1CAA40032F5D6 /* InteractionDetector.swift in Sources */,
+				CB82A42A1AB1CAA40032F5D6 /* EXTInteractionDetector.swift in Sources */,
+				D567C1BF1BA6F64500E7C29F /* EXTForceGestureRecognizer.swift in Sources */,
 				CB7338881A822CA600FA1121 /* SensorData.swift in Sources */,
 				CBE3C75A1AD9296400F2D7CF /* FlickEvalVC.swift in Sources */,
 				CB73388A1A822CA600FA1121 /* SensorScanVC.swift in Sources */,
+				D567C1C11BA71A8D00E7C29F /* EXTRollGestureRecognizer.swift in Sources */,
+				D567C1C31BA7296300E7C29F /* EXTPitchGestureRecognizer.swift in Sources */,
 				CB7D5CEF1AC3198E0068BC67 /* MapDemoVC.swift in Sources */,
 				CB9798351AA715BC00124A9D /* Vector.swift in Sources */,
 				D57846491B99A0100016FE93 /* PaintingDemoColorPickerVC.swift in Sources */,
 				CB86E72D1AD57F2700E176F9 /* RollEvalVC.swift in Sources */,
 				D533967A1B95B93800EA9389 /* UIViewExtensions.swift in Sources */,
 				D5869F571B95E107001CF96C /* MenuVC.swift in Sources */,
-				CBF0EE8A1AC9A0C500D689E2 /* ETMapGestureView.swift in Sources */,
 				CB73387E1A822CA600FA1121 /* GraphBuilder.swift in Sources */,
 				CB7338861A822CA600FA1121 /* SensorCache.swift in Sources */,
 				CB86E72F1AD57F3F00E176F9 /* PitchEvalVC.swift in Sources */,
+				D567C1C51BA81F3A00E7C29F /* EXTFlickGestureRecognizer.swift in Sources */,
 				CBA2B0B51AAA1AD1006967EF /* MadgwickAHRS.c in Sources */,
 				CBE6BE271ABF12D00099A5C3 /* ControlsDemoVC.swift in Sources */,
 				CB7338841A822CA600FA1121 /* MagGraphVC.swift in Sources */,
@@ -764,7 +774,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = ExpressiveTouch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -791,7 +801,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = ExpressiveTouch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

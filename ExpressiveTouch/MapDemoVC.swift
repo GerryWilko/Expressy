@@ -10,7 +10,10 @@ import Foundation
 import MapKit
 
 class MapDemoVC: UIViewController {
-    @IBOutlet weak var gestureView: ETMapGestureView!
+    private let pitchBound:CGFloat = 50.0
+    
+    private var touchHeading:CLLocationDirection!
+    private var touchPitch:CGFloat!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +25,56 @@ class MapDemoVC: UIViewController {
         let eyeCoordinate = CLLocationCoordinate2D(latitude: 51.5033, longitude: -0.11967)
         let mapCamera = MKMapCamera(lookingAtCenterCoordinate: userCoordinate, fromEyeCoordinate: eyeCoordinate, eyeAltitude: 400.0)
         map.setCamera(mapCamera, animated: true)
-        gestureView.map = map
+        
+        touchHeading = map.camera.heading
+        touchPitch = map.camera.pitch
+        
+        let rollRecognizer = EXTRollGestureRecognizer(target: self, action: Selector("rollUpdated:"))
+        let pitchRecognizer = EXTPitchGestureRecognizer(target: self, action: Selector("pitchUpdated:"))
+        
+        rollRecognizer.cancelsTouchesInView = false
+        pitchRecognizer.cancelsTouchesInView = false
+        
+        map.addGestureRecognizer(rollRecognizer)
+        map.addGestureRecognizer(pitchRecognizer)
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        super.touchesBegan(touches, withEvent: event)
+        touchHeading = (view as! MKMapView).camera.heading
+    }
+    
+    func rollUpdated(recognizer:EXTRollGestureRecognizer) {
+        let map = view as! MKMapView
+        if recognizer.state == .Began {
+            touchHeading = map.camera.heading
+        } else if recognizer.state == .Changed {
+            let newRoll = touchHeading + CLLocationDirection(recognizer.currentRoll)
+            
+            let camera = map.camera.copy() as! MKMapCamera
+            camera.heading = newRoll
+            
+            map.camera = camera
+        }
+    }
+    
+    func pitchUpdated(recognizer:EXTPitchGestureRecognizer) {
+        let map = view as! MKMapView
+        if recognizer.state == .Began {
+            touchPitch = map.camera.pitch
+        } else if recognizer.state == .Changed {
+            var newPitch = touchPitch + CGFloat(-recognizer.currentPitch * 3)
+            
+            if (newPitch < 0) {
+                newPitch = 0
+            } else if (newPitch > pitchBound) {
+                newPitch = pitchBound
+            }
+            
+            let camera = map.camera.copy() as! MKMapCamera
+            camera.pitch = newPitch
+            
+            map.camera = camera
+        }
     }
 }
