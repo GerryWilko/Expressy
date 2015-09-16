@@ -33,7 +33,6 @@ class EXTInteractionDetector {
     private var allPressCallbacks:Array<(data:Float?) -> Void>
     
     private let dataCache:SensorCache
-    private let touchForceFilter:Float = 0.1
     private let medForceThreshold:Float = 0.2
     private let hardForceThreshold:Float = 0.5
     private let flickThreshold:Float = 0.5
