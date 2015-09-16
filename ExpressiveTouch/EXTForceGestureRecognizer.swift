@@ -60,6 +60,14 @@ class EXTForceGestureRecognizer: UIGestureRecognizer {
         detector.touchCancelled()
         state = .Cancelled
     }
+    
+    override func canBePreventedByGestureRecognizer(preventingGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
+    }
+    
+    override func canPreventGestureRecognizer(preventedGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
+    }
 }
 
 enum EXTForceEvent {

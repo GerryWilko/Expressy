@@ -489,8 +489,7 @@
 
         CGLayerRef newLayer = CGLayerCreateWithContext(context, layerSize, NULL);
 
-        CGContextRef layerContext = CGLayerGetContext(newLayer);
-        [self renderAsVectorInContext:layerContext
+        [self renderAsVectorInContext:CGLayerGetContext(newLayer)
                               atPoint:CPTPointMake( layerSize.width * CPTFloat(0.5), layerSize.height * CPTFloat(0.5) )
                                 scale:scale];
 

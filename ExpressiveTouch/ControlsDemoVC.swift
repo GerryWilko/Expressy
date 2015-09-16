@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import MDRadialProgress
 
 class ControlsDemoVC: UIViewController {
     private var touchImageTransform:CGAffineTransform!

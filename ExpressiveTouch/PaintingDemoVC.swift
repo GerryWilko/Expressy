@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import DAScratchPad
+import SVProgressHUD
 
 class PaintingDemoVC: UIViewController {
     private var initialWidth:CGFloat!
@@ -23,15 +25,25 @@ class PaintingDemoVC: UIViewController {
         let paintView = self.view as! DAScratchPadView
         initialWidth = paintView.drawWidth
         
+        let paintForce = EXTForceGestureRecognizer(target: self, action: Selector("paintForce:"), event: .AllPress)
         let paintRoll = EXTRollGestureRecognizer(target: self, action: Selector("paintRoll:"))
         let paintFlick = EXTFlickGestureRecognizer(target: self, action: Selector("paintFlick:"))
         
+        paintForce.cancelsTouchesInView = false
         paintRoll.cancelsTouchesInView = false
         paintFlick.cancelsTouchesInView = false
         
+        self.view.addGestureRecognizer(paintForce)
         self.view.addGestureRecognizer(paintRoll)
         self.view.addGestureRecognizer(paintFlick)
         strokeWidthBtn.addGestureRecognizer(EXTRollGestureRecognizer(target: self, action: Selector("strokeRoll:")))
+    }
+    
+    @IBAction func etToggle(sender: AnyObject) {
+        self.view.gestureRecognizers?.forEach({ (recognizer) -> () in
+            recognizer.enabled = !recognizer.enabled
+        })
+        SVProgressHUD.showImage(UIImage(named: "ExpressiveTouchIcon"), status: self.view.gestureRecognizers!.first!.enabled ? "Expressive Touch Enabled" : "Expressive Touch Disabled")
     }
     
     func strokeRoll(recognizer:EXTRollGestureRecognizer) {
@@ -54,6 +66,16 @@ class PaintingDemoVC: UIViewController {
         }
     }
     
+    func paintForce(recognizer:EXTForceGestureRecognizer) {
+        let paintView = self.view as! DAScratchPadView
+        switch recognizer.state {
+        case .Began:
+            paintView.drawWidth = paintView.drawWidth * CGFloat(recognizer.tapForce)
+        default:
+            break
+        }
+    }
+    
     func paintRoll(recognizer:EXTRollGestureRecognizer) {
         let paintView = self.view as! DAScratchPadView
         switch recognizer.state {
@@ -67,7 +89,7 @@ class PaintingDemoVC: UIViewController {
     }
     
     func paintFlick(recognizer:EXTFlickGestureRecognizer) {
-        let paintView = self.view as! DAScratchPadView
+        //let paintView = self.view as! DAScratchPadView
         switch recognizer.state {
         case .Ended:
             break
@@ -83,8 +105,11 @@ class PaintingDemoVC: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "colorPickerSegue" {
-            let destinationVC = segue.destinationViewController as! PaintingDemoColorPickerVC
-            destinationVC.paintView = self.view as! DAScratchPadView
+            let destinationVC = segue.destinationViewController as! UINavigationController
+            let colorPicker = destinationVC.topViewController as! PaintingDemoColorPickerVC
+            colorPicker.paintView = self.view as! DAScratchPadView
         }
     }
+    
+    @IBAction func unwindToPaintingDemo(segue: UIStoryboardSegue) {}
 }

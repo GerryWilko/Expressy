@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CorePlot
 
 class MagGraphVC: UIViewController {
     private let magGraphBuilder:GraphBuilder

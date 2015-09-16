@@ -3,9 +3,12 @@
 
 source 'https://github.com/CocoaPods/Specs.git'
 
+use_frameworks!
+
 target 'ExpressiveTouch' do
     pod 'CorePlot'
     pod 'DAScratchPad'
     pod 'MDRadialProgress'
+    pod 'SVProgressHUD'
 
 end

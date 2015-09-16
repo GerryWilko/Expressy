@@ -10,7 +10,7 @@
  **/
 
 /**
- *  @def cpt_weak
+ *  @def __cpt_weak
  *  @hideinitializer
  *  @brief A custom definition for automatic reference counting (ARC) weak references that falls back to
  *  <code>__unsafe_unretained</code> values on older platforms.
@@ -34,13 +34,13 @@
 #endif
 
 #if CPT_SDK_SUPPORTS_WEAK
-#define cpt_weak          __weak
+#define __cpt_weak        __weak
 #define cpt_weak_property weak
 #else
 #if __clang__ && (__clang_major__ >= 3)
-#define cpt_weak __unsafe_unretained
+#define __cpt_weak __unsafe_unretained
 #else
-#define cpt_weak
+#define __cpt_weak
 #endif
 #define cpt_weak_property assign
 #endif

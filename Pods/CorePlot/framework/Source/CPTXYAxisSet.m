@@ -82,7 +82,7 @@
 
         if ( radius > CPTFloat(0.0) ) {
             CGContextBeginPath(context);
-            CPTAddRoundedRectPath(context, borderRect, radius);
+            AddRoundedRectPath(context, borderRect, radius);
 
             [theLineStyle strokePathInContext:context];
         }

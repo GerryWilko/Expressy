@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import DAScratchPad
 
 class PaintingDemoColorPickerVC: UIViewController {
     var paintView:DAScratchPadView!

@@ -8,6 +8,7 @@
 
 import Foundation
 import MapKit
+import SVProgressHUD
 
 class MapDemoVC: UIViewController {
     private let pitchBound:CGFloat = 50.0
@@ -42,6 +43,13 @@ class MapDemoVC: UIViewController {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesBegan(touches, withEvent: event)
         touchHeading = (view as! MKMapView).camera.heading
+    }
+    
+    @IBAction func etToggle(sender: AnyObject) {
+        self.view.gestureRecognizers?.forEach({ (recognizer) -> () in
+            recognizer.enabled = !recognizer.enabled
+        })
+        SVProgressHUD.showImage(UIImage(named: "ExpressiveTouchIcon"), status: self.view.gestureRecognizers!.first!.enabled ? "Expressive Touch Enabled" : "Expressive Touch Disabled")
     }
     
     func rollUpdated(recognizer:EXTRollGestureRecognizer) {

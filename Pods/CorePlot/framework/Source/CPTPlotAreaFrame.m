@@ -200,12 +200,10 @@
     if ( newPlotArea != plotArea ) {
         [plotArea removeFromSuperlayer];
         plotArea = newPlotArea;
-
-        if ( newPlotArea ) {
-            [self insertSublayer:newPlotArea atIndex:0];
-            newPlotArea.graph = self.graph;
+        if ( plotArea ) {
+            [self insertSublayer:plotArea atIndex:0];
+            plotArea.graph = self.graph;
         }
-
         [self setNeedsLayout];
     }
 }

@@ -9,7 +9,7 @@
 /// @cond
 @interface CPTGraphHostingView()
 
-@property (nonatomic, readwrite, cpt_weak_property) cpt_weak UIPinchGestureRecognizer *pinchGestureRecognizer;
+@property (nonatomic, readwrite, cpt_weak_property) __cpt_weak UIPinchGestureRecognizer *pinchGestureRecognizer;
 
 -(void)graphNeedsRedraw:(NSNotification *)notification;
 -(void)handlePinchGesture:(UIPinchGestureRecognizer *)aPinchGestureRecognizer;
@@ -45,7 +45,7 @@
 /// @cond
 
 /** @internal
- *  @property cpt_weak id pinchGestureRecognizer
+ *  @property __cpt_weak id pinchGestureRecognizer
  *  @brief The pinch gesture recognizer for this view.
  **/
 @synthesize pinchGestureRecognizer;
@@ -131,33 +131,37 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    BOOL handled = NO;
+    [super touchesBegan:touches withEvent:event];
 
     // Ignore pinch or other multitouch gestures
-    if ( [[event allTouches] count] == 1 ) {
-        CPTGraph *theHostedGraph = self.hostedGraph;
-
-        theHostedGraph.frame = self.bounds;
-        [theHostedGraph layoutIfNeeded];
-
-        CGPoint pointOfTouch = [[[event touchesForView:self] anyObject] locationInView:self];
-
-        if ( self.collapsesLayers ) {
-            pointOfTouch.y = self.frame.size.height - pointOfTouch.y;
-        }
-        else {
-            pointOfTouch = [self.layer convertPoint:pointOfTouch toLayer:theHostedGraph];
-        }
-        handled = [theHostedGraph pointingDeviceDownEvent:event atPoint:pointOfTouch];
+    if ( [[event allTouches] count] > 1 ) {
+        return;
     }
 
+    CPTGraph *theHostedGraph = self.hostedGraph;
+
+    theHostedGraph.frame = self.bounds;
+    [theHostedGraph layoutIfNeeded];
+
+    CGPoint pointOfTouch = [[[event touchesForView:self] anyObject] locationInView:self];
+
+    if ( self.collapsesLayers ) {
+        pointOfTouch.y = self.frame.size.height - pointOfTouch.y;
+    }
+    else {
+        pointOfTouch = [self.layer convertPoint:pointOfTouch toLayer:theHostedGraph];
+    }
+    BOOL handled = [theHostedGraph pointingDeviceDownEvent:event atPoint:pointOfTouch];
+
     if ( !handled ) {
-        [super touchesBegan:touches withEvent:event];
+        [self.nextResponder touchesBegan:touches withEvent:event];
     }
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    [super touchesMoved:touches withEvent:event];
+
     CPTGraph *theHostedGraph = self.hostedGraph;
 
     theHostedGraph.frame = self.bounds;
@@ -174,12 +178,14 @@
     BOOL handled = [theHostedGraph pointingDeviceDraggedEvent:event atPoint:pointOfTouch];
 
     if ( !handled ) {
-        [super touchesMoved:touches withEvent:event];
+        [self.nextResponder touchesMoved:touches withEvent:event];
     }
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    [super touchesEnded:touches withEvent:event];
+
     CPTGraph *theHostedGraph = self.hostedGraph;
 
     theHostedGraph.frame = self.bounds;
@@ -196,16 +202,18 @@
     BOOL handled = [theHostedGraph pointingDeviceUpEvent:event atPoint:pointOfTouch];
 
     if ( !handled ) {
-        [super touchesEnded:touches withEvent:event];
+        [self.nextResponder touchesEnded:touches withEvent:event];
     }
 }
 
 -(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    [super touchesCancelled:touches withEvent:event];
+
     BOOL handled = [self.hostedGraph pointingDeviceCancelledEvent:event];
 
     if ( !handled ) {
-        [super touchesCancelled:touches withEvent:event];
+        [self.nextResponder touchesCancelled:touches withEvent:event];
     }
 }
 
@@ -334,9 +342,9 @@
         }
     }
     else {
-        if ( newLayer ) {
-            newLayer.frame = self.layer.bounds;
-            [self.layer addSublayer:newLayer];
+        if ( hostedGraph ) {
+            hostedGraph.frame = self.layer.bounds;
+            [self.layer addSublayer:hostedGraph];
         }
     }
 }
@@ -348,10 +356,9 @@
 
         CPTGraph *theHostedGraph = self.hostedGraph;
 
-        [self setNeedsDisplay];
-
         if ( collapsesLayers ) {
             [theHostedGraph removeFromSuperlayer];
+            [self setNeedsDisplay];
 
             if ( theHostedGraph ) {
                 [[NSNotificationCenter defaultCenter] addObserver:self

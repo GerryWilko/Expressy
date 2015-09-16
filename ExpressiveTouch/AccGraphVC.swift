@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CorePlot
 
 class AccGraphVC: UIViewController {
     private let accGraphBuilder:GraphBuilder

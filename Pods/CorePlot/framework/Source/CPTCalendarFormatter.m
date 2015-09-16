@@ -99,7 +99,7 @@
  */
 -(instancetype)initWithCoder:(NSCoder *)coder
 {
-    if ( (self = [super init]) ) {
+    if ( (self = [super initWithCoder:coder]) ) {
         dateFormatter         = [coder decodeObjectForKey:@"CPTCalendarFormatter.dateFormatter"];
         referenceDate         = [[coder decodeObjectForKey:@"CPTCalendarFormatter.referenceDate"] copy];
         referenceCalendar     = [[coder decodeObjectForKey:@"CPTCalendarFormatter.referenceCalendar"] copy];

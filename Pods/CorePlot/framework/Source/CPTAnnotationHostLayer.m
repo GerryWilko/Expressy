@@ -81,13 +81,7 @@
 -(instancetype)initWithCoder:(NSCoder *)coder
 {
     if ( (self = [super initWithCoder:coder]) ) {
-        NSArray *annotations = [coder decodeObjectForKey:@"CPTAnnotationHostLayer.mutableAnnotations"];
-        if ( annotations ) {
-            mutableAnnotations = [annotations mutableCopy];
-        }
-        else {
-            mutableAnnotations = [[NSMutableArray alloc] init];
-        }
+        mutableAnnotations = [[coder decodeObjectForKey:@"CPTAnnotationHostLayer.mutableAnnotations"] mutableCopy];
     }
     return self;
 }

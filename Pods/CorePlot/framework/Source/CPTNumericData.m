@@ -415,13 +415,6 @@
 
 /// @cond
 
--(instancetype)init
-{
-    return [self initWithData:[NSData data]
-                     dataType:CPTDataType( CPTFloatingPointDataType, sizeof(double), CFByteOrderGetCurrent() )
-                        shape:nil];
-}
-
 -(void)commonInitWithData:(NSData *)newData
                  dataType:(CPTNumericDataType)newDataType
                     shape:(NSArray *)shapeArray
@@ -615,19 +608,19 @@
             case CPTIntegerDataType:
                 switch ( self.sampleBytes ) {
                     case sizeof(int8_t):
-                        result = @(*(const int8_t *)[self samplePointer:sample]);
+                        result = @(*(int8_t *)[self samplePointer:sample]);
                         break;
 
                     case sizeof(int16_t):
-                        result = @(*(const int16_t *)[self samplePointer:sample]);
+                        result = @(*(int16_t *)[self samplePointer:sample]);
                         break;
 
                     case sizeof(int32_t):
-                        result = @(*(const int32_t *)[self samplePointer:sample]);
+                        result = @(*(int32_t *)[self samplePointer:sample]);
                         break;
 
                     case sizeof(int64_t):
-                        result = @(*(const int64_t *)[self samplePointer:sample]);
+                        result = @(*(int64_t *)[self samplePointer:sample]);
                         break;
                 }
                 break;
@@ -635,19 +628,19 @@
             case CPTUnsignedIntegerDataType:
                 switch ( self.sampleBytes ) {
                     case sizeof(uint8_t):
-                        result = @(*(const uint8_t *)[self samplePointer:sample]);
+                        result = @(*(uint8_t *)[self samplePointer:sample]);
                         break;
 
                     case sizeof(uint16_t):
-                        result = @(*(const uint16_t *)[self samplePointer:sample]);
+                        result = @(*(uint16_t *)[self samplePointer:sample]);
                         break;
 
                     case sizeof(uint32_t):
-                        result = @(*(const uint32_t *)[self samplePointer:sample]);
+                        result = @(*(uint32_t *)[self samplePointer:sample]);
                         break;
 
                     case sizeof(uint64_t):
-                        result = @(*(const uint64_t *)[self samplePointer:sample]);
+                        result = @(*(uint64_t *)[self samplePointer:sample]);
                         break;
                 }
                 break;
@@ -655,11 +648,11 @@
             case CPTFloatingPointDataType:
                 switch ( self.sampleBytes ) {
                     case sizeof(float):
-                        result = @(*(const float *)[self samplePointer:sample]);
+                        result = @(*(float *)[self samplePointer:sample]);
                         break;
 
                     case sizeof(double):
-                        result = @(*(const double *)[self samplePointer:sample]);
+                        result = @(*(double *)[self samplePointer:sample]);
                         break;
                 }
                 break;
@@ -667,11 +660,11 @@
             case CPTComplexFloatingPointDataType:
                 switch ( self.sampleBytes ) {
                     case sizeof(float complex):
-                        result = @( crealf(*(const float complex *)[self samplePointer:sample]) );
+                        result = @( crealf(*(float complex *)[self samplePointer:sample]) );
                         break;
 
                     case sizeof(double complex):
-                        result = @( creal(*(const double complex *)[self samplePointer:sample]) );
+                        result = @( creal(*(double complex *)[self samplePointer:sample]) );
                         break;
                 }
                 break;
@@ -679,7 +672,7 @@
             case CPTDecimalDataType:
                 switch ( self.sampleBytes ) {
                     case sizeof(NSDecimal):
-                        result = [NSDecimalNumber decimalNumberWithDecimal:*(const NSDecimal *)[self samplePointer:sample]];
+                        result = [NSDecimalNumber decimalNumberWithDecimal:*(NSDecimal *)[self samplePointer:sample]];
                         break;
                 }
                 break;
@@ -723,10 +716,10 @@
  *  @param sample The zero-based index into the sample array. The array is treated as if it only has one dimension.
  *  @return A pointer to the sample or @NULL if the sample index is out of bounds.
  **/
--(const void *)samplePointer:(NSUInteger)sample
+-(void *)samplePointer:(NSUInteger)sample
 {
     if ( sample < self.numberOfSamples ) {
-        return (const void *)( (const char *)self.bytes + sample * self.sampleBytes );
+        return (void *)( (char *)self.bytes + sample * self.sampleBytes );
     }
     else {
         return NULL;
@@ -738,7 +731,7 @@
  *  (including @par{index}) should match the @ref numberOfDimensions.
  *  @return A pointer to the sample or @NULL if any of the sample indices are out of bounds.
  **/
--(const void *)samplePointerAtIndex:(NSUInteger)idx, ...
+-(void *)samplePointerAtIndex:(NSUInteger)idx, ...
  {
     NSUInteger newIndex;
 
@@ -769,10 +762,7 @@
     NSMutableArray *samples = [[NSMutableArray alloc] initWithCapacity:sampleCount];
 
     for ( NSUInteger i = 0; i < sampleCount; i++ ) {
-        NSNumber *sampleValue = [self sampleValue:i];
-        if ( sampleValue ) {
-            [samples addObject:sampleValue];
-        }
+        [samples addObject:[self sampleValue:i]];
     }
 
     NSArray *result = [NSArray arrayWithArray:samples];

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18BBA2C9D73DE872643A4FE4 /* Pods_ExpressiveTouch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E672A095894896967B3D20AE /* Pods_ExpressiveTouch.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		CB4F22941AC4569F006EFF18 /* CatForceEvalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4F22931AC4569F006EFF18 /* CatForceEvalVC.swift */; };
 		CB4F22A01AC563A6006EFF18 /* CSVBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4F229F1AC563A5006EFF18 /* CSVBuilder.swift */; };
 		CB7338771A822CA600FA1121 /* AccGraphVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338601A822CA600FA1121 /* AccGraphVC.swift */; };
@@ -68,7 +69,6 @@
 		D5F1FC191B3D8E6500C86D38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5F1FC181B3D8E6500C86D38 /* Assets.xcassets */; };
 		D5F1FC1D1B3D8E6500C86D38 /* Exp Touch Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D5F1FC031B3D8E6500C86D38 /* Exp Touch Watch.app */; };
 		D5F1FC271B3D916D00C86D38 /* SensorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F1FC261B3D916D00C86D38 /* SensorController.swift */; };
-		FF8DCC742FC3997524C3C492 /* libPods-ExpressiveTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA315116ED542A1FC9DE226 /* libPods-ExpressiveTouch.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,7 +115,6 @@
 
 /* Begin PBXFileReference section */
 		42223EA273833E1276CCAD1F /* Pods-ExpressiveTouch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpressiveTouch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ExpressiveTouch/Pods-ExpressiveTouch.debug.xcconfig"; sourceTree = "<group>"; };
-		7EA315116ED542A1FC9DE226 /* libPods-ExpressiveTouch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExpressiveTouch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		87BA3EA70A344285E7E633B7 /* Pods-ExpressiveTouch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpressiveTouch.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExpressiveTouch/Pods-ExpressiveTouch.release.xcconfig"; sourceTree = "<group>"; };
 		CB4F22931AC4569F006EFF18 /* CatForceEvalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatForceEvalVC.swift; sourceTree = "<group>"; };
 		CB4F229F1AC563A5006EFF18 /* CSVBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVBuilder.swift; sourceTree = "<group>"; };
@@ -185,6 +184,7 @@
 		D5F1FC181B3D8E6500C86D38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D5F1FC1A1B3D8E6500C86D38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5F1FC261B3D916D00C86D38 /* SensorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorController.swift; sourceTree = "<group>"; };
+		E672A095894896967B3D20AE /* Pods_ExpressiveTouch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExpressiveTouch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,8 +192,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF8DCC742FC3997524C3C492 /* libPods-ExpressiveTouch.a in Frameworks */,
 				D53396781B959C8200EA9389 /* MicrosoftBandKit_iOS.framework in Frameworks */,
+				18BBA2C9D73DE872643A4FE4 /* Pods_ExpressiveTouch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,7 +212,7 @@
 			children = (
 				D53396771B959C8200EA9389 /* MicrosoftBandKit_iOS.framework */,
 				D5D603411B42E3DD00DEE1C1 /* SceneKit.framework */,
-				7EA315116ED542A1FC9DE226 /* libPods-ExpressiveTouch.a */,
+				E672A095894896967B3D20AE /* Pods_ExpressiveTouch.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -417,6 +417,7 @@
 				D517508819E9831C0076F6FA /* Resources */,
 				7237869B2A3513A014AF60F1 /* Copy Pods Resources */,
 				D5F1FC251B3D8E6500C86D38 /* Embed Watch Content */,
+				B606253276D6CA3D5A32D54D /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -576,6 +577,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B606253276D6CA3D5A32D54D /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ExpressiveTouch/Pods-ExpressiveTouch-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

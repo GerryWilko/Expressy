@@ -13,10 +13,4 @@
 @property (nonatomic, readwrite, copy) NSArray *shape;
 /// @}
 
-/// @name Samples
-/// @{
--(void *)mutableSamplePointer:(NSUInteger)sample;
--(void *)mutableSamplePointerAtIndex:(NSUInteger)idx, ...;
-/// @}
-
 @end

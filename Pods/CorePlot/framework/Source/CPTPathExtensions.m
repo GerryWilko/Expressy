@@ -8,7 +8,7 @@
  *  @param cornerRadius The radius of the rounded corners.
  *  @return The new path. Caller is responsible for releasing this.
  **/
-CGPathRef CPTCreateRoundedRectPath(CGRect rect, CGFloat cornerRadius)
+CGPathRef CreateRoundedRectPath(CGRect rect, CGFloat cornerRadius)
 {
     if ( cornerRadius > CPTFloat(0.0) ) {
         cornerRadius = MIN( MIN( cornerRadius, rect.size.width * CPTFloat(0.5) ), rect.size.height * CPTFloat(0.5) );
@@ -16,8 +16,6 @@ CGPathRef CPTCreateRoundedRectPath(CGRect rect, CGFloat cornerRadius)
         // CGPathCreateWithRoundedRect() is available in Mac OS X 10.9 and iOS 7 but not marked in the header file
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunreachable-code"
-#pragma clang diagnostic ignored "-Wpointer-bool-conversion"
-
         if ( CGPathCreateWithRoundedRect ) {
             return CGPathCreateWithRoundedRect(rect, cornerRadius, cornerRadius, NULL);
         }
@@ -52,9 +50,9 @@ CGPathRef CPTCreateRoundedRectPath(CGRect rect, CGFloat cornerRadius)
  *  @param rect The bounding rectangle for the path.
  *  @param cornerRadius The radius of the rounded corners.
  **/
-void CPTAddRoundedRectPath(CGContextRef context, CGRect rect, CGFloat cornerRadius)
+void AddRoundedRectPath(CGContextRef context, CGRect rect, CGFloat cornerRadius)
 {
-    CGPathRef path = CPTCreateRoundedRectPath(rect, cornerRadius);
+    CGPathRef path = CreateRoundedRectPath(rect, cornerRadius);
 
     CGContextAddPath(context, path);
     CGPathRelease(path);

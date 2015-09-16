@@ -9,10 +9,6 @@
 #ifndef ExpressiveTouch_ExpressiveTouch_Bridging_Header_h
 #define ExpressiveTouch_ExpressiveTouch_Bridging_Header_h
 
-#import "CorePlot-CocoaTouch.h"
-#import "DAScratchPadView.h"
-#import "MDRadialProgressView.h"
-#import "VKVideoPlayer.h"
 #import "MadgwickAHRS.h"
 #import <MicrosoftBandKit_iOS/MicrosoftBandKit_iOS.h>
 

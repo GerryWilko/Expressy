@@ -16,7 +16,7 @@
  **/
 @synthesize contentLayer;
 
-/** @property cpt_weak CPTAnnotationHostLayer *annotationHostLayer
+/** @property __cpt_weak CPTAnnotationHostLayer *annotationHostLayer
  *  @brief The host layer for the annotation content.
  **/
 @synthesize annotationHostLayer;
@@ -117,9 +117,9 @@
     if ( newLayer != contentLayer ) {
         [contentLayer removeFromSuperlayer];
         contentLayer = newLayer;
-        if ( newLayer ) {
+        if ( contentLayer ) {
             CPTAnnotationHostLayer *hostLayer = self.annotationHostLayer;
-            [hostLayer addSublayer:newLayer];
+            [hostLayer addSublayer:contentLayer];
         }
     }
 }

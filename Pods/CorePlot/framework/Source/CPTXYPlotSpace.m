@@ -34,7 +34,7 @@
 
 -(CGFloat)viewCoordinateForRange:(CPTPlotRange *)range coordinate:(CPTCoordinate)coordinate direction:(BOOL)direction;
 
-CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c);
+CGFloat firstPositiveRoot(CGFloat a, CGFloat b, CGFloat c);
 
 @property (nonatomic, readwrite) BOOL isDragging;
 @property (nonatomic, readwrite) CGPoint lastDragPoint;
@@ -575,7 +575,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c);
                     CGFloat oldPoint    = [self viewCoordinateForRange:oldRange coordinate:coordinate direction:direction];
 
                     CGFloat brakingOffset = globalPoint - oldPoint;
-                    brakingDelay = CPTFirstPositiveRoot(acceleration, speed, brakingOffset);
+                    brakingDelay = firstPositiveRoot(acceleration, speed, brakingOffset);
 
                     if ( !isnan(brakingDelay) ) {
                         speed -= brakingDelay * acceleration;
@@ -694,7 +694,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c);
 }
 
 // return NAN if no positive roots
-CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
+CGFloat firstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
 {
     CGFloat root = CPTFloat(NAN);
 

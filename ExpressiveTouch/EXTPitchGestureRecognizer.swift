@@ -12,16 +12,20 @@ import UIKit.UIGestureRecognizerSubclass
 class EXTPitchGestureRecognizer: UIGestureRecognizer {
     private let detector:EXTInteractionDetector
     
+    var pitchThreshold:Float
     var currentPitch:Float
     
     override init(target: AnyObject?, action: Selector) {
         detector = EXTInteractionDetector(dataCache: SensorProcessor.dataCache)
+        pitchThreshold = 0.0
         currentPitch = 0.0
         super.init(target: target, action: action)
         
         detector.subscribe(.DuringMetrics) { (data) -> Void in
             self.currentPitch = self.detector.currentPitch
-            self.state = .Changed
+            if fabs(self.currentPitch) > self.pitchThreshold {
+                self.state = .Changed
+            }
         }
         
         detector.startDetection()
@@ -46,5 +50,14 @@ class EXTPitchGestureRecognizer: UIGestureRecognizer {
     override func touchesCancelled(touches: Set<UITouch>, withEvent event: UIEvent) {
         super.touchesCancelled(touches, withEvent: event)
         detector.touchCancelled()
+        state = .Cancelled
+    }
+    
+    override func canBePreventedByGestureRecognizer(preventingGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
+    }
+    
+    override func canPreventGestureRecognizer(preventedGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
     }
 }

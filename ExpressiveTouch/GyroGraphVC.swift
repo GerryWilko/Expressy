@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CorePlot
 
 class GyroGraphVC: UIViewController {
     private let gyroGraphBuilder:GraphBuilder

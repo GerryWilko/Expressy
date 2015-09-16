@@ -13,7 +13,6 @@
 /// @name Factory Methods
 /// @{
 +(instancetype)textStyle;
-+(instancetype)textStyleWithStyle:(CPTTextStyle *)textStyle;
 /// @}
 
 @end

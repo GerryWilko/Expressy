@@ -36,7 +36,7 @@ class ScrollDemoVC: UICollectionViewController {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("imageCell", forIndexPath: indexPath) 
         let image = cell.viewWithTag(100) as! UIImageView
         
-        NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration()).dataTaskWithRequest(NSURLRequest(URL: NSURL(string: "http://lorempixel.com/600/400")!)) { (data, response, error) -> Void in
+        NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration()).dataTaskWithRequest(NSURLRequest(URL: NSURL(string: "http://lorempixel.com/600/400?\(EvalUtils.generateParticipantID())")!)) { (data, response, error) -> Void in
             if error == nil {
                 image.image = UIImage(data: data!)
             }

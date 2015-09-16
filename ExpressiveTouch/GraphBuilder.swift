@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CorePlot
 
 class GraphBuilder : NSObject, CPTPlotDataSource {
     private var graphView:CPTGraphHostingView!

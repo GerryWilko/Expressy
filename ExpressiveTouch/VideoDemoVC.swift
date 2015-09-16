@@ -13,7 +13,6 @@ import AVKit
 class VideoDemoVC: AVPlayerViewController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        showsPlaybackControls = false
     }
     
     private func playVideo() {
@@ -21,6 +20,24 @@ class VideoDemoVC: AVPlayerViewController {
         let url = NSURL.fileURLWithPath(path!)
         player = AVPlayer(URL: url)
         player?.play()
+        
+        let rollRecognizer = EXTRollGestureRecognizer(target: self, action: Selector("rollVideo:"))
+        
+        rollRecognizer.cancelsTouchesInView = false
+        rollRecognizer.rollThreshold = 10.0
+        
+        view.addGestureRecognizer(rollRecognizer)
+    }
+    
+    func rollVideo(recognizer:EXTRollGestureRecognizer) {
+        switch recognizer.state {
+        case .Changed:
+            player?.currentItem?.stepByCount(Int(recognizer.currentRoll / 10.0))
+        case .Ended:
+            player?.play()
+        default:
+            break
+        }
     }
     
     override func viewDidLoad() {

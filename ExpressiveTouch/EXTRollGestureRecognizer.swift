@@ -12,16 +12,20 @@ import UIKit.UIGestureRecognizerSubclass
 class EXTRollGestureRecognizer: UIGestureRecognizer {
     private let detector:EXTInteractionDetector
     
+    var rollThreshold:Float
     var currentRoll:Float
     
     override init(target: AnyObject?, action: Selector) {
         detector = EXTInteractionDetector(dataCache: SensorProcessor.dataCache)
+        rollThreshold = 0.0
         currentRoll = 0.0
         super.init(target: target, action: action)
         
         detector.subscribe(.DuringMetrics) { (data) -> Void in
             self.currentRoll = self.detector.currentRoll
-            self.state = .Changed
+            if fabs(self.currentRoll) > self.rollThreshold {
+                self.state = .Changed
+            }
         }
         
         detector.startDetection()
@@ -46,5 +50,14 @@ class EXTRollGestureRecognizer: UIGestureRecognizer {
     override func touchesCancelled(touches: Set<UITouch>, withEvent event: UIEvent) {
         super.touchesCancelled(touches, withEvent: event)
         detector.touchCancelled()
+        state = .Cancelled
+    }
+    
+    override func canBePreventedByGestureRecognizer(preventingGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
+    }
+    
+    override func canPreventGestureRecognizer(preventedGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
     }
 }

@@ -309,7 +309,7 @@ CPTImageSlices;
  **/
 +(instancetype)imageWithCGImage:(CGImageRef)anImage
 {
-    return [self imageWithCGImage:anImage scale:CPTFloat(1.0)];
+    return [[self alloc] initWithCGImage:anImage];
 }
 
 /** @brief Creates and returns a new CPTImage instance initialized with the contents of a PNG file.

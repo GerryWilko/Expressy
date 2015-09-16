@@ -25,7 +25,7 @@
  **/
 @implementation CPTLayerAnnotation
 
-/** @property cpt_weak CPTLayer *anchorLayer
+/** @property __cpt_weak CPTLayer *anchorLayer
  *  @brief The reference layer.
  **/
 @synthesize anchorLayer;
@@ -112,7 +112,7 @@
  */
 -(instancetype)initWithCoder:(NSCoder *)coder
 {
-    if ( (self = [super init]) ) {
+    if ( (self = [super initWithCoder:coder]) ) {
         anchorLayer  = [coder decodeObjectForKey:@"CPTLayerAnnotation.anchorLayer"];
         xConstraints = [coder decodeObjectForKey:@"CPTLayerAnnotation.xConstraints"];
         yConstraints = [coder decodeObjectForKey:@"CPTLayerAnnotation.yConstraints"];

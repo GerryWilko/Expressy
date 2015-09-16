@@ -77,7 +77,7 @@
  */
 -(instancetype)initWithCoder:(NSCoder *)coder
 {
-    if ( (self = [super init]) ) {
+    if ( (self = [super initWithCoder:coder]) ) {
         dateFormatter = [coder decodeObjectForKey:@"CPTTimeFormatter.dateFormatter"];
         referenceDate = [[coder decodeObjectForKey:@"CPTTimeFormatter.referenceDate"] copy];
     }
@@ -122,10 +122,9 @@
 
     if ( [coordinateValue respondsToSelector:@selector(doubleValue)] ) {
         NSDate *date;
-        NSDate *refDate = self.referenceDate;
 
-        if ( refDate ) {
-            date = [[NSDate alloc] initWithTimeInterval:[coordinateValue doubleValue] sinceDate:refDate];
+        if ( self.referenceDate ) {
+            date = [[NSDate alloc] initWithTimeInterval:[coordinateValue doubleValue] sinceDate:self.referenceDate];
         }
         else {
             date = [[NSDate alloc] initWithTimeIntervalSinceReferenceDate:[coordinateValue doubleValue]];

@@ -54,5 +54,14 @@ class EXTFlickGestureRecognizer: UIGestureRecognizer {
     override func touchesCancelled(touches: Set<UITouch>, withEvent event: UIEvent) {
         super.touchesCancelled(touches, withEvent: event)
         detector.touchCancelled()
+        state = .Cancelled
+    }
+    
+    override func canBePreventedByGestureRecognizer(preventingGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
+    }
+    
+    override func canPreventGestureRecognizer(preventedGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
     }
 }

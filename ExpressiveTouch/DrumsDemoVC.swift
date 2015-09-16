@@ -8,6 +8,7 @@
 
 import Foundation
 import AVFoundation
+import SVProgressHUD
 
 class DrumsDemoVC : UIViewController {
     private var audioPlayers: [String:AVAudioPlayer]!
@@ -63,6 +64,34 @@ class DrumsDemoVC : UIViewController {
         super.touchesBegan(touches, withEvent: event)
     }
     
+    @IBAction func etToggle(sender: AnyObject) {
+        bassDrumBtn.gestureRecognizers?.forEach({ (recognizer) -> () in
+            recognizer.enabled = !recognizer.enabled
+        })
+        rideCymbalBtn.gestureRecognizers?.forEach({ (recognizer) -> () in
+            recognizer.enabled = !recognizer.enabled
+        })
+        crashCymbalBtn.gestureRecognizers?.forEach({ (recognizer) -> () in
+            recognizer.enabled = !recognizer.enabled
+        })
+        hihatBtn.gestureRecognizers?.forEach({ (recognizer) -> () in
+            recognizer.enabled = !recognizer.enabled
+        })
+        highTomBtn.gestureRecognizers?.forEach({ (recognizer) -> () in
+            recognizer.enabled = !recognizer.enabled
+        })
+        lowTomBtn.gestureRecognizers?.forEach({ (recognizer) -> () in
+            recognizer.enabled = !recognizer.enabled
+        })
+        snareBtn.gestureRecognizers?.forEach({ (recognizer) -> () in
+            recognizer.enabled = !recognizer.enabled
+        })
+        floorTomBtn.gestureRecognizers?.forEach({ (recognizer) -> () in
+            recognizer.enabled = !recognizer.enabled
+        })
+        SVProgressHUD.showImage(UIImage(named: "ExpressiveTouchIcon"), status: self.bassDrumBtn.gestureRecognizers!.first!.enabled ? "Expressive Touch Enabled" : "Expressive Touch Disabled")
+    }
+    
     func bassDrum(recognizer:EXTForceGestureRecognizer) {
         if recognizer.state == .Began {
             if let player = audioPlayers["bassDrum"] {
@@ -73,6 +102,17 @@ class DrumsDemoVC : UIViewController {
                 player.volume = recognizer.tapForce
                 player.play()
             }
+        }
+    }
+    
+    @IBAction func bassDrumStd(sender: AnyObject) {
+        if let player = audioPlayers["bassDrum"] {
+            if player.playing {
+                player.pause()
+                player.currentTime = 0
+            }
+            player.volume = 1.0
+            player.play()
         }
     }
     
@@ -89,6 +129,17 @@ class DrumsDemoVC : UIViewController {
         }
     }
     
+    @IBAction func rideCymbalStd(sender: AnyObject) {
+        if let player = audioPlayers["rideCymbal"] {
+            if player.playing {
+                player.pause()
+                player.currentTime = 0
+            }
+            player.volume = 1.0
+            player.play()
+        }
+    }
+    
     func crashCymbal(recognizer:EXTForceGestureRecognizer) {
         if recognizer.state == .Began {
             if let player = audioPlayers["crashCymbal"] {
@@ -99,6 +150,17 @@ class DrumsDemoVC : UIViewController {
                 player.volume = recognizer.tapForce
                 player.play()
             }
+        }
+    }
+    
+    @IBAction func crashCymbalStd(sender: AnyObject) {
+        if let player = audioPlayers["crashCymbal"] {
+            if player.playing {
+                player.pause()
+                player.currentTime = 0
+            }
+            player.volume = 1.0
+            player.play()
         }
     }
     
@@ -115,6 +177,17 @@ class DrumsDemoVC : UIViewController {
         }
     }
     
+    @IBAction func hiHatStd(sender: AnyObject) {
+        if let player = audioPlayers["hiHat"] {
+            if player.playing {
+                player.pause()
+                player.currentTime = 0
+            }
+            player.volume = 1.0
+            player.play()
+        }
+    }
+    
     func highTom(recognizer:EXTForceGestureRecognizer) {
         if recognizer.state == .Began {
             if let player = audioPlayers["highTom"] {
@@ -125,6 +198,17 @@ class DrumsDemoVC : UIViewController {
                 player.volume = recognizer.tapForce
                 player.play()
             }
+        }
+    }
+    
+    @IBAction func highTomStd(sender: AnyObject) {
+        if let player = audioPlayers["highTom"] {
+            if player.playing {
+                player.pause()
+                player.currentTime = 0
+            }
+            player.volume = 1.0
+            player.play()
         }
     }
     
@@ -141,6 +225,17 @@ class DrumsDemoVC : UIViewController {
         }
     }
     
+    @IBAction func lowTomStd(sender: AnyObject) {
+        if let player = audioPlayers["lowTom"] {
+            if player.playing {
+                player.pause()
+                player.currentTime = 0
+            }
+            player.volume = 1.0
+            player.play()
+        }
+    }
+    
     func snare(recognizer:EXTForceGestureRecognizer) {
         if recognizer.state == .Began {
             if let player = audioPlayers["snare"] {
@@ -154,6 +249,17 @@ class DrumsDemoVC : UIViewController {
         }
     }
     
+    @IBAction func snareStd(sender: AnyObject) {
+        if let player = audioPlayers["snare"] {
+            if player.playing {
+                player.pause()
+                player.currentTime = 0
+            }
+            player.volume = 1.0
+            player.play()
+        }
+    }
+    
     func floorTom(recognizer:EXTForceGestureRecognizer) {
         if recognizer.state == .Began {
             if let player = audioPlayers["floorTom"] {
@@ -164,6 +270,17 @@ class DrumsDemoVC : UIViewController {
                 player.volume = recognizer.tapForce
                 player.play()
             }
+        }
+    }
+    
+    @IBAction func floorTomStd(sender: AnyObject) {
+        if let player = audioPlayers["floorTom"] {
+            if player.playing {
+                player.pause()
+                player.currentTime = 0
+            }
+            player.volume = 1.0
+            player.play()
         }
     }
 }

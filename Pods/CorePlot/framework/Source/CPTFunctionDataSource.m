@@ -9,7 +9,7 @@
 
 /// @cond
 
-static void *CPTFunctionDataSourceKVOContext = (void *)&CPTFunctionDataSourceKVOContext;
+static void *const CPTFunctionDataSourceKVOContext = (void *)&CPTFunctionDataSourceKVOContext;
 
 @interface CPTFunctionDataSource()
 

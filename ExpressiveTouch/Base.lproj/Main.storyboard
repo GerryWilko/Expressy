@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A282b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EZQ-rH-WHv">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Gyroscope-->
@@ -987,6 +987,9 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="circleMask" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="rideCymbalStd:" destination="LY3-q6-pVf" eventType="touchUpInside" id="vCx-7V-at5"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o0o-27-YiX">
                                 <rect key="frame" x="12" y="155" width="130" height="130"/>
@@ -1000,6 +1003,9 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="circleMask" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="crashCymbalStd:" destination="LY3-q6-pVf" eventType="touchUpInside" id="IZa-sJ-q31"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pna-qR-Kek">
                                 <rect key="frame" x="150" y="155" width="300" height="250"/>
@@ -1016,6 +1022,9 @@
                                         <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="bassDrumStd:" destination="LY3-q6-pVf" eventType="touchUpInside" id="k17-J6-J6e"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DCZ-dN-rFd">
                                 <rect key="frame" x="158" y="297" width="100" height="100"/>
@@ -1035,6 +1044,9 @@
                                         <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="highTomStd:" destination="LY3-q6-pVf" eventType="touchUpInside" id="hzd-fj-RIX"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ynw-gL-nhh">
                                 <rect key="frame" x="150" y="413" width="100" height="100"/>
@@ -1054,6 +1066,9 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="circleMask" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="snareStd:" destination="LY3-q6-pVf" eventType="touchUpInside" id="foq-IF-G0A"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cXM-Mc-Tcc">
                                 <rect key="frame" x="342" y="297" width="100" height="100"/>
@@ -1073,6 +1088,9 @@
                                         <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="lowTomStd:" destination="LY3-q6-pVf" eventType="touchUpInside" id="y5J-jq-UQc"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxN-kQ-6QM">
                                 <rect key="frame" x="350" y="413" width="150" height="150"/>
@@ -1092,6 +1110,9 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="circleMask" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="floorTomStd:" destination="LY3-q6-pVf" eventType="touchUpInside" id="X19-oG-kQs"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="217-MV-5qt">
                                 <rect key="frame" x="42" y="305" width="100" height="100"/>
@@ -1105,6 +1126,9 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="circleMask" value="YES"/>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="hiHatStd:" destination="LY3-q6-pVf" eventType="touchUpInside" id="8Te-nq-sf5"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>
@@ -1128,7 +1152,13 @@
                             <constraint firstItem="DCZ-dN-rFd" firstAttribute="leading" secondItem="pna-qR-Kek" secondAttribute="leading" constant="8" id="zZy-Cx-i6A"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Drums Demo" id="91C-gM-lUk"/>
+                    <navigationItem key="navigationItem" title="Drums Demo" id="91C-gM-lUk">
+                        <barButtonItem key="rightBarButtonItem" image="ExpressiveTouchIcon" id="JYC-ev-rYa">
+                            <connections>
+                                <action selector="etToggle:" destination="LY3-q6-pVf" id="7J7-QT-LzC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="bassDrumBtn" destination="pna-qR-Kek" id="sE3-z0-WJe"/>
                         <outlet property="crashCymbalBtn" destination="o0o-27-YiX" id="U3G-xZ-lms"/>
@@ -1165,7 +1195,7 @@
                                 </constraints>
                                 <state key="normal" title="Button" image="ColorWheel"/>
                                 <connections>
-                                    <segue destination="D4j-Qi-iZe" kind="popoverPresentation" identifier="colorPickerSegue" popoverAnchorView="261-ve-U9o" id="LtT-GZ-8mX">
+                                    <segue destination="qgw-P4-7wp" kind="popoverPresentation" identifier="colorPickerSegue" popoverAnchorView="261-ve-U9o" id="FCF-3h-A4z">
                                         <popoverArrowDirection key="popoverArrowDirection" down="YES"/>
                                     </segue>
                                 </connections>
@@ -1233,11 +1263,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Painting Demo" id="f4Y-b2-0TF">
-                        <barButtonItem key="rightBarButtonItem" title="Clear" id="utN-eh-DY5">
-                            <connections>
-                                <action selector="clear:" destination="tOs-FV-J53" id="7OP-X2-bUj"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="ExpressiveTouchIcon" id="lON-dK-sw6">
+                                <connections>
+                                    <action selector="etToggle:" destination="tOs-FV-J53" id="waK-BE-wab"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Clear" id="utN-eh-DY5">
+                                <connections>
+                                    <action selector="clear:" destination="tOs-FV-J53" id="7OP-X2-bUj"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="strokeWidthBtn" destination="8yA-wQ-XD2" id="iNZ-tK-6zd"/>
@@ -1268,6 +1305,25 @@
             </objects>
             <point key="canvasLocation" x="-1602" y="4942"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="QtR-VR-QXS">
+            <objects>
+                <navigationController id="qgw-P4-7wp" sceneMemberID="viewController">
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="390"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vaa-Sm-Tgy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="D4j-Qi-iZe" kind="relationship" relationship="rootViewController" id="2k0-S2-AnA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ned-Yg-X0Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1066" y="3325"/>
+        </scene>
         <!--Color Picker-->
         <scene sceneID="bCo-NO-XMd">
             <objects>
@@ -1277,11 +1333,11 @@
                         <viewControllerLayoutGuide type="bottom" id="KtB-cv-X7O"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="5FD-AY-2N1">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="326"/>
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="LiV-fJ-dgi">
-                                <rect key="frame" x="14" y="75" width="272" height="31"/>
+                                <rect key="frame" x="14" y="139" width="272" height="31"/>
                                 <animations/>
                                 <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -1289,7 +1345,7 @@
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="8Fl-vZ-oUe">
-                                <rect key="frame" x="14" y="142" width="272" height="31"/>
+                                <rect key="frame" x="14" y="206" width="272" height="31"/>
                                 <animations/>
                                 <color key="tintColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -1297,14 +1353,14 @@
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="kfs-1B-tt7">
-                                <rect key="frame" x="14" y="209" width="272" height="31"/>
+                                <rect key="frame" x="14" y="273" width="272" height="31"/>
                                 <animations/>
                                 <connections>
                                     <action selector="blueChanged:" destination="D4j-Qi-iZe" eventType="valueChanged" id="jaE-iK-W6W"/>
                                 </connections>
                             </slider>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UGN-Nz-WOE">
-                                <rect key="frame" x="16" y="8" width="268" height="30"/>
+                                <rect key="frame" x="16" y="72" width="268" height="30"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -1320,35 +1376,35 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Red" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sci-gO-7zE">
-                                <rect key="frame" x="135" y="46" width="30" height="21"/>
+                                <rect key="frame" x="135" y="110" width="30" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Green" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xqa-wE-v1d">
-                                <rect key="frame" x="127" y="113" width="47" height="21"/>
+                                <rect key="frame" x="127" y="177" width="47" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c2Y-aF-dhv">
-                                <rect key="frame" x="133" y="180" width="34" height="21"/>
+                                <rect key="frame" x="133" y="244" width="34" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Opacity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NN3-gp-8TH">
-                                <rect key="frame" x="120" y="247" width="60" height="21"/>
+                                <rect key="frame" x="120" y="311" width="60" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="dY1-gD-5VS">
-                                <rect key="frame" x="14" y="276" width="272" height="31"/>
+                                <rect key="frame" x="14" y="340" width="272" height="31"/>
                                 <animations/>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -1385,12 +1441,14 @@
                             <constraint firstItem="8Fl-vZ-oUe" firstAttribute="leading" secondItem="5FD-AY-2N1" secondAttribute="leadingMargin" id="yJb-cL-qia"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="VVD-PY-piP"/>
+                    <navigationItem key="navigationItem" title="Color Picker" id="VVD-PY-piP">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="zEc-Sk-kVB">
+                            <connections>
+                                <segue destination="Yid-V8-jtO" kind="unwind" unwindAction="unwindToPaintingDemo:" id="e1T-3D-zX5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <value key="contentSizeForViewInPopover" type="size" width="300" height="346"/>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="300" height="326"/>
                     <connections>
                         <outlet property="blueSlider" destination="kfs-1B-tt7" id="163-dc-g4o"/>
                         <outlet property="colorPreview" destination="UGN-Nz-WOE" id="sxY-1Z-vMz"/>
@@ -1400,8 +1458,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MJL-5p-dvn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Yid-V8-jtO" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-1010" y="3325"/>
+            <point key="canvasLocation" x="-665" y="3325"/>
         </scene>
         <!--Maps Demo-->
         <scene sceneID="thg-bG-Lqj">
@@ -1419,6 +1478,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Maps Demo" id="DD3-rf-gZa">
                         <barButtonItem key="backBarButtonItem" title="Back" id="1ur-ob-ZVh"/>
+                        <barButtonItem key="rightBarButtonItem" image="ExpressiveTouchIcon" id="fzJ-FE-jHW">
+                            <connections>
+                                <action selector="etToggle:" destination="4mK-01-RmJ" id="58a-hv-Jtp"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ydy-fQ-rpJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2193,6 +2257,7 @@ Then press and hold.</string>
         <image name="Bluetooth" width="666" height="1017"/>
         <image name="ColorWheel" width="243" height="243"/>
         <image name="CultureLab" width="1536" height="1152"/>
+        <image name="ExpressiveTouchIcon" width="33" height="33"/>
         <image name="GyroIcon" width="16" height="16"/>
         <image name="MagIcon" width="16" height="16"/>
         <image name="MicrosoftBand" width="170" height="170"/>
