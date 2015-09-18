@@ -34,6 +34,7 @@ class EXTForceGestureRecognizer: UIGestureRecognizer {
         
         detector.subscribe(interactionEvent) { (data) -> Void in
             self.tapForce = data!
+            self.state = .Began
         }
         
         detector.startDetection()
@@ -46,7 +47,6 @@ class EXTForceGestureRecognizer: UIGestureRecognizer {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent) {
         super.touchesBegan(touches, withEvent: event)
         detector.touchDown()
-        state = .Began
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent) {

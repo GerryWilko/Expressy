@@ -1,7 +1,7 @@
 ALWAYS_SEARCH_USER_PATHS = YES
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_CFLAGS = $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/CorePlot.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/DAScratchPad.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/MDRadialProgress.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/SVProgressHUD.framework/Headers"
-OTHER_LDFLAGS = $(inherited) -framework "CorePlot" -framework "DAScratchPad" -framework "MDRadialProgress" -framework "SVProgressHUD"
+OTHER_CFLAGS = $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/CorePlot.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/DAScratchPad.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/LoremIpsum.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/MDRadialProgress.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/SVProgressHUD.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -framework "CorePlot" -framework "DAScratchPad" -framework "LoremIpsum" -framework "MDRadialProgress" -framework "SVProgressHUD"
 PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods-ExpressiveTouch
 PODS_ROOT = ${SRCROOT}/Pods

@@ -22,7 +22,7 @@ class SensorData {
     /// Vector of estimation of gravity.
     let grav:Vector3D
     
-    var touch:TouchEvent, touchForce:Float
+    var touch:TouchEvent, touchFlickForce:Float
     
     /// Initialises a new sensor data instance for encapsulation of sensor data.
     /// - parameter time: Time data was recieved.
@@ -59,13 +59,13 @@ class SensorData {
         grav = Vector3D(x: gravx, y: gravy, z: gravz)
         
         touch = TouchEvent.None
-        touchForce = 0.0
+        touchFlickForce = 0.0
     }
     
     /// Function to retrieve formatted header line for CSV export of sensor data.
     /// - returns: Comma-separated formatted header line for CSV export.
     class func headerLine() -> String {
-        return "Time,ax,ay,az,gx,gy,gz,gravx,gravy,gravz,yaw,pitch,roll,Touch,Touch Force"
+        return "Time,ax,ay,az,gx,gy,gz,gravx,gravy,gravz,qx,qy,qz,qw,Touch,Touch/Flick Force"
     }
     
     /// Function to retrieve the accelerometer values with the estimation of gravity removed providing 'pure' acceleration.
@@ -78,12 +78,16 @@ class SensorData {
     /// - parameter touchForce: Value denoting force screen was struck.
     func touchDown(touchForce:Float) {
         touch = TouchEvent.Down
-        self.touchForce = touchForce
+        touchFlickForce = touchForce
     }
     
     /// Function to pass touch up event, places mark in sensor data for debuggin purposes.
     func touchUp() {
         touch = TouchEvent.Up
+    }
+    
+    func setFlick(flickForce:Float) {
+        touchFlickForce = flickForce
     }
     
     /// Function to retrieve yaw, pitch and roll from Madgwick Quaternion decomposition.
@@ -102,9 +106,7 @@ class SensorData {
     /// Function to print sensor data in CSV format.
     /// - returns: Formatted string of sensor data.
     func print() -> String {
-        let ypr = getYawPitchRoll()
-        
-        return "\(time),\(acc.x),\(acc.y),\(acc.z),\(gyro.x),\(gyro.y),\(gyro.z),\(grav.x),\(grav.y),\(grav.z),\(ypr.yaw),\(ypr.pitch),\(ypr.roll),\(touch.rawValue),\(touchForce)"
+        return "\(time),\(acc.x),\(acc.y),\(acc.z),\(gyro.x),\(gyro.y),\(gyro.z),\(grav.x),\(grav.y),\(grav.z),\(q.x),\(q.y),\(q.z),\(q.w),\(touch.rawValue),\(touchFlickForce)"
     }
 }
 

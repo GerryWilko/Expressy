@@ -9,8 +9,11 @@
 import Foundation
 import AVFoundation
 import AVKit
+import MessageUI
 
-class VideoDemoVC: AVPlayerViewController {
+class VideoDemoVC: AVPlayerViewController, MFMailComposeViewControllerDelegate {
+    private var startRecordTime:NSTimeInterval?
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -53,5 +56,52 @@ class VideoDemoVC: AVPlayerViewController {
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         navigationController?.navigationBar.translucent = true
+    }
+    
+    @IBAction func RecordBtn(sender: UIBarButtonItem) {
+        if let startTime = startRecordTime {
+            sender.image = UIImage(named: "RecordIcon")
+            startRecordTime = nil
+            
+            let csv = CSVBuilder(files: ["videoDemo-sensordata.csv" : SensorData.headerLine()])
+            
+            EvalUtils.logDataBetweenTimes(startTime, endTime: NSDate.timeIntervalSinceReferenceDate(), csv: csv, file: "videoDemo-sensordata.csv")
+            
+            emailCSV(csv)
+        } else {
+            sender.image = UIImage(named: "PauseIcon")
+            startRecordTime = NSDate.timeIntervalSinceReferenceDate()
+        }
+    }
+    
+    func emailCSV(csv:CSVBuilder) {
+        if(MFMailComposeViewController.canSendMail()){
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            
+            mail.setSubject("Video Demo sensor data")
+            
+            for file in csv.files {
+                if let data = file.1.dataUsingEncoding(NSUTF8StringEncoding) {
+                    mail.addAttachmentData(data, mimeType: "text/csv", fileName: file.0)
+                } else {
+                    let alert = UIAlertController(title: "Error exporting CSV", message: "Unable to read CSV file.", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                    presentViewController(alert, animated: true, completion: nil)
+                }
+            }
+            
+            mail.setToRecipients(["gerrywilko@googlemail.com"])
+            presentViewController(mail, animated: true, completion: nil)
+        }
+        else {
+            let alert = UIAlertController(title: "Error exporting CSV", message: "Your device cannot send emails.", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            presentViewController(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
     }
 }

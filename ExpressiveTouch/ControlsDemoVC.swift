@@ -8,11 +8,13 @@
 
 import Foundation
 import MDRadialProgress
+import MessageUI
 
-class ControlsDemoVC: UIViewController {
+class ControlsDemoVC: UIViewController, MFMailComposeViewControllerDelegate {
     private var touchImageTransform:CGAffineTransform!
     private var touchProgress:UInt
     
+    private var startRecordTime:NSTimeInterval?
     private var rotationRecognizer:UIRotationGestureRecognizer!
     private var rollRecognizer:EXTRollGestureRecognizer!
     
@@ -89,5 +91,52 @@ class ControlsDemoVC: UIViewController {
         default:
             break
         }
+    }
+    
+    @IBAction func RecordBtn(sender: UIBarButtonItem) {
+        if let startTime = startRecordTime {
+            sender.image = UIImage(named: "RecordIcon")
+            startRecordTime = nil
+            
+            let csv = CSVBuilder(files: ["controlsDemo-sensordata.csv" : SensorData.headerLine()])
+            
+            EvalUtils.logDataBetweenTimes(startTime, endTime: NSDate.timeIntervalSinceReferenceDate(), csv: csv, file: "controlsDemo-sensordata.csv")
+            
+            emailCSV(csv)
+        } else {
+            sender.image = UIImage(named: "PauseIcon")
+            startRecordTime = NSDate.timeIntervalSinceReferenceDate()
+        }
+    }
+    
+    func emailCSV(csv:CSVBuilder) {
+        if(MFMailComposeViewController.canSendMail()){
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            
+            mail.setSubject("Controls Demo sensor data")
+            
+            for file in csv.files {
+                if let data = file.1.dataUsingEncoding(NSUTF8StringEncoding) {
+                    mail.addAttachmentData(data, mimeType: "text/csv", fileName: file.0)
+                } else {
+                    let alert = UIAlertController(title: "Error exporting CSV", message: "Unable to read CSV file.", preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                    presentViewController(alert, animated: true, completion: nil)
+                }
+            }
+            
+            mail.setToRecipients(["gerrywilko@googlemail.com"])
+            presentViewController(mail, animated: true, completion: nil)
+        }
+        else {
+            let alert = UIAlertController(title: "Error exporting CSV", message: "Your device cannot send emails.", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            presentViewController(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
     }
 }

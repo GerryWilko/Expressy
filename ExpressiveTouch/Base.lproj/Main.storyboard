@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A282b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EZQ-rH-WHv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B17c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EZQ-rH-WHv">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -741,7 +741,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <segue destination="9l4-5t-Hob" kind="show" id="45m-zv-YTj"/>
+                                            <segue destination="94m-7D-nsR" kind="show" id="pIV-Z5-j63"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="T5X-cZ-KsK" style="IBUITableViewCellStyleDefault" id="OyH-VY-mQi">
@@ -1153,11 +1153,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Drums Demo" id="91C-gM-lUk">
-                        <barButtonItem key="rightBarButtonItem" image="ExpressiveTouchIcon" id="JYC-ev-rYa">
-                            <connections>
-                                <action selector="etToggle:" destination="LY3-q6-pVf" id="7J7-QT-LzC"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="ExpressiveTouchIcon" id="JYC-ev-rYa">
+                                <connections>
+                                    <action selector="etToggle:" destination="LY3-q6-pVf" id="7J7-QT-LzC"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="RecordIcon" id="peN-Sv-xpD">
+                                <connections>
+                                    <action selector="RecordBtn:" destination="LY3-q6-pVf" id="ggQ-6R-AGC"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="bassDrumBtn" destination="pna-qR-Kek" id="sE3-z0-WJe"/>
@@ -1200,66 +1207,12 @@
                                     </segue>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8yA-wQ-XD2">
-                                <rect key="frame" x="520" y="520" width="60" height="60"/>
-                                <animations/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="BQ5-IT-ka3"/>
-                                    <constraint firstAttribute="width" constant="60" id="Ri5-Zg-u6w"/>
-                                </constraints>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Stroke"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="circleMask" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </button>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T7m-jU-y6f">
-                                <rect key="frame" x="240" y="240" width="120" height="120"/>
-                                <subviews>
-                                    <view tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D5C-Pw-sfe">
-                                        <rect key="frame" x="10" y="10" width="100" height="100"/>
-                                        <animations/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="M2U-d7-6QB"/>
-                                            <constraint firstAttribute="height" constant="100" id="etE-ae-keH"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="circleMask" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                </subviews>
-                                <animations/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.74922429078014185" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="9kL-7Z-2dL"/>
-                                    <constraint firstItem="D5C-Pw-sfe" firstAttribute="centerY" secondItem="T7m-jU-y6f" secondAttribute="centerY" id="Cne-qJ-uTq"/>
-                                    <constraint firstAttribute="width" constant="120" id="IBQ-PP-QmK"/>
-                                    <constraint firstItem="D5C-Pw-sfe" firstAttribute="centerX" secondItem="T7m-jU-y6f" secondAttribute="centerX" id="jR4-AW-ML2"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="gQE-So-NgP" firstAttribute="top" secondItem="8yA-wQ-XD2" secondAttribute="bottom" constant="20" id="389-m7-lqw"/>
-                            <constraint firstItem="T7m-jU-y6f" firstAttribute="centerX" secondItem="ZD1-TP-bIb" secondAttribute="centerX" id="FNk-SB-vgv"/>
-                            <constraint firstItem="8yA-wQ-XD2" firstAttribute="trailing" secondItem="ZD1-TP-bIb" secondAttribute="trailingMargin" id="Iff-Xe-tJQ"/>
                             <constraint firstItem="gQE-So-NgP" firstAttribute="top" secondItem="261-ve-U9o" secondAttribute="bottom" constant="20" id="ZcK-xV-WYh"/>
                             <constraint firstItem="261-ve-U9o" firstAttribute="leading" secondItem="ZD1-TP-bIb" secondAttribute="leadingMargin" id="nL7-Gs-crL"/>
-                            <constraint firstItem="T7m-jU-y6f" firstAttribute="centerY" secondItem="ZD1-TP-bIb" secondAttribute="centerY" id="o1e-eW-Mx5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Painting Demo" id="f4Y-b2-0TF">
@@ -1269,6 +1222,11 @@
                                     <action selector="etToggle:" destination="tOs-FV-J53" id="waK-BE-wab"/>
                                 </connections>
                             </barButtonItem>
+                            <barButtonItem image="RecordIcon" id="eAw-MI-oeD">
+                                <connections>
+                                    <action selector="RecordBtn:" destination="tOs-FV-J53" id="0YI-VU-JGG"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem title="Clear" id="utN-eh-DY5">
                                 <connections>
                                     <action selector="clear:" destination="tOs-FV-J53" id="7OP-X2-bUj"/>
@@ -1276,10 +1234,6 @@
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
-                    <connections>
-                        <outlet property="strokeWidthBtn" destination="8yA-wQ-XD2" id="iNZ-tK-6zd"/>
-                        <outlet property="strokeWidthHUD" destination="T7m-jU-y6f" id="BAv-IU-X1E"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RiN-ub-Thc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1299,7 +1253,13 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Video Demo" id="NVC-qZ-pkj"/>
+                    <navigationItem key="navigationItem" title="Video Demo" id="NVC-qZ-pkj">
+                        <barButtonItem key="rightBarButtonItem" image="RecordIcon" id="lui-sg-fYl">
+                            <connections>
+                                <action selector="RecordBtn:" destination="h2e-d9-htY" id="bHz-sn-8Jj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hqq-hK-uS8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1478,11 +1438,18 @@
                     </view>
                     <navigationItem key="navigationItem" title="Maps Demo" id="DD3-rf-gZa">
                         <barButtonItem key="backBarButtonItem" title="Back" id="1ur-ob-ZVh"/>
-                        <barButtonItem key="rightBarButtonItem" image="ExpressiveTouchIcon" id="fzJ-FE-jHW">
-                            <connections>
-                                <action selector="etToggle:" destination="4mK-01-RmJ" id="58a-hv-Jtp"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="ExpressiveTouchIcon" id="fzJ-FE-jHW">
+                                <connections>
+                                    <action selector="etToggle:" destination="4mK-01-RmJ" id="58a-hv-Jtp"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="RecordIcon" id="pP4-wo-bdC">
+                                <connections>
+                                    <action selector="RecordBtn:" destination="4mK-01-RmJ" id="p2m-tp-Dvk"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ydy-fQ-rpJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1552,6 +1519,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Controls Demo" id="zJH-ok-pfa">
                         <barButtonItem key="backBarButtonItem" title="Back" id="sn2-Ct-P0r"/>
+                        <barButtonItem key="rightBarButtonItem" image="RecordIcon" id="GuB-OZ-jiz">
+                            <connections>
+                                <action selector="RecordBtn:" destination="GYq-0r-roE" id="3KS-oH-jZU"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="imageView" destination="LuG-GA-pS2" id="DD5-yu-7hr"/>
@@ -1696,52 +1668,28 @@ Press next to advance to the next step, you will be asked to perform this 10 tim
             <point key="canvasLocation" x="-2401" y="4131"/>
         </scene>
         <!--Scroll Demo-->
-        <scene sceneID="674-Od-YjT">
+        <scene sceneID="skn-dl-3Cl">
             <objects>
-                <collectionViewController title="Scroll Demo" id="9l4-5t-Hob" customClass="ScrollDemoVC" customModule="Exp_Touch" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="f9e-id-RJH">
+                <viewController id="94m-7D-nsR" customClass="ScrollDemoVC" customModule="Exp_Touch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yiq-UG-fXo"/>
+                        <viewControllerLayoutGuide type="bottom" id="gJK-Xn-B4e"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BGo-bQ-RLm" customClass="UITextView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Wht-Tm-2qu">
-                            <size key="itemSize" width="600" height="400"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="imageCell" id="sLA-1W-w5P">
-                                <rect key="frame" x="0.0" y="64" width="600" height="400"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9gu-CZ-Uqq">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
-                                            <animations/>
-                                        </imageView>
-                                    </subviews>
-                                    <animations/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="9gu-CZ-Uqq" secondAttribute="trailing" id="3VW-5Y-xaD"/>
-                                    <constraint firstAttribute="bottom" secondItem="9gu-CZ-Uqq" secondAttribute="bottom" id="4ID-L4-GGt"/>
-                                    <constraint firstItem="9gu-CZ-Uqq" firstAttribute="leading" secondItem="sLA-1W-w5P" secondAttribute="leading" id="KUc-eC-b2N"/>
-                                    <constraint firstItem="9gu-CZ-Uqq" firstAttribute="top" secondItem="sLA-1W-w5P" secondAttribute="top" id="fze-m6-mxV"/>
-                                </constraints>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="9l4-5t-Hob" id="k2S-25-nLG"/>
-                            <outlet property="delegate" destination="9l4-5t-Hob" id="czq-78-Jlq"/>
-                        </connections>
-                    </collectionView>
-                    <navigationItem key="navigationItem" title="Scroll Demo" id="Tsj-sO-XHV"/>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fA9-qT-n7x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Scroll Demo" id="UZY-E7-iqn">
+                        <barButtonItem key="rightBarButtonItem" image="RecordIcon" id="GMf-b2-huQ">
+                            <connections>
+                                <action selector="RecordBtn:" destination="94m-7D-nsR" id="aI4-t3-OtG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FA3-QE-X35" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1602" y="4131"/>
         </scene>
@@ -2261,6 +2209,7 @@ Then press and hold.</string>
         <image name="GyroIcon" width="16" height="16"/>
         <image name="MagIcon" width="16" height="16"/>
         <image name="MicrosoftBand" width="170" height="170"/>
+        <image name="RecordIcon" width="33" height="33"/>
         <image name="RedCircle" width="200" height="200"/>
         <image name="UniLogo" width="94" height="110"/>
         <image name="YellowCircle" width="200" height="200"/>

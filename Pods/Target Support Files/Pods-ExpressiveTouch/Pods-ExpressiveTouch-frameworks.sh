@@ -84,12 +84,14 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-ExpressiveTouch/CorePlot.framework"
   install_framework "Pods-ExpressiveTouch/DAScratchPad.framework"
+  install_framework "Pods-ExpressiveTouch/LoremIpsum.framework"
   install_framework "Pods-ExpressiveTouch/MDRadialProgress.framework"
   install_framework "Pods-ExpressiveTouch/SVProgressHUD.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-ExpressiveTouch/CorePlot.framework"
   install_framework "Pods-ExpressiveTouch/DAScratchPad.framework"
+  install_framework "Pods-ExpressiveTouch/LoremIpsum.framework"
   install_framework "Pods-ExpressiveTouch/MDRadialProgress.framework"
   install_framework "Pods-ExpressiveTouch/SVProgressHUD.framework"
 fi

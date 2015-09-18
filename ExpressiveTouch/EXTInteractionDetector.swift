@@ -164,6 +164,9 @@ class EXTInteractionDetector {
         } else {
             fireNoFlick(flickForce)
         }
+        
+        let data = dataCache.getForTime(touchUpTime)
+        data.setFlick(flickForce)
     }
     
     /// Internal function for calculation of rotation changes based upon new sensor data and time since last reading.

@@ -10,5 +10,6 @@ target 'ExpressiveTouch' do
     pod 'DAScratchPad'
     pod 'MDRadialProgress'
     pod 'SVProgressHUD'
+    pod 'LoremIpsum'
 
 end
