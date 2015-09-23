@@ -98,9 +98,12 @@ class MapDemoVC: UIViewController, MFMailComposeViewControllerDelegate {
             EvalUtils.logDataBetweenTimes(startTime, endTime: NSDate.timeIntervalSinceReferenceDate(), csv: csv, file: "mapDemo-sensordata.csv")
             
             emailCSV(csv)
+            
+            SensorCache.resetLimit()
         } else {
             sender.image = UIImage(named: "PauseIcon")
             startRecordTime = NSDate.timeIntervalSinceReferenceDate()
+            SensorCache.setRecordLimit()
         }
     }
     

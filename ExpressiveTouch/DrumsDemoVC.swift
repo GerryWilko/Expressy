@@ -12,7 +12,9 @@ import SVProgressHUD
 import MessageUI
 
 class DrumsDemoVC : UIViewController, MFMailComposeViewControllerDelegate {
-    private var audioPlayers: [String:AVAudioPlayer]!
+    private let numPlayers = 10
+    
+    private var audioPlayers: [String:[AVAudioPlayer]]!
     private var startRecordTime:NSTimeInterval?
     
     @IBOutlet weak var bassDrumBtn: UIButton!
@@ -26,28 +28,21 @@ class DrumsDemoVC : UIViewController, MFMailComposeViewControllerDelegate {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        do {
-            audioPlayers = [
-                "bassDrum": try AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("kick-acoustic01", ofType: "wav")!)),
-                "rideCymbal": try AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("ride-acoustic02", ofType: "wav")!)),
-                "crashCymbal": try AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("crash-acoustic", ofType: "wav")!)),
-                "hiHat": try AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("hihat-acoustic01", ofType: "wav")!)),
-                "highTom": try AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("tom-acoustic01", ofType: "wav")!)),
-                "lowTom": try AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("tom-acoustic02", ofType: "wav")!)),
-                "snare": try AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("snare", ofType: "mp3")!)),
-                "floorTom": try AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("kick-acoustic01", ofType: "wav")!))
-            ]
-            audioPlayers.forEach({ (key, ap) -> () in
-                ap.prepareToPlay()
+        audioPlayers = [
+            "bassDrum": createPlayers(NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("kick-acoustic01", ofType: "wav")!)),
+            "rideCymbal": createPlayers(NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("ride-acoustic02", ofType: "wav")!)),
+            "crashCymbal": createPlayers(NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("crash-acoustic", ofType: "wav")!)),
+            "hiHat": createPlayers(NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("hihat-acoustic01", ofType: "wav")!)),
+            "highTom": createPlayers(NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("tom-acoustic01", ofType: "wav")!)),
+            "lowTom": createPlayers(NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("tom-acoustic02", ofType: "wav")!)),
+            "snare": createPlayers(NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("snare", ofType: "mp3")!)),
+            "floorTom": createPlayers(NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("kick-acoustic01", ofType: "wav")!))
+        ]
+        audioPlayers.forEach({ (key, aps) -> () in
+            aps.forEach({ (p) -> () in
+                p.prepareToPlay()
             })
-        }
-        catch {
-            let alert = UIAlertController(title: "Error", message: "Unable to load audio files. Please try again.", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (sender) -> Void in
-                self.dismissViewControllerAnimated(true, completion: nil)
-            }))
-            presentViewController(alert, animated: true, completion: nil)
-        }
+        })
     }
     
     override func viewDidLoad() {
@@ -60,10 +55,6 @@ class DrumsDemoVC : UIViewController, MFMailComposeViewControllerDelegate {
         lowTomBtn.addGestureRecognizer(EXTForceGestureRecognizer(target: self, action: Selector("lowTom:"), event: EXTForceEvent.AllPress))
         snareBtn.addGestureRecognizer(EXTForceGestureRecognizer(target: self, action: Selector("snare:"), event: EXTForceEvent.AllPress))
         floorTomBtn.addGestureRecognizer(EXTForceGestureRecognizer(target: self, action: Selector("floorTom:"), event: EXTForceEvent.AllPress))
-    }
-    
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesBegan(touches, withEvent: event)
     }
     
     @IBAction func etToggle(sender: AnyObject) {
@@ -94,196 +85,139 @@ class DrumsDemoVC : UIViewController, MFMailComposeViewControllerDelegate {
         SVProgressHUD.showImage(UIImage(named: "ExpressiveTouchIcon"), status: self.bassDrumBtn.gestureRecognizers!.first!.enabled ? "Expressive Touch Enabled" : "Expressive Touch Disabled")
     }
     
+    func createPlayers(url:NSURL) -> [AVAudioPlayer] {
+        var players = [AVAudioPlayer]()
+        do {
+            for _ in 0..<numPlayers {
+                players.append(try AVAudioPlayer(contentsOfURL: url))
+            }
+        }
+        catch {
+            let alert = UIAlertController(title: "Error", message: "Unable to load audio files. Please try again.", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (sender) -> Void in
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }))
+            presentViewController(alert, animated: true, completion: nil)
+        }
+        return players
+    }
+    
+    func getPlayer(player:[AVAudioPlayer]) -> AVAudioPlayer {
+        return player.filter({ (p) -> Bool in
+            !p.playing
+        }).first ?? player.first!
+    }
+    
     func bassDrum(recognizer:EXTForceGestureRecognizer) {
         if recognizer.state == .Began {
-            if let player = audioPlayers["bassDrum"] {
-                if player.playing {
-                    player.pause()
-                    player.currentTime = 0
-                }
-                player.volume = recognizer.tapForce
-                player.play()
-            }
+            let player = getPlayer(audioPlayers["bassDrum"]!)
+            player.volume = recognizer.tapForce
+            player.play()
         }
     }
     
     @IBAction func bassDrumStd(sender: AnyObject) {
-        if let player = audioPlayers["bassDrum"] {
-            if player.playing {
-                player.pause()
-                player.currentTime = 0
-            }
-            player.volume = 1.0
-            player.play()
-        }
+        let player = getPlayer(audioPlayers["bassDrum"]!)
+        player.volume = 1.0
+        player.play()
     }
     
     func rideCymbal(recognizer:EXTForceGestureRecognizer) {
         if recognizer.state == .Began {
-            if let player = audioPlayers["rideCymbal"] {
-                if player.playing {
-                    player.pause()
-                    player.currentTime = 0
-                }
-                player.volume = recognizer.tapForce
-                player.play()
-            }
+            let player = getPlayer(audioPlayers["rideCymbal"]!)
+            player.volume = recognizer.tapForce
+            player.play()
         }
     }
     
     @IBAction func rideCymbalStd(sender: AnyObject) {
-        if let player = audioPlayers["rideCymbal"] {
-            if player.playing {
-                player.pause()
-                player.currentTime = 0
-            }
-            player.volume = 1.0
-            player.play()
-        }
+        let player = getPlayer(audioPlayers["rideCymbal"]!)
+        player.volume = 1.0
+        player.play()
     }
     
     func crashCymbal(recognizer:EXTForceGestureRecognizer) {
         if recognizer.state == .Began {
-            if let player = audioPlayers["crashCymbal"] {
-                if player.playing {
-                    player.pause()
-                    player.currentTime = 0
-                }
-                player.volume = recognizer.tapForce
-                player.play()
-            }
+            let player = getPlayer(audioPlayers["crashCymbal"]!)
+            player.volume = recognizer.tapForce
+            player.play()
         }
     }
     
     @IBAction func crashCymbalStd(sender: AnyObject) {
-        if let player = audioPlayers["crashCymbal"] {
-            if player.playing {
-                player.pause()
-                player.currentTime = 0
-            }
-            player.volume = 1.0
-            player.play()
-        }
+        let player = getPlayer(audioPlayers["crashCymbal"]!)
+        player.volume = 1.0
+        player.play()
     }
     
     func hiHat(recognizer:EXTForceGestureRecognizer) {
         if recognizer.state == .Began {
-            if let player = audioPlayers["hiHat"] {
-                if player.playing {
-                    player.pause()
-                    player.currentTime = 0
-                }
-                player.volume = recognizer.tapForce
-                player.play()
-            }
+            let player = getPlayer(audioPlayers["hiHat"]!)
+            player.volume = recognizer.tapForce
+            player.play()
         }
     }
     
     @IBAction func hiHatStd(sender: AnyObject) {
-        if let player = audioPlayers["hiHat"] {
-            if player.playing {
-                player.pause()
-                player.currentTime = 0
-            }
-            player.volume = 1.0
-            player.play()
-        }
+        let player = getPlayer(audioPlayers["hiHat"]!)
+        player.volume = 1.0
+        player.play()
     }
     
     func highTom(recognizer:EXTForceGestureRecognizer) {
         if recognizer.state == .Began {
-            if let player = audioPlayers["highTom"] {
-                if player.playing {
-                    player.pause()
-                    player.currentTime = 0
-                }
-                player.volume = recognizer.tapForce
-                player.play()
-            }
+            let player = getPlayer(audioPlayers["highTom"]!)
+            player.volume = recognizer.tapForce
+            player.play()
         }
     }
     
     @IBAction func highTomStd(sender: AnyObject) {
-        if let player = audioPlayers["highTom"] {
-            if player.playing {
-                player.pause()
-                player.currentTime = 0
-            }
-            player.volume = 1.0
-            player.play()
-        }
+        let player = getPlayer(audioPlayers["highTom"]!)
+        player.volume = 1.0
+        player.play()
     }
     
     func lowTom(recognizer:EXTForceGestureRecognizer) {
         if recognizer.state == .Began {
-            if let player = audioPlayers["lowTom"] {
-                if player.playing {
-                    player.pause()
-                    player.currentTime = 0
-                }
-                player.volume = recognizer.tapForce
-                player.play()
-            }
+            let player = getPlayer(audioPlayers["lowTom"]!)
+            player.volume = recognizer.tapForce
+            player.play()
         }
     }
     
     @IBAction func lowTomStd(sender: AnyObject) {
-        if let player = audioPlayers["lowTom"] {
-            if player.playing {
-                player.pause()
-                player.currentTime = 0
-            }
-            player.volume = 1.0
-            player.play()
-        }
+        let player = getPlayer(audioPlayers["lowTom"]!)
+        player.volume = 1.0
+        player.play()
     }
     
     func snare(recognizer:EXTForceGestureRecognizer) {
         if recognizer.state == .Began {
-            if let player = audioPlayers["snare"] {
-                if player.playing {
-                    player.pause()
-                    player.currentTime = 0
-                }
-                player.volume = recognizer.tapForce
-                player.play()
-            }
+            let player = getPlayer(audioPlayers["snare"]!)
+            player.volume = recognizer.tapForce
+            player.play()
         }
     }
     
     @IBAction func snareStd(sender: AnyObject) {
-        if let player = audioPlayers["snare"] {
-            if player.playing {
-                player.pause()
-                player.currentTime = 0
-            }
-            player.volume = 1.0
-            player.play()
-        }
+        let player = getPlayer(audioPlayers["snare"]!)
+        player.volume = 1.0
+        player.play()
     }
     
     func floorTom(recognizer:EXTForceGestureRecognizer) {
         if recognizer.state == .Began {
-            if let player = audioPlayers["floorTom"] {
-                if player.playing {
-                    player.pause()
-                    player.currentTime = 0
-                }
-                player.volume = recognizer.tapForce
-                player.play()
-            }
+            let player = getPlayer(audioPlayers["floorTom"]!)
+            player.volume = recognizer.tapForce
+            player.play()
         }
     }
     
     @IBAction func floorTomStd(sender: AnyObject) {
-        if let player = audioPlayers["floorTom"] {
-            if player.playing {
-                player.pause()
-                player.currentTime = 0
-            }
-            player.volume = 1.0
-            player.play()
-        }
+        let player = getPlayer(audioPlayers["floorTom"]!)
+        player.volume = 1.0
+        player.play()
     }
     
     @IBAction func RecordBtn(sender: UIBarButtonItem) {
@@ -296,9 +230,11 @@ class DrumsDemoVC : UIViewController, MFMailComposeViewControllerDelegate {
             EvalUtils.logDataBetweenTimes(startTime, endTime: NSDate.timeIntervalSinceReferenceDate(), csv: csv, file: "drumsDemo-sensordata.csv")
             
             emailCSV(csv)
+            SensorCache.resetLimit()
         } else {
             sender.image = UIImage(named: "PauseIcon")
             startRecordTime = NSDate.timeIntervalSinceReferenceDate()
+            SensorCache.setRecordLimit()
         }
     }
     

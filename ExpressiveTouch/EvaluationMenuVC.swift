@@ -40,6 +40,7 @@ class EvaluationMenuVC: UITableViewController, MFMailComposeViewControllerDelega
         }))
         
         presentViewController(alert, animated: true, completion: nil)
+        SensorCache.setRecordLimit()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -48,6 +49,13 @@ class EvaluationMenuVC: UITableViewController, MFMailComposeViewControllerDelega
             rollRangeCell.accessoryType == .Checkmark &&
             pitchRangeCell.accessoryType == .Checkmark &&
             catFlickCell.accessoryType == .Checkmark
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        if isBeingDismissed() {
+            SensorCache.resetLimit()
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

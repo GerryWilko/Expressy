@@ -103,9 +103,11 @@ class ControlsDemoVC: UIViewController, MFMailComposeViewControllerDelegate {
             EvalUtils.logDataBetweenTimes(startTime, endTime: NSDate.timeIntervalSinceReferenceDate(), csv: csv, file: "controlsDemo-sensordata.csv")
             
             emailCSV(csv)
+            SensorCache.resetLimit()
         } else {
             sender.image = UIImage(named: "PauseIcon")
             startRecordTime = NSDate.timeIntervalSinceReferenceDate()
+            SensorCache.setRecordLimit()
         }
     }
     

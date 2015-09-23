@@ -12,7 +12,7 @@ class SensorCache {
     private var data:[SensorData]
     private var dataCallbacks:[(data:SensorData) -> Void]
     
-    private let limit:UInt = 100000
+    static var limit:UInt = 100
     
     /// Initialises a new data cache for storage of sensor data.
     /// - returns: New SensorCache instance.
@@ -21,10 +21,18 @@ class SensorCache {
         dataCallbacks = Array<(data:SensorData) -> Void>()
     }
     
+    class func setRecordLimit() {
+        SensorCache.limit = 10000
+    }
+    
+    class func resetLimit() {
+        SensorCache.limit = 100
+    }
+    
     /// Function to add new sensor data to cache.
     /// - parameter newData: New sensor data to be added.
     func add(newData: SensorData) {
-        if (UInt(data.count) >= limit) {
+        if (UInt(data.count) >= SensorCache.limit) {
             data.removeAtIndex(0)
         }
         data.append(newData)
