@@ -28,7 +28,7 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
-	<string>edu.ncl.Exp-Touch</string>
+	<string>uk.ac.ncl.OpenLab.ExpTouch</string>
 	<key>WKWatchKitApp</key>
 	<true/>
 </dict>

@@ -42,12 +42,12 @@
 		D53396781B959C8200EA9389 /* MicrosoftBandKit_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53396771B959C8200EA9389 /* MicrosoftBandKit_iOS.framework */; };
 		D533967A1B95B93800EA9389 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53396791B95B93800EA9389 /* UIViewExtensions.swift */; };
 		D533967C1B95C1C600EA9389 /* DrumsDemoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D533967B1B95C1C600EA9389 /* DrumsDemoVC.swift */; };
-		D542BD311B9DB9F1007C4533 /* EvaluationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D542BD301B9DB9F1007C4533 /* EvaluationVC.swift */; settings = {ASSET_TAGS = (); }; };
+		D542BD311B9DB9F1007C4533 /* EvaluationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D542BD301B9DB9F1007C4533 /* EvaluationVC.swift */; };
 		D567C1BD1BA6D6C900E7C29F /* bbb_sunflower.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D567C1BC1BA6D22300E7C29F /* bbb_sunflower.mp4 */; };
-		D567C1BF1BA6F64500E7C29F /* EXTForceGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D567C1BE1BA6F64500E7C29F /* EXTForceGestureRecognizer.swift */; settings = {ASSET_TAGS = (); }; };
-		D567C1C11BA71A8D00E7C29F /* EXTRollGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D567C1C01BA71A8D00E7C29F /* EXTRollGestureRecognizer.swift */; settings = {ASSET_TAGS = (); }; };
-		D567C1C31BA7296300E7C29F /* EXTPitchGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D567C1C21BA7296300E7C29F /* EXTPitchGestureRecognizer.swift */; settings = {ASSET_TAGS = (); }; };
-		D567C1C51BA81F3A00E7C29F /* EXTFlickGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D567C1C41BA81F3A00E7C29F /* EXTFlickGestureRecognizer.swift */; settings = {ASSET_TAGS = (); }; };
+		D567C1BF1BA6F64500E7C29F /* EXTForceGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D567C1BE1BA6F64500E7C29F /* EXTForceGestureRecognizer.swift */; };
+		D567C1C11BA71A8D00E7C29F /* EXTRollGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D567C1C01BA71A8D00E7C29F /* EXTRollGestureRecognizer.swift */; };
+		D567C1C31BA7296300E7C29F /* EXTPitchGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D567C1C21BA7296300E7C29F /* EXTPitchGestureRecognizer.swift */; };
+		D567C1C51BA81F3A00E7C29F /* EXTFlickGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D567C1C41BA81F3A00E7C29F /* EXTFlickGestureRecognizer.swift */; };
 		D57846491B99A0100016FE93 /* PaintingDemoColorPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57846481B99A0100016FE93 /* PaintingDemoColorPickerVC.swift */; };
 		D5869F4C1B95CADC001CF96C /* crash-acoustic.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5869F441B95CADC001CF96C /* crash-acoustic.wav */; };
 		D5869F4D1B95CADC001CF96C /* hihat-acoustic01.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5869F451B95CADC001CF96C /* hihat-acoustic01.wav */; };
@@ -60,27 +60,18 @@
 		D5869F551B95D070001CF96C /* snare.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D5869F541B95D070001CF96C /* snare.mp3 */; };
 		D5869F571B95E107001CF96C /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5869F561B95E107001CF96C /* MenuVC.swift */; };
 		D5869F591B95F4C9001CF96C /* EvaluationMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5869F581B95F4C9001CF96C /* EvaluationMenuVC.swift */; };
-		D58FA20F1B9E030600D26488 /* VideoDemoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58FA20E1B9E030600D26488 /* VideoDemoVC.swift */; settings = {ASSET_TAGS = (); }; };
-		D5D565111BA9F04000615BFA /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D565101BA9F04000615BFA /* KeyboardViewController.swift */; };
-		D5D565151BA9F04000615BFA /* Exp-Touch-Keyboard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D5D5650E1BA9F04000615BFA /* Exp-Touch-Keyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D58FA20F1B9E030600D26488 /* VideoDemoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58FA20E1B9E030600D26488 /* VideoDemoVC.swift */; };
 		D5F1FC001B3D7ED900C86D38 /* SensorSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F1FBFF1B3D7ED900C86D38 /* SensorSelectionVC.swift */; };
 		D5F1FC071B3D8E6500C86D38 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5F1FC051B3D8E6500C86D38 /* Interface.storyboard */; };
 		D5F1FC091B3D8E6500C86D38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5F1FC081B3D8E6500C86D38 /* Assets.xcassets */; };
-		D5F1FC101B3D8E6500C86D38 /* Exp Touch Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D5F1FC0F1B3D8E6500C86D38 /* Exp Touch Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D5F1FC101B3D8E6500C86D38 /* Expressive Touch Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D5F1FC0F1B3D8E6500C86D38 /* Expressive Touch Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D5F1FC171B3D8E6500C86D38 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F1FC161B3D8E6500C86D38 /* ExtensionDelegate.swift */; };
 		D5F1FC191B3D8E6500C86D38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5F1FC181B3D8E6500C86D38 /* Assets.xcassets */; };
-		D5F1FC1D1B3D8E6500C86D38 /* Exp Touch Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D5F1FC031B3D8E6500C86D38 /* Exp Touch Watch.app */; };
+		D5F1FC1D1B3D8E6500C86D38 /* Expressive Touch Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D5F1FC031B3D8E6500C86D38 /* Expressive Touch Watch.app */; };
 		D5F1FC271B3D916D00C86D38 /* SensorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F1FC261B3D916D00C86D38 /* SensorController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D5D565131BA9F04000615BFA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D517508219E9831C0076F6FA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D5D5650D1BA9F04000615BFA;
-			remoteInfo = "Exp-Touch-Keyboard";
-		};
 		D5F1FC111B3D8E6500C86D38 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D517508219E9831C0076F6FA /* Project object */;
@@ -104,7 +95,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				D5D565151BA9F04000615BFA /* Exp-Touch-Keyboard.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -115,7 +105,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				D5F1FC101B3D8E6500C86D38 /* Exp Touch Watch Extension.appex in Embed App Extensions */,
+				D5F1FC101B3D8E6500C86D38 /* Expressive Touch Watch Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -126,7 +116,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				D5F1FC1D1B3D8E6500C86D38 /* Exp Touch Watch.app in Embed Watch Content */,
+				D5F1FC1D1B3D8E6500C86D38 /* Expressive Touch Watch.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -193,16 +183,15 @@
 		D5869F561B95E107001CF96C /* MenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		D5869F581B95F4C9001CF96C /* EvaluationMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EvaluationMenuVC.swift; sourceTree = "<group>"; };
 		D58FA20E1B9E030600D26488 /* VideoDemoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDemoVC.swift; sourceTree = "<group>"; };
-		D5D5650E1BA9F04000615BFA /* Exp-Touch-Keyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Exp-Touch-Keyboard.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5D565101BA9F04000615BFA /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		D5D565121BA9F04000615BFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5D603411B42E3DD00DEE1C1 /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
 		D5F1FBFF1B3D7ED900C86D38 /* SensorSelectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorSelectionVC.swift; sourceTree = "<group>"; };
-		D5F1FC031B3D8E6500C86D38 /* Exp Touch Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Exp Touch Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5F1FC031B3D8E6500C86D38 /* Expressive Touch Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Expressive Touch Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5F1FC061B3D8E6500C86D38 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		D5F1FC081B3D8E6500C86D38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D5F1FC0A1B3D8E6500C86D38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D5F1FC0F1B3D8E6500C86D38 /* Exp Touch Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Exp Touch Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5F1FC0F1B3D8E6500C86D38 /* Expressive Touch Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Expressive Touch Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5F1FC161B3D8E6500C86D38 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		D5F1FC181B3D8E6500C86D38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D5F1FC1A1B3D8E6500C86D38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -217,13 +206,6 @@
 			files = (
 				D53396781B959C8200EA9389 /* MicrosoftBandKit_iOS.framework in Frameworks */,
 				18BBA2C9D73DE872643A4FE4 /* Pods_ExpressiveTouch.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D5D5650B1BA9F04000615BFA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,9 +355,8 @@
 			isa = PBXGroup;
 			children = (
 				D517508A19E9831C0076F6FA /* Exp Touch.app */,
-				D5F1FC031B3D8E6500C86D38 /* Exp Touch Watch.app */,
-				D5F1FC0F1B3D8E6500C86D38 /* Exp Touch Watch Extension.appex */,
-				D5D5650E1BA9F04000615BFA /* Exp-Touch-Keyboard.appex */,
+				D5F1FC031B3D8E6500C86D38 /* Expressive Touch Watch.app */,
+				D5F1FC0F1B3D8E6500C86D38 /* Expressive Touch Watch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -448,9 +429,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D517508919E9831C0076F6FA /* ExpressiveTouch */ = {
+		D517508919E9831C0076F6FA /* Expressive Touch */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D51750A919E9831C0076F6FA /* Build configuration list for PBXNativeTarget "ExpressiveTouch" */;
+			buildConfigurationList = D51750A919E9831C0076F6FA /* Build configuration list for PBXNativeTarget "Expressive Touch" */;
 			buildPhases = (
 				9FA7AE2E2558514DD260C736 /* Check Pods Manifest.lock */,
 				D517508619E9831C0076F6FA /* Sources */,
@@ -465,33 +446,15 @@
 			);
 			dependencies = (
 				D5F1FC1C1B3D8E6500C86D38 /* PBXTargetDependency */,
-				D5D565141BA9F04000615BFA /* PBXTargetDependency */,
 			);
-			name = ExpressiveTouch;
+			name = "Expressive Touch";
 			productName = ExpressiveTouch;
 			productReference = D517508A19E9831C0076F6FA /* Exp Touch.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D5D5650D1BA9F04000615BFA /* Exp-Touch-Keyboard */ = {
+		D5F1FC021B3D8E6500C86D38 /* Expressive Touch Watch */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D5D565181BA9F04000615BFA /* Build configuration list for PBXNativeTarget "Exp-Touch-Keyboard" */;
-			buildPhases = (
-				D5D5650A1BA9F04000615BFA /* Sources */,
-				D5D5650B1BA9F04000615BFA /* Frameworks */,
-				D5D5650C1BA9F04000615BFA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Exp-Touch-Keyboard";
-			productName = "Exp-Touch-Keyboard";
-			productReference = D5D5650E1BA9F04000615BFA /* Exp-Touch-Keyboard.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
-		D5F1FC021B3D8E6500C86D38 /* Exp Touch Watch */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D5F1FC221B3D8E6500C86D38 /* Build configuration list for PBXNativeTarget "Exp Touch Watch" */;
+			buildConfigurationList = D5F1FC221B3D8E6500C86D38 /* Build configuration list for PBXNativeTarget "Expressive Touch Watch" */;
 			buildPhases = (
 				D5F1FC011B3D8E6500C86D38 /* Resources */,
 				D5F1FC211B3D8E6500C86D38 /* Embed App Extensions */,
@@ -501,14 +464,14 @@
 			dependencies = (
 				D5F1FC121B3D8E6500C86D38 /* PBXTargetDependency */,
 			);
-			name = "Exp Touch Watch";
+			name = "Expressive Touch Watch";
 			productName = "Exp Touch Watch";
-			productReference = D5F1FC031B3D8E6500C86D38 /* Exp Touch Watch.app */;
+			productReference = D5F1FC031B3D8E6500C86D38 /* Expressive Touch Watch.app */;
 			productType = "com.apple.product-type.application.watchapp2";
 		};
-		D5F1FC0E1B3D8E6500C86D38 /* Exp Touch Watch Extension */ = {
+		D5F1FC0E1B3D8E6500C86D38 /* Expressive Touch Watch Extension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D5F1FC1E1B3D8E6500C86D38 /* Build configuration list for PBXNativeTarget "Exp Touch Watch Extension" */;
+			buildConfigurationList = D5F1FC1E1B3D8E6500C86D38 /* Build configuration list for PBXNativeTarget "Expressive Touch Watch Extension" */;
 			buildPhases = (
 				D5F1FC0B1B3D8E6500C86D38 /* Sources */,
 				D5F1FC0C1B3D8E6500C86D38 /* Frameworks */,
@@ -518,9 +481,9 @@
 			);
 			dependencies = (
 			);
-			name = "Exp Touch Watch Extension";
+			name = "Expressive Touch Watch Extension";
 			productName = "Exp Touch Watch Extension";
-			productReference = D5F1FC0F1B3D8E6500C86D38 /* Exp Touch Watch Extension.appex */;
+			productReference = D5F1FC0F1B3D8E6500C86D38 /* Expressive Touch Watch Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
 /* End PBXNativeTarget section */
@@ -535,10 +498,6 @@
 				TargetAttributes = {
 					D517508919E9831C0076F6FA = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = WF6EGE63BW;
-					};
-					D5D5650D1BA9F04000615BFA = {
-						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = WF6EGE63BW;
 					};
 					D5F1FC021B3D8E6500C86D38 = {
@@ -564,10 +523,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D517508919E9831C0076F6FA /* ExpressiveTouch */,
-				D5F1FC021B3D8E6500C86D38 /* Exp Touch Watch */,
-				D5F1FC0E1B3D8E6500C86D38 /* Exp Touch Watch Extension */,
-				D5D5650D1BA9F04000615BFA /* Exp-Touch-Keyboard */,
+				D517508919E9831C0076F6FA /* Expressive Touch */,
+				D5F1FC021B3D8E6500C86D38 /* Expressive Touch Watch */,
+				D5F1FC0E1B3D8E6500C86D38 /* Expressive Touch Watch Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -591,13 +549,6 @@
 				D5869F511B95CADC001CF96C /* ride-acoustic02.wav in Resources */,
 				D5869F4F1B95CADC001CF96C /* kick-acoustic01.wav in Resources */,
 				D5869F501B95CADC001CF96C /* openhat-acoustic01.wav in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D5D5650C1BA9F04000615BFA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -715,14 +666,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D5D5650A1BA9F04000615BFA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D5D565111BA9F04000615BFA /* KeyboardViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D5F1FC0B1B3D8E6500C86D38 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -735,19 +678,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D5D565141BA9F04000615BFA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D5D5650D1BA9F04000615BFA /* Exp-Touch-Keyboard */;
-			targetProxy = D5D565131BA9F04000615BFA /* PBXContainerItemProxy */;
-		};
 		D5F1FC121B3D8E6500C86D38 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D5F1FC0E1B3D8E6500C86D38 /* Exp Touch Watch Extension */;
+			target = D5F1FC0E1B3D8E6500C86D38 /* Expressive Touch Watch Extension */;
 			targetProxy = D5F1FC111B3D8E6500C86D38 /* PBXContainerItemProxy */;
 		};
 		D5F1FC1C1B3D8E6500C86D38 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D5F1FC021B3D8E6500C86D38 /* Exp Touch Watch */;
+			target = D5F1FC021B3D8E6500C86D38 /* Expressive Touch Watch */;
 			targetProxy = D5F1FC1B1B3D8E6500C86D38 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -882,7 +820,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/CorePlot",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "edu.ncl.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.ncl.OpenLab.ExpTouch;
 				PRODUCT_NAME = "Exp Touch";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ExpressiveTouch/ExpressiveTouch-Bridging-Header.h";
@@ -895,8 +833,8 @@
 			baseConfigurationReference = 87BA3EA70A344285E7E633B7 /* Pods-ExpressiveTouch.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -910,45 +848,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/CorePlot",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "edu.ncl.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.ncl.OpenLab.ExpTouch;
 				PRODUCT_NAME = "Exp Touch";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ExpressiveTouch/ExpressiveTouch-Bridging-Header.h";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7 armv7s arm64";
-			};
-			name = Release;
-		};
-		D5D565161BA9F04000615BFA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Exp-Touch-Keyboard/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "edu.ncl.Exp-Touch.Exp-Touch-Keyboard";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		D5D565171BA9F04000615BFA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Exp-Touch-Keyboard/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "edu.ncl.Exp-Touch.Exp-Touch-Keyboard";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -961,7 +866,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "Exp Touch Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "edu.ncl.Exp-Touch.watchkitapp.watchkitextension";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.ncl.OpenLab.ExpTouch.WatchExtension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -980,7 +885,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "Exp Touch Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "edu.ncl.Exp-Touch.watchkitapp.watchkitextension";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.ncl.OpenLab.ExpTouch.WatchExtension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1001,7 +906,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				IBSC_MODULE = Exp_Touch_Watch_Extension;
 				INFOPLIST_FILE = "Exp Touch Watch/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "edu.ncl.Exp-Touch.watchkitapp";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.ncl.OpenLab.ExpTouch.Watch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1023,7 +928,7 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				IBSC_MODULE = Exp_Touch_Watch_Extension;
 				INFOPLIST_FILE = "Exp Touch Watch/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "edu.ncl.Exp-Touch.watchkitapp";
+				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.ncl.OpenLab.ExpTouch.Watch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1044,7 +949,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D51750A919E9831C0076F6FA /* Build configuration list for PBXNativeTarget "ExpressiveTouch" */ = {
+		D51750A919E9831C0076F6FA /* Build configuration list for PBXNativeTarget "Expressive Touch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D51750AA19E9831C0076F6FA /* Debug */,
@@ -1053,15 +958,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D5D565181BA9F04000615BFA /* Build configuration list for PBXNativeTarget "Exp-Touch-Keyboard" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D5D565161BA9F04000615BFA /* Debug */,
-				D5D565171BA9F04000615BFA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
-		D5F1FC1E1B3D8E6500C86D38 /* Build configuration list for PBXNativeTarget "Exp Touch Watch Extension" */ = {
+		D5F1FC1E1B3D8E6500C86D38 /* Build configuration list for PBXNativeTarget "Expressive Touch Watch Extension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D5F1FC1F1B3D8E6500C86D38 /* Debug */,
@@ -1070,7 +967,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D5F1FC221B3D8E6500C86D38 /* Build configuration list for PBXNativeTarget "Exp Touch Watch" */ = {
+		D5F1FC221B3D8E6500C86D38 /* Build configuration list for PBXNativeTarget "Expressive Touch Watch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D5F1FC231B3D8E6500C86D38 /* Debug */,

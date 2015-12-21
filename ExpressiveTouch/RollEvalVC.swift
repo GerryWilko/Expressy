@@ -65,8 +65,12 @@ class RollEvalVC: EvaluationVC {
         
         switch (stage) {
         case 1:
-            detector.clearSubscriptions()
-            setNextView()
+            if ((maxValue - minValue) >= 10) {
+                detector.clearSubscriptions()
+                setNextView()
+            } else {
+                instructionLbl.text = "Insufficient rotation range demonstrated.\nPlease try again."
+            }
             break
         case 2:
             detector.clearSubscriptions()
