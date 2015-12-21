@@ -1,4 +1,4 @@
-[![Expressive Touch Video](http://img.youtube.com/vi/NQKIq-3td7Q/0.jpg)](http://www.youtube.com/watch?v=NQKIq-3td7Q)
+[![Expressive Touch Video](http://img.youtube.com/vi/jmiygVrd2c4/0.jpg)](http://www.youtube.com/watch?v=jmiygVrd2c4)
 # Expressive Touch
 Interaction with touch screens has always been a very intuitive and simple interaction to perform. As smartphones and tablets have penetrated the worldwide market users are now very familiar with this kind of interaction. Recent advances in smart watch technologies and increased sales over recent years, provides developers with more information about the touch interaction through the sensors present within smart watches.
 
