@@ -43,43 +43,29 @@ typedef NS_ENUM(NSUInteger, MSBPageTextBlockBaselineAlignment)
 
 typedef NS_ENUM(NSUInteger, MSBPageTextBlockFont)
 {
-    /// <summary>
-    /// Smallest font, contains all characters supported by the device.
-    /// </summary>
+    // Smallest font, contains all characters supported by the device.
     MSBPageTextBlockFontSmall = 500,
     
-    /// <summary>
-    /// Medium sized font, contains alphanumeric characters as well as some symbols.
-    /// </summary>
+    // Medium sized font, contains alphanumeric characters as well as some symbols.
     MSBPageTextBlockFontMedium,
     
-    /// <summary>
-    /// Large font, contains numeric and some symbols.
-    /// </summary>
+    // Large font, contains numeric and some symbols.
     MSBPageTextBlockFontLarge,
     
-    /// <summary>
-    /// Extra large font contains numeric characters and a very small set of symbols.
-    /// </summary>
+    // Extra large font contains numeric characters and a very small set of symbols.
     MSBPageTextBlockFontExtraLargeNumbers,
     
-    /// <summary>
-    /// Extra Large Bold contains numbers and a very small subset of symbols.
-    /// </summary>
+    // Extra Large Bold contains numbers and a very small subset of symbols.
     MSBPageTextBlockFontExtraLargeNumbersBold
 };
 
 
 typedef NS_ENUM(UInt32, MSBPageWrappedTextBlockFont)
 {
-    /// <summary>
-    /// Smallest font, contains all characters supported by the device.
-    /// </summary>
+    // Smallest font, contains all characters supported by the device.
     MSBPageWrappedTextBlockFontSmall = 600,
     
-    /// <summary>
-    /// Medium sized font, contains alphanumeric characters as well as some symbols.
-    /// </summary>
+    // Medium sized font, contains alphanumeric characters as well as some symbols.
     MSBPageWrappedTextBlockFontMedium
 };
 
@@ -91,8 +77,8 @@ typedef NS_ENUM(UInt16, MSBPageBarcodeType)
 };
 
 /**
- * MSBPageElementColorSource specifies a source which a color-supported PageElement
- * should derive from. Currently the sources include Band Theme and Tile Theme.
+ MSBPageElementColorSource specifies a source which a color-supported PageElement
+ should derive from. Currently the sources include Band Theme and Tile Theme.
  */
 typedef NS_ENUM(UInt16, MSBPageElementColorSource)
 {

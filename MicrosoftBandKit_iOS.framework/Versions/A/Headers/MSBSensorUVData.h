@@ -17,6 +17,14 @@ typedef NS_ENUM(NSUInteger, MSBSensorUVIndexLevel)
 
 @interface MSBSensorUVData : MSBSensorData
 
+/**
+ Current UV index level
+ */
 @property (nonatomic, readonly) MSBSensorUVIndexLevel uvIndexLevel;
+
+/**
+ Total UV exposure today in minutes
+ */
+@property (nonatomic, readonly) NSUInteger exposureToday;
 
 @end

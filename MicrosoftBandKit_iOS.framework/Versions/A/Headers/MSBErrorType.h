@@ -29,6 +29,8 @@ typedef NS_ENUM(NSInteger, MSBErrorType) {
     MSBErrorTypeInvalidArgument,
     MSBErrorTypeUserDeclinedHR,
     MSBErrorTypeUserConsentRequiredHR,
+    MSBErrorTypeSensorUnavailable,
+    MSBErrorTypeBarcodeInvalidLength,
     
     //Tile Errors
     MSBErrorTypeInvalidTile = 300,
@@ -38,6 +40,7 @@ typedef NS_ENUM(NSInteger, MSBErrorType) {
     MSBErrorTypeTileAlreadyExist,
     MSBErrorTypeTileNotFound,
     MSBErrorTypePageElementAlreadyExist,
+    MSBErrorTypePageElementIllegalIdentifier,
     
     //Unkown
     MSBErrorTypeUnknown = 900

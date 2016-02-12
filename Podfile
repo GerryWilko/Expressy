@@ -5,7 +5,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 use_frameworks!
 
-target 'ExpressiveTouch' do
+target 'Expressy' do
     pod 'CorePlot'
     pod 'DAScratchPad'
     pod 'MDRadialProgress'

@@ -13,24 +13,26 @@ static NSString *const CPTAnimationStartedKey   = @"CPTAnimationStartedKey";
 static NSString *const CPTAnimationFinishedKey  = @"CPTAnimationFinishedKey";
 
 /// @cond
+typedef NSMutableArray<CPTAnimationOperation *> *CPTMutableAnimationArray;
+
 @interface CPTAnimation()
 
 @property (nonatomic, readwrite, assign) CGFloat timeOffset;
-@property (nonatomic, readwrite, strong) NSMutableArray *animationOperations;
-@property (nonatomic, readwrite, strong) NSMutableArray *runningAnimationOperations;
+@property (nonatomic, readwrite, strong, nonnull) CPTMutableAnimationArray animationOperations;
+@property (nonatomic, readwrite, strong, nonnull) CPTMutableAnimationArray runningAnimationOperations;
 @property (nonatomic, readwrite) dispatch_source_t timer;
 @property (nonatomic, readwrite) dispatch_queue_t animationQueue;
 
-+(SEL)setterFromProperty:(NSString *)property;
++(nonnull SEL)setterFromProperty:(nonnull NSString *)property;
 
 -(CPTAnimationTimingFunction)timingFunctionForAnimationCurve:(CPTAnimationCurve)animationCurve;
--(void)updateOnMainThreadWithParameters:(NSDictionary *)parameters;
+-(void)updateOnMainThreadWithParameters:(nonnull CPTDictionary)parameters;
 
 -(void)startTimer;
 -(void)cancelTimer;
 -(void)update;
 
-dispatch_source_t CreateDispatchTimer(CGFloat interval, dispatch_queue_t queue, dispatch_block_t block);
+dispatch_source_t CPTCreateDispatchTimer(CGFloat interval, dispatch_queue_t queue, dispatch_block_t block);
 
 @end
 /// @endcond
@@ -59,14 +61,14 @@ dispatch_source_t CreateDispatchTimer(CGFloat interval, dispatch_queue_t queue, 
 @synthesize defaultAnimationCurve;
 
 /** @internal
- *  @property NSMutableArray *animationOperations
+ *  @property CPTMutableAnimationArray animationOperations
  *
  *  @brief The list of animation operations currently running or waiting to run.
  **/
 @synthesize animationOperations;
 
 /** @internal
- *  @property NSMutableArray *runningAnimationOperations
+ *  @property CPTMutableAnimationArray runningAnimationOperations
  *  @brief The list of running animation operations.
  **/
 @synthesize runningAnimationOperations;
@@ -119,7 +121,6 @@ dispatch_source_t CreateDispatchTimer(CGFloat interval, dispatch_queue_t queue, 
 {
     [self cancelTimer];
 
-    dispatch_release(animationQueue);
     dispatch_queue_t mainQueue = dispatch_get_main_queue();
 
     for ( CPTAnimationOperation *animationOperation in animationOperations ) {
@@ -261,12 +262,12 @@ dispatch_source_t CreateDispatchTimer(CGFloat interval, dispatch_queue_t queue, 
 {
     self.timeOffset += kCPTAnimationFrameRate;
 
-    NSMutableArray *theAnimationOperations = self.animationOperations;
-    NSMutableArray *runningOperations      = self.runningAnimationOperations;
-    NSMutableArray *expiredOperations      = [[NSMutableArray alloc] init];
+    CPTMutableAnimationArray theAnimationOperations = self.animationOperations;
+    CPTMutableAnimationArray runningOperations      = self.runningAnimationOperations;
+    CPTMutableAnimationArray expiredOperations      = [[NSMutableArray alloc] init];
 
-    CGFloat currentTime = self.timeOffset;
-    NSArray *runModes   = @[NSRunLoopCommonModes];
+    CGFloat currentTime     = self.timeOffset;
+    CPTStringArray runModes = @[NSRunLoopCommonModes];
 
     dispatch_queue_t mainQueue = dispatch_get_main_queue();
 
@@ -334,7 +335,7 @@ dispatch_source_t CreateDispatchTimer(CGFloat interval, dispatch_queue_t queue, 
 
                     CGFloat progress = timingFunction(currentTime - startTime, duration);
 
-                    NSDictionary *parameters = @{
+                    CPTDictionary parameters = @{
                         CPTAnimationOperationKey: animationOperation,
                         CPTAnimationValueKey: [period tweenedValueForProgress:progress],
                         CPTAnimationStartedKey: @(started),
@@ -366,7 +367,7 @@ dispatch_source_t CreateDispatchTimer(CGFloat interval, dispatch_queue_t queue, 
 }
 
 // This method must be called from the main thread.
--(void)updateOnMainThreadWithParameters:(NSDictionary *)parameters
+-(void)updateOnMainThreadWithParameters:(CPTDictionary)parameters
 {
     CPTAnimationOperation *animationOperation = parameters[CPTAnimationOperationKey];
 
@@ -449,7 +450,7 @@ dispatch_source_t CreateDispatchTimer(CGFloat interval, dispatch_queue_t queue, 
 
 -(void)startTimer
 {
-    self.timer = CreateDispatchTimer(kCPTAnimationFrameRate, self.animationQueue, ^{
+    self.timer = CPTCreateDispatchTimer(kCPTAnimationFrameRate, self.animationQueue, ^{
         [self update];
     });
 }
@@ -460,12 +461,11 @@ dispatch_source_t CreateDispatchTimer(CGFloat interval, dispatch_queue_t queue, 
 
     if ( theTimer ) {
         dispatch_source_cancel(theTimer);
-        dispatch_release(theTimer);
         self.timer = NULL;
     }
 }
 
-dispatch_source_t CreateDispatchTimer(CGFloat interval, dispatch_queue_t queue, dispatch_block_t block)
+dispatch_source_t CPTCreateDispatchTimer(CGFloat interval, dispatch_queue_t queue, dispatch_block_t block)
 {
     dispatch_source_t newTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
 

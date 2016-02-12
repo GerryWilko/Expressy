@@ -12,13 +12,14 @@
 @protocol MSBPersonalizationManagerProtocol <NSObject>
 
 /**
- * set the specified image to the band.
+ Set the specified image as the band's Me Tile.
  */
 - (void)updateMeTileImage:(MSBImage *)image completionHandler:(void (^) (NSError *error))completionHandler;
 
 /**
- * get the current Me Tile image from the band.
- * @return image the current Me Tile Image. if there is no Me Tile on the band, the error and image should both be nil.
+ Get the current Me Tile image from the band.
+
+ @pararm completionHandler    Block that is invoked with the Me Tile image and error, if any.
  */
 - (void)meTileImageWithCompletionHandler:(void (^) ( MSBImage *image, NSError *error))completionHandler;
 

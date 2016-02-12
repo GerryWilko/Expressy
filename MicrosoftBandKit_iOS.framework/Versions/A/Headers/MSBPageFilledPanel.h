@@ -11,6 +11,6 @@
 @property (nonatomic, strong) MSBColor					*backgroundColor;
 @property (nonatomic, assign) MSBPageElementColorSource  backgroundColorSource;
 
-- (id)initWithRect:(MSBPageRect *)rect;
+- (instancetype)initWithRect:(MSBPageRect *)rect;
 
 @end

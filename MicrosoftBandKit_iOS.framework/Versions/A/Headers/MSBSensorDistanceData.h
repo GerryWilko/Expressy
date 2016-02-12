@@ -18,6 +18,7 @@ typedef NS_ENUM(NSUInteger, MSBSensorMotionType)
 @interface MSBSensorDistanceData : MSBSensorData
 
 @property (nonatomic, readonly) NSUInteger totalDistance;
+@property (nonatomic, readonly) NSUInteger distanceToday;
 @property (nonatomic, readonly) double speed;
 @property (nonatomic, readonly) double pace;
 @property (nonatomic, readonly) MSBSensorMotionType motionType;

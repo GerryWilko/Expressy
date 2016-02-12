@@ -1,6 +1,0 @@
-framework module Pods_ExpressiveTouch {
-  umbrella header "Pods-ExpressiveTouch-umbrella.h"
-
-  export *
-  module * { export * }
-}

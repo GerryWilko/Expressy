@@ -10,6 +10,6 @@
 
 @property (nonatomic, readonly) MSBPageBarcodeType barcodeType;
 
-- (id)initWithRect:(MSBPageRect *)rect barcodeType:(MSBPageBarcodeType)type;
+- (instancetype)initWithRect:(MSBPageRect *)rect barcodeType:(MSBPageBarcodeType)type;
 
 @end

@@ -2,6 +2,7 @@
 
 #import "CPTColorSpace.h"
 #import "CPTDefinitions.h"
+#import "CPTPlatformSpecificCategories.h"
 #import "NSCoderExtensions.h"
 
 /** @brief An immutable color.
@@ -358,6 +359,11 @@
 
 /// @cond
 
+-(instancetype)init
+{
+    return [self initWithComponentRed:0.0 green:0.0 blue:0.0 alpha:0.0];
+}
+
 -(void)dealloc
 {
     CGColorRelease(cgColor);
@@ -432,7 +438,9 @@
             colorComponents[i] = [coder decodeCGFloatForKey:newKey];
         }
 
-        cgColor = CGColorCreate(colorSpace, colorComponents);
+        CGColorRef color = CGColorCreate(colorSpace, colorComponents);
+        cgColor = color;
+
         CGColorSpaceRelease(colorSpace);
         free(colorComponents);
     }
@@ -504,6 +512,23 @@
     }
 
     return (NSUInteger)theHash;
+}
+
+/// @endcond
+
+#pragma mark -
+#pragma mark Debugging
+
+/// @cond
+
+-(id)debugQuickLookObject
+{
+#if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
+    return self.uiColor;
+
+#else
+    return self.nsColor;
+#endif
 }
 
 /// @endcond

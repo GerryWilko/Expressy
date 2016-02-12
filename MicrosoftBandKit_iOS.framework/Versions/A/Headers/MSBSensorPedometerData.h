@@ -8,10 +8,11 @@
 
 @interface MSBSensorPedometerData : MSBSensorData
 
-@property (nonatomic, readonly) int totalSteps;
-@property (nonatomic, readonly) int stepRate;
-@property (nonatomic, readonly) int movementRate;
-@property (nonatomic, readonly) int totalMovements;
-@property (nonatomic, readonly) int movementMode;
+@property (nonatomic, readonly) NSUInteger totalSteps;
+@property (nonatomic, readonly) NSUInteger stepsToday;
+@property (nonatomic, readonly) int stepRate DEPRECATED_ATTRIBUTE;
+@property (nonatomic, readonly) int movementRate DEPRECATED_ATTRIBUTE;
+@property (nonatomic, readonly) int totalMovements DEPRECATED_ATTRIBUTE;
+@property (nonatomic, readonly) int movementMode DEPRECATED_ATTRIBUTE;
 
 @end

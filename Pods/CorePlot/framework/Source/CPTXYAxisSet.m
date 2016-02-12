@@ -82,7 +82,7 @@
 
         if ( radius > CPTFloat(0.0) ) {
             CGContextBeginPath(context);
-            AddRoundedRectPath(context, borderRect, radius);
+            CPTAddRoundedRectPath(context, borderRect, radius);
 
             [theLineStyle strokePathInContext:context];
         }
@@ -118,8 +118,8 @@
         sublayerPosition = CGPointMake(-sublayerPosition.x, -sublayerPosition.y);
         CGRect subLayerFrame = CGRectMake(sublayerPosition.x, sublayerPosition.y, sublayerBounds.size.width, sublayerBounds.size.height);
 
-        NSSet *excludedSublayers = [self sublayersExcludedFromAutomaticLayout];
-        Class layerClass         = [CPTLayer class];
+        CPTSublayerSet excludedSublayers = [self sublayersExcludedFromAutomaticLayout];
+        Class layerClass                 = [CPTLayer class];
         for ( CALayer *subLayer in self.sublayers ) {
             if ( [subLayer isKindOfClass:layerClass] && ![excludedSublayers containsObject:subLayer] ) {
                 subLayer.frame = subLayerFrame;

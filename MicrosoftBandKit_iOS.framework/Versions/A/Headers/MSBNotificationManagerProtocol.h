@@ -27,38 +27,43 @@ typedef NS_ENUM(UInt8, MSBNotificationMessageFlags)
 @protocol MSBNotificationManagerProtocol <NSObject>
 
 /**
- Sent a customized vibration to Band.
- @vibrationType     see MSBVibrationType
+ Sent a customized vibration to the Band.
+
+ @vibrationType     See MSBVibrationType.
  */
 - (void)vibrateWithType:(MSBNotificationVibrationType)vibrationType completionHandler:(void (^) (NSError *error))completionHandler;
 
 /**
- Show a pop up Dialog Notification to Band. This dialog will disappear either timeout or user dismiss it.
- @tileID        identifier of the Tile which app has added.
- @title         title of the dialog. see MSBNotificationDialogTitleLengthMax
- @body          body of the dialog. see MSBNotificationDialogBodyLengthMax
+ Show a pop up Dialog Notification on the Band. This dialog will disappear either timeout or user dismiss it.
+
+ @tileID        Identifier of the Tile which app has added.
+ @title         Title of the dialog. The title will be truncated at 20 characters.
+ @body          Body of the dialog. The body message will be truncated at 20 characters.
  */
 - (void)showDialogWithTileID:(NSUUID *)tileID title:(NSString *)title body:(NSString *)body completionHandler:(void (^)(NSError *error))completionHandler;
 
 /**
  Send a Message Notification to a Tile on the Band, with the options to include Pop up Dialog.
- @tileID        identifier of the Tile which app has added.
- @title         title of the message. see MSBNotificationMessageTitleLengthMax
- @body          body of the message. see MSBNotificationMessageBodyLengthMax
- @timeStamp     optional timeStamp of the message. Default to [NSDate date]
- @flags         options of the message. see MSBNotificationMessageFlags
+
+ @tileID        Identifier of the Tile which app has added.
+ @title         Title of the message. The title will be truncated at 20 characters.
+ @body          Body of the message. The body message will be truncated at 180 characters.
+ @timeStamp     Optional timeStamp of the message. Default to [NSDate date].
+ @flags         Options of the message. see MSBNotificationMessageFlags.
  */
 - (void)sendMessageWithTileID:(NSUUID *)tileID title:(NSString *)title body:(NSString *)body timeStamp:(NSDate *)timeStamp flags:(MSBNotificationMessageFlags)flags completionHandler:(void (^)(NSError *error))completionHandler;
 
 /**
- register Push Notifications of the current App to Band, Notifications will be sent to specified Tile
- @tileID        identifier of the Tile which app has added.
+ Register Push Notifications of the current App to Band, Notifications will be sent to specified Tile.
+
+ @tileID        Identifier of the Tile which app has added.
  */
 - (void)registerNotificationWithTileID:(NSUUID *)tileID completionHandler:(void (^)(NSError *error))completionHandler NS_AVAILABLE_IOS(7_0);
 
 /**
- register Push Notifications of the current App to Band, Notifications will be sent to the Tile created by the app.
- @discussion    use this method is the current App only has one Tile on Band. If the app has added more than one Tile, use -registerNotificationWithTileID:completionHandler:.
+ Register Push Notifications of the current App to Band, Notifications will be sent to the Tile created by the app.
+
+ @discussion    Use this method if the current App has only one Tile on Band. If the app has added more than one Tile, use -registerNotificationWithTileID:completionHandler:.
  */
 - (void)registerNotificationWithCompletionHandler:(void (^)(NSError *error))completionHandler NS_AVAILABLE_IOS(7_0);
 

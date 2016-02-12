@@ -9,7 +9,7 @@
 @interface MSBSensorSkinTemperatureData : MSBSensorData
 
 /**
- * Temperature in Celsius
+ Temperature in Celsius
  */
 @property (nonatomic, readonly) double temperature;
 

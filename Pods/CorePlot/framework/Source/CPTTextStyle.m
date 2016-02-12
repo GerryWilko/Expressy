@@ -1,16 +1,15 @@
 #import "CPTTextStyle.h"
 
 #import "CPTColor.h"
-#import "CPTDefinitions.h"
 #import "CPTMutableTextStyle.h"
 #import "NSCoderExtensions.h"
 
 /// @cond
 @interface CPTTextStyle()
 
-@property (readwrite, copy, nonatomic) NSString *fontName;
+@property (readwrite, copy, nonatomic, nullable) NSString *fontName;
 @property (readwrite, assign, nonatomic) CGFloat fontSize;
-@property (readwrite, copy, nonatomic) CPTColor *color;
+@property (readwrite, copy, nonatomic, nullable) CPTColor *color;
 @property (readwrite, assign, nonatomic) CPTTextAlignment textAlignment;
 @property (readwrite, assign, nonatomic) NSLineBreakMode lineBreakMode;
 
@@ -61,6 +60,26 @@
 +(instancetype)textStyle
 {
     return [[self alloc] init];
+}
+
+/** @brief Creates and returns a new text style instance initialized from an existing text style.
+ *
+ *  The text style will be initalized with values from the given @par{textStyle}.
+ *
+ *  @param textStyle An existing CPTTextStyle.
+ *  @return A new text style instance.
+ **/
++(instancetype)textStyleWithStyle:(CPTTextStyle *)textStyle
+{
+    CPTTextStyle *newTextStyle = [[self alloc] init];
+
+    newTextStyle.color         = textStyle.color;
+    newTextStyle.fontName      = textStyle.fontName;
+    newTextStyle.fontSize      = textStyle.fontSize;
+    newTextStyle.textAlignment = textStyle.textAlignment;
+    newTextStyle.lineBreakMode = textStyle.lineBreakMode;
+
+    return newTextStyle;
 }
 
 #pragma mark -
@@ -136,6 +155,7 @@
     newCopy.fontSize      = self.fontSize;
     newCopy.textAlignment = self.textAlignment;
     newCopy.lineBreakMode = self.lineBreakMode;
+
     return newCopy;
 }
 
@@ -155,7 +175,22 @@
     newCopy.fontSize      = self.fontSize;
     newCopy.textAlignment = self.textAlignment;
     newCopy.lineBreakMode = self.lineBreakMode;
+
     return newCopy;
+}
+
+/// @endcond
+
+#pragma mark -
+#pragma mark Debugging
+
+/// @cond
+
+-(id)debugQuickLookObject
+{
+    NSString *lorem = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+
+    return [[NSAttributedString alloc] initWithString:lorem attributes:[self attributes]];
 }
 
 /// @endcond

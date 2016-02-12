@@ -39,13 +39,20 @@
 @property (nonatomic, readonly) id<MSBSensorManagerProtocol>          sensorManager;
 
 /**
- Get the the device firmware version asynchronously
+ See MSBClientManager.
+ */
+- (id)init UNAVAILABLE_ATTRIBUTE;
+
+/**
+ Get the device firmware version asynchronously.
+
  @param completionHandler
  */
 - (void)firmwareVersionWithCompletionHandler:(void(^)(NSString *version, NSError *error))completionHandler;
 
 /**
- Get the the hardware version asynchronously
+ Get the device hardware version asynchronously.
+
  @param completionHandler
  */
 - (void)hardwareVersionWithCompletionHandler:(void(^)(NSString *version, NSError *error))completionHandler;

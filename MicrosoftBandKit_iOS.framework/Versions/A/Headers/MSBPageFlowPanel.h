@@ -10,6 +10,6 @@
 
 @property (nonatomic, assign) MSBPageFlowPanelOrientation orientation;
 
-- (id)initWithRect:(MSBPageRect *)rect;
+- (instancetype)initWithRect:(MSBPageRect *)rect;
 
 @end

@@ -5,26 +5,22 @@
 //----------------------------------------------------------------
 
 #import <Foundation/Foundation.h>
-#import "MicrosoftBandKitDefinitions.h"
+#import <CoreGraphics/CoreGraphics.h>
 
-#if TARGET_IOS
-#import <UIKit/UIKit.h>
-#else
-#import <AppKit/AppKit.h>
-#endif
+@class UIImage;
+@class NSImage;
 
 @interface MSBImage : NSObject
 
 @property (nonatomic, readonly) CGSize size;
 
-- (instancetype)initWithContentsOfFile:(NSString *)path;
+- (instancetype)init UNAVAILABLE_ATTRIBUTE;  
 
-#if TARGET_IOS
-- (instancetype)initWithUIImage:(UIImage *)image;
-- (UIImage *)UIImage;
-#else
-- (instancetype)initWithNSImage:(NSImage *)image;
-- (NSImage *)NSImage;
-#endif
+- (instancetype)initWithContentsOfFile:(NSString *)path;
+- (instancetype)initWithUIImage:(UIImage *)image NS_AVAILABLE_IOS(7_0);
+- (instancetype)initWithNSImage:(NSImage *)image NS_AVAILABLE_MAC(10_9);
+
+- (UIImage *)UIImage NS_AVAILABLE_IOS(7_0);
+- (NSImage *)NSImage NS_AVAILABLE_MAC(10_9);
 
 @end

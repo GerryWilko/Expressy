@@ -3,7 +3,7 @@
 #import "CPTUtilities.h"
 #import "NSNumberExtensions.h"
 
-void MyCGPathApplierFunc(void *info, const CGPathElement *element);
+void CPTPathApplierFunc(void *info, const CGPathElement *element);
 
 #pragma mark -
 
@@ -87,9 +87,9 @@ void MyCGPathApplierFunc(void *info, const CGPathElement *element);
 
 /// @cond
 
-void MyCGPathApplierFunc(void *info, const CGPathElement *element)
+void CPTPathApplierFunc(void *info, const CGPathElement *element)
 {
-    NSMutableDictionary *elementData = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary<NSString *, NSNumber *> *elementData = [[NSMutableDictionary alloc] init];
 
     elementData[@"type"] = @(element->type);
 
@@ -112,7 +112,7 @@ void MyCGPathApplierFunc(void *info, const CGPathElement *element)
             break;
     }
 
-    NSMutableArray *pathData = (__bridge NSMutableArray *)info;
+    NSMutableArray<NSMutableDictionary<NSString *, NSNumber *> *> *pathData = (__bridge NSMutableArray<NSMutableDictionary<NSString *, NSNumber *> *> *)info;
     [pathData addObject:elementData];
 }
 
@@ -124,10 +124,10 @@ void MyCGPathApplierFunc(void *info, const CGPathElement *element)
  **/
 -(void)encodeCGPath:(CGPathRef)path forKey:(NSString *)key
 {
-    NSMutableArray *pathData = [[NSMutableArray alloc] init];
+    NSMutableArray<NSMutableDictionary<NSString *, NSNumber *> *> *pathData = [[NSMutableArray alloc] init];
 
     // walk the path and gather data for each element
-    CGPathApply(path, (__bridge void *)(pathData), &MyCGPathApplierFunc);
+    CGPathApply(path, (__bridge void *)(pathData), &CPTPathApplierFunc);
 
     // encode data count
     NSUInteger dataCount = pathData.count;
@@ -136,7 +136,7 @@ void MyCGPathApplierFunc(void *info, const CGPathElement *element)
 
     // encode data elements
     for ( NSUInteger i = 0; i < dataCount; i++ ) {
-        NSDictionary *elementData = pathData[i];
+        NSDictionary<NSString *, NSNumber *> *elementData = pathData[i];
 
         CGPathElementType type = (CGPathElementType)[elementData[@"type"] intValue];
         newKey = [[NSString alloc] initWithFormat:@"%@[%lu].type", key, (unsigned long)i];

@@ -1,10 +1,11 @@
 #import "CPTLineStyle.h"
 
 #import "CPTColor.h"
-#import "CPTDefinitions.h"
 #import "CPTFill.h"
 #import "CPTGradient.h"
 #import "CPTMutableLineStyle.h"
+#import "CPTPlatformSpecificFunctions.h"
+#import "CPTUtilities.h"
 #import "NSCoderExtensions.h"
 #import "NSNumberExtensions.h"
 
@@ -15,11 +16,11 @@
 @property (nonatomic, readwrite, assign) CGLineJoin lineJoin;
 @property (nonatomic, readwrite, assign) CGFloat miterLimit;
 @property (nonatomic, readwrite, assign) CGFloat lineWidth;
-@property (nonatomic, readwrite, strong) NSArray *dashPattern;
+@property (nonatomic, readwrite, strong, nullable) CPTNumberArray dashPattern;
 @property (nonatomic, readwrite, assign) CGFloat patternPhase;
-@property (nonatomic, readwrite, strong) CPTColor *lineColor;
-@property (nonatomic, readwrite, strong) CPTFill *lineFill;
-@property (nonatomic, readwrite, strong) CPTGradient *lineGradient;
+@property (nonatomic, readwrite, strong, nullable) CPTColor *lineColor;
+@property (nonatomic, readwrite, strong, nullable) CPTFill *lineFill;
+@property (nonatomic, readwrite, strong, nullable) CPTGradient *lineGradient;
 
 -(void)strokePathWithGradient:(CPTGradient *)gradient inContext:(CGContextRef)context;
 
@@ -64,7 +65,7 @@
  **/
 @synthesize lineWidth;
 
-/** @property NSArray *dashPattern
+/** @property CPTNumberArray dashPattern
  *  @brief The dash-and-space pattern for the line. Default is @nil.
  **/
 @synthesize dashPattern;
@@ -107,6 +108,30 @@
 +(instancetype)lineStyle
 {
     return [[self alloc] init];
+}
+
+/** @brief Creates and returns a new line style instance initialized from an existing line style.
+ *
+ *  The line style will be initialized with values from the given @par{lineStyle}.
+ *
+ *  @param lineStyle An existing CPTLineStyle.
+ *  @return A new line style instance.
+ **/
++(instancetype)lineStyleWithStyle:(CPTLineStyle *)lineStyle
+{
+    CPTLineStyle *newLineStyle = [[self alloc] init];
+
+    newLineStyle.lineCap      = lineStyle.lineCap;
+    newLineStyle.lineJoin     = lineStyle.lineJoin;
+    newLineStyle.miterLimit   = lineStyle.miterLimit;
+    newLineStyle.lineWidth    = lineStyle.lineWidth;
+    newLineStyle.dashPattern  = [lineStyle.dashPattern copy];
+    newLineStyle.patternPhase = lineStyle.patternPhase;
+    newLineStyle.lineColor    = lineStyle.lineColor;
+    newLineStyle.lineFill     = lineStyle.lineFill;
+    newLineStyle.lineGradient = lineStyle.lineGradient;
+
+    return newLineStyle;
 }
 
 /// @name Initialization
@@ -194,7 +219,7 @@
     CGContextSetMiterLimit(context, self.miterLimit);
     CGContextSetLineWidth(context, self.lineWidth);
 
-    NSArray *myDashPattern = self.dashPattern;
+    CPTNumberArray myDashPattern = self.dashPattern;
 
     NSUInteger dashCount = myDashPattern.count;
     if ( dashCount > 0 ) {
@@ -277,7 +302,8 @@
         CGPathRef path = CGContextCopyPath(context);
         CGContextBeginPath(context);
 
-        for ( CGFloat width = startWidth; width > CPTFloat(0.0); width -= step ) {
+        CGFloat width = startWidth;
+        while ( width > CPTFloat(0.0) ) {
             CGContextSetLineWidth(context, width);
 
             CGColorRef gradientColor = [gradient newColorAtPosition:CPTFloat(1.0) - width / startWidth];
@@ -286,6 +312,8 @@
 
             CGContextAddPath(context, path);
             CGContextStrokePath(context);
+
+            width -= step;
         }
 
         CGPathRelease(path);
@@ -329,7 +357,7 @@
     styleCopy.lineJoin     = self.lineJoin;
     styleCopy.miterLimit   = self.miterLimit;
     styleCopy.lineWidth    = self.lineWidth;
-    styleCopy.dashPattern  = self.dashPattern;
+    styleCopy.dashPattern  = [self.dashPattern copy];
     styleCopy.patternPhase = self.patternPhase;
     styleCopy.lineColor    = self.lineColor;
     styleCopy.lineFill     = self.lineFill;
@@ -353,13 +381,32 @@
     styleCopy.lineJoin     = self.lineJoin;
     styleCopy.miterLimit   = self.miterLimit;
     styleCopy.lineWidth    = self.lineWidth;
-    styleCopy.dashPattern  = self.dashPattern;
+    styleCopy.dashPattern  = [self.dashPattern copy];
     styleCopy.patternPhase = self.patternPhase;
     styleCopy.lineColor    = self.lineColor;
     styleCopy.lineFill     = self.lineFill;
     styleCopy.lineGradient = self.lineGradient;
 
     return styleCopy;
+}
+
+/// @endcond
+
+#pragma mark -
+#pragma mark Debugging
+
+/// @cond
+
+-(id)debugQuickLookObject
+{
+    const CGRect rect = CGRectMake(0.0, 0.0, 100.0, 100.0);
+
+    return CPTQuickLookImage(rect, ^(CGContextRef context, CGFloat scale, CGRect bounds) {
+        const CGRect alignedRect = CPTAlignBorderedRectToUserSpace(context, bounds, self);
+
+        [self setLineStyleInContext:context];
+        [self strokeRect:alignedRect inContext:context];
+    });
 }
 
 /// @endcond

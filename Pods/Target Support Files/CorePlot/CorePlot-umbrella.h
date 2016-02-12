@@ -16,6 +16,7 @@
 #import "CPTColor.h"
 #import "CPTColorSpace.h"
 #import "CPTConstraints.h"
+#import "CPTDebugQuickLook.h"
 #import "CPTDefinitions.h"
 #import "CPTDerivedXYGraph.h"
 #import "CPTExceptions.h"

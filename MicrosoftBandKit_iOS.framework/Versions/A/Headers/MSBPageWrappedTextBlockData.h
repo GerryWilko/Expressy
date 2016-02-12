@@ -4,11 +4,9 @@
 //
 //----------------------------------------------------------------
 
-#import "MSBPageElementData.h"
+#import "MSBPageTextData.h"
 
-@interface MSBPageWrappedTextBlockData : MSBPageElementData
-
-@property (nonatomic, readonly) NSString  *text;
+@interface MSBPageWrappedTextBlockData : MSBPageTextData
 
 + (MSBPageWrappedTextBlockData *)pageWrappedTextBlockDataWithElementId:(MSBPageElementIdentifier)elementId text:(NSString *)text error:(NSError **)pError;
 

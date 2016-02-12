@@ -6,33 +6,17 @@
 
 #import <Foundation/Foundation.h>
 
-#if TARGET_OS_IPHONE
-#import <UIKit/UIKit.h>
-#else
-#import <AppKit/AppKit.h>
-#endif
-
-
-
-
-@class MSBError;
+@class UIColor;
+@class NSColor;
 
 @interface MSBColor : NSObject<NSCopying>
 
++ (instancetype)colorWithRed:(NSUInteger)red green:(NSUInteger)green blue:(NSUInteger)blue;
++ (instancetype)colorWithUIColor:(UIColor *)color error:(NSError **)pError NS_AVAILABLE_IOS(7_0);
++ (instancetype)colorWithNSColor:(NSColor *)color error:(NSError **)pError NS_AVAILABLE_MAC(10_9);
 
-#if TARGET_OS_IPHONE
-
-+ (id)colorWithUIColor:(UIColor *)color error:(NSError **)pError;
-- (UIColor *)UIColor;
-
-#else
-
-+ (id)colorWithNSColor:(NSColor *)color error:(NSError **)pError;
-- (NSColor *)NSColor;
-
-#endif
-
-+ (MSBColor *)colorWithRed:(NSUInteger)red green:(NSUInteger)green blue:(NSUInteger)blue;
+- (UIColor *)UIColor NS_AVAILABLE_IOS(7_0);
+- (NSColor *)NSColor NS_AVAILABLE_MAC(10_9);
 
 - (BOOL)isEqualToColor:(MSBColor *)color;
 

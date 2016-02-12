@@ -9,5 +9,6 @@
 @interface MSBSensorCaloriesData : MSBSensorData
 
 @property (nonatomic, readonly) NSUInteger calories;
+@property (nonatomic, readonly) NSUInteger caloriesToday;
 
 @end

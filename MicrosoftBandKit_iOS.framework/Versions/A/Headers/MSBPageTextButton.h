@@ -11,6 +11,6 @@
 @property (nonatomic, strong) MSBColor *pressedColor;
 @property (nonatomic, assign) MSBPageElementColorSource pressedColorSource;
 
-- (id)initWithRect:(MSBPageRect *)rect;
+- (instancetype)initWithRect:(MSBPageRect *)rect;
 
 @end

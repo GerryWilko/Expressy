@@ -74,7 +74,7 @@ static const size_t kCPTNumberOfLayers = 6; // number of primary layers to arran
  **/
 @synthesize axisTitleGroup;
 
-/** @property NSArray *topDownLayerOrder
+/** @property CPTNumberArray topDownLayerOrder
  *  @brief An array of graph layers to be drawn in an order other than the default.
  *
  *  The array should reference the layers using the constants defined in #CPTGraphLayerType.
@@ -288,7 +288,7 @@ static const size_t kCPTNumberOfLayers = 6; // number of primary layers to arran
 
     [self.fill fillRect:self.bounds inContext:context];
 
-    NSArray *theAxes = self.axisSet.axes;
+    CPTAxisArray theAxes = self.axisSet.axes;
 
     for ( CPTAxis *axis in theAxes ) {
         [axis drawBackgroundBandsInContext:context];
@@ -353,7 +353,7 @@ static const size_t kCPTNumberOfLayers = 6; // number of primary layers to arran
     }
 }
 
--(NSSet *)sublayersExcludedFromAutomaticLayout
+-(CPTSublayerSet)sublayersExcludedFromAutomaticLayout
 {
     CPTGridLineGroup *minorGrid = self.minorGridLineGroup;
     CPTGridLineGroup *majorGrid = self.majorGridLineGroup;
@@ -363,7 +363,7 @@ static const size_t kCPTNumberOfLayers = 6; // number of primary layers to arran
     CPTAxisLabelGroup *titles   = self.axisTitleGroup;
 
     if ( minorGrid || majorGrid || theAxisSet || thePlotGroup || labels || titles ) {
-        NSMutableSet *excludedSublayers = [[super sublayersExcludedFromAutomaticLayout] mutableCopy];
+        CPTMutableSublayerSet excludedSublayers = [[super sublayersExcludedFromAutomaticLayout] mutableCopy];
         if ( !excludedSublayers ) {
             excludedSublayers = [NSMutableSet set];
         }
@@ -409,7 +409,7 @@ static const size_t kCPTNumberOfLayers = 6; // number of primary layers to arran
         *(buLayerOrder++) = (CPTGraphLayerType)i;
     }
 
-    NSArray *tdLayerOrder = self.topDownLayerOrder;
+    CPTNumberArray tdLayerOrder = self.topDownLayerOrder;
     if ( tdLayerOrder ) {
         buLayerOrder = self.bottomUpLayerOrder;
 
@@ -797,10 +797,10 @@ static const size_t kCPTNumberOfLayers = 6; // number of primary layers to arran
     if ( (newGridLines != minorGridLineGroup) || self.isUpdatingLayers ) {
         [minorGridLineGroup removeFromSuperlayer];
         minorGridLineGroup = newGridLines;
-        if ( minorGridLineGroup ) {
-            minorGridLineGroup.plotArea = self;
-            minorGridLineGroup.major    = NO;
-            [self insertSublayer:minorGridLineGroup atIndex:[self indexForLayerType:CPTGraphLayerTypeMinorGridLines]];
+        if ( newGridLines ) {
+            newGridLines.plotArea = self;
+            newGridLines.major    = NO;
+            [self insertSublayer:newGridLines atIndex:[self indexForLayerType:CPTGraphLayerTypeMinorGridLines]];
         }
         [self setNeedsLayout];
     }
@@ -811,10 +811,10 @@ static const size_t kCPTNumberOfLayers = 6; // number of primary layers to arran
     if ( (newGridLines != majorGridLineGroup) || self.isUpdatingLayers ) {
         [majorGridLineGroup removeFromSuperlayer];
         majorGridLineGroup = newGridLines;
-        if ( majorGridLineGroup ) {
-            majorGridLineGroup.plotArea = self;
-            majorGridLineGroup.major    = YES;
-            [self insertSublayer:majorGridLineGroup atIndex:[self indexForLayerType:CPTGraphLayerTypeMajorGridLines]];
+        if ( newGridLines ) {
+            newGridLines.plotArea = self;
+            newGridLines.major    = YES;
+            [self insertSublayer:newGridLines atIndex:[self indexForLayerType:CPTGraphLayerTypeMajorGridLines]];
         }
         [self setNeedsLayout];
     }
@@ -834,10 +834,10 @@ static const size_t kCPTNumberOfLayers = 6; // number of primary layers to arran
         [self updateAxisSetLayersForType:CPTGraphLayerTypeAxisLabels];
         [self updateAxisSetLayersForType:CPTGraphLayerTypeAxisTitles];
 
-        if ( axisSet ) {
+        if ( newAxisSet ) {
             CPTGraph *theGraph = self.graph;
-            [self insertSublayer:axisSet atIndex:[self indexForLayerType:CPTGraphLayerTypeAxisLines]];
-            for ( CPTAxis *axis in axisSet.axes ) {
+            [self insertSublayer:newAxisSet atIndex:[self indexForLayerType:CPTGraphLayerTypeAxisLines]];
+            for ( CPTAxis *axis in newAxisSet.axes ) {
                 axis.plotArea = self;
                 axis.graph    = theGraph;
             }
@@ -851,8 +851,8 @@ static const size_t kCPTNumberOfLayers = 6; // number of primary layers to arran
     if ( (newPlotGroup != plotGroup) || self.isUpdatingLayers ) {
         [plotGroup removeFromSuperlayer];
         plotGroup = newPlotGroup;
-        if ( plotGroup ) {
-            [self insertSublayer:plotGroup atIndex:[self indexForLayerType:CPTGraphLayerTypePlots]];
+        if ( newPlotGroup ) {
+            [self insertSublayer:newPlotGroup atIndex:[self indexForLayerType:CPTGraphLayerTypePlots]];
         }
         [self setNeedsLayout];
     }
@@ -863,8 +863,8 @@ static const size_t kCPTNumberOfLayers = 6; // number of primary layers to arran
     if ( (newAxisLabelGroup != axisLabelGroup) || self.isUpdatingLayers ) {
         [axisLabelGroup removeFromSuperlayer];
         axisLabelGroup = newAxisLabelGroup;
-        if ( axisLabelGroup ) {
-            [self insertSublayer:axisLabelGroup atIndex:[self indexForLayerType:CPTGraphLayerTypeAxisLabels]];
+        if ( newAxisLabelGroup ) {
+            [self insertSublayer:newAxisLabelGroup atIndex:[self indexForLayerType:CPTGraphLayerTypeAxisLabels]];
         }
         [self setNeedsLayout];
     }
@@ -875,14 +875,14 @@ static const size_t kCPTNumberOfLayers = 6; // number of primary layers to arran
     if ( (newAxisTitleGroup != axisTitleGroup) || self.isUpdatingLayers ) {
         [axisTitleGroup removeFromSuperlayer];
         axisTitleGroup = newAxisTitleGroup;
-        if ( axisTitleGroup ) {
-            [self insertSublayer:axisTitleGroup atIndex:[self indexForLayerType:CPTGraphLayerTypeAxisTitles]];
+        if ( newAxisTitleGroup ) {
+            [self insertSublayer:newAxisTitleGroup atIndex:[self indexForLayerType:CPTGraphLayerTypeAxisTitles]];
         }
         [self setNeedsLayout];
     }
 }
 
--(void)setTopDownLayerOrder:(NSArray *)newArray
+-(void)setTopDownLayerOrder:(CPTNumberArray)newArray
 {
     if ( newArray != topDownLayerOrder ) {
         topDownLayerOrder = newArray;
