@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03C5093F1CE1124C00B71E9E /* snare.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D5869F541B95D070001CF96C /* snare.mp3 */; };
+		03C509401CE1124E00B71E9E /* crash-acoustic.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5869F441B95CADC001CF96C /* crash-acoustic.wav */; };
+		03C509411CE1126500B71E9E /* hihat-acoustic01.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5869F451B95CADC001CF96C /* hihat-acoustic01.wav */; };
+		03C509421CE1126800B71E9E /* hihat-acoustic02.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5869F461B95CADC001CF96C /* hihat-acoustic02.wav */; };
+		03C509431CE1126B00B71E9E /* kick-acoustic01.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5869F471B95CADC001CF96C /* kick-acoustic01.wav */; };
+		03C509441CE1126E00B71E9E /* openhat-acoustic01.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5869F481B95CADC001CF96C /* openhat-acoustic01.wav */; };
+		03C509451CE1127200B71E9E /* ride-acoustic02.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5869F491B95CADC001CF96C /* ride-acoustic02.wav */; };
+		03C509461CE1127400B71E9E /* tom-acoustic01.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5869F4A1B95CADC001CF96C /* tom-acoustic01.wav */; };
+		03C509471CE1127700B71E9E /* tom-acoustic02.wav in Resources */ = {isa = PBXBuildFile; fileRef = D5869F4B1B95CADC001CF96C /* tom-acoustic02.wav */; };
+		03C509481CE1141F00B71E9E /* AccGraphVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338601A822CA600FA1121 /* AccGraphVC.swift */; };
+		03C509491CE1142200B71E9E /* GyroGraphVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73386C1A822CA600FA1121 /* GyroGraphVC.swift */; };
+		03C5094A1CE1142400B71E9E /* MagGraphVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338701A822CA600FA1121 /* MagGraphVC.swift */; };
 		03FC8BA81C6E391E00EE8B03 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5869F561B95E107001CF96C /* MenuVC.swift */; };
 		03FC8BA91C6E393100EE8B03 /* MadgwickAHRS.c in Sources */ = {isa = PBXBuildFile; fileRef = CBA2B0B31AAA1AD1006967EF /* MadgwickAHRS.c */; };
 		03FC8BAA1C6E393B00EE8B03 /* SensorScanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338761A822CA600FA1121 /* SensorScanVC.swift */; };
@@ -123,15 +135,15 @@
 		D567C1C21BA7296300E7C29F /* EXTPitchGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EXTPitchGestureRecognizer.swift; sourceTree = "<group>"; };
 		D567C1C41BA81F3A00E7C29F /* EXTFlickGestureRecognizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EXTFlickGestureRecognizer.swift; sourceTree = "<group>"; };
 		D57846481B99A0100016FE93 /* PaintingDemoColorPickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaintingDemoColorPickerVC.swift; path = Expressy/PaintingDemoColorPickerVC.swift; sourceTree = SOURCE_ROOT; };
-		D5869F441B95CADC001CF96C /* crash-acoustic.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "crash-acoustic.wav"; path = "Expressy/crash-acoustic.wav"; sourceTree = "<group>"; };
-		D5869F451B95CADC001CF96C /* hihat-acoustic01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "hihat-acoustic01.wav"; path = "Expressy/hihat-acoustic01.wav"; sourceTree = "<group>"; };
-		D5869F461B95CADC001CF96C /* hihat-acoustic02.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "hihat-acoustic02.wav"; path = "Expressy/hihat-acoustic02.wav"; sourceTree = "<group>"; };
-		D5869F471B95CADC001CF96C /* kick-acoustic01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "kick-acoustic01.wav"; path = "Expressy/kick-acoustic01.wav"; sourceTree = "<group>"; };
-		D5869F481B95CADC001CF96C /* openhat-acoustic01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "openhat-acoustic01.wav"; path = "Expressy/openhat-acoustic01.wav"; sourceTree = "<group>"; };
-		D5869F491B95CADC001CF96C /* ride-acoustic02.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "ride-acoustic02.wav"; path = "Expressy/ride-acoustic02.wav"; sourceTree = "<group>"; };
-		D5869F4A1B95CADC001CF96C /* tom-acoustic01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "tom-acoustic01.wav"; path = "Expressy/tom-acoustic01.wav"; sourceTree = "<group>"; };
-		D5869F4B1B95CADC001CF96C /* tom-acoustic02.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "tom-acoustic02.wav"; path = "Expressy/tom-acoustic02.wav"; sourceTree = "<group>"; };
-		D5869F541B95D070001CF96C /* snare.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = snare.mp3; path = Expressy/snare.mp3; sourceTree = "<group>"; };
+		D5869F441B95CADC001CF96C /* crash-acoustic.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "crash-acoustic.wav"; sourceTree = "<group>"; };
+		D5869F451B95CADC001CF96C /* hihat-acoustic01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "hihat-acoustic01.wav"; sourceTree = "<group>"; };
+		D5869F461B95CADC001CF96C /* hihat-acoustic02.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "hihat-acoustic02.wav"; sourceTree = "<group>"; };
+		D5869F471B95CADC001CF96C /* kick-acoustic01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "kick-acoustic01.wav"; sourceTree = "<group>"; };
+		D5869F481B95CADC001CF96C /* openhat-acoustic01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "openhat-acoustic01.wav"; sourceTree = "<group>"; };
+		D5869F491B95CADC001CF96C /* ride-acoustic02.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "ride-acoustic02.wav"; sourceTree = "<group>"; };
+		D5869F4A1B95CADC001CF96C /* tom-acoustic01.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "tom-acoustic01.wav"; sourceTree = "<group>"; };
+		D5869F4B1B95CADC001CF96C /* tom-acoustic02.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "tom-acoustic02.wav"; sourceTree = "<group>"; };
+		D5869F541B95D070001CF96C /* snare.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = snare.mp3; sourceTree = "<group>"; };
 		D5869F561B95E107001CF96C /* MenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuVC.swift; path = Expressy/MenuVC.swift; sourceTree = SOURCE_ROOT; };
 		D5869F581B95F4C9001CF96C /* EvaluationMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EvaluationMenuVC.swift; path = Expressy/EvaluationMenuVC.swift; sourceTree = SOURCE_ROOT; };
 		D58FA20E1B9E030600D26488 /* VideoDemoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoDemoVC.swift; path = Expressy/VideoDemoVC.swift; sourceTree = SOURCE_ROOT; };
@@ -397,6 +409,15 @@
 				03FC8BD01C6E399800EE8B03 /* Images.xcassets in Resources */,
 				03FC8BD11C6E399B00EE8B03 /* art.scnassets in Resources */,
 				03FC8BC91C6E398800EE8B03 /* Main.storyboard in Resources */,
+				03C5093F1CE1124C00B71E9E /* snare.mp3 in Resources */,
+				03C509401CE1124E00B71E9E /* crash-acoustic.wav in Resources */,
+				03C509411CE1126500B71E9E /* hihat-acoustic01.wav in Resources */,
+				03C509421CE1126800B71E9E /* hihat-acoustic02.wav in Resources */,
+				03C509431CE1126B00B71E9E /* kick-acoustic01.wav in Resources */,
+				03C509441CE1126E00B71E9E /* openhat-acoustic01.wav in Resources */,
+				03C509451CE1127200B71E9E /* ride-acoustic02.wav in Resources */,
+				03C509461CE1127400B71E9E /* tom-acoustic01.wav in Resources */,
+				03C509471CE1127700B71E9E /* tom-acoustic02.wav in Resources */,
 				03FC8BCF1C6E399500EE8B03 /* bbb_sunflower.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -458,6 +479,9 @@
 			files = (
 				03FC8BAA1C6E393B00EE8B03 /* SensorScanVC.swift in Sources */,
 				03FC8BAF1C6E394400EE8B03 /* ControlsDemoVC.swift in Sources */,
+				03C509481CE1141F00B71E9E /* AccGraphVC.swift in Sources */,
+				03C509491CE1142200B71E9E /* GyroGraphVC.swift in Sources */,
+				03C5094A1CE1142400B71E9E /* MagGraphVC.swift in Sources */,
 				03FC8BBF1C6E395F00EE8B03 /* EXTPitchGestureRecognizer.swift in Sources */,
 				03FC8BCC1C6E399200EE8B03 /* MathUtils.swift in Sources */,
 				03FC8BB71C6E394800EE8B03 /* FreeForceEvalVC.swift in Sources */,
@@ -601,6 +625,7 @@
 		};
 		D51750AA19E9831C0076F6FA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26D501E01DFD9A805E2E6ACC /* Pods-Expressy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

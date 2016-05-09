@@ -167,8 +167,9 @@ class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralM
     
     func peripheral(peripheral: CBPeripheral, didDiscoverServices error: NSError?) {
         let serviceUDID = CBUUID(string: "00000000-0008-A8BA-E311-F48C90364D99")
+        let sampleRateServiceUDID = CBUUID(string: "00000005-0008-A8BA-E311-F48C90364D99")
         
-        var serviceList = peripheral.services!.filter{ $0.UUID == serviceUDID }
+        var serviceList = peripheral.services!.filter{ $0.UUID == serviceUDID || $0.UUID == sampleRateServiceUDID }
         
         if (serviceList.count > 0) {
             peripheral.discoverCharacteristics(nil, forService: serviceList[0])
