@@ -7,22 +7,18 @@
 //
 
 import Foundation
+import UIKit
 import CoreBluetooth
-import WatchConnectivity
-import CoreMotion
 
-class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralManagerDelegate, CBPeripheralDelegate, MSBClientManagerDelegate, WCSessionDelegate
+class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralManagerDelegate, CBPeripheralDelegate
 {
-    private static var connectionManager:SensorConnectionManager!
+    fileprivate static var connectionManager:SensorConnectionManager!
     
-    private var cManager = CBCentralManager()
-    private var peripheralManager = CBPeripheralManager()
-    private var ready:Bool
-    private var readyCallbacks:[() -> Void]
-    private var connectionCallback:((error:NSError?) -> Void)!
-    
-    private var msAccData:MSBSensorAccelerometerData?
-    private var msGyroData:MSBSensorGyroscopeData?
+    fileprivate var cManager = CBCentralManager()
+    fileprivate var peripheralManager = CBPeripheralManager()
+    fileprivate var ready:Bool
+    fileprivate var readyCallbacks:[() -> Void]
+    fileprivate var connectionCallback:((Error?) -> Void)?
     
     /// Initialises a new connection manager to handle Bluetooth connection to sensor.
     /// - returns: New SensorConnectionManager instance.
@@ -36,7 +32,6 @@ class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralM
         
         cManager = CBCentralManager(delegate: self, queue:nil)
         peripheralManager = CBPeripheralManager(delegate: self, queue: nil)
-        MSBClientManager.sharedManager().delegate = self
         
         SensorConnectionManager.connectionManager = self
     }
@@ -51,7 +46,7 @@ class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralM
         return connectionManager
     }
     
-    func subscribeReady(callback:() -> Void) {
+    func subscribeReady(_ callback:@escaping () -> Void) {
         if (ready) {
             callback()
         } else {
@@ -61,14 +56,14 @@ class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralM
     
     
     func clearReadySubscriptions() {
-        readyCallbacks.removeAll(keepCapacity: false)
+        readyCallbacks.removeAll(keepingCapacity: false)
     }
     
     /// Function to initiate Bluetooth scan for sensors.
     /// - returns: Denotes wether a scan occured.
     func scan() -> Bool {
         if (ready) {
-            cManager.scanForPeripheralsWithServices(nil, options: nil)
+            cManager.scanForPeripherals(withServices: nil, options: nil)
         }
         
         return ready
@@ -79,39 +74,39 @@ class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralM
         cManager.stopScan()
     }
     
-    func centralManagerDidUpdateState(central: CBCentralManager) {
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
         switch cManager.state {
-        case .PoweredOff:
+        case .poweredOff:
             print("CoreBluetooth BLE hardware is powered off")
             ready = false
             break
-        case .PoweredOn:
+        case .poweredOn:
             print("CoreBluetooth BLE hardware is powered on and ready")
             ready = true
             readyCallbacks.forEach({ (cb) -> () in
                 cb()
             })
             break
-        case .Resetting:
+        case .resetting:
             print("CoreBluetooth BLE hardware is resetting")
             ready = false
             break
-        case .Unauthorized:
+        case .unauthorized:
             print("CoreBluetooth BLE state is unauthorized")
             ready = false
             break
-        case .Unknown:
+        case .unknown:
             print("CoreBluetooth BLE state is unknown")
             ready = false
             break
-        case .Unsupported:
+        case .unsupported:
             print("CoreBluetooth BLE hardware is unsupported on this platform")
             ready = false
             break
         }
     }
     
-    func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         if (peripheral.name != nil) {
             SensorScanVC.addDevice(peripheral)
         }
@@ -119,169 +114,109 @@ class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralM
     
     /// Function to connect to specfied peripheral.
     /// - parameter peripheral: Peripheral to connect to.
-    func connectPeripheral(peripheral: CBPeripheral, completedCallback:(error: NSError?) -> Void) {
+    func connectPeripheral(_ peripheral: CBPeripheral, completedCallback:@escaping (Error?) -> Void) {
         connectionCallback = completedCallback
-        cManager.connectPeripheral(peripheral, options: nil)
+        cManager.connect(peripheral, options: nil)
     }
     
-    func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
+    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         peripheral.delegate = self
         peripheral.discoverServices(nil)
     }
     
-    func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
+    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         print("FAILED TO CONNECT \(error)")
         
-        connectionCallback(error: error)
+        connectionCallback?(error)
     }
     
-    func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager) {
+    func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
         switch peripheralManager.state {
             
-        case .PoweredOff:
+        case .poweredOff:
             print("Peripheral - CoreBluetooth BLE hardware is powered off")
             break
             
-        case .PoweredOn:
+        case .poweredOn:
             print("Peripheral - CoreBluetooth BLE hardware is powered on and ready")
             break
             
-        case .Resetting:
+        case .resetting:
             print("Peripheral - CoreBluetooth BLE hardware is resetting")
             break
             
-        case .Unauthorized:
+        case .unauthorized:
             print("Peripheral - CoreBluetooth BLE state is unauthorized")
             break
             
-        case .Unknown:
+        case .unknown:
             print("Peripheral - CoreBluetooth BLE state is unknown")
             break
             
-        case .Unsupported:
+        case .unsupported:
             print("Peripheral - CoreBluetooth BLE hardware is unsupported on this platform")
             break
         }
         
     }
     
-    func peripheral(peripheral: CBPeripheral, didDiscoverServices error: NSError?) {
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         let serviceUDID = CBUUID(string: "00000000-0008-A8BA-E311-F48C90364D99")
         let sampleRateServiceUDID = CBUUID(string: "00000005-0008-A8BA-E311-F48C90364D99")
         
-        var serviceList = peripheral.services!.filter{ $0.UUID == serviceUDID || $0.UUID == sampleRateServiceUDID }
+        var serviceList = peripheral.services!.filter{ $0.uuid == serviceUDID || $0.uuid == sampleRateServiceUDID }
         
         if (serviceList.count > 0) {
-            peripheral.discoverCharacteristics(nil, forService: serviceList[0])
+            peripheral.discoverCharacteristics(nil, for: serviceList[0])
         } else {
-            connectionCallback(error: NSError(domain: "bluetooth", code: 1, userInfo: ["message": "Selected sensor does not have the required services."]))
+            
+            connectionCallback?(NSError(domain: "bluetooth", code: 1, userInfo: ["message": "Selected sensor does not have the required services."]))
         }
     }
     
-    func peripheral(peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         let notifyUUID = CBUUID(string: "00000002-0008-A8BA-E311-F48C90364D99")
         let writeUUID = CBUUID(string: "00000001-0008-A8BA-E311-F48C90364D99")
         let sampleRateUUID = CBUUID(string: "0000000A-0008-A8BA-E311-F48C90364D99")
         
-        if let sampleRateCharac = service.characteristics?.filter({$0.UUID == sampleRateUUID}).first {
-            let sampleRateMessage = NSData(bytes: [50] as [UInt8], length: 1)
-            peripheral.writeValue(sampleRateMessage, forCharacteristic: sampleRateCharac, type: .WithoutResponse)
+        if let sampleRateCharac = service.characteristics?.filter({$0.uuid == sampleRateUUID}).first {
+            let sampleRateMessage = Data(bytes: [0x00, 0x0a], count: 2)
+            peripheral.writeValue(sampleRateMessage, for: sampleRateCharac, type: .withoutResponse)
         }
         
-        if let notifyCharac = service.characteristics?.filter({ $0.UUID == notifyUUID }).first {
-            peripheral.setNotifyValue(true, forCharacteristic: notifyCharac)
+        if let notifyCharac = service.characteristics?.filter({ $0.uuid == notifyUUID }).first {
+            peripheral.setNotifyValue(true, for: notifyCharac)
         }
         
-        if let writeCharac = service.characteristics?.filter({ $0.UUID == writeUUID }).first {
-            let streamMessage = NSData(bytes: [1] as [UInt8], length: 1)
-            peripheral.writeValue(streamMessage, forCharacteristic: writeCharac, type: .WithoutResponse)
+        if let writeCharac = service.characteristics?.filter({ $0.uuid == writeUUID }).first {
+            let streamMessage = Data(bytes: UnsafePointer<UInt8>([1] as [UInt8]), count: 1)
+            peripheral.writeValue(streamMessage, for: writeCharac, type: .withoutResponse)
         }
         
-        connectionCallback(error: nil)
+        connectionCallback?(nil)
     }
     
-    func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic,
-        error: NSError?) {
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic,
+        error: Error?) {
         SensorProcessor.updateCache(characteristic.value!)
     }
     
-    func peripheral(peripheral: CBPeripheral, didUpdateNotificationStateForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
+    func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
         if(characteristic.isNotifying)
         {
-            peripheral.readValueForCharacteristic(characteristic);
+            peripheral.readValue(for: characteristic);
         }
     }
     
-    func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
-        let nav = (UIApplication.sharedApplication().delegate as! AppDelegate).window?.rootViewController as! UINavigationController
-        nav.popToRootViewControllerAnimated(true)
-        (nav.topViewController as! MenuVC).connectDeviceBtn.enabled = true
+    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        let nav = (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController as! UINavigationController
+        nav.popToRootViewController(animated: true)
+        (nav.topViewController as! MenuVC).connectDeviceBtn.isEnabled = true
         
-        let alert = UIAlertController(title: "Sensor Disconnected", message: "Connection to the sensor has been lost. You have been returned to the main menu.", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Sensor Disconnected", message: "Connection to the sensor has been lost. You have been returned to the main menu.", preferredStyle: UIAlertControllerStyle.alert)
         
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
         
-        nav.topViewController!.presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    func connectMSB() {
-        let client = MSBClientManager.sharedManager().attachedClients().first as! MSBClient
-        MSBClientManager.sharedManager().connectClient(client)
-    }
-    
-    func clientManager(clientManager: MSBClientManager!, clientDidConnect client: MSBClient!) {
-        do {
-            try client.sensorManager.startAccelerometerUpdatesToQueue(nil, withHandler: accDataCallback)
-            try client.sensorManager.startGyroscopeUpdatesToQueue(nil, withHandler: gyroDataCallback) 
-        } catch let error as NSError {
-            print(error)
-        }
-    }
-    
-    func accDataCallback(data:MSBSensorAccelerometerData!, error:NSError!) {
-        if let gyro = msGyroData {
-            SensorProcessor.updateCache(Float(data.x), ay: Float(data.y), az: Float(data.z), gx: Float(gyro.x), gy: Float(gyro.y), gz: Float(gyro.z), mx: nil, my: nil, mz: nil)
-            msGyroData = nil
-        } else {
-            msAccData = data
-        }
-    }
-    
-    func gyroDataCallback(data:MSBSensorGyroscopeData!, error:NSError!) {
-        if let acc = msAccData {
-            SensorProcessor.updateCache(Float(acc.x), ay: Float(acc.y), az: Float(acc.z), gx: Float(data.x), gy: Float(data.y), gz: Float(data.z), mx: nil, my: nil, mz: nil)
-            msAccData = nil
-        } else {
-            msGyroData = data
-        }
-    }
-    
-    func clientManager(clientManager: MSBClientManager!, clientDidDisconnect client: MSBClient!) {
-        let nav = (UIApplication.sharedApplication().delegate as! AppDelegate).window?.rootViewController as! UINavigationController
-        nav.popToRootViewControllerAnimated(true)
-        (nav.topViewController as! MenuVC).connectDeviceBtn.enabled = true
-        
-        let alert = UIAlertController(title: "Sensor Disconnected", message: "Connection to the sensor has been lost. You have been returned to the main menu.", preferredStyle: UIAlertControllerStyle.Alert)
-        
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
-        
-        nav.topViewController!.presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    func clientManager(clientManager: MSBClientManager!, client: MSBClient!, didFailToConnectWithError error: NSError!) {
-        print(error)
-    }
-    
-    @available(iOS 9.0, *)
-    func startAppleWatchSensorUpdates() {
-        WCSession.defaultSession().delegate = self
-        WCSession.defaultSession().activateSession()
-    }
-    
-    @available(iOS 9.0, *)
-    func session(session: WCSession, didReceiveMessage message: [String : AnyObject]) {
-        let accData = message["accData"] as! CMAccelerometerData
-        let gyroData = message["gyroData"] as! CMGyroData
-        SensorProcessor.updateCache(Float(accData.acceleration.x), ay: Float(accData.acceleration.y), az: Float(accData.acceleration.z), gx: Float(gyroData.rotationRate.x), gy: Float(gyroData.rotationRate.y), gz: Float(gyroData.rotationRate.z), mx: nil, my: nil, mz: nil)
+        nav.topViewController!.present(alert, animated: true, completion: nil)
     }
 }

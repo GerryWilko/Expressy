@@ -20,7 +20,7 @@ static BOOL cacheValueInitialized[kCacheSize] = { NO, NO, NO, NO };
  **/
 int8_t CPTDecimalCharValue(NSDecimal decimalNumber)
 {
-    return (int8_t)[[NSDecimalNumber decimalNumberWithDecimal:decimalNumber] charValue];
+    return (int8_t)[NSDecimalNumber decimalNumberWithDecimal:decimalNumber].charValue;
 }
 
 /**
@@ -30,7 +30,7 @@ int8_t CPTDecimalCharValue(NSDecimal decimalNumber)
  **/
 int16_t CPTDecimalShortValue(NSDecimal decimalNumber)
 {
-    return (int16_t)[[NSDecimalNumber decimalNumberWithDecimal:decimalNumber] shortValue];
+    return (int16_t)[NSDecimalNumber decimalNumberWithDecimal:decimalNumber].shortValue;
 }
 
 /**
@@ -40,7 +40,7 @@ int16_t CPTDecimalShortValue(NSDecimal decimalNumber)
  **/
 int32_t CPTDecimalLongValue(NSDecimal decimalNumber)
 {
-    return (int32_t)[[NSDecimalNumber decimalNumberWithDecimal:decimalNumber] longValue];
+    return (int32_t)[NSDecimalNumber decimalNumberWithDecimal:decimalNumber].longValue;
 }
 
 /**
@@ -50,7 +50,7 @@ int32_t CPTDecimalLongValue(NSDecimal decimalNumber)
  **/
 int64_t CPTDecimalLongLongValue(NSDecimal decimalNumber)
 {
-    return (int64_t)[[NSDecimalNumber decimalNumberWithDecimal:decimalNumber] longLongValue];
+    return (int64_t)[NSDecimalNumber decimalNumberWithDecimal:decimalNumber].longLongValue;
 }
 
 /**
@@ -60,7 +60,7 @@ int64_t CPTDecimalLongLongValue(NSDecimal decimalNumber)
  **/
 int CPTDecimalIntValue(NSDecimal decimalNumber)
 {
-    return [[NSDecimalNumber decimalNumberWithDecimal:decimalNumber] intValue];
+    return [NSDecimalNumber decimalNumberWithDecimal:decimalNumber].intValue;
 }
 
 /**
@@ -70,7 +70,7 @@ int CPTDecimalIntValue(NSDecimal decimalNumber)
  **/
 NSInteger CPTDecimalIntegerValue(NSDecimal decimalNumber)
 {
-    return (NSInteger)[[NSDecimalNumber decimalNumberWithDecimal:decimalNumber] integerValue];
+    return (NSInteger)[NSDecimalNumber decimalNumberWithDecimal:decimalNumber].integerValue;
 }
 
 /**
@@ -80,7 +80,7 @@ NSInteger CPTDecimalIntegerValue(NSDecimal decimalNumber)
  **/
 uint8_t CPTDecimalUnsignedCharValue(NSDecimal decimalNumber)
 {
-    return (uint8_t)[[NSDecimalNumber decimalNumberWithDecimal:decimalNumber] unsignedCharValue];
+    return (uint8_t)[NSDecimalNumber decimalNumberWithDecimal:decimalNumber].unsignedCharValue;
 }
 
 /**
@@ -90,7 +90,7 @@ uint8_t CPTDecimalUnsignedCharValue(NSDecimal decimalNumber)
  **/
 uint16_t CPTDecimalUnsignedShortValue(NSDecimal decimalNumber)
 {
-    return (uint16_t)[[NSDecimalNumber decimalNumberWithDecimal:decimalNumber] unsignedShortValue];
+    return (uint16_t)[NSDecimalNumber decimalNumberWithDecimal:decimalNumber].unsignedShortValue;
 }
 
 /**
@@ -100,7 +100,7 @@ uint16_t CPTDecimalUnsignedShortValue(NSDecimal decimalNumber)
  **/
 uint32_t CPTDecimalUnsignedLongValue(NSDecimal decimalNumber)
 {
-    return (uint32_t)[[NSDecimalNumber decimalNumberWithDecimal:decimalNumber] unsignedLongValue];
+    return (uint32_t)[NSDecimalNumber decimalNumberWithDecimal:decimalNumber].unsignedLongValue;
 }
 
 /**
@@ -110,7 +110,7 @@ uint32_t CPTDecimalUnsignedLongValue(NSDecimal decimalNumber)
  **/
 uint64_t CPTDecimalUnsignedLongLongValue(NSDecimal decimalNumber)
 {
-    return (uint64_t)[[NSDecimalNumber decimalNumberWithDecimal:decimalNumber] unsignedLongLongValue];
+    return (uint64_t)[NSDecimalNumber decimalNumberWithDecimal:decimalNumber].unsignedLongLongValue;
 }
 
 /**
@@ -120,7 +120,7 @@ uint64_t CPTDecimalUnsignedLongLongValue(NSDecimal decimalNumber)
  **/
 unsigned int CPTDecimalUnsignedIntValue(NSDecimal decimalNumber)
 {
-    return [[NSDecimalNumber decimalNumberWithDecimal:decimalNumber] unsignedIntValue];
+    return [NSDecimalNumber decimalNumberWithDecimal:decimalNumber].unsignedIntValue;
 }
 
 /**
@@ -130,7 +130,7 @@ unsigned int CPTDecimalUnsignedIntValue(NSDecimal decimalNumber)
  **/
 NSUInteger CPTDecimalUnsignedIntegerValue(NSDecimal decimalNumber)
 {
-    return (NSUInteger)[[NSDecimalNumber decimalNumberWithDecimal:decimalNumber] unsignedIntegerValue];
+    return (NSUInteger)[NSDecimalNumber decimalNumberWithDecimal:decimalNumber].unsignedIntegerValue;
 }
 
 /**
@@ -140,7 +140,7 @@ NSUInteger CPTDecimalUnsignedIntegerValue(NSDecimal decimalNumber)
  **/
 float CPTDecimalFloatValue(NSDecimal decimalNumber)
 {
-    return [[NSDecimalNumber decimalNumberWithDecimal:decimalNumber] floatValue];
+    return [NSDecimalNumber decimalNumberWithDecimal:decimalNumber].floatValue;
 }
 
 /**
@@ -150,7 +150,7 @@ float CPTDecimalFloatValue(NSDecimal decimalNumber)
  **/
 double CPTDecimalDoubleValue(NSDecimal decimalNumber)
 {
-    return [[NSDecimalNumber decimalNumberWithDecimal:decimalNumber] doubleValue];
+    return [NSDecimalNumber decimalNumberWithDecimal:decimalNumber].doubleValue;
 }
 
 /**
@@ -161,7 +161,7 @@ double CPTDecimalDoubleValue(NSDecimal decimalNumber)
 CGFloat CPTDecimalCGFloatValue(NSDecimal decimalNumber)
 {
 #if CGFLOAT_IS_DOUBLE
-    return (CGFloat)[[NSDecimalNumber decimalNumberWithDecimal:decimalNumber] doubleValue];
+    return (CGFloat)[NSDecimalNumber decimalNumberWithDecimal:decimalNumber].doubleValue;
 
 #else
     return (CGFloat)[[NSDecimalNumber decimalNumberWithDecimal:decimalNumber] floatValue];
@@ -173,9 +173,9 @@ CGFloat CPTDecimalCGFloatValue(NSDecimal decimalNumber)
  *  @param decimalNumber The @ref NSDecimal value.
  *  @return The converted value.
  **/
-NSString *CPTDecimalStringValue(NSDecimal decimalNumber)
+NSString *__nonnull CPTDecimalStringValue(NSDecimal decimalNumber)
 {
-    return [[NSDecimalNumber decimalNumberWithDecimal:decimalNumber] stringValue];
+    return [NSDecimalNumber decimalNumberWithDecimal:decimalNumber].stringValue;
 }
 
 #pragma mark -
@@ -468,7 +468,7 @@ NSDecimal CPTDecimalFromFloat(float aFloat)
         return CPTDecimalNaN();
     }
     else {
-        NSString *stringValue = [[NSString alloc] initWithFormat:@"%f", aFloat];
+        NSString *stringValue = [[NSString alloc] initWithFormat:@"%f", (double)aFloat];
         NSDecimal result      = CPTDecimalFromString(stringValue);
 
         return result;
@@ -504,7 +504,7 @@ NSDecimal CPTDecimalFromCGFloat(CGFloat aCGFloat)
         return CPTDecimalNaN();
     }
     else {
-        NSString *stringValue = [[NSString alloc] initWithFormat:@"%f", aCGFloat];
+        NSString *stringValue = [[NSString alloc] initWithFormat:@"%f", (double)aCGFloat];
         NSDecimal result      = CPTDecimalFromString(stringValue);
 
         return result;
@@ -516,7 +516,7 @@ NSDecimal CPTDecimalFromCGFloat(CGFloat aCGFloat)
  *  @param stringRepresentation The string value.
  *  @return The numeric value extracted from the string.
  **/
-NSDecimal CPTDecimalFromString(NSString *stringRepresentation)
+NSDecimal CPTDecimalFromString(NSString *__nonnull stringRepresentation)
 {
     // The following NSDecimalNumber-based creation of NSDecimal structs from strings is slower than
     // the NSScanner-based method: (307000 operations per second vs. 582000 operations per second for NSScanner)
@@ -588,7 +588,18 @@ NSDecimal CPTDecimalDivide(NSDecimal numerator, NSDecimal denominator)
 {
     NSDecimal result;
 
-    NSDecimalDivide(&result, &numerator, &denominator, NSRoundBankers);
+    NSCalculationError calcError = NSDecimalDivide(&result, &numerator, &denominator, NSRoundBankers);
+
+    switch ( calcError ) {
+        case NSCalculationUnderflow:
+        case NSCalculationDivideByZero:
+            result = CPTDecimalFromInteger(0);
+            break;
+
+        default:
+            // no error--return the result of the division
+            break;
+    }
     return result;
 }
 
@@ -662,7 +673,7 @@ BOOL CPTDecimalEquals(NSDecimal leftOperand, NSDecimal rightOperand)
  **/
 NSDecimal CPTDecimalNaN(void)
 {
-    return [[NSDecimalNumber notANumber] decimalValue];
+    return [NSDecimalNumber notANumber].decimalValue;
 }
 
 /**
@@ -744,7 +755,7 @@ NSRange CPTExpandedRange(NSRange range, NSInteger expandBy)
  *  @param color The color.
  *  @return The RGBA components of the color.
  **/
-CPTRGBAColor CPTRGBAColorFromCGColor(CGColorRef color)
+CPTRGBAColor CPTRGBAColorFromCGColor(__nonnull CGColorRef color)
 {
     CPTRGBAColor rgbColor;
 
@@ -798,7 +809,7 @@ CPTCoordinate CPTOrthogonalCoordinate(CPTCoordinate coord)
  *  @param point The point in user space.
  *  @return The device aligned point in user space.
  **/
-CGPoint CPTAlignPointToUserSpace(CGContextRef context, CGPoint point)
+CGPoint CPTAlignPointToUserSpace(__nonnull CGContextRef context, CGPoint point)
 {
     // Compute the coordinates of the point in device space.
     point = CGContextConvertPointToDeviceSpace(context, point);
@@ -822,7 +833,7 @@ CGPoint CPTAlignPointToUserSpace(CGContextRef context, CGPoint point)
  *  @param size The size in user space.
  *  @return The device aligned size in user space.
  **/
-CGSize CPTAlignSizeToUserSpace(CGContextRef context, CGSize size)
+CGSize CPTAlignSizeToUserSpace(__nonnull CGContextRef context, CGSize size)
 {
     // Compute the size in device space.
     size = CGContextConvertSizeToDeviceSpace(context, size);
@@ -846,7 +857,7 @@ CGSize CPTAlignSizeToUserSpace(CGContextRef context, CGSize size)
  *  @param rect The rectangle in user space.
  *  @return The device aligned rectangle in user space.
  **/
-CGRect CPTAlignRectToUserSpace(CGContextRef context, CGRect rect)
+CGRect CPTAlignRectToUserSpace(__nonnull CGContextRef context, CGRect rect)
 {
     rect = CGContextConvertRectToDeviceSpace(context, rect);
 
@@ -874,7 +885,7 @@ CGRect CPTAlignRectToUserSpace(CGContextRef context, CGRect rect)
  *  @param point The point in user space.
  *  @return The device aligned point in user space.
  **/
-CGPoint CPTAlignIntegralPointToUserSpace(CGContextRef context, CGPoint point)
+CGPoint CPTAlignIntegralPointToUserSpace(__nonnull CGContextRef context, CGPoint point)
 {
     point = CGContextConvertPointToDeviceSpace(context, point);
 
@@ -894,7 +905,7 @@ CGPoint CPTAlignIntegralPointToUserSpace(CGContextRef context, CGPoint point)
  *  @param rect The rectangle in user space.
  *  @return The device aligned rectangle in user space.
  **/
-CGRect CPTAlignIntegralRectToUserSpace(CGContextRef context, CGRect rect)
+CGRect CPTAlignIntegralRectToUserSpace(__nonnull CGContextRef context, CGRect rect)
 {
     rect = CGContextConvertRectToDeviceSpace(context, rect);
 
@@ -909,7 +920,7 @@ CGRect CPTAlignIntegralRectToUserSpace(CGContextRef context, CGRect rect)
     return CGContextConvertRectToUserSpace(context, rect);
 }
 
-CGRect CPTAlignBorderedRectToUserSpace(CGContextRef context, CGRect rect, CPTLineStyle *borderLineStyle)
+CGRect CPTAlignBorderedRectToUserSpace(__nonnull CGContextRef context, CGRect rect, CPTLineStyle *__nonnull borderLineStyle)
 {
     CGRect borderRect;
     CGFloat contextScale = CPTFloat(1.0);
@@ -942,27 +953,36 @@ CGRect CPTAlignBorderedRectToUserSpace(CGContextRef context, CGRect rect, CPTLin
  *  @param point The point.
  *  @return A string with the format <code> {x, y}</code>.
  **/
-NSString *CPTStringFromPoint(CGPoint point)
+NSString * __nonnull CPTStringFromPoint(CGPoint point)
 {
-    return [NSString stringWithFormat:@"{%g, %g}", point.x, point.y];
+    return [NSString stringWithFormat:@"{%g, %g}", (double)point.x, (double)point.y];
 }
 
 /** @brief Creates a string representation of the given size.
  *  @param size The size.
  *  @return A string with the format <code> {width, height}</code>.
  **/
-NSString *CPTStringFromSize(CGSize size)
+NSString *__nonnull CPTStringFromSize(CGSize size)
 {
-    return [NSString stringWithFormat:@"{%g, %g}", size.width, size.height];
+    return [NSString stringWithFormat:@"{%g, %g}", (double)size.width, (double)size.height];
 }
 
 /** @brief Creates a string representation of the given rectangle.
  *  @param rect The rectangle.
  *  @return A string with the format <code> {{x, y}, {width, height}}</code>.
  **/
-NSString *CPTStringFromRect(CGRect rect)
+NSString *__nonnull CPTStringFromRect(CGRect rect)
 {
-    return [NSString stringWithFormat:@"{{%g, %g}, {%g, %g}}", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height];
+    return [NSString stringWithFormat:@"{{%g, %g}, {%g, %g}}", (double)rect.origin.x, (double)rect.origin.y, (double)rect.size.width, (double)rect.size.height];
+}
+
+/** @brief Creates a string representation of the given vector.
+ *  @param vector The vector.
+ *  @return A string with the format <code> {dx, dy}</code>.
+ **/
+NSString *__nonnull CPTStringFromVector(CGVector vector)
+{
+    return [NSString stringWithFormat:@"{%g, %g}", (double)vector.dx, (double)vector.dy];
 }
 
 #pragma mark -

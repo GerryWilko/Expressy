@@ -7,17 +7,18 @@
 //
 
 import Foundation
+import UIKit
 
 class RollEvalVC: EvaluationVC {
-    private var stage:Int
-    private var maxValue:Float
-    private var minValue:Float
-    private var evalCount:Int
-    private var angleDifference:Float!
-    private var lastTransform:CGAffineTransform!
-    private var touchTime:NSTimeInterval!
+    fileprivate var stage:Int
+    fileprivate var maxValue:Float
+    fileprivate var minValue:Float
+    fileprivate var evalCount:Int
+    fileprivate var angleDifference:Float!
+    fileprivate var lastTransform:CGAffineTransform!
+    fileprivate var touchTime:TimeInterval!
     
-    private let minAngle:Float = 5.0
+    fileprivate let minAngle:Float = 5.0
     
     @IBOutlet weak var placeholderImage: UIImageView!
     @IBOutlet weak var rotateImage: UIImageView!
@@ -35,24 +36,24 @@ class RollEvalVC: EvaluationVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCSV("roll", headerLine: "Participant ID,Time,Max Angle,Min Angle,Placeholder Angle,Angle to Rotate,End Image Angle,Time Taken")
-        leftBar.transform = CGAffineTransformMakeRotation(CGFloat(M_PI))
-        self.performSegueWithIdentifier("rotateTestInstructions", sender: self)
+        leftBar.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI))
+        self.performSegue(withIdentifier: "rotateTestInstructions", sender: self)
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesBegan(touches, withEvent: event)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
         
         switch (stage) {
         case 1:
-            detector.subscribe(.Metrics, callback: rangeMetricsCallback)
+            detector.subscribe(.metrics, callback: rangeMetricsCallback)
             instructionLbl.text = "Now rotate as far as you can clockwise. Then back anti-clockwise, keep your finger held down."
             break
         case 2:
             let touch = touches.first
             
             if (touch!.view == rotateImage) {
-                touchTime = NSDate.timeIntervalSinceReferenceDate()
-                detector.subscribe(.Metrics, callback: imageMetricsCallback)
+                touchTime = Date.timeIntervalSinceReferenceDate
+                detector.subscribe(.metrics, callback: imageMetricsCallback)
             }
             break
         default:
@@ -60,8 +61,8 @@ class RollEvalVC: EvaluationVC {
         }
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesEnded(touches, withEvent: event)
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
         
         switch (stage) {
         case 1:
@@ -79,11 +80,11 @@ class RollEvalVC: EvaluationVC {
             if (touch!.view == rotateImage) {
                 let placeholderDegrees = atan2f(Float(placeholderImage.transform.b), Float(placeholderImage.transform.a)) * Float(180 / M_PI)
                 let imageDegrees = atan2f(Float(rotateImage.transform.b), Float(rotateImage.transform.a)) * Float(180 / M_PI)
-                let time = NSDate.timeIntervalSinceReferenceDate()
+                let time = Date.timeIntervalSinceReferenceDate
                 
                 logEvalData("\(participant),\(time),\(maxValue),\(minValue),\(placeholderDegrees),\(angleDifference),\(imageDegrees),\(time - touchTime)")
                 setNextView()
-                evalCount++
+                evalCount += 1
             }
             break
         default:
@@ -91,7 +92,7 @@ class RollEvalVC: EvaluationVC {
         }
     }
     
-    private func rangeMetricsCallback(data:Float?) {
+    fileprivate func rangeMetricsCallback(_ data:Float?) {
         if (self.maxValue < self.detector.currentRoll) {
             self.maxValue = self.detector.currentRoll
             self.rightBar.setProgress(self.maxValue / 180, animated: true)
@@ -103,16 +104,16 @@ class RollEvalVC: EvaluationVC {
         }
     }
     
-    private func imageMetricsCallback(data:Float?) {
-        self.rotateImage.transform = CGAffineTransformRotate(self.lastTransform, CGFloat(self.detector.currentRoll) * CGFloat(M_PI / 180))
+    fileprivate func imageMetricsCallback(_ data:Float?) {
+        self.rotateImage.transform = self.lastTransform.rotated(by: CGFloat(self.detector.currentRoll) * CGFloat(M_PI / 180))
     }
     
-    private func randomiseImages() {
+    fileprivate func randomiseImages() {
         let range = UInt32(maxValue - minValue)
         let placeholderAngle = Float(Int(arc4random_uniform(range))) + minValue
         let rotateAngle = Float(Int(arc4random_uniform(range))) + minValue
-        placeholderImage.transform = CGAffineTransformMakeRotation(CGFloat(MathUtils.deg2rad(placeholderAngle)))
-        rotateImage.transform = CGAffineTransformMakeRotation(CGFloat(MathUtils.deg2rad(rotateAngle)))
+        placeholderImage.transform = CGAffineTransform(rotationAngle: CGFloat(MathUtils.deg2rad(placeholderAngle)))
+        rotateImage.transform = CGAffineTransform(rotationAngle: CGFloat(MathUtils.deg2rad(rotateAngle)))
         angleDifference = placeholderAngle - rotateAngle
         lastTransform = rotateImage.transform
         
@@ -121,41 +122,41 @@ class RollEvalVC: EvaluationVC {
         }
     }
     
-    private func setNextView() {
-        placeholderImage.hidden = true
-        rotateImage.hidden = true
-        instructionLbl.hidden = false
+    fileprivate func setNextView() {
+        placeholderImage.isHidden = true
+        rotateImage.isHidden = true
+        instructionLbl.isHidden = false
         instructionLbl.text = "Press next to advance to the next stage."
-        self.view.userInteractionEnabled = false
+        self.view.isUserInteractionEnabled = false
     }
     
-    private func setRotateImage() {
-        instructionLbl.hidden = true
-        leftBar.hidden = true
-        rightBar.hidden = true
-        placeholderImage.hidden = false
-        rotateImage.hidden = false
+    fileprivate func setRotateImage() {
+        instructionLbl.isHidden = true
+        leftBar.isHidden = true
+        rightBar.isHidden = true
+        placeholderImage.isHidden = false
+        rotateImage.isHidden = false
         
         randomiseImages()
-        self.view.userInteractionEnabled = true
+        self.view.isUserInteractionEnabled = true
     }
     
-    @IBAction func next(sender: AnyObject) {
+    @IBAction func next(_ sender: AnyObject) {
         switch (stage) {
         case 1:
             setRotateImage()
-            stage++
+            stage += 1
             break
         case 2:
             if (evalCount < 10) {
                 setRotateImage()
             } else {
-                nextBtn.enabled = false
-                instructionLbl.hidden = false
-                placeholderImage.hidden = true
-                rotateImage.hidden = true
+                nextBtn.isEnabled = false
+                instructionLbl.isHidden = false
+                placeholderImage.isHidden = true
+                rotateImage.isHidden = true
                 instructionLbl.text = "Evaluation Complete. Thank you."
-                stage++
+                stage += 1
                 logSensorData()
                 evalVC.completeRoll(csv)
             }
@@ -166,5 +167,5 @@ class RollEvalVC: EvaluationVC {
         }
     }
     
-    @IBAction func unwindToRollEval(segue:UIStoryboardSegue) {}
+    @IBAction func unwindToRollEval(_ segue:UIStoryboardSegue) {}
 }

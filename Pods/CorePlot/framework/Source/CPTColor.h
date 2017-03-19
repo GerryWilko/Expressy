@@ -1,4 +1,4 @@
-@interface CPTColor : NSObject<NSCopying, NSCoding>
+@interface CPTColor : NSObject<NSCopying, NSCoding, NSSecureCoding>
 
 @property (nonatomic, readonly, nonnull) CGColorRef cgColor;
 @property (nonatomic, readonly, getter = isOpaque) BOOL opaque;
@@ -30,7 +30,7 @@
 /// @{
 -(nonnull instancetype)initWithCGColor:(nonnull CGColorRef)cgColor NS_DESIGNATED_INITIALIZER;
 -(nonnull instancetype)initWithComponentRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;
--(nonnull instancetype)initWithCoder:(nonnull NSCoder *)decoder NS_DESIGNATED_INITIALIZER;
+-(nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder NS_DESIGNATED_INITIALIZER;
 
 -(nonnull instancetype)colorWithAlphaComponent:(CGFloat)alpha;
 /// @}

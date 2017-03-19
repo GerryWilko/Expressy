@@ -14,9 +14,14 @@
 @class CPTPlotRange;
 @class CPTTextStyle;
 
+/**
+ *  @brief Plot bindings.
+ **/
+typedef NSString *CPTPlotBinding cpt_swift_struct;
+
 /// @ingroup plotBindingsAllPlots
 /// @{
-extern NSString *__nonnull const CPTPlotBindingDataLabels;
+extern CPTPlotBinding __nonnull const CPTPlotBindingDataLabels;
 /// @}
 
 /**
@@ -31,12 +36,12 @@ typedef NS_ENUM (NSInteger, CPTPlotCachePrecision) {
 /**
  *  @brief An array of plots.
  **/
-typedef NSArray<__kindof CPTPlot *> *CPTPlotArray;
+typedef NSArray<__kindof CPTPlot *> CPTPlotArray;
 
 /**
  *  @brief A mutable array of plots.
  **/
-typedef NSMutableArray<__kindof CPTPlot *> *CPTMutablePlotArray;
+typedef NSMutableArray<__kindof CPTPlot *> CPTMutablePlotArray;
 
 #pragma mark -
 
@@ -93,7 +98,7 @@ typedef NSMutableArray<__kindof CPTPlot *> *CPTMutablePlotArray;
  *  @param indexRange The range of the data indexes of interest.
  *  @return A retained C array of data points.
  **/
--(nullable double *)doublesForPlot:(nonnull CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndexRange:(NSRange)indexRange;
+-(nullable double *)doublesForPlot:(nonnull CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndexRange:(NSRange)indexRange NS_RETURNS_INNER_POINTER;
 
 /** @brief @optional Gets a plot data value for the given plot and field.
  *  Implement one and only one of the optional methods in this section.
@@ -139,7 +144,7 @@ typedef NSMutableArray<__kindof CPTPlot *> *CPTMutablePlotArray;
  *  @param indexRange The range of the data indexes of interest.
  *  @return An array of data labels.
  **/
--(nullable NSArray<CPTLayer *> *)dataLabelsForPlot:(nonnull CPTPlot *)plot recordIndexRange:(NSRange)indexRange;
+-(nullable CPTLayerArray *)dataLabelsForPlot:(nonnull CPTPlot *)plot recordIndexRange:(NSRange)indexRange;
 
 /** @brief @optional Gets a data label for the given plot.
  *  This method will not be called if
@@ -162,7 +167,7 @@ typedef NSMutableArray<__kindof CPTPlot *> *CPTMutablePlotArray;
 /**
  *  @brief Plot delegate.
  **/
-@protocol CPTPlotDelegate<NSObject>
+@protocol CPTPlotDelegate<CPTLayerDelegate>
 
 @optional
 
@@ -253,7 +258,7 @@ typedef NSMutableArray<__kindof CPTPlot *> *CPTMutablePlotArray;
 
 /// @name Data Source
 /// @{
-@property (nonatomic, readwrite, cpt_weak_property, nullable) cpt_weak id<CPTPlotDataSource> dataSource;
+@property (nonatomic, readwrite, cpt_weak_property, nullable) id<CPTPlotDataSource> dataSource;
 /// @}
 
 /// @name Identification
@@ -327,8 +332,10 @@ typedef NSMutableArray<__kindof CPTPlot *> *CPTMutablePlotArray;
 -(void)reloadDataInIndexRange:(NSRange)indexRange;
 -(void)insertDataAtIndex:(NSUInteger)idx numberOfRecords:(NSUInteger)numberOfRecords;
 -(void)deleteDataInIndexRange:(NSRange)indexRange;
--(void)reloadPlotData;
--(void)reloadPlotDataInIndexRange:(NSRange)indexRange;
+-(void)reloadPlotData NS_SWIFT_NAME( CPTPlot.reloadPlotData() );
+
+-(void)reloadPlotDataInIndexRange:(NSRange)indexRange NS_SWIFT_NAME( CPTPlot.reloadPlotData(inIndexRange:) );
+
 /// @}
 
 /// @name Plot Data
@@ -357,6 +364,8 @@ typedef NSMutableArray<__kindof CPTPlot *> *CPTMutablePlotArray;
 /// @{
 -(nullable CPTPlotRange *)plotRangeForField:(NSUInteger)fieldEnum;
 -(nullable CPTPlotRange *)plotRangeForCoordinate:(CPTCoordinate)coord;
+-(nullable CPTPlotRange *)plotRangeEnclosingField:(NSUInteger)fieldEnum;
+-(nullable CPTPlotRange *)plotRangeEnclosingCoordinate:(CPTCoordinate)coord;
 /// @}
 
 /// @name Legends
@@ -379,8 +388,8 @@ typedef NSMutableArray<__kindof CPTPlot *> *CPTMutablePlotArray;
 /// @name Fields
 /// @{
 -(NSUInteger)numberOfFields;
--(nonnull CPTNumberArray)fieldIdentifiers;
--(nonnull CPTNumberArray)fieldIdentifiersForCoordinate:(CPTCoordinate)coord;
+-(nonnull CPTNumberArray *)fieldIdentifiers;
+-(nonnull CPTNumberArray *)fieldIdentifiersForCoordinate:(CPTCoordinate)coord;
 -(CPTCoordinate)coordinateForFieldIdentifier:(NSUInteger)field;
 /// @}
 

@@ -19,10 +19,10 @@
 		03C509481CE1141F00B71E9E /* AccGraphVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338601A822CA600FA1121 /* AccGraphVC.swift */; };
 		03C509491CE1142200B71E9E /* GyroGraphVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73386C1A822CA600FA1121 /* GyroGraphVC.swift */; };
 		03C5094A1CE1142400B71E9E /* MagGraphVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338701A822CA600FA1121 /* MagGraphVC.swift */; };
+		03D03A991E7EE73E0074FEAC /* wax9_render.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 03D03A981E7EE71A0074FEAC /* wax9_render.mp4 */; };
 		03FC8BA81C6E391E00EE8B03 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5869F561B95E107001CF96C /* MenuVC.swift */; };
 		03FC8BA91C6E393100EE8B03 /* MadgwickAHRS.c in Sources */ = {isa = PBXBuildFile; fileRef = CBA2B0B31AAA1AD1006967EF /* MadgwickAHRS.c */; };
 		03FC8BAA1C6E393B00EE8B03 /* SensorScanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338761A822CA600FA1121 /* SensorScanVC.swift */; };
-		03FC8BAB1C6E393D00EE8B03 /* SensorSelectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F1FBFF1B3D7ED900C86D38 /* SensorSelectionVC.swift */; };
 		03FC8BAC1C6E394400EE8B03 /* InteractionDetectorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7338661A822CA600FA1121 /* InteractionDetectorVC.swift */; };
 		03FC8BAD1C6E394400EE8B03 /* PlaneModelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD91ADF1AB9A2BE00A9ABBE /* PlaneModelVC.swift */; };
 		03FC8BAE1C6E394400EE8B03 /* MapDemoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7D5CEE1AC3198E0068BC67 /* MapDemoVC.swift */; };
@@ -60,8 +60,7 @@
 		03FC8BCF1C6E399500EE8B03 /* bbb_sunflower.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D567C1BC1BA6D22300E7C29F /* bbb_sunflower.mp4 */; };
 		03FC8BD01C6E399800EE8B03 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB73386D1A822CA600FA1121 /* Images.xcassets */; };
 		03FC8BD11C6E399B00EE8B03 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = CBB6837A1AB9B2C700938059 /* art.scnassets */; };
-		4A2BE8E251EB2FA80EBD5B62 /* Pods_Expressy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4057D2F656FE3A0138E1F62D /* Pods_Expressy.framework */; };
-		D53396781B959C8200EA9389 /* MicrosoftBandKit_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D53396771B959C8200EA9389 /* MicrosoftBandKit_iOS.framework */; };
+		76236C89DE64C1D729A975F6 /* Pods_Expressy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C756D2B1BB36B587BCE8819 /* Pods_Expressy.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -88,8 +87,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		26D501E01DFD9A805E2E6ACC /* Pods-Expressy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Expressy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Expressy/Pods-Expressy.debug.xcconfig"; sourceTree = "<group>"; };
-		4057D2F656FE3A0138E1F62D /* Pods_Expressy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Expressy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		03D03A981E7EE71A0074FEAC /* wax9_render.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = wax9_render.mp4; sourceTree = "<group>"; };
+		106744D6E7B4D6C9FC1788C9 /* Pods-Expressy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Expressy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Expressy/Pods-Expressy.release.xcconfig"; sourceTree = "<group>"; };
+		4C756D2B1BB36B587BCE8819 /* Pods_Expressy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Expressy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB4F22931AC4569F006EFF18 /* CatForceEvalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CatForceEvalVC.swift; path = Expressy/CatForceEvalVC.swift; sourceTree = SOURCE_ROOT; };
 		CB4F229F1AC563A5006EFF18 /* CSVBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSVBuilder.swift; sourceTree = "<group>"; };
 		CB7338601A822CA600FA1121 /* AccGraphVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccGraphVC.swift; path = Expressy/AccGraphVC.swift; sourceTree = SOURCE_ROOT; };
@@ -125,7 +125,6 @@
 		D517508A19E9831C0076F6FA /* Expressy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Expressy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D518B2CD1B99E74E004C4735 /* ScrollDemoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScrollDemoVC.swift; path = Expressy/ScrollDemoVC.swift; sourceTree = SOURCE_ROOT; };
 		D52F03C61B987DF800C5CE28 /* PaintingDemoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaintingDemoVC.swift; path = Expressy/PaintingDemoVC.swift; sourceTree = SOURCE_ROOT; };
-		D53396771B959C8200EA9389 /* MicrosoftBandKit_iOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MicrosoftBandKit_iOS.framework; sourceTree = "<group>"; };
 		D53396791B95B93800EA9389 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		D533967B1B95C1C600EA9389 /* DrumsDemoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DrumsDemoVC.swift; path = Expressy/DrumsDemoVC.swift; sourceTree = SOURCE_ROOT; };
 		D542BD301B9DB9F1007C4533 /* EvaluationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EvaluationVC.swift; path = Expressy/EvaluationVC.swift; sourceTree = SOURCE_ROOT; };
@@ -148,8 +147,7 @@
 		D5869F581B95F4C9001CF96C /* EvaluationMenuVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EvaluationMenuVC.swift; path = Expressy/EvaluationMenuVC.swift; sourceTree = SOURCE_ROOT; };
 		D58FA20E1B9E030600D26488 /* VideoDemoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoDemoVC.swift; path = Expressy/VideoDemoVC.swift; sourceTree = SOURCE_ROOT; };
 		D5D603411B42E3DD00DEE1C1 /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
-		D5F1FBFF1B3D7ED900C86D38 /* SensorSelectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SensorSelectionVC.swift; path = Expressy/SensorSelectionVC.swift; sourceTree = SOURCE_ROOT; };
-		E75B84492C068EEA21E77136 /* Pods-Expressy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Expressy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Expressy/Pods-Expressy.release.xcconfig"; sourceTree = "<group>"; };
+		D76EA20960F4BD3F25164B1C /* Pods-Expressy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Expressy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Expressy/Pods-Expressy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,8 +155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D53396781B959C8200EA9389 /* MicrosoftBandKit_iOS.framework in Frameworks */,
-				4A2BE8E251EB2FA80EBD5B62 /* Pods_Expressy.framework in Frameworks */,
+				76236C89DE64C1D729A975F6 /* Pods_Expressy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,20 +165,10 @@
 		B33F468FFDB0C5FCAB954B5D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D53396771B959C8200EA9389 /* MicrosoftBandKit_iOS.framework */,
 				D5D603411B42E3DD00DEE1C1 /* SceneKit.framework */,
-				4057D2F656FE3A0138E1F62D /* Pods_Expressy.framework */,
+				4C756D2B1BB36B587BCE8819 /* Pods_Expressy.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		BB0207245130AB3087DF9D39 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				26D501E01DFD9A805E2E6ACC /* Pods-Expressy.debug.xcconfig */,
-				E75B84492C068EEA21E77136 /* Pods-Expressy.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		CB29A28C1A8E156A009F269A /* Madgwick */ = {
@@ -211,6 +198,7 @@
 				D53396791B95B93800EA9389 /* UIViewExtensions.swift */,
 				D5869F431B95CAA7001CF96C /* Drums Demo Samples */,
 				D567C1BC1BA6D22300E7C29F /* bbb_sunflower.mp4 */,
+				03D03A981E7EE71A0074FEAC /* wax9_render.mp4 */,
 				CB73386D1A822CA600FA1121 /* Images.xcassets */,
 				CBB6837A1AB9B2C700938059 /* art.scnassets */,
 				CB73388E1A822CF700FA1121 /* Supporting Files */,
@@ -223,7 +211,7 @@
 			children = (
 				D5869F561B95E107001CF96C /* MenuVC.swift */,
 				D5F1FBFE1B3D7EA000C86D38 /* Live Data */,
-				D5F1FBFD1B3D7E8B00C86D38 /* Sensor Connection */,
+				CB7338761A822CA600FA1121 /* SensorScanVC.swift */,
 				CB7338661A822CA600FA1121 /* InteractionDetectorVC.swift */,
 				CBD91ADF1AB9A2BE00A9ABBE /* PlaneModelVC.swift */,
 				CB7D5CEE1AC3198E0068BC67 /* MapDemoVC.swift */,
@@ -285,13 +273,22 @@
 			path = Expressy/Evaluations;
 			sourceTree = "<group>";
 		};
+		CE38C2F74CE2CA1D15B408F4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D76EA20960F4BD3F25164B1C /* Pods-Expressy.debug.xcconfig */,
+				106744D6E7B4D6C9FC1788C9 /* Pods-Expressy.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		D517508119E9831C0076F6FA = {
 			isa = PBXGroup;
 			children = (
 				CB73385F1A822CA600FA1121 /* Expressy */,
 				D517508B19E9831C0076F6FA /* Products */,
 				B33F468FFDB0C5FCAB954B5D /* Frameworks */,
-				BB0207245130AB3087DF9D39 /* Pods */,
+				CE38C2F74CE2CA1D15B408F4 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -319,16 +316,6 @@
 			name = "Drums Demo Samples";
 			sourceTree = "<group>";
 		};
-		D5F1FBFD1B3D7E8B00C86D38 /* Sensor Connection */ = {
-			isa = PBXGroup;
-			children = (
-				D5F1FBFF1B3D7ED900C86D38 /* SensorSelectionVC.swift */,
-				CB7338761A822CA600FA1121 /* SensorScanVC.swift */,
-			);
-			name = "Sensor Connection";
-			path = "Expressy/Sensor Connection";
-			sourceTree = "<group>";
-		};
 		D5F1FBFE1B3D7EA000C86D38 /* Live Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -347,14 +334,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D51750A919E9831C0076F6FA /* Build configuration list for PBXNativeTarget "Expressy" */;
 			buildPhases = (
-				9FA7AE2E2558514DD260C736 /* Check Pods Manifest.lock */,
+				E54D87B2225C775171BFEBA3 /* [CP] Check Pods Manifest.lock */,
 				D517508619E9831C0076F6FA /* Sources */,
 				D517508719E9831C0076F6FA /* Frameworks */,
 				D517508819E9831C0076F6FA /* Resources */,
-				7237869B2A3513A014AF60F1 /* Copy Pods Resources */,
 				D5F1FC251B3D8E6500C86D38 /* Embed Watch Content */,
-				B606253276D6CA3D5A32D54D /* Embed Pods Frameworks */,
 				D5D565191BA9F04000615BFA /* Embed App Extensions */,
+				1DCA3C8D1E8B220138352218 /* [CP] Embed Pods Frameworks */,
+				4DF815FFB887BCCDB58DAE50 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -373,12 +360,13 @@
 			attributes = {
 				CLASSPREFIX = EXP;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Open Lab, Newcastle University";
 				TargetAttributes = {
 					D517508919E9831C0076F6FA = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = WF6EGE63BW;
+						DevelopmentTeam = X7BDHAQC53;
+						LastSwiftMigration = 0820;
 					};
 				};
 			};
@@ -405,6 +393,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03D03A991E7EE73E0074FEAC /* wax9_render.mp4 in Resources */,
 				03FC8BC71C6E398100EE8B03 /* LaunchScreen.xib in Resources */,
 				03FC8BD01C6E399800EE8B03 /* Images.xcassets in Resources */,
 				03FC8BD11C6E399B00EE8B03 /* art.scnassets in Resources */,
@@ -425,14 +414,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7237869B2A3513A014AF60F1 /* Copy Pods Resources */ = {
+		1DCA3C8D1E8B220138352218 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Expressy/Pods-Expressy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4DF815FFB887BCCDB58DAE50 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,34 +444,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Expressy/Pods-Expressy-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9FA7AE2E2558514DD260C736 /* Check Pods Manifest.lock */ = {
+		E54D87B2225C775171BFEBA3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		B606253276D6CA3D5A32D54D /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Expressy/Pods-Expressy-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -499,7 +488,6 @@
 				03FC8BB21C6E394400EE8B03 /* PaintingDemoColorPickerVC.swift in Sources */,
 				03FC8BBD1C6E395F00EE8B03 /* EXTForceGestureRecognizer.swift in Sources */,
 				03FC8BA81C6E391E00EE8B03 /* MenuVC.swift in Sources */,
-				03FC8BAB1C6E393D00EE8B03 /* SensorSelectionVC.swift in Sources */,
 				03FC8BC31C6E396300EE8B03 /* SensorProcessor.swift in Sources */,
 				03FC8BBB1C6E394800EE8B03 /* FlickEvalVC.swift in Sources */,
 				03FC8BCB1C6E399200EE8B03 /* CSVBuilder.swift in Sources */,
@@ -554,8 +542,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -564,6 +554,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -599,8 +590,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -608,6 +601,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -625,12 +619,13 @@
 		};
 		D51750AA19E9831C0076F6FA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 26D501E01DFD9A805E2E6ACC /* Pods-Expressy.debug.xcconfig */;
+			baseConfigurationReference = D76EA20960F4BD3F25164B1C /* Pods-Expressy.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				DEVELOPMENT_TEAM = X7BDHAQC53;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -647,18 +642,20 @@
 				PRODUCT_NAME = Expressy;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Expressy/Expressy-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
 			name = Debug;
 		};
 		D51750AB19E9831C0076F6FA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E75B84492C068EEA21E77136 /* Pods-Expressy.release.xcconfig */;
+			baseConfigurationReference = 106744D6E7B4D6C9FC1788C9 /* Pods-Expressy.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				DEVELOPMENT_TEAM = X7BDHAQC53;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -675,7 +672,8 @@
 				PRODUCT_NAME = Expressy;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Expressy/Expressy-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};

@@ -21,7 +21,7 @@ class CSVBuilder: NSObject {
     /// Function to append new row of data.
     /// - parameter data: CSV formatted data string to append.
     /// - parameter index: Index of CSV file to append data to.
-    func appendRow(data:String, file:String) {
+    func appendRow(_ data:String, file:String) {
         files[file]! += "\n" + data
     }
 }

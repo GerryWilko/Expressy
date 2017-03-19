@@ -36,25 +36,25 @@ class PaintingDemoColorPickerVC: UIViewController {
         opacitySlider.value = Float(alpha)
     }
     
-    @IBAction func redChanged(sender: AnyObject) {
+    @IBAction func redChanged(_ sender: AnyObject) {
         let newColor = UIColor(red: CGFloat(redSlider.value), green: CGFloat(greenSlider.value), blue: CGFloat(blueSlider.value), alpha: CGFloat(opacitySlider.value))
         paintView.drawColor = newColor
         colorPreview.backgroundColor = newColor
     }
     
-    @IBAction func greenChanged(sender: AnyObject) {
+    @IBAction func greenChanged(_ sender: AnyObject) {
         let newColor = UIColor(red: CGFloat(redSlider.value), green: CGFloat(greenSlider.value), blue: CGFloat(blueSlider.value), alpha: CGFloat(opacitySlider.value))
         paintView.drawColor = newColor
         colorPreview.backgroundColor = newColor
     }
     
-    @IBAction func blueChanged(sender: AnyObject) {
+    @IBAction func blueChanged(_ sender: AnyObject) {
         let newColor = UIColor(red: CGFloat(redSlider.value), green: CGFloat(greenSlider.value), blue: CGFloat(blueSlider.value), alpha: CGFloat(opacitySlider.value))
         paintView.drawColor = newColor
         colorPreview.backgroundColor = newColor
     }
     
-    @IBAction func opacityChanged(sender: AnyObject) {
+    @IBAction func opacityChanged(_ sender: AnyObject) {
         let newColor = UIColor(red: CGFloat(redSlider.value), green: CGFloat(greenSlider.value), blue: CGFloat(blueSlider.value), alpha: CGFloat(opacitySlider.value))
         paintView.drawColor = newColor
         colorPreview.backgroundColor = newColor

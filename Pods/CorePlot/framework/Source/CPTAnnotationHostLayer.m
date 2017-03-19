@@ -5,7 +5,7 @@
 /// @cond
 @interface CPTAnnotationHostLayer()
 
-@property (nonatomic, readwrite, strong, nonnull) CPTMutableAnnotationArray mutableAnnotations;
+@property (nonatomic, readwrite, strong, nonnull) CPTMutableAnnotationArray *mutableAnnotations;
 
 @end
 
@@ -20,7 +20,7 @@
  **/
 @implementation CPTAnnotationHostLayer
 
-/** @property CPTAnnotationArray annotations
+/** @property nonnull CPTAnnotationArray *annotations
  *  @brief An array of annotations attached to this layer.
  **/
 @dynamic annotations;
@@ -41,7 +41,7 @@
  *  @param newFrame The frame rectangle.
  *  @return The initialized CPTAnnotationHostLayer object.
  **/
--(instancetype)initWithFrame:(CGRect)newFrame
+-(nonnull instancetype)initWithFrame:(CGRect)newFrame
 {
     if ( (self = [super initWithFrame:newFrame]) ) {
         mutableAnnotations = [[NSMutableArray alloc] init];
@@ -53,7 +53,7 @@
 
 /// @cond
 
--(instancetype)initWithLayer:(id)layer
+-(nonnull instancetype)initWithLayer:(nonnull id)layer
 {
     if ( (self = [super initWithLayer:layer]) ) {
         CPTAnnotationHostLayer *theLayer = (CPTAnnotationHostLayer *)layer;
@@ -70,17 +70,18 @@
 
 /// @cond
 
--(void)encodeWithCoder:(NSCoder *)coder
+-(void)encodeWithCoder:(nonnull NSCoder *)coder
 {
     [super encodeWithCoder:coder];
 
     [coder encodeObject:self.mutableAnnotations forKey:@"CPTAnnotationHostLayer.mutableAnnotations"];
 }
 
--(instancetype)initWithCoder:(NSCoder *)coder
+-(nullable instancetype)initWithCoder:(nonnull NSCoder *)coder
 {
     if ( (self = [super initWithCoder:coder]) ) {
-        CPTAnnotationArray annotations = [coder decodeObjectForKey:@"CPTAnnotationHostLayer.mutableAnnotations"];
+        CPTAnnotationArray *annotations = [coder decodeObjectOfClasses:[NSSet setWithArray:@[[NSArray class], [CPTAnnotation class]]]
+                                                                forKey:@"CPTAnnotationHostLayer.mutableAnnotations"];
         if ( annotations ) {
             mutableAnnotations = [annotations mutableCopy];
         }
@@ -94,40 +95,60 @@
 /// @endcond
 
 #pragma mark -
+#pragma mark NSSecureCoding Methods
+
+/// @cond
+
++(BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
+/// @endcond
+
+#pragma mark -
 #pragma mark Annotations
 
--(CPTAnnotationArray)annotations
+/// @cond
+
+-(nonnull CPTAnnotationArray *)annotations
 {
     return [self.mutableAnnotations copy];
 }
 
+/// @endcond
+
 /**
  *  @brief Adds an annotation to the receiver.
  **/
--(void)addAnnotation:(CPTAnnotation *)annotation
+-(void)addAnnotation:(nullable CPTAnnotation *)annotation
 {
     if ( annotation ) {
-        CPTMutableAnnotationArray annotationArray = self.mutableAnnotations;
-        if ( ![annotationArray containsObject:annotation] ) {
-            [annotationArray addObject:annotation];
+        CPTAnnotation *theAnnotation = annotation;
+
+        CPTMutableAnnotationArray *annotationArray = self.mutableAnnotations;
+        if ( ![annotationArray containsObject:theAnnotation] ) {
+            [annotationArray addObject:theAnnotation];
         }
-        annotation.annotationHostLayer = self;
-        [annotation positionContentLayer];
+        theAnnotation.annotationHostLayer = self;
+        [theAnnotation positionContentLayer];
     }
 }
 
 /**
  *  @brief Removes an annotation from the receiver.
  **/
--(void)removeAnnotation:(CPTAnnotation *)annotation
+-(void)removeAnnotation:(nullable CPTAnnotation *)annotation
 {
     if ( annotation ) {
-        if ( [self.mutableAnnotations containsObject:annotation] ) {
-            annotation.annotationHostLayer = nil;
-            [self.mutableAnnotations removeObject:annotation];
+        CPTAnnotation *theAnnotation = annotation;
+
+        if ( [self.mutableAnnotations containsObject:theAnnotation] ) {
+            theAnnotation.annotationHostLayer = nil;
+            [self.mutableAnnotations removeObject:theAnnotation];
         }
         else {
-            CPTAnnotationHostLayer *hostLayer = annotation.annotationHostLayer;
+            CPTAnnotationHostLayer *hostLayer = theAnnotation.annotationHostLayer;
             [NSException raise:CPTException format:@"Tried to remove CPTAnnotation from %@. Host layer was %@.", self, hostLayer];
         }
     }
@@ -138,7 +159,7 @@
  **/
 -(void)removeAllAnnotations
 {
-    CPTMutableAnnotationArray allAnnotations = self.mutableAnnotations;
+    CPTMutableAnnotationArray *allAnnotations = self.mutableAnnotations;
 
     for ( CPTAnnotation *annotation in allAnnotations ) {
         annotation.annotationHostLayer = nil;
@@ -151,12 +172,12 @@
 
 /// @cond
 
--(CPTSublayerSet)sublayersExcludedFromAutomaticLayout
+-(nullable CPTSublayerSet *)sublayersExcludedFromAutomaticLayout
 {
-    CPTMutableAnnotationArray annotations = self.mutableAnnotations;
+    CPTMutableAnnotationArray *annotations = self.mutableAnnotations;
 
     if ( annotations.count > 0 ) {
-        CPTMutableSublayerSet excludedSublayers = [[super sublayersExcludedFromAutomaticLayout] mutableCopy];
+        CPTMutableSublayerSet *excludedSublayers = [super.sublayersExcludedFromAutomaticLayout mutableCopy];
 
         if ( !excludedSublayers ) {
             excludedSublayers = [NSMutableSet set];
@@ -172,7 +193,7 @@
         return excludedSublayers;
     }
     else {
-        return [super sublayersExcludedFromAutomaticLayout];
+        return super.sublayersExcludedFromAutomaticLayout;
     }
 }
 
@@ -204,7 +225,7 @@
  *  @param interactionPoint The coordinates of the interaction.
  *  @return Whether the event was handled or not.
  **/
--(BOOL)pointingDeviceDownEvent:(CPTNativeEvent *)event atPoint:(CGPoint)interactionPoint
+-(BOOL)pointingDeviceDownEvent:(nonnull CPTNativeEvent *)event atPoint:(CGPoint)interactionPoint
 {
     for ( CPTAnnotation *annotation in self.annotations ) {
         CPTLayer *content = annotation.contentLayer;
@@ -235,7 +256,7 @@
  *  @param interactionPoint The coordinates of the interaction.
  *  @return Whether the event was handled or not.
  **/
--(BOOL)pointingDeviceUpEvent:(CPTNativeEvent *)event atPoint:(CGPoint)interactionPoint
+-(BOOL)pointingDeviceUpEvent:(nonnull CPTNativeEvent *)event atPoint:(CGPoint)interactionPoint
 {
     for ( CPTAnnotation *annotation in self.annotations ) {
         CPTLayer *content = annotation.contentLayer;
@@ -266,7 +287,7 @@
  *  @param interactionPoint The coordinates of the interaction.
  *  @return Whether the event was handled or not.
  **/
--(BOOL)pointingDeviceDraggedEvent:(CPTNativeEvent *)event atPoint:(CGPoint)interactionPoint
+-(BOOL)pointingDeviceDraggedEvent:(nonnull CPTNativeEvent *)event atPoint:(CGPoint)interactionPoint
 {
     for ( CPTAnnotation *annotation in self.annotations ) {
         CPTLayer *content = annotation.contentLayer;
@@ -297,7 +318,7 @@
  *  @param event The OS event.
  *  @return Whether the event was handled or not.
  **/
--(BOOL)pointingDeviceCancelledEvent:(CPTNativeEvent *)event
+-(BOOL)pointingDeviceCancelledEvent:(nonnull CPTNativeEvent *)event
 {
     for ( CPTAnnotation *annotation in self.annotations ) {
         CPTLayer *content = annotation.contentLayer;

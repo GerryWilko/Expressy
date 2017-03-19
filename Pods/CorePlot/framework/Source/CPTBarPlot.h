@@ -13,13 +13,18 @@
 @class CPTTextLayer;
 @class CPTTextStyle;
 
+/**
+ *  @brief Bar plot bindings.
+ **/
+typedef NSString *CPTBarPlotBinding cpt_swift_struct;
+
 /// @ingroup plotBindingsBarPlot
 /// @{
-extern NSString *__nonnull const CPTBarPlotBindingBarLocations;
-extern NSString *__nonnull const CPTBarPlotBindingBarTips;
-extern NSString *__nonnull const CPTBarPlotBindingBarBases;
-extern NSString *__nonnull const CPTBarPlotBindingBarFills;
-extern NSString *__nonnull const CPTBarPlotBindingBarLineStyles;
+extern CPTBarPlotBinding __nonnull const CPTBarPlotBindingBarLocations;
+extern CPTBarPlotBinding __nonnull const CPTBarPlotBindingBarTips;
+extern CPTBarPlotBinding __nonnull const CPTBarPlotBindingBarBases;
+extern CPTBarPlotBinding __nonnull const CPTBarPlotBindingBarFills;
+extern CPTBarPlotBinding __nonnull const CPTBarPlotBindingBarLineStyles;
 /// @}
 
 /**
@@ -47,7 +52,7 @@ typedef NS_ENUM (NSInteger, CPTBarPlotField) {
  *  @param indexRange The range of the data indexes of interest.
  *  @return An array of bar fills.
  **/
--(nullable CPTFillArray)barFillsForBarPlot:(nonnull CPTBarPlot *)barPlot recordIndexRange:(NSRange)indexRange;
+-(nullable CPTFillArray *)barFillsForBarPlot:(nonnull CPTBarPlot *)barPlot recordIndexRange:(NSRange)indexRange;
 
 /** @brief @optional Gets a bar fill for the given bar plot.
  *  This method will not be called if
@@ -65,7 +70,7 @@ typedef NS_ENUM (NSInteger, CPTBarPlotField) {
  *  @param indexRange The range of the data indexes of interest.
  *  @return An array of line styles.
  **/
--(nullable CPTLineStyleArray)barLineStylesForBarPlot:(nonnull CPTBarPlot *)barPlot recordIndexRange:(NSRange)indexRange;
+-(nullable CPTLineStyleArray *)barLineStylesForBarPlot:(nonnull CPTBarPlot *)barPlot recordIndexRange:(NSRange)indexRange;
 
 /** @brief @optional Gets a bar line style for the given bar plot.
  *  This method will not be called if
@@ -188,12 +193,12 @@ typedef NS_ENUM (NSInteger, CPTBarPlotField) {
 /// @name Appearance
 /// @{
 @property (nonatomic, readwrite, assign) BOOL barWidthsAreInViewCoordinates;
-@property (nonatomic, readwrite, strong, nullable) NSNumber *barWidth;
-@property (nonatomic, readwrite, strong, nullable) NSNumber *barOffset;
+@property (nonatomic, readwrite, strong, nonnull) NSNumber *barWidth;
+@property (nonatomic, readwrite, strong, nonnull) NSNumber *barOffset;
 @property (nonatomic, readwrite, assign) CGFloat barCornerRadius;
 @property (nonatomic, readwrite, assign) CGFloat barBaseCornerRadius;
 @property (nonatomic, readwrite, assign) BOOL barsAreHorizontal;
-@property (nonatomic, readwrite, strong, nullable) NSNumber *baseValue;
+@property (nonatomic, readwrite, strong, nonnull) NSNumber *baseValue;
 @property (nonatomic, readwrite, assign) BOOL barBasesVary;
 @property (nonatomic, readwrite, copy, nullable) CPTPlotRange *plotRange;
 /// @}

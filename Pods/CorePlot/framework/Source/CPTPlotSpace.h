@@ -7,6 +7,16 @@
 @class CPTGraph;
 @class CPTPlotSpace;
 
+/**
+ *  @brief Plot space mapping notification type.
+ **/
+typedef NSString *CPTPlotSpaceCoordinateMapping cpt_swift_struct;
+
+/**
+ *  @brief The <code>userInfo</code> dictionary keys used by #CPTPlotSpaceCoordinateMappingDidChangeNotification notifications.
+ **/
+typedef NSString *CPTPlotSpaceInfoKey cpt_swift_struct;
+
 /// @name Plot Space
 /// @{
 
@@ -16,32 +26,32 @@
  *  the plot space coordinate system and drawing coordinates changes.
  *  @ingroup notification
  **/
-extern NSString *__nonnull const CPTPlotSpaceCoordinateMappingDidChangeNotification;
+extern CPTPlotSpaceCoordinateMapping __nonnull const CPTPlotSpaceCoordinateMappingDidChangeNotification;
 
-/** @brief The <code>userInfo</code> dictionary key used by the CPTPlotSpaceCoordinateMappingDidChangeNotification
+/** @brief The <code>userInfo</code> dictionary key used by the #CPTPlotSpaceCoordinateMappingDidChangeNotification
  *  to indicate the plot coordinate affected by the mapping change.
  *
  *  The value associated with this key is the CPTCoordinate affected by the change wrapped in an instance of NSNumber.
  *  @ingroup notification
  **/
-extern NSString *__nonnull const CPTPlotSpaceCoordinateKey;
+extern CPTPlotSpaceInfoKey __nonnull const CPTPlotSpaceCoordinateKey;
 
-/** @brief The <code>userInfo</code> dictionary key used by the CPTPlotSpaceCoordinateMappingDidChangeNotification
+/** @brief The <code>userInfo</code> dictionary key used by the #CPTPlotSpaceCoordinateMappingDidChangeNotification
  *  to indicate whether the mapping change is a scroll movement or other change.
  *
  *  The value associated with this key is a boolean value wrapped in an instance of NSNumber. The value
  *  is @YES if the plot space change represents a horizontal or vertical translation, @NO otherwise.
  *  @ingroup notification
  **/
-extern NSString *__nonnull const CPTPlotSpaceScrollingKey;
+extern CPTPlotSpaceInfoKey __nonnull const CPTPlotSpaceScrollingKey;
 
-/** @brief The <code>userInfo</code> dictionary key used by the CPTPlotSpaceCoordinateMappingDidChangeNotification
+/** @brief The <code>userInfo</code> dictionary key used by the #CPTPlotSpaceCoordinateMappingDidChangeNotification
  *  to indicate the displacement offset for scrolling changes in drawing coordinates.
  *
  *  The value associated with this key is the displacement offset wrapped in an instance of NSNumber.
  *  @ingroup notification
  **/
-extern NSString *__nonnull const CPTPlotSpaceDisplacementKey;
+extern CPTPlotSpaceInfoKey __nonnull const CPTPlotSpaceDisplacementKey;
 
 /// @}
 
@@ -135,7 +145,7 @@ extern NSString *__nonnull const CPTPlotSpaceDisplacementKey;
  **/
 -(BOOL)plotSpace:(nonnull CPTPlotSpace *)space shouldHandlePointingDeviceUpEvent:(nonnull CPTNativeEvent *)event atPoint:(CGPoint)point;
 
-#if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
+#if TARGET_OS_SIMULATOR || TARGET_OS_IPHONE
 #else
 
 /** @brief @optional Notifies that plot space intercepted a scroll wheel event.
@@ -156,22 +166,22 @@ extern NSString *__nonnull const CPTPlotSpaceDisplacementKey;
 /**
  *  @brief An array of plot spaces.
  **/
-typedef NSArray<__kindof CPTPlotSpace *> *CPTPlotSpaceArray;
+typedef NSArray<__kindof CPTPlotSpace *> CPTPlotSpaceArray;
 
 /**
  *  @brief A mutable array of plot spaces.
  **/
-typedef NSMutableArray<__kindof CPTPlotSpace *> *CPTMutablePlotSpaceArray;
+typedef NSMutableArray<__kindof CPTPlotSpace *> CPTMutablePlotSpaceArray;
 
 #pragma mark -
 
-@interface CPTPlotSpace : NSObject<CPTResponder, NSCoding>
+@interface CPTPlotSpace : NSObject<CPTResponder, NSCoding, NSSecureCoding>
 
 @property (nonatomic, readwrite, copy, nullable) id<NSCopying, NSCoding, NSObject> identifier;
 @property (nonatomic, readwrite) BOOL allowsUserInteraction;
 @property (nonatomic, readonly) BOOL isDragging;
-@property (nonatomic, readwrite, cpt_weak_property, nullable) cpt_weak CPTGraph *graph;
-@property (nonatomic, readwrite, cpt_weak_property, nullable) cpt_weak id<CPTPlotSpaceDelegate> delegate;
+@property (nonatomic, readwrite, cpt_weak_property, nullable) CPTGraph *graph;
+@property (nonatomic, readwrite, cpt_weak_property, nullable) id<CPTPlotSpaceDelegate> delegate;
 
 @property (nonatomic, readonly) NSUInteger numberOfCoordinates;
 
@@ -180,10 +190,10 @@ typedef NSMutableArray<__kindof CPTPlotSpace *> *CPTMutablePlotSpaceArray;
 -(void)addCategory:(nonnull NSString *)category forCoordinate:(CPTCoordinate)coordinate;
 -(void)removeCategory:(nonnull NSString *)category forCoordinate:(CPTCoordinate)coordinate;
 -(void)insertCategory:(nonnull NSString *)category forCoordinate:(CPTCoordinate)coordinate atIndex:(NSUInteger)idx;
--(void)setCategories:(nullable CPTStringArray)newCategories forCoordinate:(CPTCoordinate)coordinate;
+-(void)setCategories:(nullable CPTStringArray *)newCategories forCoordinate:(CPTCoordinate)coordinate;
 -(void)removeAllCategories;
 
--(nonnull CPTStringArray)categoriesForCoordinate:(CPTCoordinate)coordinate;
+-(nonnull CPTStringArray *)categoriesForCoordinate:(CPTCoordinate)coordinate;
 -(nullable NSString *)categoryForCoordinate:(CPTCoordinate)coordinate atIndex:(NSUInteger)idx;
 -(NSUInteger)indexOfCategory:(nonnull NSString *)category forCoordinate:(CPTCoordinate)coordinate;
 /// @}
@@ -191,7 +201,7 @@ typedef NSMutableArray<__kindof CPTPlotSpace *> *CPTMutablePlotSpaceArray;
 /// @name Initialization
 /// @{
 -(nonnull instancetype)init NS_DESIGNATED_INITIALIZER;
--(nonnull instancetype)initWithCoder:(nonnull NSCoder *)decoder NS_DESIGNATED_INITIALIZER;
+-(nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder NS_DESIGNATED_INITIALIZER;
 /// @}
 
 @end
@@ -205,17 +215,17 @@ typedef NSMutableArray<__kindof CPTPlotSpace *> *CPTMutablePlotSpaceArray;
 
 /// @name Coordinate Space Conversions
 /// @{
--(CGPoint)plotAreaViewPointForPlotPoint:(nonnull CPTNumberArray)plotPoint;
+-(CGPoint)plotAreaViewPointForPlotPoint:(nonnull CPTNumberArray *)plotPoint;
 -(CGPoint)plotAreaViewPointForPlotPoint:(nonnull NSDecimal *)plotPoint numberOfCoordinates:(NSUInteger)count;
 -(CGPoint)plotAreaViewPointForDoublePrecisionPlotPoint:(nonnull double *)plotPoint numberOfCoordinates:(NSUInteger)count;
 
--(nullable CPTNumberArray)plotPointForPlotAreaViewPoint:(CGPoint)point;
+-(nullable CPTNumberArray *)plotPointForPlotAreaViewPoint:(CGPoint)point;
 -(void)plotPoint:(nonnull NSDecimal *)plotPoint numberOfCoordinates:(NSUInteger)count forPlotAreaViewPoint:(CGPoint)point;
 -(void)doublePrecisionPlotPoint:(nonnull double *)plotPoint numberOfCoordinates:(NSUInteger)count forPlotAreaViewPoint:(CGPoint)point;
 
 -(CGPoint)plotAreaViewPointForEvent:(nonnull CPTNativeEvent *)event;
 
--(nullable CPTNumberArray)plotPointForEvent:(nonnull CPTNativeEvent *)event;
+-(nullable CPTNumberArray *)plotPointForEvent:(nonnull CPTNativeEvent *)event;
 -(void)plotPoint:(nonnull NSDecimal *)plotPoint numberOfCoordinates:(NSUInteger)count forEvent:(nonnull CPTNativeEvent *)event;
 -(void)doublePrecisionPlotPoint:(nonnull double *)plotPoint numberOfCoordinates:(NSUInteger)count forEvent:(nonnull CPTNativeEvent *)event;
 /// @}
@@ -234,8 +244,10 @@ typedef NSMutableArray<__kindof CPTPlotSpace *> *CPTMutablePlotSpaceArray;
 
 /// @name Adjusting Ranges
 /// @{
--(void)scaleToFitPlots:(nullable CPTPlotArray)plots;
--(void)scaleToFitPlots:(nullable CPTPlotArray)plots forCoordinate:(CPTCoordinate)coordinate;
+-(void)scaleToFitPlots:(nullable CPTPlotArray *)plots;
+-(void)scaleToFitPlots:(nullable CPTPlotArray *)plots forCoordinate:(CPTCoordinate)coordinate;
+-(void)scaleToFitEntirePlots:(nullable CPTPlotArray *)plots;
+-(void)scaleToFitEntirePlots:(nullable CPTPlotArray *)plots forCoordinate:(CPTCoordinate)coordinate;
 -(void)scaleBy:(CGFloat)interactionScale aboutPoint:(CGPoint)interactionPoint;
 /// @}
 

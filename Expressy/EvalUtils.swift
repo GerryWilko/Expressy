@@ -13,7 +13,7 @@ class EvalUtils {
     /// - parameter startTime: Time of start of range.
     /// - parameter endTime: Time of end of range.
     /// - parameter csv: CSV builder to append data to.
-    class func logDataBetweenTimes(startTime:NSTimeInterval, endTime:NSTimeInterval, csv:CSVBuilder, file:String) {
+    class func logDataBetweenTimes(_ startTime:TimeInterval, endTime:TimeInterval, csv:CSVBuilder, file:String) {
         let data = SensorProcessor.dataCache.getRangeForTime(startTime, end: endTime)
         
         for d in data {

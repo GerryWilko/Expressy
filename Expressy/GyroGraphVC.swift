@@ -10,10 +10,10 @@ import Foundation
 import CorePlot
 
 class GyroGraphVC: UIViewController {
-    private let gyroGraphBuilder:GraphBuilder
+    fileprivate let gyroGraphBuilder:GraphBuilder
     
     required init?(coder aDecoder: NSCoder) {
-        gyroGraphBuilder = GraphBuilder(title: "Gyroscope", type: .Gyroscope, dataCache: SensorProcessor.dataCache)
+        gyroGraphBuilder = GraphBuilder(title: "Gyroscope", type: .gyroscope, dataCache: SensorProcessor.dataCache)
         super.init(coder: aDecoder)
     }
     
@@ -22,11 +22,11 @@ class GyroGraphVC: UIViewController {
         gyroGraphBuilder.initLoad(gyroGraphView)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         gyroGraphBuilder.resume()
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         gyroGraphBuilder.pause()
     }
 }

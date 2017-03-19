@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class EvaluationVC: UIViewController {
     let detector:EXTInteractionDetector
@@ -15,9 +16,9 @@ class EvaluationVC: UIViewController {
     var participant:UInt32!
     var evalVC:EvaluationMenuVC!
     
-    private var startTime:NSTimeInterval!
-    private var evalFileName:String!
-    private var sensorFileName:String!
+    fileprivate var startTime:TimeInterval!
+    fileprivate var evalFileName:String!
+    fileprivate var sensorFileName:String!
     
     @IBOutlet weak var instructionLbl: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
@@ -31,45 +32,45 @@ class EvaluationVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = navigationItem.title! + " \(participant)"
-        startTime = NSDate.timeIntervalSinceReferenceDate()
+        startTime = Date.timeIntervalSinceReferenceDate
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         detector.startDetection()
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         detector.stopDetection()
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesBegan(touches, withEvent: event)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
         detector.touchDown()
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesEnded(touches, withEvent: event)
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
         detector.touchUp()
     }
     
-    override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
-        super.touchesCancelled(touches, withEvent: event)
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
         detector.touchCancelled()
     }
     
-    func setupCSV(filePrefix:String, headerLine:String) {
+    func setupCSV(_ filePrefix:String, headerLine:String) {
         evalFileName = "\(filePrefix)-\(participant).csv"
         sensorFileName = "\(filePrefix)-sensordata-\(participant).csv"
         csv = CSVBuilder(files: [evalFileName : headerLine, sensorFileName : SensorData.headerLine()])
     }
     
-    func logEvalData(data:String) {
+    func logEvalData(_ data:String) {
         csv.appendRow(data, file: evalFileName)
     }
     
     func logSensorData() {
-        EvalUtils.logDataBetweenTimes(startTime, endTime: NSDate.timeIntervalSinceReferenceDate(), csv: csv, file: sensorFileName)
+        EvalUtils.logDataBetweenTimes(startTime, endTime: Date.timeIntervalSinceReferenceDate, csv: csv, file: sensorFileName)
     }
 }

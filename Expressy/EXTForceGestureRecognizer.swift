@@ -10,7 +10,7 @@ import Foundation
 import UIKit.UIGestureRecognizerSubclass
 
 class EXTForceGestureRecognizer: UIGestureRecognizer {
-    private let detector:EXTInteractionDetector
+    fileprivate let detector:EXTInteractionDetector
     
     var tapForce:Float
     
@@ -22,19 +22,19 @@ class EXTForceGestureRecognizer: UIGestureRecognizer {
         var interactionEvent:EXTEvent
         
         switch (event) {
-        case .AllPress:
-            interactionEvent = .AllPress
-        case .Soft:
-            interactionEvent = .SoftPress
-        case .Medium:
-            interactionEvent = .MediumPress
-        case .Hard:
-            interactionEvent = .HardPress
+        case .allPress:
+            interactionEvent = .allPress
+        case .soft:
+            interactionEvent = .softPress
+        case .medium:
+            interactionEvent = .mediumPress
+        case .hard:
+            interactionEvent = .hardPress
         }
         
         detector.subscribe(interactionEvent) { (data) -> Void in
             self.tapForce = data!
-            self.state = .Began
+            self.state = .began
         }
         
         detector.startDetection()
@@ -44,32 +44,32 @@ class EXTForceGestureRecognizer: UIGestureRecognizer {
         detector.stopDetection()
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent) {
-        super.touchesBegan(touches, withEvent: event)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
+        super.touchesBegan(touches, with: event)
         detector.touchDown()
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent) {
-        super.touchesEnded(touches, withEvent: event)
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent) {
+        super.touchesEnded(touches, with: event)
         detector.touchUp()
-        state = .Ended
+        state = .ended
     }
     
-    override func touchesCancelled(touches: Set<UITouch>, withEvent event: UIEvent) {
-        super.touchesCancelled(touches, withEvent: event)
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent) {
+        super.touchesCancelled(touches, with: event)
         detector.touchCancelled()
-        state = .Cancelled
+        state = .cancelled
     }
     
-    override func canBePreventedByGestureRecognizer(preventingGestureRecognizer: UIGestureRecognizer) -> Bool {
+    override func canBePrevented(by preventingGestureRecognizer: UIGestureRecognizer) -> Bool {
         return false
     }
     
-    override func canPreventGestureRecognizer(preventedGestureRecognizer: UIGestureRecognizer) -> Bool {
+    override func canPrevent(_ preventedGestureRecognizer: UIGestureRecognizer) -> Bool {
         return false
     }
 }
 
 enum EXTForceEvent {
-    case AllPress, Soft, Medium, Hard
+    case allPress, soft, medium, hard
 }

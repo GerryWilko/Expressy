@@ -10,13 +10,6 @@
  **/
 
 /**
- *  @def cpt_weak
- *  @hideinitializer
- *  @brief A custom definition for automatic reference counting (ARC) weak references that falls back to
- *  <code>__unsafe_unretained</code> values on older platforms.
- **/
-
-/**
  *  @def cpt_weak_property
  *  @hideinitializer
  *  @brief A custom definition for automatic reference counting (ARC) weak properties that falls back to
@@ -34,15 +27,9 @@
 #endif
 
 #if CPT_SDK_SUPPORTS_WEAK
-#define cpt_weak          __weak
 #define cpt_weak_property weak
 #else
-#if __clang__ && (__clang_major__ >= 3)
-#define cpt_weak __unsafe_unretained
-#else
-#define cpt_weak
-#endif
-#define cpt_weak_property assign
+#define cpt_weak_property unsafe_unretained
 #endif
 
 // Deprecated method attribute
@@ -54,6 +41,22 @@
  **/
 
 #define cpt_deprecated __attribute__( (deprecated) )
+
+// Swift wrappers
+
+/**
+ *  @def cpt_swift_enum
+ *  @hideinitializer
+ *  @brief Marks a type definition to be imported into Swift as an enumeration.
+ **/
+#define cpt_swift_enum __attribute__( ( swift_wrapper(enum) ) )
+
+/**
+ *  @def cpt_swift_struct
+ *  @hideinitializer
+ *  @brief Marks a type definition to be imported into Swift as a structure.
+ **/
+#define cpt_swift_struct __attribute__( ( swift_wrapper(struct) ) )
 
 // Type safety defines
 
@@ -103,6 +106,13 @@
  *  @brief A replacement for @ref CGRectInset(), casting each offset parameter to @ref CGFloat.
  **/
 #define CPTRectInset(rect, dx, dy) CGRectInset( rect, (CGFloat)(dx), (CGFloat)(dy) )
+
+/**
+ *  @def CPTNAN
+ *  @hideinitializer
+ *  @brief The not-a-number constant (@NAN), cast to @ref CGFloat.
+ **/
+#define CPTNAN ( (CGFloat)NAN )
 
 /**
  *  @brief Enumeration of numeric types
@@ -204,45 +214,57 @@ CPTEdgeInsets;
 
 extern const CPTEdgeInsets CPTEdgeInsetsZero; ///< Defines a set of stretchable image edge insets where all of the values are zero (@num{0}).
 
+extern const NSStringDrawingOptions CPTStringDrawingOptions; ///< String drawing options used when measuring and drawing text.
+
 /**
  *  @brief An array of numbers.
  **/
-typedef NSArray<NSNumber *> *CPTNumberArray;
+typedef NSArray<NSNumber *> CPTNumberArray;
 
 /**
  *  @brief A mutable array of numbers.
  **/
-typedef NSMutableArray<NSNumber *> *CPTMutableNumberArray;
+typedef NSMutableArray<NSNumber *> CPTMutableNumberArray;
 
 /**
  *  @brief A set of numbers.
  **/
-typedef NSSet<NSNumber *> *CPTNumberSet;
+typedef NSSet<NSNumber *> CPTNumberSet;
 
 /**
  *  @brief A mutable set of numbers.
  **/
-typedef NSMutableSet<NSNumber *> *CPTMutableNumberSet;
+typedef NSMutableSet<NSNumber *> CPTMutableNumberSet;
 
 /**
  *  @brief An array of strings.
  **/
-typedef NSArray<NSString *> *CPTStringArray;
+typedef NSArray<NSString *> CPTStringArray;
 
 /**
  *  @brief A mutable array of strings.
  **/
-typedef NSMutableArray<NSString *> *CPTMutableStringArray;
+typedef NSMutableArray<NSString *> CPTMutableStringArray;
+
+/**
+ *  @brief An array of values.
+ **/
+typedef NSArray<NSValue *> CPTValueArray;
+
+/**
+ *  @brief A mutable array of values.
+ **/
+typedef NSMutableArray<NSValue *> CPTMutableValueArray;
 
 /**
  *  @brief An array of strings.
  **/
-typedef NSDictionary<NSString *, id> *CPTDictionary;
+typedef NSDictionary<NSString *, id> CPTDictionary;
 
 /**
  *  @brief A mutable array of strings.
  **/
-typedef NSMutableDictionary<NSString *, id> *CPTMutableDictionary;
+typedef NSMutableDictionary<NSString *, id> CPTMutableDictionary;
 
 /**
  *  @brief Render a Quick Look image into the given context.

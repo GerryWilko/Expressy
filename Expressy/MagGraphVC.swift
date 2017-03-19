@@ -10,10 +10,10 @@ import Foundation
 import CorePlot
 
 class MagGraphVC: UIViewController {
-    private let magGraphBuilder:GraphBuilder
+    fileprivate let magGraphBuilder:GraphBuilder
     
     required init?(coder aDecoder: NSCoder) {
-        magGraphBuilder = GraphBuilder(title: "Magnetometer", type: .Magnetometer, dataCache: SensorProcessor.dataCache)
+        magGraphBuilder = GraphBuilder(title: "Magnetometer", type: .magnetometer, dataCache: SensorProcessor.dataCache)
         super.init(coder: aDecoder)
     }
     
@@ -22,11 +22,11 @@ class MagGraphVC: UIViewController {
         magGraphBuilder.initLoad(magGraphView)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         magGraphBuilder.resume()
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         magGraphBuilder.pause()
     }
 }

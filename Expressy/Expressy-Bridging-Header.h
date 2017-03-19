@@ -10,6 +10,5 @@
 #define Expressy_Expressy_Bridging_Header_h
 
 #import "MadgwickAHRS.h"
-#import <MicrosoftBandKit_iOS/MicrosoftBandKit_iOS.h>
 
 #endif

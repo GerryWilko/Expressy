@@ -1,25 +1,26 @@
 #import "CPTPlotSpace.h"
 
+#import "CPTGraph.h"
 #import "CPTMutablePlotRange.h"
 #import "CPTUtilities.h"
 
-NSString *const CPTPlotSpaceCoordinateMappingDidChangeNotification = @"CPTPlotSpaceCoordinateMappingDidChangeNotification";
+CPTPlotSpaceCoordinateMapping const CPTPlotSpaceCoordinateMappingDidChangeNotification = @"CPTPlotSpaceCoordinateMappingDidChangeNotification";
 
-NSString *const CPTPlotSpaceCoordinateKey   = @"CPTPlotSpaceCoordinateKey";
-NSString *const CPTPlotSpaceScrollingKey    = @"CPTPlotSpaceScrollingKey";
-NSString *const CPTPlotSpaceDisplacementKey = @"CPTPlotSpaceDisplacementKey";
+CPTPlotSpaceInfoKey const CPTPlotSpaceCoordinateKey   = @"CPTPlotSpaceCoordinateKey";
+CPTPlotSpaceInfoKey const CPTPlotSpaceScrollingKey    = @"CPTPlotSpaceScrollingKey";
+CPTPlotSpaceInfoKey const CPTPlotSpaceDisplacementKey = @"CPTPlotSpaceDisplacementKey";
 
 /// @cond
 
-typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
+typedef NSMutableOrderedSet<NSString *> CPTMutableCategorySet;
 
 @interface CPTPlotSpace()
 
-@property (nonatomic, readwrite, strong) NSMutableDictionary<NSNumber *, CPTMutableCategorySet> *categoryNames;
+@property (nonatomic, readwrite, strong, nullable) NSMutableDictionary<NSNumber *, CPTMutableCategorySet *> *categoryNames;
 
 @property (nonatomic, readwrite) BOOL isDragging;
 
--(CPTMutableCategorySet)orderedSetForCoordinate:(CPTCoordinate)coordinate;
+-(nonnull CPTMutableCategorySet *)orderedSetForCoordinate:(CPTCoordinate)coordinate;
 
 @end
 
@@ -35,7 +36,7 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  **/
 @implementation CPTPlotSpace
 
-/** @property id<NSCopying, NSCoding, NSObject> identifier
+/** @property nullable id<NSCopying, NSCoding, NSObject> identifier
  *  @brief An object used to identify the plot in collections.
  **/
 @synthesize identifier;
@@ -50,12 +51,12 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  **/
 @synthesize isDragging;
 
-/** @property cpt_weak CPTGraph *graph
+/** @property nullable CPTGraph *graph
  *  @brief The graph of the space.
  **/
 @synthesize graph;
 
-/** @property cpt_weak id<CPTPlotSpaceDelegate> delegate
+/** @property nullable id<CPTPlotSpaceDelegate> delegate
  *  @brief The plot space delegate.
  **/
 @synthesize delegate;
@@ -66,7 +67,7 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
 @dynamic numberOfCoordinates;
 
 /** @internal
- *  @property NSMutableDictionary<NSNumber *, NSString *> *categoryNames
+ *  @property nullable NSMutableDictionary<NSNumber *, NSString *> *categoryNames
  *  @brief The names of the data categories for each coordinate with a #CPTScaleTypeCategory scale type.
  *  The keys are the CPTCoordinate enumeration values and the values are arrays of strings.
  **/
@@ -89,7 +90,7 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  *
  *  @return The initialized object.
  **/
--(instancetype)init
+-(nonnull instancetype)init
 {
     if ( (self = [super init]) ) {
         identifier            = nil;
@@ -119,7 +120,7 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
 
 /// @cond
 
--(void)encodeWithCoder:(NSCoder *)coder
+-(void)encodeWithCoder:(nonnull NSCoder *)coder
 {
     [coder encodeConditionalObject:self.graph forKey:@"CPTPlotSpace.graph"];
     [coder encodeObject:self.identifier forKey:@"CPTPlotSpace.identifier"];
@@ -140,14 +141,18 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  *  @param coder An unarchiver object.
  *  @return An object initialized from data in a given unarchiver.
  */
--(instancetype)initWithCoder:(NSCoder *)coder
+-(nullable instancetype)initWithCoder:(nonnull NSCoder *)coder
 {
     if ( (self = [super init]) ) {
-        graph                 = [coder decodeObjectForKey:@"CPTPlotSpace.graph"];
-        identifier            = [[coder decodeObjectForKey:@"CPTPlotSpace.identifier"] copy];
-        delegate              = [coder decodeObjectForKey:@"CPTPlotSpace.delegate"];
+        graph = [coder decodeObjectOfClass:[CPTGraph class]
+                                    forKey:@"CPTPlotSpace.graph"];
+        identifier = [[coder decodeObjectOfClass:[NSObject class]
+                                          forKey:@"CPTPlotSpace.identifier"] copy];
+        delegate = [coder decodeObjectOfClass:[NSObject class]
+                                       forKey:@"CPTPlotSpace.delegate"];
         allowsUserInteraction = [coder decodeBoolForKey:@"CPTPlotSpace.allowsUserInteraction"];
-        categoryNames         = [[coder decodeObjectForKey:@"CPTPlotSpace.categoryNames"] mutableCopy];
+        categoryNames         = [[coder decodeObjectOfClasses:[NSSet setWithArray:@[[NSDictionary class], [NSString class], [NSNumber class]]]
+                                                       forKey:@"CPTPlotSpace.categoryNames"] mutableCopy];
 
         isDragging = NO;
     }
@@ -155,16 +160,30 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
 }
 
 #pragma mark -
+#pragma mark NSSecureCoding Methods
+
+/// @cond
+
++(BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
+/// @endcond
+
+#pragma mark -
 #pragma mark Categorical Data
+
+/// @cond
 
 /** @internal
  *  @brief Gets the ordered set of categories for the given coordinate, creating it if necessary.
  *  @param coordinate The axis coordinate.
  *  @return The ordered set of categories for the given coordinate.
  */
--(CPTMutableCategorySet)orderedSetForCoordinate:(CPTCoordinate)coordinate
+-(nonnull CPTMutableCategorySet *)orderedSetForCoordinate:(CPTCoordinate)coordinate
 {
-    NSMutableDictionary<NSNumber *, CPTMutableCategorySet> *names = self.categoryNames;
+    NSMutableDictionary<NSNumber *, CPTMutableCategorySet *> *names = self.categoryNames;
 
     if ( !names ) {
         names = [[NSMutableDictionary alloc] init];
@@ -174,7 +193,7 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
 
     NSNumber *cacheKey = @(coordinate);
 
-    CPTMutableCategorySet categories = names[cacheKey];
+    CPTMutableCategorySet *categories = names[cacheKey];
 
     if ( !categories ) {
         categories = [[NSMutableOrderedSet alloc] init];
@@ -185,6 +204,8 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
     return categories;
 }
 
+/// @endcond
+
 /**
  *  @brief Add a new category name for the given coordinate.
  *
@@ -193,11 +214,11 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  *  @param category The category name.
  *  @param coordinate The axis coordinate.
  */
--(void)addCategory:(NSString *)category forCoordinate:(CPTCoordinate)coordinate
+-(void)addCategory:(nonnull NSString *)category forCoordinate:(CPTCoordinate)coordinate
 {
     NSParameterAssert(category);
 
-    CPTMutableCategorySet categories = [self orderedSetForCoordinate:coordinate];
+    CPTMutableCategorySet *categories = [self orderedSetForCoordinate:coordinate];
 
     [categories addObject:category];
 }
@@ -207,11 +228,11 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  *  @param category The category name.
  *  @param coordinate The axis coordinate.
  */
--(void)removeCategory:(NSString *)category forCoordinate:(CPTCoordinate)coordinate
+-(void)removeCategory:(nonnull NSString *)category forCoordinate:(CPTCoordinate)coordinate
 {
     NSParameterAssert(category);
 
-    CPTMutableCategorySet categories = [self orderedSetForCoordinate:coordinate];
+    CPTMutableCategorySet *categories = [self orderedSetForCoordinate:coordinate];
 
     [categories removeObject:category];
 }
@@ -225,11 +246,11 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  *  @param coordinate The axis coordinate.
  *  @param idx The index in the list of category names.
  */
--(void)insertCategory:(NSString *)category forCoordinate:(CPTCoordinate)coordinate atIndex:(NSUInteger)idx
+-(void)insertCategory:(nonnull NSString *)category forCoordinate:(CPTCoordinate)coordinate atIndex:(NSUInteger)idx
 {
     NSParameterAssert(category);
 
-    CPTMutableCategorySet categories = [self orderedSetForCoordinate:coordinate];
+    CPTMutableCategorySet *categories = [self orderedSetForCoordinate:coordinate];
 
     NSParameterAssert(idx <= categories.count);
 
@@ -241,9 +262,9 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  *  @param newCategories An array of category names.
  *  @param coordinate The axis coordinate.
  */
--(void)setCategories:(CPTStringArray)newCategories forCoordinate:(CPTCoordinate)coordinate
+-(void)setCategories:(nullable CPTStringArray *)newCategories forCoordinate:(CPTCoordinate)coordinate
 {
-    NSMutableDictionary<NSNumber *, CPTMutableCategorySet> *names = self.categoryNames;
+    NSMutableDictionary<NSNumber *, CPTMutableCategorySet *> *names = self.categoryNames;
 
     if ( !names ) {
         names = [[NSMutableDictionary alloc] init];
@@ -254,7 +275,9 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
     NSNumber *cacheKey = @(coordinate);
 
     if ( [newCategories isKindOfClass:[NSArray class]] ) {
-        names[cacheKey] = [NSMutableOrderedSet orderedSetWithArray:newCategories];
+        CPTStringArray *categories = newCategories;
+
+        names[cacheKey] = [NSMutableOrderedSet orderedSetWithArray:categories];
     }
     else {
         [names removeObjectForKey:cacheKey];
@@ -274,11 +297,11 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  *  @param coordinate The axis coordinate.
  *  @return An array of category names.
  */
--(CPTStringArray)categoriesForCoordinate:(CPTCoordinate)coordinate
+-(nonnull CPTStringArray *)categoriesForCoordinate:(CPTCoordinate)coordinate
 {
-    CPTMutableCategorySet categories = [self orderedSetForCoordinate:coordinate];
+    CPTMutableCategorySet *categories = [self orderedSetForCoordinate:coordinate];
 
-    return [categories array];
+    return categories.array;
 }
 
 /**
@@ -287,9 +310,9 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  *  @param idx The index in the list of category names.
  *  @return The category name.
  */
--(NSString *)categoryForCoordinate:(CPTCoordinate)coordinate atIndex:(NSUInteger)idx
+-(nullable NSString *)categoryForCoordinate:(CPTCoordinate)coordinate atIndex:(NSUInteger)idx
 {
-    CPTMutableCategorySet categories = [self orderedSetForCoordinate:coordinate];
+    CPTMutableCategorySet *categories = [self orderedSetForCoordinate:coordinate];
 
     NSParameterAssert(idx < categories.count);
 
@@ -302,11 +325,11 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  *  @param coordinate The axis coordinate.
  *  @return The category index.
  */
--(NSUInteger)indexOfCategory:(NSString *)category forCoordinate:(CPTCoordinate)coordinate
+-(NSUInteger)indexOfCategory:(nonnull NSString *)category forCoordinate:(CPTCoordinate)coordinate
 {
     NSParameterAssert(category);
 
-    CPTMutableCategorySet categories = [self orderedSetForCoordinate:coordinate];
+    CPTMutableCategorySet *categories = [self orderedSetForCoordinate:coordinate];
 
     return [categories indexOfObject:category];
 }
@@ -333,7 +356,7 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  *  @param interactionPoint The coordinates of the interaction.
  *  @return Whether the event was handled or not.
  **/
--(BOOL)pointingDeviceDownEvent:(CPTNativeEvent *)event atPoint:(CGPoint)interactionPoint
+-(BOOL)pointingDeviceDownEvent:(nonnull CPTNativeEvent *)event atPoint:(CGPoint)interactionPoint
 {
     BOOL handledByDelegate = NO;
 
@@ -361,7 +384,7 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  *  @param interactionPoint The coordinates of the interaction.
  *  @return Whether the event was handled or not.
  **/
--(BOOL)pointingDeviceUpEvent:(CPTNativeEvent *)event atPoint:(CGPoint)interactionPoint
+-(BOOL)pointingDeviceUpEvent:(nonnull CPTNativeEvent *)event atPoint:(CGPoint)interactionPoint
 {
     BOOL handledByDelegate = NO;
 
@@ -389,7 +412,7 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  *  @param interactionPoint The coordinates of the interaction.
  *  @return Whether the event was handled or not.
  **/
--(BOOL)pointingDeviceDraggedEvent:(CPTNativeEvent *)event atPoint:(CGPoint)interactionPoint
+-(BOOL)pointingDeviceDraggedEvent:(nonnull CPTNativeEvent *)event atPoint:(CGPoint)interactionPoint
 {
     BOOL handledByDelegate = NO;
 
@@ -417,7 +440,7 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  *  @param event The OS event.
  *  @return Whether the event was handled or not.
  **/
--(BOOL)pointingDeviceCancelledEvent:(CPTNativeEvent *)event
+-(BOOL)pointingDeviceCancelledEvent:(nonnull CPTNativeEvent *)event
 {
     BOOL handledByDelegate = NO;
 
@@ -429,7 +452,7 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
     return handledByDelegate;
 }
 
-#if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
+#if TARGET_OS_SIMULATOR || TARGET_OS_IPHONE
 #else
 
 /**
@@ -447,7 +470,7 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  *  @param toPoint The ending coordinates of the interaction.
  *  @return Whether the event was handled or not.
  **/
--(BOOL)scrollWheelEvent:(CPTNativeEvent *)event fromPoint:(CGPoint)fromPoint toPoint:(CGPoint)toPoint
+-(BOOL)scrollWheelEvent:(nonnull CPTNativeEvent *)event fromPoint:(CGPoint)fromPoint toPoint:(CGPoint)toPoint
 {
     BOOL handledByDelegate = NO;
 
@@ -481,7 +504,7 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  *  @param plotPoint An array of data point coordinates (as NSNumber values).
  *  @return The drawing coordinates of the data point.
  **/
--(CGPoint)plotAreaViewPointForPlotPoint:(CPTNumberArray)plotPoint
+-(CGPoint)plotAreaViewPointForPlotPoint:(nonnull CPTNumberArray *)plotPoint
 {
     NSParameterAssert(plotPoint.count == self.numberOfCoordinates);
 
@@ -493,7 +516,7 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  *  @param count The number of coordinate values in the @par{plotPoint} array.
  *  @return The drawing coordinates of the data point.
  **/
--(CGPoint)plotAreaViewPointForPlotPoint:(NSDecimal *)plotPoint numberOfCoordinates:(NSUInteger)count
+-(CGPoint)plotAreaViewPointForPlotPoint:(nonnull NSDecimal *)plotPoint numberOfCoordinates:(NSUInteger)count
 {
     NSParameterAssert(count == self.numberOfCoordinates);
 
@@ -505,7 +528,7 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  *  @param count The number of coordinate values in the @par{plotPoint} array.
  *  @return The drawing coordinates of the data point.
  **/
--(CGPoint)plotAreaViewPointForDoublePrecisionPlotPoint:(double *)plotPoint numberOfCoordinates:(NSUInteger)count
+-(CGPoint)plotAreaViewPointForDoublePrecisionPlotPoint:(nonnull double *)plotPoint numberOfCoordinates:(NSUInteger)count
 {
     NSParameterAssert(count == self.numberOfCoordinates);
 
@@ -516,7 +539,7 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  *  @param point The drawing coordinates of the data point.
  *  @return An array of data point coordinates (as NSNumber values).
  **/
--(CPTNumberArray)plotPointForPlotAreaViewPoint:(CGPoint)point
+-(nullable CPTNumberArray *)plotPointForPlotAreaViewPoint:(CGPoint)point
 {
     return nil;
 }
@@ -526,7 +549,7 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  *  @param count The number of coordinate values in the @par{plotPoint} array.
  *  @param point The drawing coordinates of the data point.
  **/
--(void)plotPoint:(NSDecimal *)plotPoint numberOfCoordinates:(NSUInteger)count forPlotAreaViewPoint:(CGPoint)point
+-(void)plotPoint:(nonnull NSDecimal *)plotPoint numberOfCoordinates:(NSUInteger)count forPlotAreaViewPoint:(CGPoint)point
 {
     NSParameterAssert(count == self.numberOfCoordinates);
 }
@@ -536,7 +559,7 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  *  @param count The number of coordinate values in the @par{plotPoint} array.
  *  @param point The drawing coordinates of the data point.
  **/
--(void)doublePrecisionPlotPoint:(double *)plotPoint numberOfCoordinates:(NSUInteger)count forPlotAreaViewPoint:(CGPoint)point
+-(void)doublePrecisionPlotPoint:(nonnull double *)plotPoint numberOfCoordinates:(NSUInteger)count forPlotAreaViewPoint:(CGPoint)point
 {
     NSParameterAssert(count == self.numberOfCoordinates);
 }
@@ -545,7 +568,7 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  *  @param event The event.
  *  @return The drawing coordinates of the point.
  **/
--(CGPoint)plotAreaViewPointForEvent:(CPTNativeEvent *)event
+-(CGPoint)plotAreaViewPointForEvent:(nonnull CPTNativeEvent *)event
 {
     return CGPointZero;
 }
@@ -554,7 +577,7 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  *  @param event The event.
  *  @return An array of data point coordinates (as NSNumber values).
  **/
--(CPTNumberArray)plotPointForEvent:(CPTNativeEvent *)event
+-(nullable CPTNumberArray *)plotPointForEvent:(nonnull CPTNativeEvent *)event
 {
     return nil;
 }
@@ -564,7 +587,7 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  *  @param count The number of coordinate values in the @par{plotPoint} array.
  *  @param event The event.
  **/
--(void)plotPoint:(NSDecimal *)plotPoint numberOfCoordinates:(NSUInteger)count forEvent:(CPTNativeEvent *)event
+-(void)plotPoint:(nonnull NSDecimal *)plotPoint numberOfCoordinates:(NSUInteger)count forEvent:(nonnull CPTNativeEvent *)event
 {
     NSParameterAssert(count == self.numberOfCoordinates);
 }
@@ -574,7 +597,7 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  *  @param count The number of coordinate values in the @par{plotPoint} array.
  *  @param event The event.
  **/
--(void)doublePrecisionPlotPoint:(double *)plotPoint numberOfCoordinates:(NSUInteger)count forEvent:(CPTNativeEvent *)event
+-(void)doublePrecisionPlotPoint:(nonnull double *)plotPoint numberOfCoordinates:(NSUInteger)count forEvent:(nonnull CPTNativeEvent *)event
 {
     NSParameterAssert(count == self.numberOfCoordinates);
 }
@@ -583,7 +606,7 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  *  @param newRange The new plot range.
  *  @param coordinate The axis coordinate.
  **/
--(void)setPlotRange:(CPTPlotRange *)newRange forCoordinate:(CPTCoordinate)coordinate
+-(void)setPlotRange:(nonnull CPTPlotRange *)newRange forCoordinate:(CPTCoordinate)coordinate
 {
 }
 
@@ -591,7 +614,7 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  *  @param coordinate The axis coordinate.
  *  @return The range of values.
  **/
--(CPTPlotRange *)plotRangeForCoordinate:(CPTCoordinate)coordinate
+-(nullable CPTPlotRange *)plotRangeForCoordinate:(CPTCoordinate)coordinate
 {
     return nil;
 }
@@ -616,7 +639,7 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
 /** @brief Scales the plot ranges so that the plots just fit in the visible space.
  *  @param plots An array of the plots that have to fit in the visible area.
  **/
--(void)scaleToFitPlots:(CPTPlotArray)plots
+-(void)scaleToFitPlots:(nullable CPTPlotArray *)plots
 {
 }
 
@@ -624,7 +647,43 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
  *  @param plots An array of the plots that have to fit in the visible area.
  *  @param coordinate The axis coordinate.
  **/
--(void)scaleToFitPlots:(CPTPlotArray)plots forCoordinate:(CPTCoordinate)coordinate
+-(void)scaleToFitPlots:(nullable CPTPlotArray *)plots forCoordinate:(CPTCoordinate)coordinate
+{
+    if ( plots.count == 0 ) {
+        return;
+    }
+
+    // Determine union of ranges
+    CPTMutablePlotRange *unionRange = nil;
+    for ( CPTPlot *plot in plots ) {
+        CPTPlotRange *currentRange = [plot plotRangeForCoordinate:coordinate];
+        if ( !unionRange ) {
+            unionRange = [currentRange mutableCopy];
+        }
+        [unionRange unionPlotRange:currentRange];
+    }
+
+    // Set range
+    if ( unionRange ) {
+        if ( CPTDecimalEquals( unionRange.lengthDecimal, CPTDecimalFromInteger(0) ) ) {
+            [unionRange unionPlotRange:[self plotRangeForCoordinate:coordinate]];
+        }
+        [self setPlotRange:unionRange forCoordinate:coordinate];
+    }
+}
+
+/** @brief Scales the plot ranges so that the plots just fit in the visible space.
+ *  @param plots An array of the plots that have to fit in the visible area.
+ **/
+-(void)scaleToFitEntirePlots:(nullable CPTPlotArray *)plots
+{
+}
+
+/** @brief Scales the plot range for the given coordinate so that the plots just fit in the visible space.
+ *  @param plots An array of the plots that have to fit in the visible area.
+ *  @param coordinate The axis coordinate.
+ **/
+-(void)scaleToFitEntirePlots:(nullable CPTPlotArray *)plots forCoordinate:(CPTCoordinate)coordinate
 {
     if ( plots.count == 0 ) {
         return;
@@ -662,11 +721,11 @@ typedef NSMutableOrderedSet<NSString *> *CPTMutableCategorySet;
 
 /// @cond
 
--(id)debugQuickLookObject
+-(nullable id)debugQuickLookObject
 {
     return [NSString stringWithFormat:@"Identifier: %@\nallowsUserInteraction: %@",
             self.identifier,
-            self.allowsUserInteraction ? @"YES":@"NO"];
+            self.allowsUserInteraction ? @"YES" : @"NO"];
 }
 
 /// @endcond

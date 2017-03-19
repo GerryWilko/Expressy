@@ -10,10 +10,10 @@ import Foundation
 import CorePlot
 
 class AccGraphVC: UIViewController {
-    private let accGraphBuilder:GraphBuilder
+    fileprivate let accGraphBuilder:GraphBuilder
     
     required init?(coder aDecoder: NSCoder) {
-        accGraphBuilder = GraphBuilder(title: "Accelerometer", type: .Accelerometer, dataCache: SensorProcessor.dataCache)
+        accGraphBuilder = GraphBuilder(title: "Accelerometer", type: .accelerometer, dataCache: SensorProcessor.dataCache)
         super.init(coder: aDecoder)
     }
     
@@ -22,11 +22,11 @@ class AccGraphVC: UIViewController {
         accGraphBuilder.initLoad(accGraphView)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         accGraphBuilder.resume()
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         accGraphBuilder.pause()
     }
 }

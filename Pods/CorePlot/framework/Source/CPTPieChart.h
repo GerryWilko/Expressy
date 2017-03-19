@@ -9,11 +9,16 @@
 @class CPTTextLayer;
 @class CPTLineStyle;
 
+/**
+ *  @brief Pie chart bindings.
+ **/
+typedef NSString *CPTPieChartBinding cpt_swift_struct;
+
 /// @ingroup plotBindingsPieChart
 /// @{
-extern NSString *__nonnull const CPTPieChartBindingPieSliceWidthValues;
-extern NSString *__nonnull const CPTPieChartBindingPieSliceFills;
-extern NSString *__nonnull const CPTPieChartBindingPieSliceRadialOffsets;
+extern CPTPieChartBinding __nonnull const CPTPieChartBindingPieSliceWidthValues;
+extern CPTPieChartBinding __nonnull const CPTPieChartBindingPieSliceFills;
+extern CPTPieChartBinding __nonnull const CPTPieChartBindingPieSliceRadialOffsets;
 /// @}
 
 /**
@@ -49,7 +54,7 @@ typedef NS_ENUM (NSInteger, CPTPieDirection) {
  *  @param indexRange The range of the data indexes of interest.
  *  @return An array of pie slice fills.
  **/
--(nullable CPTFillArray)sliceFillsForPieChart:(nonnull CPTPieChart *)pieChart recordIndexRange:(NSRange)indexRange;
+-(nullable CPTFillArray *)sliceFillsForPieChart:(nonnull CPTPieChart *)pieChart recordIndexRange:(NSRange)indexRange;
 
 /** @brief @optional Gets a fill for the given pie chart slice.
  *  This method will not be called if
@@ -72,7 +77,7 @@ typedef NS_ENUM (NSInteger, CPTPieDirection) {
  *  @param indexRange The range of the data indexes of interest.
  *  @return An array of radial offsets.
  **/
--(nullable CPTNumberArray)radialOffsetsForPieChart:(nonnull CPTPieChart *)pieChart recordIndexRange:(NSRange)indexRange;
+-(nullable CPTNumberArray *)radialOffsetsForPieChart:(nonnull CPTPieChart *)pieChart recordIndexRange:(NSRange)indexRange;
 
 /** @brief @optional Offsets the slice radially from the center point. Can be used to @quote{explode} the chart.
  *  This method will not be called if

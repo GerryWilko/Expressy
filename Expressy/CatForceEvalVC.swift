@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import UIKit
 
 class CatForceEvalVC: EvaluationVC {
-    private var runStack:[ForceCategory]!
+    fileprivate var runStack:[ForceCategory]!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -19,19 +20,19 @@ class CatForceEvalVC: EvaluationVC {
         super.viewDidLoad()
         setupCSV("catForce", headerLine: "Participant ID,Time,Requested Force,Tap Force")
         runStack = buildRunStack()
-        self.performSegueWithIdentifier("tapForceInstructions", sender: self)
+        self.performSegue(withIdentifier: "tapForceInstructions", sender: self)
         
-        detector.subscribe(.AllPress) { (data) -> Void in
-            let time = NSDate.timeIntervalSinceReferenceDate()
+        detector.subscribe(.allPress) { (data) -> Void in
+            let time = Date.timeIntervalSinceReferenceDate
             
             switch (self.runStack[0]) {
-            case .Soft:
+            case .soft:
                 self.logEvalData("\(self.participant),\(time),Soft,\(data!)")
                 break
-            case .Medium:
+            case .medium:
                 self.logEvalData("\(self.participant),\(time),Medium,\(data!)")
                 break
-            case .Hard:
+            case .hard:
                 self.logEvalData("\(self.participant),\(time),Hard,\(data!)")
                 break
             }
@@ -40,60 +41,60 @@ class CatForceEvalVC: EvaluationVC {
         }
     }
     
-    private func buildRunStack() -> [ForceCategory] {
-        var runStack = [ForceCategory.Soft, ForceCategory.Medium, ForceCategory.Hard]
+    fileprivate func buildRunStack() -> [ForceCategory] {
+        var runStack = [ForceCategory.soft, ForceCategory.medium, ForceCategory.hard]
         var soft = 9, med = 9, hard = 9
         
         while (soft != 0 || med != 0 || hard != 0) {
             let num = Int(arc4random_uniform(3))
             
             if (num == 0 && soft != 0) {
-                runStack.append(ForceCategory.Soft)
-                soft--
+                runStack.append(ForceCategory.soft)
+                soft -= 1
             } else if (num == 1 && med != 0) {
-                runStack.append(ForceCategory.Medium)
-                med--
+                runStack.append(ForceCategory.medium)
+                med -= 1
             } else if (num == 2 && hard != 0) {
-                runStack.append(ForceCategory.Hard)
-                hard--
+                runStack.append(ForceCategory.hard)
+                hard -= 1
             }
         }
         
         return runStack
     }
     
-    private func setNextView() {
-        runStack.removeAtIndex(0)
+    fileprivate func setNextView() {
+        runStack.remove(at: 0)
         instructionLbl.text = "Press next to advance to next stage."
-        instructionLbl.textColor = UIColor.blackColor()
-        self.view.userInteractionEnabled = false
+        instructionLbl.textColor = UIColor.black
+        self.view.isUserInteractionEnabled = false
     }
     
-    private func setTapView() {
+    fileprivate func setTapView() {
         switch (runStack[0]) {
-        case .Soft:
+        case .soft:
             instructionLbl.text = "Tap the screen: Soft"
-            instructionLbl.textColor = UIColor.greenColor()
+            instructionLbl.textColor = UIColor.green
             break
-        case .Medium:
+        case .medium:
             instructionLbl.text = "Tap the screen: Medium"
-            instructionLbl.textColor = UIColor.orangeColor()
+            instructionLbl.textColor = UIColor.orange
             break
-        case .Hard:
+        case .hard:
             instructionLbl.text = "Tap the screen: Hard"
-            instructionLbl.textColor = UIColor.redColor()
+            instructionLbl.textColor = UIColor.red
             break
         }
         
-        self.view.userInteractionEnabled = true
+        self.view.isUserInteractionEnabled = true
     }
     
-    @IBAction func next(sender: AnyObject) {
+    @IBAction func next(_ sender: AnyObject) {
         if (runStack.isEmpty){
-            nextBtn.enabled = false
+            nextBtn.isEnabled = false
             progressBar.setProgress(1.0, animated: true)
             instructionLbl.text = "Evaluation Complete. Thank you."
-            instructionLbl.textColor = UIColor.blackColor()
+            instructionLbl.textColor = UIColor.black
             logSensorData()
             evalVC.completeCatForce(csv)
         } else {
@@ -103,9 +104,9 @@ class CatForceEvalVC: EvaluationVC {
         progressBar.setProgress(Float(Float(30 - runStack.count) / 30.0), animated: true)
     }
     
-    @IBAction func unwindToCatForceEval(segue:UIStoryboardSegue) {}
+    @IBAction func unwindToCatForceEval(_ segue:UIStoryboardSegue) {}
 }
 
 private enum ForceCategory {
-    case Soft, Medium, Hard
+    case soft, medium, hard
 }

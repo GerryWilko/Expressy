@@ -17,27 +17,27 @@
 #import <tgmath.h>
 
 /// @cond
-typedef NSMutableArray<CPTAnimationOperation *> *CPTMutableAnimationArray;
+typedef NSMutableArray<CPTAnimationOperation *> CPTMutableAnimationArray;
 
 @interface CPTXYPlotSpace()
 
--(CGFloat)viewCoordinateForViewLength:(NSDecimal)viewLength linearPlotRange:(nullable CPTPlotRange *)range plotCoordinateValue:(NSDecimal)plotCoord;
--(CGFloat)viewCoordinateForViewLength:(CGFloat)viewLength linearPlotRange:(nullable CPTPlotRange *)range doublePrecisionPlotCoordinateValue:(double)plotCoord;
+-(CGFloat)viewCoordinateForViewLength:(NSDecimal)viewLength linearPlotRange:(nonnull CPTPlotRange *)range plotCoordinateValue:(NSDecimal)plotCoord;
+-(CGFloat)viewCoordinateForViewLength:(CGFloat)viewLength linearPlotRange:(nonnull CPTPlotRange *)range doublePrecisionPlotCoordinateValue:(double)plotCoord;
 
--(CGFloat)viewCoordinateForViewLength:(CGFloat)viewLength logPlotRange:(nullable CPTPlotRange *)range doublePrecisionPlotCoordinateValue:(double)plotCoord;
+-(CGFloat)viewCoordinateForViewLength:(CGFloat)viewLength logPlotRange:(nonnull CPTPlotRange *)range doublePrecisionPlotCoordinateValue:(double)plotCoord;
 
--(CGFloat)viewCoordinateForViewLength:(CGFloat)viewLength logModulusPlotRange:(nullable CPTPlotRange *)range doublePrecisionPlotCoordinateValue:(double)plotCoord;
+-(CGFloat)viewCoordinateForViewLength:(CGFloat)viewLength logModulusPlotRange:(nonnull CPTPlotRange *)range doublePrecisionPlotCoordinateValue:(double)plotCoord;
 
--(NSDecimal)plotCoordinateForViewLength:(NSDecimal)viewLength linearPlotRange:(nullable CPTPlotRange *)range boundsLength:(NSDecimal)boundsLength;
--(double)doublePrecisionPlotCoordinateForViewLength:(CGFloat)viewLength linearPlotRange:(nullable CPTPlotRange *)range boundsLength:(CGFloat)boundsLength;
+-(NSDecimal)plotCoordinateForViewLength:(NSDecimal)viewLength linearPlotRange:(nonnull CPTPlotRange *)range boundsLength:(NSDecimal)boundsLength;
+-(double)doublePrecisionPlotCoordinateForViewLength:(CGFloat)viewLength linearPlotRange:(nonnull CPTPlotRange *)range boundsLength:(CGFloat)boundsLength;
 
--(double)doublePrecisionPlotCoordinateForViewLength:(CGFloat)viewLength logPlotRange:(nullable CPTPlotRange *)range boundsLength:(CGFloat)boundsLength;
+-(double)doublePrecisionPlotCoordinateForViewLength:(CGFloat)viewLength logPlotRange:(nonnull CPTPlotRange *)range boundsLength:(CGFloat)boundsLength;
 
--(double)doublePrecisionPlotCoordinateForViewLength:(CGFloat)viewLength logModulusPlotRange:(nullable CPTPlotRange *)range boundsLength:(CGFloat)boundsLength;
+-(double)doublePrecisionPlotCoordinateForViewLength:(CGFloat)viewLength logModulusPlotRange:(nonnull CPTPlotRange *)range boundsLength:(CGFloat)boundsLength;
 
--(CPTPlotRange *)constrainRange:(nonnull CPTPlotRange *)existingRange toGlobalRange:(nullable CPTPlotRange *)globalRange;
+-(nonnull CPTPlotRange *)constrainRange:(nonnull CPTPlotRange *)existingRange toGlobalRange:(nullable CPTPlotRange *)globalRange;
 -(void)animateRangeForCoordinate:(CPTCoordinate)coordinate shift:(NSDecimal)shift momentumTime:(CGFloat)momentumTime speed:(CGFloat)speed acceleration:(CGFloat)acceleration;
--(CPTPlotRange *)shiftRange:(nonnull CPTPlotRange *)oldRange by:(NSDecimal)shift usingMomentum:(BOOL)momentum inGlobalRange:(nullable CPTPlotRange *)globalRange withDisplacement:(CGFloat *)displacement;
+-(nullable CPTPlotRange *)shiftRange:(nonnull CPTPlotRange *)oldRange by:(NSDecimal)shift usingMomentum:(BOOL)momentum inGlobalRange:(nullable CPTPlotRange *)globalRange withDisplacement:(CGFloat *)displacement;
 
 -(CGFloat)viewCoordinateForRange:(nullable CPTPlotRange *)range coordinate:(CPTCoordinate)coordinate direction:(BOOL)direction;
 
@@ -48,7 +48,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c);
 @property (nonatomic, readwrite) CGPoint lastDisplacement;
 @property (nonatomic, readwrite) NSTimeInterval lastDragTime;
 @property (nonatomic, readwrite) NSTimeInterval lastDeltaTime;
-@property (nonatomic, readwrite, retain, nonnull) CPTMutableAnimationArray animations;
+@property (nonatomic, readwrite, retain, nonnull) CPTMutableAnimationArray *animations;
 
 @end
 
@@ -73,7 +73,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c);
  **/
 @implementation CPTXYPlotSpace
 
-/** @property CPTPlotRange *xRange
+/** @property nonnull CPTPlotRange *xRange
  *  @brief The range of the x coordinate. Defaults to a range with @link CPTPlotRange::location location @endlink zero (@num{0})
  *  and a @link CPTPlotRange::length length @endlink of one (@num{1}).
  *
@@ -84,7 +84,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c);
  **/
 @synthesize xRange;
 
-/** @property CPTPlotRange *yRange
+/** @property nonnull CPTPlotRange *yRange
  *  @brief The range of the y coordinate. Defaults to a range with @link CPTPlotRange::location location @endlink zero (@num{0})
  *  and a @link CPTPlotRange::length length @endlink of one (@num{1}).
  *
@@ -95,7 +95,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c);
  **/
 @synthesize yRange;
 
-/** @property CPTPlotRange *globalXRange
+/** @property nullable CPTPlotRange *globalXRange
  *  @brief The global range of the x coordinate to which the @ref xRange is constrained.
  *
  *  If non-@nil, the @ref xRange and any changes to it will
@@ -104,7 +104,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c);
  **/
 @synthesize globalXRange;
 
-/** @property CPTPlotRange *globalYRange
+/** @property nullable CPTPlotRange *globalYRange
  *  @brief The global range of the y coordinate to which the @ref yRange is constrained.
  *
  *  If non-@nil, the @ref yRange and any changes to it will
@@ -196,7 +196,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c);
  *
  *  @return The initialized object.
  **/
--(instancetype)init
+-(nonnull instancetype)init
 {
     if ( (self = [super init]) ) {
         xRange           = [[CPTPlotRange alloc] initWithLocation:@0.0 length:@1.0];
@@ -229,7 +229,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c);
 
 /// @cond
 
--(void)encodeWithCoder:(NSCoder *)coder
+-(void)encodeWithCoder:(nonnull NSCoder *)coder
 {
     [super encodeWithCoder:coder];
 
@@ -255,21 +255,25 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c);
     // animations
 }
 
--(instancetype)initWithCoder:(NSCoder *)coder
+-(nullable instancetype)initWithCoder:(nonnull NSCoder *)coder
 {
     if ( (self = [super initWithCoder:coder]) ) {
-        CPTPlotRange *range = [coder decodeObjectForKey:@"CPTXYPlotSpace.xRange"];
+        CPTPlotRange *range = [coder decodeObjectOfClass:[CPTPlotRange class]
+                                                  forKey:@"CPTXYPlotSpace.xRange"];
         if ( range ) {
             xRange = [range copy];
         }
-        range = [coder decodeObjectForKey:@"CPTXYPlotSpace.yRange"];
+        range = [coder decodeObjectOfClass:[CPTPlotRange class]
+                                    forKey:@"CPTXYPlotSpace.yRange"];
         if ( range ) {
             yRange = [range copy];
         }
-        globalXRange = [[coder decodeObjectForKey:@"CPTXYPlotSpace.globalXRange"] copy];
-        globalYRange = [[coder decodeObjectForKey:@"CPTXYPlotSpace.globalYRange"] copy];
-        xScaleType   = (CPTScaleType)[coder decodeIntegerForKey : @"CPTXYPlotSpace.xScaleType"];
-        yScaleType   = (CPTScaleType)[coder decodeIntegerForKey : @"CPTXYPlotSpace.yScaleType"];
+        globalXRange = [[coder decodeObjectOfClass:[CPTPlotRange class]
+                                            forKey:@"CPTXYPlotSpace.globalXRange"] copy];
+        globalYRange = [[coder decodeObjectOfClass:[CPTPlotRange class]
+                                            forKey:@"CPTXYPlotSpace.globalYRange"] copy];
+        xScaleType = (CPTScaleType)[coder decodeIntegerForKey:@"CPTXYPlotSpace.xScaleType"];
+        yScaleType = (CPTScaleType)[coder decodeIntegerForKey:@"CPTXYPlotSpace.yScaleType"];
 
         if ( [coder containsValueForKey:@"CPTXYPlotSpace.allowsMomentum"] ) {
             self.allowsMomentum = [coder decodeBoolForKey:@"CPTXYPlotSpace.allowsMomentum"];
@@ -278,8 +282,8 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c);
             allowsMomentumX = [coder decodeBoolForKey:@"CPTXYPlotSpace.allowsMomentumX"];
             allowsMomentumY = [coder decodeBoolForKey:@"CPTXYPlotSpace.allowsMomentumY"];
         }
-        momentumAnimationCurve    = (CPTAnimationCurve)[coder decodeIntForKey : @"CPTXYPlotSpace.momentumAnimationCurve"];
-        bounceAnimationCurve      = (CPTAnimationCurve)[coder decodeIntForKey : @"CPTXYPlotSpace.bounceAnimationCurve"];
+        momentumAnimationCurve    = (CPTAnimationCurve)[coder decodeIntForKey:@"CPTXYPlotSpace.momentumAnimationCurve"];
+        bounceAnimationCurve      = (CPTAnimationCurve)[coder decodeIntForKey:@"CPTXYPlotSpace.bounceAnimationCurve"];
         momentumAcceleration      = [coder decodeCGFloatForKey:@"CPTXYPlotSpace.momentumAcceleration"];
         bounceAcceleration        = [coder decodeCGFloatForKey:@"CPTXYPlotSpace.bounceAcceleration"];
         minimumDisplacementToDrag = [coder decodeCGFloatForKey:@"CPTXYPlotSpace.minimumDisplacementToDrag"];
@@ -296,11 +300,23 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c);
 /// @endcond
 
 #pragma mark -
+#pragma mark NSSecureCoding Methods
+
+/// @cond
+
++(BOOL)supportsSecureCoding
+{
+    return YES;
+}
+
+/// @endcond
+
+#pragma mark -
 #pragma mark Ranges
 
 /// @cond
 
--(void)setPlotRange:(CPTPlotRange *)newRange forCoordinate:(CPTCoordinate)coordinate
+-(void)setPlotRange:(nonnull CPTPlotRange *)newRange forCoordinate:(CPTCoordinate)coordinate
 {
     switch ( coordinate ) {
         case CPTCoordinateX:
@@ -317,7 +333,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c);
     }
 }
 
--(CPTPlotRange *)plotRangeForCoordinate:(CPTCoordinate)coordinate
+-(nullable CPTPlotRange *)plotRangeForCoordinate:(CPTCoordinate)coordinate
 {
     CPTPlotRange *theRange = nil;
 
@@ -376,7 +392,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c);
     return theScaleType;
 }
 
--(void)setXRange:(CPTPlotRange *)range
+-(void)setXRange:(nonnull CPTPlotRange *)range
 {
     NSParameterAssert(range);
 
@@ -440,7 +456,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c);
     }
 }
 
--(void)setYRange:(CPTPlotRange *)range
+-(void)setYRange:(nonnull CPTPlotRange *)range
 {
     NSParameterAssert(range);
 
@@ -504,7 +520,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c);
     }
 }
 
--(CPTPlotRange *)constrainRange:(CPTPlotRange *)existingRange toGlobalRange:(CPTPlotRange *)globalRange
+-(nonnull CPTPlotRange *)constrainRange:(nonnull CPTPlotRange *)existingRange toGlobalRange:(nullable CPTPlotRange *)globalRange
 {
     if ( !globalRange ) {
         return existingRange;
@@ -513,20 +529,22 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c);
         return nil;
     }
 
-    if ( CPTDecimalGreaterThanOrEqualTo(existingRange.lengthDecimal, globalRange.lengthDecimal) ) {
-        return [globalRange copy];
+    CPTPlotRange *theGlobalRange = globalRange;
+
+    if ( CPTDecimalGreaterThanOrEqualTo(existingRange.lengthDecimal, theGlobalRange.lengthDecimal) ) {
+        return [theGlobalRange copy];
     }
     else {
         CPTMutablePlotRange *newRange = [existingRange mutableCopy];
-        [newRange shiftEndToFitInRange:globalRange];
-        [newRange shiftLocationToFitInRange:globalRange];
+        [newRange shiftEndToFitInRange:theGlobalRange];
+        [newRange shiftLocationToFitInRange:theGlobalRange];
         return newRange;
     }
 }
 
 -(void)animateRangeForCoordinate:(CPTCoordinate)coordinate shift:(NSDecimal)shift momentumTime:(CGFloat)momentumTime speed:(CGFloat)speed acceleration:(CGFloat)acceleration
 {
-    CPTMutableAnimationArray animationArray = self.animations;
+    CPTMutableAnimationArray *animationArray = self.animations;
     CPTAnimationOperation *op;
 
     NSString *property        = nil;
@@ -547,6 +565,8 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c);
             break;
 
         default:
+            property = @"";
+            oldRange = [CPTPlotRange plotRangeWithLocation:@0.0 length:@0];
             break;
     }
 
@@ -580,7 +600,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c);
 
             // decelerate at the global range
             if ( hasShift ) {
-                CGFloat brakingDelay = CPTFloat(NAN);
+                CGFloat brakingDelay = CPTNAN;
 
                 if ( [globalRange containsRange:oldRange] ) {
                     // momentum started inside the global range; coast until we hit the global range
@@ -678,7 +698,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c);
     }
 }
 
--(CGFloat)viewCoordinateForRange:(CPTPlotRange *)range coordinate:(CPTCoordinate)coordinate direction:(BOOL)direction
+-(CGFloat)viewCoordinateForRange:(nullable CPTPlotRange *)range coordinate:(CPTCoordinate)coordinate direction:(BOOL)direction
 {
     CPTCoordinate orthogonalCoordinate = CPTOrthogonalCoordinate(coordinate);
 
@@ -688,7 +708,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c);
     point[orthogonalCoordinate] = CPTDecimalFromInteger(1);
 
     CGPoint viewPoint       = [self plotAreaViewPointForPlotPoint:point numberOfCoordinates:2];
-    CGFloat pointCoordinate = CPTFloat(NAN);
+    CGFloat pointCoordinate = CPTNAN;
 
     switch ( coordinate ) {
         case CPTCoordinateX:
@@ -709,7 +729,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c);
 // return NAN if no positive roots
 CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
 {
-    CGFloat root = CPTFloat(NAN);
+    CGFloat root = CPTNAN;
 
     CGFloat discriminant = sqrt(b * b - CPTFloat(4.0) * a * c);
 
@@ -728,7 +748,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
     return root;
 }
 
--(void)setGlobalXRange:(CPTPlotRange *)newRange
+-(void)setGlobalXRange:(nullable CPTPlotRange *)newRange
 {
     if ( ![newRange isEqualToRange:globalXRange] ) {
         globalXRange = [newRange copy];
@@ -736,7 +756,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
     }
 }
 
--(void)setGlobalYRange:(CPTPlotRange *)newRange
+-(void)setGlobalYRange:(nullable CPTPlotRange *)newRange
 {
     if ( ![newRange isEqualToRange:globalYRange] ) {
         globalYRange = [newRange copy];
@@ -744,7 +764,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
     }
 }
 
--(void)scaleToFitPlots:(CPTPlotArray)plots
+-(void)scaleToFitPlots:(nullable CPTPlotArray *)plots
 {
     if ( plots.count == 0 ) {
         return;
@@ -756,6 +776,44 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
     for ( CPTPlot *plot in plots ) {
         CPTPlotRange *currentXRange = [plot plotRangeForCoordinate:CPTCoordinateX];
         CPTPlotRange *currentYRange = [plot plotRangeForCoordinate:CPTCoordinateY];
+        if ( !unionXRange ) {
+            unionXRange = [currentXRange mutableCopy];
+        }
+        if ( !unionYRange ) {
+            unionYRange = [currentYRange mutableCopy];
+        }
+        [unionXRange unionPlotRange:currentXRange];
+        [unionYRange unionPlotRange:currentYRange];
+    }
+
+    // Set range
+    NSDecimal zero = CPTDecimalFromInteger(0);
+    if ( unionXRange ) {
+        if ( CPTDecimalEquals(unionXRange.lengthDecimal, zero) ) {
+            [unionXRange unionPlotRange:self.xRange];
+        }
+        self.xRange = unionXRange;
+    }
+    if ( unionYRange ) {
+        if ( CPTDecimalEquals(unionYRange.lengthDecimal, zero) ) {
+            [unionYRange unionPlotRange:self.yRange];
+        }
+        self.yRange = unionYRange;
+    }
+}
+
+-(void)scaleToFitEntirePlots:(nullable CPTPlotArray *)plots
+{
+    if ( plots.count == 0 ) {
+        return;
+    }
+
+    // Determine union of ranges
+    CPTMutablePlotRange *unionXRange = nil;
+    CPTMutablePlotRange *unionYRange = nil;
+    for ( CPTPlot *plot in plots ) {
+        CPTPlotRange *currentXRange = [plot plotRangeEnclosingCoordinate:CPTCoordinateX];
+        CPTPlotRange *currentYRange = [plot plotRangeEnclosingCoordinate:CPTCoordinateY];
         if ( !unionXRange ) {
             unionXRange = [currentXRange mutableCopy];
         }
@@ -826,7 +884,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
 /// @cond
 
 // Linear
--(CGFloat)viewCoordinateForViewLength:(NSDecimal)viewLength linearPlotRange:(CPTPlotRange *)range plotCoordinateValue:(NSDecimal)plotCoord
+-(CGFloat)viewCoordinateForViewLength:(NSDecimal)viewLength linearPlotRange:(nonnull CPTPlotRange *)range plotCoordinateValue:(NSDecimal)plotCoord
 {
     if ( !range ) {
         return CPTFloat(0.0);
@@ -842,7 +900,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
     return CPTDecimalCGFloatValue(viewCoordinate);
 }
 
--(CGFloat)viewCoordinateForViewLength:(CGFloat)viewLength linearPlotRange:(CPTPlotRange *)range doublePrecisionPlotCoordinateValue:(double)plotCoord
+-(CGFloat)viewCoordinateForViewLength:(CGFloat)viewLength linearPlotRange:(nonnull CPTPlotRange *)range doublePrecisionPlotCoordinateValue:(double)plotCoord
 {
     if ( !range || (range.lengthDouble == 0.0) ) {
         return CPTFloat(0.0);
@@ -850,7 +908,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
     return viewLength * (CGFloat)( (plotCoord - range.locationDouble) / range.lengthDouble );
 }
 
--(NSDecimal)plotCoordinateForViewLength:(NSDecimal)viewLength linearPlotRange:(CPTPlotRange *)range boundsLength:(NSDecimal)boundsLength
+-(NSDecimal)plotCoordinateForViewLength:(NSDecimal)viewLength linearPlotRange:(nonnull CPTPlotRange *)range boundsLength:(NSDecimal)boundsLength
 {
     const NSDecimal zero = CPTDecimalFromInteger(0);
 
@@ -869,13 +927,13 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
     return coordinate;
 }
 
--(double)doublePrecisionPlotCoordinateForViewLength:(CGFloat)viewLength linearPlotRange:(CPTPlotRange *)range boundsLength:(CGFloat)boundsLength
+-(double)doublePrecisionPlotCoordinateForViewLength:(CGFloat)viewLength linearPlotRange:(nonnull CPTPlotRange *)range boundsLength:(CGFloat)boundsLength
 {
-    if ( boundsLength == 0.0 ) {
+    if ( boundsLength == CPTFloat(0.0) ) {
         return 0.0;
     }
 
-    double coordinate = viewLength / boundsLength;
+    double coordinate = (double)viewLength / (double)boundsLength;
     coordinate *= range.lengthDouble;
     coordinate += range.locationDouble;
 
@@ -883,7 +941,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
 }
 
 // Log (only one version since there are no transcendental functions for NSDecimal)
--(CGFloat)viewCoordinateForViewLength:(CGFloat)viewLength logPlotRange:(CPTPlotRange *)range doublePrecisionPlotCoordinateValue:(double)plotCoord
+-(CGFloat)viewCoordinateForViewLength:(CGFloat)viewLength logPlotRange:(nonnull CPTPlotRange *)range doublePrecisionPlotCoordinateValue:(double)plotCoord
 {
     if ( (range.minLimitDouble <= 0.0) || (range.maxLimitDouble <= 0.0) || (plotCoord <= 0.0) ) {
         return CPTFloat(0.0);
@@ -896,22 +954,22 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
     return viewLength * (CGFloat)( (logCoord - logLoc) / (logEnd - logLoc) );
 }
 
--(double)doublePrecisionPlotCoordinateForViewLength:(CGFloat)viewLength logPlotRange:(CPTPlotRange *)range boundsLength:(CGFloat)boundsLength
+-(double)doublePrecisionPlotCoordinateForViewLength:(CGFloat)viewLength logPlotRange:(nonnull CPTPlotRange *)range boundsLength:(CGFloat)boundsLength
 {
-    if ( boundsLength == 0.0 ) {
+    if ( boundsLength == CPTFloat(0.0) ) {
         return 0.0;
     }
 
     double logLoc = log10(range.locationDouble);
     double logEnd = log10(range.endDouble);
 
-    double coordinate = viewLength * (logEnd - logLoc) / boundsLength + logLoc;
+    double coordinate = (double)viewLength * (logEnd - logLoc) / (double)boundsLength + logLoc;
 
     return pow(10.0, coordinate);
 }
 
 // Log-modulus (only one version since there are no transcendental functions for NSDecimal)
--(CGFloat)viewCoordinateForViewLength:(CGFloat)viewLength logModulusPlotRange:(CPTPlotRange *)range doublePrecisionPlotCoordinateValue:(double)plotCoord
+-(CGFloat)viewCoordinateForViewLength:(CGFloat)viewLength logModulusPlotRange:(nonnull CPTPlotRange *)range doublePrecisionPlotCoordinateValue:(double)plotCoord
 {
     if ( !range ) {
         return CPTFloat(0.0);
@@ -924,15 +982,15 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
     return viewLength * (CGFloat)( (logCoord - logLoc) / (logEnd - logLoc) );
 }
 
--(double)doublePrecisionPlotCoordinateForViewLength:(CGFloat)viewLength logModulusPlotRange:(CPTPlotRange *)range boundsLength:(CGFloat)boundsLength
+-(double)doublePrecisionPlotCoordinateForViewLength:(CGFloat)viewLength logModulusPlotRange:(nonnull CPTPlotRange *)range boundsLength:(CGFloat)boundsLength
 {
-    if ( boundsLength == 0.0 ) {
+    if ( boundsLength == CPTFloat(0.0) ) {
         return 0.0;
     }
 
     double logLoc     = CPTLogModulus(range.locationDouble);
     double logEnd     = CPTLogModulus(range.endDouble);
-    double coordinate = viewLength * (logEnd - logLoc) / boundsLength + logLoc;
+    double coordinate = (double)viewLength * (logEnd - logLoc) / (double)boundsLength + logLoc;
 
     return CPTInverseLogModulus(coordinate);
 }
@@ -950,7 +1008,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
 }
 
 // Plot area view point for plot point
--(CGPoint)plotAreaViewPointForPlotPoint:(CPTNumberArray)plotPoint
+-(CGPoint)plotAreaViewPointForPlotPoint:(nonnull CPTNumberArray *)plotPoint
 {
     CGPoint viewPoint = [super plotAreaViewPointForPlotPoint:plotPoint];
 
@@ -968,18 +1026,18 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
     switch ( self.xScaleType ) {
         case CPTScaleTypeLinear:
         case CPTScaleTypeCategory:
-            viewPoint.x = [self viewCoordinateForViewLength:plotArea.widthDecimal linearPlotRange:self.xRange plotCoordinateValue:[plotPoint[CPTCoordinateX] decimalValue]];
+            viewPoint.x = [self viewCoordinateForViewLength:plotArea.widthDecimal linearPlotRange:self.xRange plotCoordinateValue:plotPoint[CPTCoordinateX].decimalValue];
             break;
 
         case CPTScaleTypeLog:
         {
-            viewPoint.x = [self viewCoordinateForViewLength:layerSize.width logPlotRange:self.xRange doublePrecisionPlotCoordinateValue:[plotPoint[CPTCoordinateX] doubleValue]];
+            viewPoint.x = [self viewCoordinateForViewLength:layerSize.width logPlotRange:self.xRange doublePrecisionPlotCoordinateValue:plotPoint[CPTCoordinateX].doubleValue];
         }
         break;
 
         case CPTScaleTypeLogModulus:
         {
-            viewPoint.x = [self viewCoordinateForViewLength:layerSize.width logModulusPlotRange:self.xRange doublePrecisionPlotCoordinateValue:[plotPoint[CPTCoordinateX] doubleValue]];
+            viewPoint.x = [self viewCoordinateForViewLength:layerSize.width logModulusPlotRange:self.xRange doublePrecisionPlotCoordinateValue:plotPoint[CPTCoordinateX].doubleValue];
         }
         break;
 
@@ -990,18 +1048,18 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
     switch ( self.yScaleType ) {
         case CPTScaleTypeLinear:
         case CPTScaleTypeCategory:
-            viewPoint.y = [self viewCoordinateForViewLength:plotArea.heightDecimal linearPlotRange:self.yRange plotCoordinateValue:[plotPoint[CPTCoordinateY] decimalValue]];
+            viewPoint.y = [self viewCoordinateForViewLength:plotArea.heightDecimal linearPlotRange:self.yRange plotCoordinateValue:plotPoint[CPTCoordinateY].decimalValue];
             break;
 
         case CPTScaleTypeLog:
         {
-            viewPoint.y = [self viewCoordinateForViewLength:layerSize.height logPlotRange:self.yRange doublePrecisionPlotCoordinateValue:[plotPoint[CPTCoordinateY] doubleValue]];
+            viewPoint.y = [self viewCoordinateForViewLength:layerSize.height logPlotRange:self.yRange doublePrecisionPlotCoordinateValue:plotPoint[CPTCoordinateY].doubleValue];
         }
         break;
 
         case CPTScaleTypeLogModulus:
         {
-            viewPoint.y = [self viewCoordinateForViewLength:layerSize.height logModulusPlotRange:self.yRange doublePrecisionPlotCoordinateValue:[plotPoint[CPTCoordinateY] doubleValue]];
+            viewPoint.y = [self viewCoordinateForViewLength:layerSize.height logModulusPlotRange:self.yRange doublePrecisionPlotCoordinateValue:plotPoint[CPTCoordinateY].doubleValue];
         }
         break;
 
@@ -1012,7 +1070,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
     return viewPoint;
 }
 
--(CGPoint)plotAreaViewPointForPlotPoint:(NSDecimal *)plotPoint numberOfCoordinates:(NSUInteger)count
+-(CGPoint)plotAreaViewPointForPlotPoint:(nonnull NSDecimal *)plotPoint numberOfCoordinates:(NSUInteger)count
 {
     CGPoint viewPoint = [super plotAreaViewPointForPlotPoint:plotPoint numberOfCoordinates:count];
 
@@ -1078,7 +1136,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
     return viewPoint;
 }
 
--(CGPoint)plotAreaViewPointForDoublePrecisionPlotPoint:(double *)plotPoint numberOfCoordinates:(NSUInteger)count
+-(CGPoint)plotAreaViewPointForDoublePrecisionPlotPoint:(nonnull double *)plotPoint numberOfCoordinates:(NSUInteger)count
 {
     CGPoint viewPoint = [super plotAreaViewPointForDoublePrecisionPlotPoint:plotPoint numberOfCoordinates:count];
 
@@ -1133,9 +1191,9 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
 }
 
 // Plot point for view point
--(CPTNumberArray)plotPointForPlotAreaViewPoint:(CGPoint)point
+-(nullable CPTNumberArray *)plotPointForPlotAreaViewPoint:(CGPoint)point
 {
-    CPTMutableNumberArray plotPoint = [[super plotPointForPlotAreaViewPoint:point] mutableCopy];
+    CPTMutableNumberArray *plotPoint = [[super plotPointForPlotAreaViewPoint:point] mutableCopy];
 
     CGSize boundsSize;
     CPTGraph *theGraph    = self.graph;
@@ -1195,7 +1253,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
     return plotPoint;
 }
 
--(void)plotPoint:(NSDecimal *)plotPoint numberOfCoordinates:(NSUInteger)count forPlotAreaViewPoint:(CGPoint)point
+-(void)plotPoint:(nonnull NSDecimal *)plotPoint numberOfCoordinates:(NSUInteger)count forPlotAreaViewPoint:(CGPoint)point
 {
     [super plotPoint:plotPoint numberOfCoordinates:count forPlotAreaViewPoint:point];
 
@@ -1250,7 +1308,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
     }
 }
 
--(void)doublePrecisionPlotPoint:(double *)plotPoint numberOfCoordinates:(NSUInteger)count forPlotAreaViewPoint:(CGPoint)point
+-(void)doublePrecisionPlotPoint:(nonnull double *)plotPoint numberOfCoordinates:(NSUInteger)count forPlotAreaViewPoint:(CGPoint)point
 {
     [super doublePrecisionPlotPoint:plotPoint numberOfCoordinates:count forPlotAreaViewPoint:point];
 
@@ -1305,7 +1363,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
 }
 
 // Plot area view point for event
--(CGPoint)plotAreaViewPointForEvent:(CPTNativeEvent *)event
+-(CGPoint)plotAreaViewPointForEvent:(nonnull CPTNativeEvent *)event
 {
     CGPoint plotAreaViewPoint = CGPointZero;
 
@@ -1314,7 +1372,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
     CPTPlotArea *thePlotArea            = theGraph.plotAreaFrame.plotArea;
 
     if ( theHostingView && thePlotArea ) {
-#if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
+#if TARGET_OS_SIMULATOR || TARGET_OS_IPHONE
         CGPoint interactionPoint = [[[event touchesForView:theHostingView] anyObject] locationInView:theHostingView];
         if ( theHostingView.collapsesLayers ) {
             interactionPoint.y = theHostingView.frame.size.height - interactionPoint.y;
@@ -1324,7 +1382,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
             plotAreaViewPoint = [theHostingView.layer convertPoint:interactionPoint toLayer:thePlotArea];
         }
 #else
-        CGPoint interactionPoint = NSPointToCGPoint([theHostingView convertPoint:[event locationInWindow] fromView:nil]);
+        CGPoint interactionPoint = NSPointToCGPoint([theHostingView convertPoint:event.locationInWindow fromView:nil]);
         plotAreaViewPoint = [theHostingView.layer convertPoint:interactionPoint toLayer:thePlotArea];
 #endif
     }
@@ -1333,17 +1391,17 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
 }
 
 // Plot point for event
--(CPTNumberArray)plotPointForEvent:(CPTNativeEvent *)event
+-(nullable CPTNumberArray *)plotPointForEvent:(nonnull CPTNativeEvent *)event
 {
     return [self plotPointForPlotAreaViewPoint:[self plotAreaViewPointForEvent:event]];
 }
 
--(void)plotPoint:(NSDecimal *)plotPoint numberOfCoordinates:(NSUInteger)count forEvent:(CPTNativeEvent *)event
+-(void)plotPoint:(nonnull NSDecimal *)plotPoint numberOfCoordinates:(NSUInteger)count forEvent:(nonnull CPTNativeEvent *)event
 {
     [self plotPoint:plotPoint numberOfCoordinates:count forPlotAreaViewPoint:[self plotAreaViewPointForEvent:event]];
 }
 
--(void)doublePrecisionPlotPoint:(double *)plotPoint numberOfCoordinates:(NSUInteger)count forEvent:(CPTNativeEvent *)event
+-(void)doublePrecisionPlotPoint:(nonnull double *)plotPoint numberOfCoordinates:(NSUInteger)count forEvent:(nonnull CPTNativeEvent *)event
 {
     [self doublePrecisionPlotPoint:plotPoint numberOfCoordinates:count forPlotAreaViewPoint:[self plotAreaViewPointForEvent:event]];
 }
@@ -1360,7 +1418,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
     CPTGraph *theGraph    = self.graph;
     CPTPlotArea *plotArea = theGraph.plotAreaFrame.plotArea;
 
-    if ( !plotArea || (interactionScale <= 1.e-6) ) {
+    if ( !plotArea || ( interactionScale <= CPTFloat(1.e-6) ) ) {
         return;
     }
     if ( ![plotArea containsPoint:plotAreaPoint] ) {
@@ -1458,7 +1516,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
  *  @param interactionPoint The coordinates of the interaction.
  *  @return Whether the event was handled or not.
  **/
--(BOOL)pointingDeviceDownEvent:(CPTNativeEvent *)event atPoint:(CGPoint)interactionPoint
+-(BOOL)pointingDeviceDownEvent:(nonnull CPTNativeEvent *)event atPoint:(CGPoint)interactionPoint
 {
     self.isDragging = NO;
 
@@ -1482,7 +1540,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
         self.lastDeltaTime    = 0.0;
 
         // Clear any previous animations
-        CPTMutableAnimationArray animationArray = self.animations;
+        CPTMutableAnimationArray *animationArray = self.animations;
         for ( CPTAnimationOperation *op in animationArray ) {
             [[CPTAnimation sharedInstance] removeAnimationOperation:op];
         }
@@ -1512,7 +1570,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
  *  @param interactionPoint The coordinates of the interaction.
  *  @return Whether the event was handled or not.
  **/
--(BOOL)pointingDeviceUpEvent:(CPTNativeEvent *)event atPoint:(CGPoint)interactionPoint
+-(BOOL)pointingDeviceUpEvent:(nonnull CPTNativeEvent *)event atPoint:(CGPoint)interactionPoint
 {
     BOOL handledByDelegate = [super pointingDeviceUpEvent:event atPoint:interactionPoint];
 
@@ -1610,7 +1668,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
  *  @param interactionPoint The coordinates of the interaction.
  *  @return Whether the event was handled or not.
  **/
--(BOOL)pointingDeviceDraggedEvent:(CPTNativeEvent *)event atPoint:(CGPoint)interactionPoint
+-(BOOL)pointingDeviceDraggedEvent:(nonnull CPTNativeEvent *)event atPoint:(CGPoint)interactionPoint
 {
     BOOL handledByDelegate = [super pointingDeviceDraggedEvent:event atPoint:interactionPoint];
 
@@ -1652,18 +1710,18 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
         // X range
         NSDecimal shiftX        = CPTDecimalSubtract(lastPoint[CPTCoordinateX], newPoint[CPTCoordinateX]);
         CPTPlotRange *newRangeX = [self shiftRange:self.xRange
-                                                 by:shiftX
-                                      usingMomentum:self.allowsMomentumX
-                                      inGlobalRange:self.globalXRange
-                                   withDisplacement:&displacement.x];
+                                                by:shiftX
+                                     usingMomentum:self.allowsMomentumX
+                                     inGlobalRange:self.globalXRange
+                                  withDisplacement:&displacement.x];
 
         // Y range
         NSDecimal shiftY        = CPTDecimalSubtract(lastPoint[CPTCoordinateY], newPoint[CPTCoordinateY]);
         CPTPlotRange *newRangeY = [self shiftRange:self.yRange
-                                                 by:shiftY
-                                      usingMomentum:self.allowsMomentumY
-                                      inGlobalRange:self.globalYRange
-                                   withDisplacement:&displacement.y];
+                                                by:shiftY
+                                     usingMomentum:self.allowsMomentumY
+                                     inGlobalRange:self.globalYRange
+                                  withDisplacement:&displacement.y];
 
         self.lastDragPoint    = pointInPlotArea;
         self.lastDisplacement = displacement;
@@ -1681,7 +1739,9 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
     return NO;
 }
 
--(CPTPlotRange *)shiftRange:(CPTPlotRange *)oldRange by:(NSDecimal)shift usingMomentum:(BOOL)momentum inGlobalRange:(CPTPlotRange *)globalRange withDisplacement:(CGFloat *)displacement
+/// @cond
+
+-(nullable CPTPlotRange *)shiftRange:(nonnull CPTPlotRange *)oldRange by:(NSDecimal)shift usingMomentum:(BOOL)momentum inGlobalRange:(nullable CPTPlotRange *)globalRange withDisplacement:(CGFloat *)displacement
 {
     CPTMutablePlotRange *newRange = [oldRange mutableCopy];
 
@@ -1713,7 +1773,9 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
     return newRange;
 }
 
-#if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
+/// @endcond
+
+#if TARGET_OS_SIMULATOR || TARGET_OS_IPHONE
 #else
 
 /**
@@ -1731,7 +1793,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
  *  @param toPoint The ending coordinates of the interaction.
  *  @return Whether the event was handled or not.
  **/
--(BOOL)scrollWheelEvent:(CPTNativeEvent *)event fromPoint:(CGPoint)fromPoint toPoint:(CGPoint)toPoint
+-(BOOL)scrollWheelEvent:(nonnull CPTNativeEvent *)event fromPoint:(CGPoint)fromPoint toPoint:(CGPoint)toPoint
 {
     BOOL handledByDelegate = [super scrollWheelEvent:event fromPoint:fromPoint toPoint:toPoint];
 
@@ -1765,18 +1827,18 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
     // X range
     NSDecimal shiftX        = CPTDecimalSubtract(lastPoint[CPTCoordinateX], newPoint[CPTCoordinateX]);
     CPTPlotRange *newRangeX = [self shiftRange:self.xRange
-                                             by:shiftX
-                                  usingMomentum:NO
-                                  inGlobalRange:self.globalXRange
-                               withDisplacement:&displacement.x];
+                                            by:shiftX
+                                 usingMomentum:NO
+                                 inGlobalRange:self.globalXRange
+                              withDisplacement:&displacement.x];
 
     // Y range
     NSDecimal shiftY        = CPTDecimalSubtract(lastPoint[CPTCoordinateY], newPoint[CPTCoordinateY]);
     CPTPlotRange *newRangeY = [self shiftRange:self.yRange
-                                             by:shiftY
-                                  usingMomentum:NO
-                                  inGlobalRange:self.globalYRange
-                               withDisplacement:&displacement.y];
+                                            by:shiftY
+                                 usingMomentum:NO
+                                 inGlobalRange:self.globalYRange
+                              withDisplacement:&displacement.y];
 
     self.xRange = newRangeX;
     self.yRange = newRangeY;
@@ -1821,7 +1883,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
 
 /// @cond
 
--(void)animationDidFinish:(CPTAnimationOperation *)operation
+-(void)animationDidFinish:(nonnull CPTAnimationOperation *)operation
 {
     [self.animations removeObjectIdenticalTo:operation];
 }
@@ -1833,7 +1895,7 @@ CGFloat CPTFirstPositiveRoot(CGFloat a, CGFloat b, CGFloat c)
 
 /// @cond
 
--(id)debugQuickLookObject
+-(nullable id)debugQuickLookObject
 {
     // Plot space
     NSString *plotAreaDesc = [super debugQuickLookObject];

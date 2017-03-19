@@ -14,7 +14,7 @@
 /**
  *  @brief Plot area delegate.
  **/
-@protocol CPTPlotAreaDelegate<NSObject>
+@protocol CPTPlotAreaDelegate<CPTLayerDelegate>
 
 @optional
 
@@ -85,7 +85,7 @@
 
 /// @name Layer Ordering
 /// @{
-@property (nonatomic, readwrite, strong, nullable) CPTNumberArray topDownLayerOrder;
+@property (nonatomic, readwrite, strong, nullable) CPTNumberArray *topDownLayerOrder;
 /// @}
 
 /// @name Decorations

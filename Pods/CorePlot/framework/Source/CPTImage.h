@@ -1,7 +1,7 @@
 #import "CPTDefinitions.h"
 #import "CPTPlatformSpecificDefines.h"
 
-@interface CPTImage : NSObject<NSCoding, NSCopying>
+@interface CPTImage : NSObject<NSCopying, NSCoding, NSSecureCoding>
 
 @property (nonatomic, readwrite, copy, nullable) CPTNativeImage *nativeImage;
 @property (nonatomic, readwrite, assign, nullable) CGImageRef image;
@@ -27,7 +27,7 @@
 -(nonnull instancetype)initWithContentsOfFile:(nonnull NSString *)path;
 -(nonnull instancetype)initWithCGImage:(nullable CGImageRef)anImage scale:(CGFloat)newScale NS_DESIGNATED_INITIALIZER;
 -(nonnull instancetype)initWithCGImage:(nullable CGImageRef)anImage;
--(nonnull instancetype)initWithCoder:(nonnull NSCoder *)decoder NS_DESIGNATED_INITIALIZER;
+-(nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder NS_DESIGNATED_INITIALIZER;
 /// @}
 
 /// @name Drawing

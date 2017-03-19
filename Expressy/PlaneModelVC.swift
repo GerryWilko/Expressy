@@ -11,8 +11,12 @@ import QuartzCore
 import SceneKit
 
 class PlaneModelVC: UIViewController {
-    private var timer:NSTimer!
-    private var scnView:SCNView!
+    @IBOutlet weak var forceLbl: UILabel!
+    @IBOutlet weak var rollLbl: UILabel!
+    @IBOutlet weak var pitchLbl: UILabel!
+    
+    fileprivate var timer:Timer!
+    fileprivate var scnView:SCNView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,15 +37,15 @@ class PlaneModelVC: UIViewController {
         // create and add a light to the scene
         let lightNode = SCNNode()
         lightNode.light = SCNLight()
-        lightNode.light!.type = SCNLightTypeOmni
+        lightNode.light!.type = SCNLight.LightType.omni
         lightNode.position = SCNVector3(x: 0, y: 10, z: 10)
         scene.rootNode.addChildNode(lightNode)
         
         // create and add an ambient light to the scene
         let ambientLightNode = SCNNode()
         ambientLightNode.light = SCNLight()
-        ambientLightNode.light!.type = SCNLightTypeAmbient
-        ambientLightNode.light!.color = UIColor.darkGrayColor()
+        ambientLightNode.light!.type = SCNLight.LightType.ambient
+        ambientLightNode.light!.color = UIColor.darkGray
         scene.rootNode.addChildNode(ambientLightNode)
         
         // set the scene to the view
@@ -51,18 +55,18 @@ class PlaneModelVC: UIViewController {
         scnView.showsStatistics = true
         
         // configure the view
-        scnView.backgroundColor = UIColor.blackColor()
+        scnView.backgroundColor = UIColor.black
         
         // add a tap gesture recognizer
-        let tapGesture = UITapGestureRecognizer(target: self, action: "handleTap:")
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(PlaneModelVC.handleTap(_:)))
         scnView.gestureRecognizers?.append(tapGesture)
         
         SensorProcessor.dataCache.subscribe(dataCallback)
     }
     
-    func handleTap(gestureRecognize: UIGestureRecognizer) {
+    func handleTap(_ gestureRecognize: UIGestureRecognizer) {
         // check what nodes are tapped
-        let p = gestureRecognize.locationInView(scnView)
+        let p = gestureRecognize.location(in: scnView)
         let hitResults = scnView.hitTest(p, options: nil)
         
         // check that we clicked on at least one object
@@ -75,47 +79,51 @@ class PlaneModelVC: UIViewController {
             
             // highlight it
             SCNTransaction.begin()
-            SCNTransaction.setAnimationDuration(0.5)
+            SCNTransaction.animationDuration = 0.5
             
             // on completion - unhighlight
-            SCNTransaction.setCompletionBlock {
+            SCNTransaction.completionBlock = {
                 SCNTransaction.begin()
-                SCNTransaction.setAnimationDuration(0.5)
+                SCNTransaction.animationDuration = 0.5
                 
-                material.emission.contents = UIColor.blackColor()
+                material.emission.contents = UIColor.black
                 
                 SCNTransaction.commit()
             }
             
-            material.emission.contents = UIColor.redColor()
+            material.emission.contents = UIColor.red
             
             SCNTransaction.commit()
         }
     }
     
-    func dataCallback(data:SensorData) {
-        let ship = scnView.scene!.rootNode.childNodeWithName("ship", recursively: true)!
+    func dataCallback(_ data:SensorData) {
+        let ship = scnView.scene!.rootNode.childNode(withName: "ship", recursively: true)!
         
         ship.orientation = SCNQuaternion(x: -data.q.y, y: -data.q.x, z: data.q.z, w: data.q.w)
+        
+        forceLbl.text = "Force: \(data.linAcc.magnitude())"
+        rollLbl.text = "Roll: \(data.gyro.x)"
+        pitchLbl.text = "Pitch: \(data.gyro.y)"
     }
     
-    override func shouldAutorotate() -> Bool {
+    override var shouldAutorotate : Bool {
         return true
     }
     
-    override func prefersStatusBarHidden() -> Bool {
+    override var prefersStatusBarHidden : Bool {
         return true
     }
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-            return UIInterfaceOrientationMask.AllButUpsideDown
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return UIInterfaceOrientationMask.allButUpsideDown
         } else {
-            return UIInterfaceOrientationMask.All
+            return UIInterfaceOrientationMask.all
         }
     }
     
-    @IBAction func resetModel(sender: UIBarButtonItem) {
+    @IBAction func resetModel(_ sender: UIBarButtonItem) {
         MadgwickAHRSreset()
     }
 }

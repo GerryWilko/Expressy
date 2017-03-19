@@ -10,21 +10,21 @@ import Foundation
 import UIKit.UIGestureRecognizerSubclass
 
 class EXTPitchGestureRecognizer: UIGestureRecognizer {
-    private let detector:EXTInteractionDetector
+    fileprivate let detector:EXTInteractionDetector
     
     var pitchThreshold:Float
     var currentPitch:Float
     
-    override init(target: AnyObject?, action: Selector) {
+    override init(target: Any?, action: Selector?) {
         detector = EXTInteractionDetector(dataCache: SensorProcessor.dataCache)
         pitchThreshold = 0.0
         currentPitch = 0.0
         super.init(target: target, action: action)
         
-        detector.subscribe(.DuringMetrics) { (data) -> Void in
+        detector.subscribe(.duringMetrics) { (data) -> Void in
             self.currentPitch = self.detector.currentPitch
             if fabs(self.currentPitch) > self.pitchThreshold {
-                self.state = .Changed
+                self.state = .changed
             }
         }
         
@@ -35,29 +35,29 @@ class EXTPitchGestureRecognizer: UIGestureRecognizer {
         detector.stopDetection()
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent) {
-        super.touchesBegan(touches, withEvent: event)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
+        super.touchesBegan(touches, with: event)
         detector.touchDown()
-        state = .Began
+        state = .began
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent) {
-        super.touchesEnded(touches, withEvent: event)
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent) {
+        super.touchesEnded(touches, with: event)
         detector.touchUp()
-        state = .Ended
+        state = .ended
     }
     
-    override func touchesCancelled(touches: Set<UITouch>, withEvent event: UIEvent) {
-        super.touchesCancelled(touches, withEvent: event)
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent) {
+        super.touchesCancelled(touches, with: event)
         detector.touchCancelled()
-        state = .Cancelled
+        state = .cancelled
     }
     
-    override func canBePreventedByGestureRecognizer(preventingGestureRecognizer: UIGestureRecognizer) -> Bool {
+    override func canBePrevented(by preventingGestureRecognizer: UIGestureRecognizer) -> Bool {
         return false
     }
     
-    override func canPreventGestureRecognizer(preventedGestureRecognizer: UIGestureRecognizer) -> Bool {
+    override func canPrevent(_ preventedGestureRecognizer: UIGestureRecognizer) -> Bool {
         return false
     }
 }

@@ -1,9 +1,9 @@
 PODS:
-  - CorePlot (2.0)
+  - CorePlot (2.2)
   - DAScratchPad (0.4)
   - LoremIpsum (1.0.0)
   - MDRadialProgress (1.3.2)
-  - SVProgressHUD (1.1.3)
+  - SVProgressHUD (2.1.2)
 
 DEPENDENCIES:
   - CorePlot
@@ -13,10 +13,12 @@ DEPENDENCIES:
   - SVProgressHUD
 
 SPEC CHECKSUMS:
-  CorePlot: b7f422ad363f2b0e48152471d6da45ce232eb8c6
+  CorePlot: cbe0c6e14220705e32e06a89c7d6a5a908b7d7d8
   DAScratchPad: 0b772dc02fe8b77d9b75c75f2edb4514f3b7bb1f
   LoremIpsum: 9029c55d36501b2ee0b05cc9ecda11d3a0479160
   MDRadialProgress: 1068574b9b4b870f64b605b07f734385bde5104d
-  SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
+  SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 9537e403f5b8209cc8b06afdc3b89ed8adad0c56
+
+COCOAPODS: 1.2.0

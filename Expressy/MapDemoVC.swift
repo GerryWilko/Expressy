@@ -12,11 +12,11 @@ import SVProgressHUD
 import MessageUI
 
 class MapDemoVC: UIViewController, MFMailComposeViewControllerDelegate {
-    private let pitchBound:CGFloat = 50.0
+    fileprivate let pitchBound:CGFloat = 50.0
     
-    private var startRecordTime:NSTimeInterval?
-    private var touchHeading:CLLocationDirection!
-    private var touchPitch:CGFloat!
+    fileprivate var startRecordTime:TimeInterval?
+    fileprivate var touchHeading:CLLocationDirection!
+    fileprivate var touchPitch:CGFloat!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,14 +26,14 @@ class MapDemoVC: UIViewController, MFMailComposeViewControllerDelegate {
         
         let userCoordinate = CLLocationCoordinate2D(latitude: 51.5033, longitude: -0.11967)
         let eyeCoordinate = CLLocationCoordinate2D(latitude: 51.5033, longitude: -0.11967)
-        let mapCamera = MKMapCamera(lookingAtCenterCoordinate: userCoordinate, fromEyeCoordinate: eyeCoordinate, eyeAltitude: 400.0)
+        let mapCamera = MKMapCamera(lookingAtCenter: userCoordinate, fromEyeCoordinate: eyeCoordinate, eyeAltitude: 400.0)
         map.setCamera(mapCamera, animated: true)
         
         touchHeading = map.camera.heading
         touchPitch = map.camera.pitch
         
-        let rollRecognizer = EXTRollGestureRecognizer(target: self, action: Selector("rollUpdated:"))
-        let pitchRecognizer = EXTPitchGestureRecognizer(target: self, action: Selector("pitchUpdated:"))
+        let rollRecognizer = EXTRollGestureRecognizer(target: self, action: #selector(MapDemoVC.rollUpdated(_:)))
+        let pitchRecognizer = EXTPitchGestureRecognizer(target: self, action: #selector(MapDemoVC.pitchUpdated(_:)))
         
         rollRecognizer.cancelsTouchesInView = false
         pitchRecognizer.cancelsTouchesInView = false
@@ -42,23 +42,23 @@ class MapDemoVC: UIViewController, MFMailComposeViewControllerDelegate {
         map.addGestureRecognizer(pitchRecognizer)
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesBegan(touches, withEvent: event)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
         touchHeading = (view as! MKMapView).camera.heading
     }
     
-    @IBAction func etToggle(sender: AnyObject) {
+    @IBAction func etToggle(_ sender: AnyObject) {
         self.view.gestureRecognizers?.forEach({ (recognizer) -> () in
-            recognizer.enabled = !recognizer.enabled
+            recognizer.isEnabled = !recognizer.isEnabled
         })
-        SVProgressHUD.showImage(UIImage(named: "ExpressyIcon"), status: self.view.gestureRecognizers!.first!.enabled ? "Expressive Touch Enabled" : "Expressive Touch Disabled")
+        SVProgressHUD.show(UIImage(named: "ExpressyIcon"), status: self.view.gestureRecognizers!.first!.isEnabled ? "Expressive Touch Enabled" : "Expressive Touch Disabled")
     }
     
-    func rollUpdated(recognizer:EXTRollGestureRecognizer) {
+    func rollUpdated(_ recognizer:EXTRollGestureRecognizer) {
         let map = view as! MKMapView
-        if recognizer.state == .Began {
+        if recognizer.state == .began {
             touchHeading = map.camera.heading
-        } else if recognizer.state == .Changed {
+        } else if recognizer.state == .changed {
             let newRoll = touchHeading + CLLocationDirection(recognizer.currentRoll)
             
             let camera = map.camera.copy() as! MKMapCamera
@@ -68,11 +68,11 @@ class MapDemoVC: UIViewController, MFMailComposeViewControllerDelegate {
         }
     }
     
-    func pitchUpdated(recognizer:EXTPitchGestureRecognizer) {
+    func pitchUpdated(_ recognizer:EXTPitchGestureRecognizer) {
         let map = view as! MKMapView
-        if recognizer.state == .Began {
+        if recognizer.state == .began {
             touchPitch = map.camera.pitch
-        } else if recognizer.state == .Changed {
+        } else if recognizer.state == .changed {
             var newPitch = touchPitch + CGFloat(-recognizer.currentPitch * 3)
             
             if (newPitch < 0) {
@@ -88,26 +88,26 @@ class MapDemoVC: UIViewController, MFMailComposeViewControllerDelegate {
         }
     }
     
-    @IBAction func RecordBtn(sender: UIBarButtonItem) {
+    @IBAction func RecordBtn(_ sender: UIBarButtonItem) {
         if let startTime = startRecordTime {
             sender.image = UIImage(named: "RecordIcon")
             startRecordTime = nil
             
             let csv = CSVBuilder(files: ["mapDemo-sensordata.csv" : SensorData.headerLine()])
             
-            EvalUtils.logDataBetweenTimes(startTime, endTime: NSDate.timeIntervalSinceReferenceDate(), csv: csv, file: "mapDemo-sensordata.csv")
+            EvalUtils.logDataBetweenTimes(startTime, endTime: Date.timeIntervalSinceReferenceDate, csv: csv, file: "mapDemo-sensordata.csv")
             
             emailCSV(csv)
             
             SensorCache.resetLimit()
         } else {
             sender.image = UIImage(named: "PauseIcon")
-            startRecordTime = NSDate.timeIntervalSinceReferenceDate()
+            startRecordTime = Date.timeIntervalSinceReferenceDate
             SensorCache.setRecordLimit()
         }
     }
     
-    func emailCSV(csv:CSVBuilder) {
+    func emailCSV(_ csv:CSVBuilder) {
         if(MFMailComposeViewController.canSendMail()){
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
@@ -115,27 +115,27 @@ class MapDemoVC: UIViewController, MFMailComposeViewControllerDelegate {
             mail.setSubject("Map Demo sensor data")
             
             for file in csv.files {
-                if let data = file.1.dataUsingEncoding(NSUTF8StringEncoding) {
+                if let data = file.1.data(using: String.Encoding.utf8) {
                     mail.addAttachmentData(data, mimeType: "text/csv", fileName: file.0)
                 } else {
-                    let alert = UIAlertController(title: "Error exporting CSV", message: "Unable to read CSV file.", preferredStyle: UIAlertControllerStyle.Alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-                    presentViewController(alert, animated: true, completion: nil)
+                    let alert = UIAlertController(title: "Error exporting CSV", message: "Unable to read CSV file.", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    present(alert, animated: true, completion: nil)
                 }
             }
             
             mail.setToRecipients(["gerrywilko@googlemail.com"])
-            presentViewController(mail, animated: true, completion: nil)
+            present(mail, animated: true, completion: nil)
         }
         else {
-            let alert = UIAlertController(title: "Error exporting CSV", message: "Your device cannot send emails.", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-            presentViewController(alert, animated: true, completion: nil)
+            let alert = UIAlertController(title: "Error exporting CSV", message: "Your device cannot send emails.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            present(alert, animated: true, completion: nil)
         }
     }
     
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
-        dismissViewControllerAnimated(true, completion: nil)
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 }

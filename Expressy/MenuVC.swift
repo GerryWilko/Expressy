@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class MenuVC : UITableViewController {
     @IBOutlet weak var connectDeviceBtn: UIBarButtonItem!
@@ -16,8 +17,8 @@ class MenuVC : UITableViewController {
     }
     
     override func viewDidLoad() {
-        performSegueWithIdentifier("connectDeviceSegue", sender: self)
+        performSegue(withIdentifier: "connectDeviceSegue", sender: self)
     }
     
-    @IBAction func unwindToMenu(segue: UIStoryboardSegue) {}
+    @IBAction func unwindToMenu(_ segue: UIStoryboardSegue) {}
 }

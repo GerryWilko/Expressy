@@ -16,14 +16,14 @@ typedef NS_ENUM (NSInteger, CPTPlotRangeComparisonResult) {
 /**
  *  @brief An array of plot ranges.
  **/
-typedef NSArray<CPTPlotRange *> *CPTPlotRangeArray;
+typedef NSArray<CPTPlotRange *> CPTPlotRangeArray;
 
 /**
  *  @brief A mutable array of plot ranges.
  **/
-typedef NSMutableArray<CPTPlotRange *> *CPTMutablePlotRangeArray;
+typedef NSMutableArray<CPTPlotRange *> CPTMutablePlotRangeArray;
 
-@interface CPTPlotRange : NSObject<NSCoding, NSCopying, NSMutableCopying>
+@interface CPTPlotRange : NSObject<NSCopying, NSMutableCopying, NSCoding, NSSecureCoding>
 
 /// @name Range Limits
 /// @{
@@ -58,7 +58,7 @@ typedef NSMutableArray<CPTPlotRange *> *CPTMutablePlotRangeArray;
 /// @{
 -(nonnull instancetype)initWithLocation:(nonnull NSNumber *)loc length:(nonnull NSNumber *)len;
 -(nonnull instancetype)initWithLocationDecimal:(NSDecimal)loc lengthDecimal:(NSDecimal)len NS_DESIGNATED_INITIALIZER;
--(nonnull instancetype)initWithCoder:(nonnull NSCoder *)decoder NS_DESIGNATED_INITIALIZER;
+-(nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder NS_DESIGNATED_INITIALIZER;
 /// @}
 
 /// @name Checking Ranges

@@ -9,11 +9,11 @@
 import Foundation
 
 class MathUtils {
-    class func deg2rad(degrees:Float) -> Float {
+    class func deg2rad(_ degrees:Float) -> Float {
         return Float((M_PI / 180)) * degrees
     }
     
-    class func rad2deg(radians:Float) -> Float {
+    class func rad2deg(_ radians:Float) -> Float {
         return radians * Float((M_PI / 180))
     }
 }

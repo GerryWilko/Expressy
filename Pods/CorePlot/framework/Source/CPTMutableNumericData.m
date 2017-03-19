@@ -24,12 +24,12 @@
  **/
 @implementation CPTMutableNumericData
 
-/** @property void *mutableBytes
+/** @property nonnull void *mutableBytes
  *  @brief Returns a pointer to the data buffer’s contents.
  **/
 @dynamic mutableBytes;
 
-/** @property CPTNumberArray shape
+/** @property nonnull CPTNumberArray *shape
  *  @brief The shape of the data buffer array. Set a new shape to change the size of the data buffer.
  *
  *  The shape describes the dimensions of the sample array stored in
@@ -46,7 +46,7 @@
  *  @param sample The zero-based index into the sample array. The array is treated as if it only has one dimension.
  *  @return A pointer to the sample or @NULL if the sample index is out of bounds.
  **/
--(void *)mutableSamplePointer:(NSUInteger)sample
+-(nullable void *)mutableSamplePointer:(NSUInteger)sample
 {
     if ( sample < self.numberOfSamples ) {
         return (void *)( (char *)self.mutableBytes + sample * self.sampleBytes );
@@ -58,10 +58,10 @@
 
 /** @brief Gets a pointer to a given sample in the data buffer.
  *  @param idx The zero-based indices into a multi-dimensional sample array. Each index should of type @ref NSUInteger and the number of indices
- *  (including @par{index}) should match the @ref numberOfDimensions.
+ *  (including @par{idx}) should match the @ref numberOfDimensions.
  *  @return A pointer to the sample or @NULL if any of the sample indices are out of bounds.
  **/
--(void *)mutableSamplePointerAtIndex:(NSUInteger)idx, ...
+-(nullable void *)mutableSamplePointerAtIndex:(NSUInteger)idx, ...
  {
     NSUInteger newIndex;
 
@@ -85,9 +85,9 @@
 
 /// @cond
 
--(void *)mutableBytes
+-(nonnull void *)mutableBytes
 {
-    return [(NSMutableData *)self.data mutableBytes];
+    return ( (NSMutableData *)self.data ).mutableBytes;
 }
 
 /// @endcond

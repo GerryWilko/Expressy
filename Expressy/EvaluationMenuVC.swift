@@ -10,7 +10,7 @@ import Foundation
 import MessageUI
 
 class EvaluationMenuVC: UITableViewController, MFMailComposeViewControllerDelegate {
-    private var currentParticipant:Participant?
+    fileprivate var currentParticipant:Participant?
     
     @IBOutlet weak var finishBtn: UIBarButtonItem!
     @IBOutlet weak var catForceCell: UITableViewCell!
@@ -24,65 +24,65 @@ class EvaluationMenuVC: UITableViewController, MFMailComposeViewControllerDelega
     }
     
     override func viewDidLoad() {
-        let alert = UIAlertController(title: "Participant Details", message: "Please enter your details below:", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addTextFieldWithConfigurationHandler { (textField) -> Void in
+        let alert = UIAlertController(title: "Participant Details", message: "Please enter your details below:", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addTextField { (textField) -> Void in
             textField.placeholder = "Age"
-            textField.keyboardType = UIKeyboardType.NumbersAndPunctuation
+            textField.keyboardType = UIKeyboardType.numbersAndPunctuation
         }
         
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: { (action) -> Void in
             self.currentParticipant = Participant(id: EvalUtils.generateParticipantID(), age: Int(alert.textFields![0].text!)!, csvFiles:[CSVBuilder]())
             
             self.navigationItem.title = self.navigationItem.title! + " \(self.currentParticipant!.id)"
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: { (action) -> Void in
-            self.dismissViewControllerAnimated(true, completion: nil)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: { (action) -> Void in
+            self.dismiss(animated: true, completion: nil)
         }))
         
-        presentViewController(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
         SensorCache.setRecordLimit()
     }
     
-    override func viewDidAppear(animated: Bool) {
-        finishBtn.enabled = catForceCell.accessoryType == .Checkmark &&
-            freeForceCell.accessoryType == .Checkmark &&
-            rollRangeCell.accessoryType == .Checkmark &&
-            pitchRangeCell.accessoryType == .Checkmark &&
-            catFlickCell.accessoryType == .Checkmark
+    override func viewDidAppear(_ animated: Bool) {
+        finishBtn.isEnabled = catForceCell.accessoryType == .checkmark &&
+            freeForceCell.accessoryType == .checkmark &&
+            rollRangeCell.accessoryType == .checkmark &&
+            pitchRangeCell.accessoryType == .checkmark &&
+            catFlickCell.accessoryType == .checkmark
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        if isBeingDismissed() {
+        if isBeingDismissed {
             SensorCache.resetLimit()
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let id = segue.identifier {
             switch (id){
             case "catForceSegue":
-                let catForceVC = segue.destinationViewController as! CatForceEvalVC
+                let catForceVC = segue.destination as! CatForceEvalVC
                 catForceVC.participant = currentParticipant?.id
                 catForceVC.evalVC = self
                 break
             case "freeForceSegue":
-                let freeForceVC = segue.destinationViewController as! FreeForceEvalVC
+                let freeForceVC = segue.destination as! FreeForceEvalVC
                 freeForceVC.participant = currentParticipant?.id
                 freeForceVC.evalVC = self
                 break
             case "rollRangeSegue":
-                let rollEvalVC = segue.destinationViewController as! RollEvalVC
+                let rollEvalVC = segue.destination as! RollEvalVC
                 rollEvalVC.participant = currentParticipant?.id
                 rollEvalVC.evalVC = self
                 break
             case "pitchRangeSegue":
-                let pitchEvalVC = segue.destinationViewController as! PitchEvalVC
+                let pitchEvalVC = segue.destination as! PitchEvalVC
                 pitchEvalVC.participant = currentParticipant?.id
                 pitchEvalVC.evalVC = self
                 break
             case "catFlickSegue":
-                let catFlickVC = segue.destinationViewController as! FlickEvalVC
+                let catFlickVC = segue.destination as! FlickEvalVC
                 catFlickVC.participant = currentParticipant?.id
                 catFlickVC.evalVC = self
                 break
@@ -92,56 +92,56 @@ class EvaluationMenuVC: UITableViewController, MFMailComposeViewControllerDelega
         }
     }
     
-    func back(sender:NSObject) {
-        let alert = UIAlertController(title: "Are you sure?", message: "Leaving now will discard current evalauation data.", preferredStyle: UIAlertControllerStyle.Alert)
+    func back(_ sender:NSObject) {
+        let alert = UIAlertController(title: "Are you sure?", message: "Leaving now will discard current evalauation data.", preferredStyle: UIAlertControllerStyle.alert)
         
-        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
-            self.dismissViewControllerAnimated(true, completion: nil)
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { (action) -> Void in
+            self.dismiss(animated: true, completion: nil)
         }))
-        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.cancel, handler: nil))
         
-        presentViewController(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func finish(sender: AnyObject) {
+    @IBAction func finish(_ sender: AnyObject) {
         emailCSV()
     }
     
-    func completeFreeForce(csv:CSVBuilder) {
-        freeForceCell.accessoryType = .Checkmark
-        freeForceCell.userInteractionEnabled = false
+    func completeFreeForce(_ csv:CSVBuilder) {
+        freeForceCell.accessoryType = .checkmark
+        freeForceCell.isUserInteractionEnabled = false
         currentParticipant?.csvFiles.append(csv)
-        catForceCell.accessoryType = .DisclosureIndicator
-        catForceCell.userInteractionEnabled = true
+        catForceCell.accessoryType = .disclosureIndicator
+        catForceCell.isUserInteractionEnabled = true
     }
     
-    func completeCatForce(csv:CSVBuilder) {
-        catForceCell.accessoryType = .Checkmark
-        catForceCell.userInteractionEnabled = false
+    func completeCatForce(_ csv:CSVBuilder) {
+        catForceCell.accessoryType = .checkmark
+        catForceCell.isUserInteractionEnabled = false
         currentParticipant?.csvFiles.append(csv)
-        rollRangeCell.accessoryType = .DisclosureIndicator
-        rollRangeCell.userInteractionEnabled = true
+        rollRangeCell.accessoryType = .disclosureIndicator
+        rollRangeCell.isUserInteractionEnabled = true
     }
     
-    func completeRoll(csv:CSVBuilder) {
-        rollRangeCell.accessoryType = .Checkmark
-        rollRangeCell.userInteractionEnabled = false
+    func completeRoll(_ csv:CSVBuilder) {
+        rollRangeCell.accessoryType = .checkmark
+        rollRangeCell.isUserInteractionEnabled = false
         currentParticipant?.csvFiles.append(csv)
-        pitchRangeCell.accessoryType = .DisclosureIndicator
-        pitchRangeCell.userInteractionEnabled = true
+        pitchRangeCell.accessoryType = .disclosureIndicator
+        pitchRangeCell.isUserInteractionEnabled = true
     }
     
-    func completePitch(csv:CSVBuilder) {
-        pitchRangeCell.accessoryType = .Checkmark
-        pitchRangeCell.userInteractionEnabled = false
+    func completePitch(_ csv:CSVBuilder) {
+        pitchRangeCell.accessoryType = .checkmark
+        pitchRangeCell.isUserInteractionEnabled = false
         currentParticipant?.csvFiles.append(csv)
-        catFlickCell.accessoryType = .DisclosureIndicator
-        catFlickCell.userInteractionEnabled = true
+        catFlickCell.accessoryType = .disclosureIndicator
+        catFlickCell.isUserInteractionEnabled = true
     }
     
-    func completeFlick(csv:CSVBuilder) {
-        catFlickCell.accessoryType = .Checkmark
-        catFlickCell.userInteractionEnabled = false
+    func completeFlick(_ csv:CSVBuilder) {
+        catFlickCell.accessoryType = .checkmark
+        catFlickCell.isUserInteractionEnabled = false
         currentParticipant?.csvFiles.append(csv)
     }
     
@@ -154,28 +154,28 @@ class EvaluationMenuVC: UITableViewController, MFMailComposeViewControllerDelega
             
             for csv in currentParticipant!.csvFiles {
                 for file in csv.files {
-                    if let data = file.1.dataUsingEncoding(NSUTF8StringEncoding) {
+                    if let data = file.1.data(using: String.Encoding.utf8) {
                         mail.addAttachmentData(data, mimeType: "text/csv", fileName: file.0)
                     } else {
-                        let alert = UIAlertController(title: "Error exporting CSV", message: "Unable to read CSV file.", preferredStyle: UIAlertControllerStyle.Alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-                        presentViewController(alert, animated: true, completion: nil)
+                        let alert = UIAlertController(title: "Error exporting CSV", message: "Unable to read CSV file.", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                        present(alert, animated: true, completion: nil)
                     }
                 }
             }
             mail.setToRecipients(["gerrywilko@googlemail.com"])
-            presentViewController(mail, animated: true, completion: nil)
+            present(mail, animated: true, completion: nil)
         }
         else {
-            let alert = UIAlertController(title: "Error exporting CSV", message: "Your device cannot send emails.", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-            presentViewController(alert, animated: true, completion: nil)
+            let alert = UIAlertController(title: "Error exporting CSV", message: "Your device cannot send emails.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            present(alert, animated: true, completion: nil)
         }
     }
     
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
-        dismissViewControllerAnimated(true, completion: nil)
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 }
 

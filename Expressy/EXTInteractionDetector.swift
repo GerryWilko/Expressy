@@ -20,22 +20,22 @@ class EXTInteractionDetector {
     /// Value denoting if detection is currently active.
     var detecting:Bool
     
-    private var lastDataTime:NSTimeInterval!
+    fileprivate var lastDataTime:TimeInterval!
     
-    private var metricsCallbacks:Array<(data:Float?) -> Void>
-    private var duringMetricsCallbacks:Array<(data:Float?) -> Void>
-    private var postMetricsCallbacks:Array<(data:Float?) -> Void>
-    private var flickCallbacks:Array<(data:Float?) -> Void>
-    private var noFlickCallBacks:Array<(data:Float?) -> Void>
-    private var hardPressCallbacks:Array<(data:Float?) -> Void>
-    private var mediumPressCallbacks:Array<(data:Float?) -> Void>
-    private var softPressCallbacks:Array<(data:Float?) -> Void>
-    private var allPressCallbacks:Array<(data:Float?) -> Void>
+    fileprivate var metricsCallbacks:Array<(_ data:Float?) -> Void>
+    fileprivate var duringMetricsCallbacks:Array<(_ data:Float?) -> Void>
+    fileprivate var postMetricsCallbacks:Array<(_ data:Float?) -> Void>
+    fileprivate var flickCallbacks:Array<(_ data:Float?) -> Void>
+    fileprivate var noFlickCallBacks:Array<(_ data:Float?) -> Void>
+    fileprivate var hardPressCallbacks:Array<(_ data:Float?) -> Void>
+    fileprivate var mediumPressCallbacks:Array<(_ data:Float?) -> Void>
+    fileprivate var softPressCallbacks:Array<(_ data:Float?) -> Void>
+    fileprivate var allPressCallbacks:Array<(_ data:Float?) -> Void>
     
-    private let dataCache:SensorCache
-    private let medForceThreshold:Float = 0.2
-    private let hardForceThreshold:Float = 0.5
-    private let flickThreshold:Float = 0.5
+    fileprivate let dataCache:SensorCache
+    fileprivate let medForceThreshold:Float = 0.2
+    fileprivate let hardForceThreshold:Float = 0.5
+    fileprivate let flickThreshold:Float = 0.5
     
     /// Initialises a new InteractionDetector analysing sensor data from the provided data cache.
     /// - parameter Sensor: data cache to be used.
@@ -49,17 +49,17 @@ class EXTInteractionDetector {
         touchedDown = false
         detecting = false
         
-        metricsCallbacks = Array<(data:Float?) -> Void>()
-        duringMetricsCallbacks = Array<(data:Float?) -> Void>()
-        postMetricsCallbacks = Array<(data:Float?) -> Void>()
-        flickCallbacks = Array<(data:Float?) -> Void>()
-        noFlickCallBacks = Array<(data:Float?) -> Void>()
-        hardPressCallbacks = Array<(data:Float?) -> Void>()
-        mediumPressCallbacks = Array<(data:Float?) -> Void>()
-        softPressCallbacks = Array<(data:Float?) -> Void>()
-        allPressCallbacks = Array<(data:Float?) -> Void>()
+        metricsCallbacks = Array<(_ data:Float?) -> Void>()
+        duringMetricsCallbacks = Array<(_ data:Float?) -> Void>()
+        postMetricsCallbacks = Array<(_ data:Float?) -> Void>()
+        flickCallbacks = Array<(_ data:Float?) -> Void>()
+        noFlickCallBacks = Array<(_ data:Float?) -> Void>()
+        hardPressCallbacks = Array<(_ data:Float?) -> Void>()
+        mediumPressCallbacks = Array<(_ data:Float?) -> Void>()
+        softPressCallbacks = Array<(_ data:Float?) -> Void>()
+        allPressCallbacks = Array<(_ data:Float?) -> Void>()
         
-        lastDataTime = NSDate.timeIntervalSinceReferenceDate()
+        lastDataTime = Date.timeIntervalSinceReferenceDate
         
         dataCache.subscribe(dataCallback)
     }
@@ -77,7 +77,7 @@ class EXTInteractionDetector {
     
     /// Internal function for processing of data callbacks from SensorProcessor.
     /// - parameter data: Sensor data recieved from sensor.
-    private func dataCallback(data:SensorData) {
+    fileprivate func dataCallback(_ data:SensorData) {
         if (!detecting) { return }
         
         currentForce = calculateForce(data)
@@ -104,7 +104,7 @@ class EXTInteractionDetector {
     func touchDown() {
         if (!detecting) { return }
         
-        let touchDownTime = NSDate.timeIntervalSinceReferenceDate()
+        let touchDownTime = Date.timeIntervalSinceReferenceDate
         
         touchedDown = true
         currentRoll = 0.0
@@ -130,7 +130,7 @@ class EXTInteractionDetector {
     func touchUp() {
         if (!detecting) { return }
         
-        let touchUpTime = NSDate.timeIntervalSinceReferenceDate()
+        let touchUpTime = Date.timeIntervalSinceReferenceDate
         
         touchedDown = false
         currentRoll = 0.0
@@ -139,7 +139,7 @@ class EXTInteractionDetector {
         let data = dataCache.getForTime(touchUpTime)
         data.touchUp()
         
-        NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("touchEndCallback:"), userInfo: touchUpTime, repeats: false)
+        Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(EXTInteractionDetector.touchEndCallback(_:)), userInfo: touchUpTime, repeats: false)
     }
     
     /// Function for informing of cancelled touch event.
@@ -153,9 +153,9 @@ class EXTInteractionDetector {
     
     /// Timer callback function for detection of events after touch up event.
     /// - parameter timer: Timer that fired.
-    @objc private func touchEndCallback(timer:NSTimer) {
-        let touchUpTime = timer.userInfo as! NSTimeInterval
-        let end = NSDate.timeIntervalSinceReferenceDate()
+    @objc fileprivate func touchEndCallback(_ timer:Timer) {
+        let touchUpTime = timer.userInfo as! TimeInterval
+        let end = Date.timeIntervalSinceReferenceDate
         
         let flickForce = calculateFlickForce(touchUpTime, end: end)
         
@@ -172,10 +172,10 @@ class EXTInteractionDetector {
     /// Internal function for calculation of rotation changes based upon new sensor data and time since last reading.
     /// - parameter Sensor: data to be analysed.
     /// - returns: New calculation for rotation from touch down.
-    private func calculateRoll(data:SensorData) -> Float {
+    fileprivate func calculateRoll(_ data:SensorData) -> Float {
         var totalRotation = currentRoll
         
-        totalRotation += data.gyro.x * Float(NSTimeInterval(data.time - lastDataTime))
+        totalRotation += data.gyro.x * Float(TimeInterval(data.time - lastDataTime))
         
         return totalRotation
     }
@@ -183,10 +183,10 @@ class EXTInteractionDetector {
     /// Internal function for calculation of pitch changes based upon new sensor data and time since last reading.
     /// - parameter Sensor: data to be analysed.
     /// - returns: New calcuation for pitch from touch down.
-    private func calculatePitch(data:SensorData) -> Float {
+    fileprivate func calculatePitch(_ data:SensorData) -> Float {
         var totalPitch = currentPitch
         
-        totalPitch += data.gyro.y * Float(NSTimeInterval(data.time - lastDataTime))
+        totalPitch += data.gyro.y * Float(TimeInterval(data.time - lastDataTime))
         
         return totalPitch
     }
@@ -194,11 +194,11 @@ class EXTInteractionDetector {
     /// Internal function for calculation of instantaneous force based upon new sensor data and time since last reading.
     /// - parameter Sensor: data to be analysed.
     /// - returns: New calculation for instantaneous force.
-    private func calculateForce(data:SensorData) -> Float {
+    fileprivate func calculateForce(_ data:SensorData) -> Float {
         return data.getAccNoGrav().magnitude()
     }
     
-    func calculateTouchForce(touchDownTime:NSTimeInterval) -> Float {
+    func calculateTouchForce(_ touchDownTime:TimeInterval) -> Float {
         let data = dataCache.getRangeForTime(touchDownTime - 0.1, end: touchDownTime)
         
         var force:Float = 0.0
@@ -216,7 +216,7 @@ class EXTInteractionDetector {
     /// - parameter touchUpTime: Time touch up event occured.
     /// - parameter end: End time of window for analysis.
     /// - returns: New calculation of flick force.
-    private func calculateFlickForce(touchUpTime:NSTimeInterval, end:NSTimeInterval) -> Float {
+    fileprivate func calculateFlickForce(_ touchUpTime:TimeInterval, end:TimeInterval) -> Float {
         let data = dataCache.getRangeForTime(touchUpTime, end: end)
         
         var maxMag:Float = 0.0
@@ -231,87 +231,87 @@ class EXTInteractionDetector {
     }
     
     /// Internal function to fire metric callbacks.
-    private func fireMetrics() {
+    fileprivate func fireMetrics() {
         fireCallbacks(nil, callbacks: metricsCallbacks)
     }
     
     /// Internal function to fire during metric callbacks.
-    private func fireDuringMetrics() {
+    fileprivate func fireDuringMetrics() {
         fireCallbacks(nil, callbacks: duringMetricsCallbacks)
     }
     
     /// Internal function to fire post metric callbacks.
-    private func firePostMetrics() {
+    fileprivate func firePostMetrics() {
         fireCallbacks(nil, callbacks: postMetricsCallbacks)
     }
     
     /// Internal function to fire flick callbacks.
     /// - parameter data: Value representing flicked force.
-    private func fireFlick(data:Float) {
+    fileprivate func fireFlick(_ data:Float) {
        fireCallbacks(data, callbacks: flickCallbacks)
     }
     
     /// Internal function to fire no flick callbacks.
     /// - parameter data: Value representing flicked force.
-    private func fireNoFlick(data:Float) {
+    fileprivate func fireNoFlick(_ data:Float) {
         fireCallbacks(data, callbacks: noFlickCallBacks)
     }
     
     /// Internal function to fire hard press callbacks.
     /// - parameter data: Value representing touch force.
-    private func fireHardPress(data:Float) {
+    fileprivate func fireHardPress(_ data:Float) {
         fireCallbacks(data, callbacks: hardPressCallbacks)
     }
     
     /// Internal function to fire medium press callbacks.
     /// - parameter data: Value representing touch force.
-    private func fireMediumPress(data:Float) {
+    fileprivate func fireMediumPress(_ data:Float) {
         fireCallbacks(data, callbacks: mediumPressCallbacks)
     }
     
     /// Internal function to fire soft press callbacks.
     /// - parameter data: Value representing touch force.
-    private func fireSoftPress(data:Float) {
+    fileprivate func fireSoftPress(_ data:Float) {
         fireCallbacks(data, callbacks: softPressCallbacks)
     }
     
     /// Internal function to fire all press callbacks.
     /// - parameter data: Value representing touch force.
-    private func fireAllPress(data:Float) {
+    fileprivate func fireAllPress(_ data:Float) {
         fireCallbacks(data, callbacks: allPressCallbacks)
     }
     
     /// Internal function to fire a set of callbacks.
     /// - parameter data: Data to be passed to callbacks.
     /// - parameter callbacks: Set of callbacks to be fired.
-    private func fireCallbacks(data:Float?, callbacks:[(data:Float?) -> Void]) {
+    fileprivate func fireCallbacks(_ data:Float?, callbacks:[(_ data:Float?) -> Void]) {
         for cb in callbacks {
-            cb(data: data)
+            cb(data)
         }
     }
     
     /// Event subscription system, subscribing to defined events causes callback to be fired when specified event occurs.
     /// - parameter event: Type of event to be subscribed.
     /// - parameter callback: Function with data parameter to be called on event occurence.
-    func subscribe(event:EXTEvent, callback:(data:Float?) -> Void) {
+    func subscribe(_ event:EXTEvent, callback:@escaping (_ data:Float?) -> Void) {
         switch event {
-        case .Metrics:
+        case .metrics:
             metricsCallbacks.append(callback)
-        case .DuringMetrics:
+        case .duringMetrics:
             duringMetricsCallbacks.append(callback)
-        case .PostMetrics:
+        case .postMetrics:
             postMetricsCallbacks.append(callback)
-        case .Flick:
+        case .flick:
             flickCallbacks.append(callback)
-        case .NoFlick:
+        case .noFlick:
             noFlickCallBacks.append(callback)
-        case .HardPress:
+        case .hardPress:
             hardPressCallbacks.append(callback)
-        case .MediumPress:
+        case .mediumPress:
             mediumPressCallbacks.append(callback)
-        case .SoftPress:
+        case .softPress:
             softPressCallbacks.append(callback)
-        case .AllPress:
+        case .allPress:
             allPressCallbacks.append(callback)
         }
     }
@@ -341,5 +341,5 @@ class EXTInteractionDetector {
 /// - SoftPress: Event fired when the screen is struck soft.
 /// - AllPress: Event fired each time the screen is struck.
 enum EXTEvent {
-    case Metrics, DuringMetrics, PostMetrics, Flick, NoFlick, HardPress, MediumPress, SoftPress, AllPress
+    case metrics, duringMetrics, postMetrics, flick, noFlick, hardPress, mediumPress, softPress, allPress
 }

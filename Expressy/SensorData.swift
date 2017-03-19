@@ -10,7 +10,7 @@ import Foundation
 
 class SensorData {
     /// Time data was recieved.
-    let time:NSTimeInterval
+    let time:TimeInterval
     /// Vector of accelerometer values.
     let acc:Vector3D
     /// Vector of gyroscope values.
@@ -21,6 +21,8 @@ class SensorData {
     let q:Vector4D
     /// Vector of estimation of gravity.
     let grav:Vector3D
+    /// Vector of linear acceleration.
+    let linAcc:Vector3D
     
     var touch:TouchEvent, touchFlickForce:Float
     
@@ -40,12 +42,12 @@ class SensorData {
     /// - parameter qz: Quaternion z-axis.
     /// - parameter qw: Quaternion w-axis.
     /// - returns: SensorData instance.
-    init(time:NSTimeInterval, ax:Float, ay:Float, az:Float, gx:Float, gy:Float, gz:Float, mx:Float?, my:Float?, mz:Float?, qx:Float, qy:Float, qz:Float, qw:Float) {
+    init(time:TimeInterval, ax:Float, ay:Float, az:Float, gx:Float, gy:Float, gz:Float, mx:Float?, my:Float?, mz:Float?, qx:Float, qy:Float, qz:Float, qw:Float) {
         self.time = time
         acc = Vector3D(x: ax, y: ay, z: az)
         gyro = Vector3D(x: gx, y: gy, z: gz)
         
-        if let magx = mx, magy = my, magz = mz {
+        if let magx = mx, let magy = my, let magz = mz {
             mag = Vector3D(x: magx, y: magy, z: magz)
         } else {
             mag = nil
@@ -57,8 +59,9 @@ class SensorData {
         let gravy = 2 * (q.x * q.y + q.z * q.w)
         let gravz = q.x * q.x - q.y * q.y - q.z * q.z + q.w * q.w
         grav = Vector3D(x: gravx, y: gravy, z: gravz)
+        linAcc = acc - grav
         
-        touch = TouchEvent.None
+        touch = TouchEvent.none
         touchFlickForce = 0.0
     }
     
@@ -76,17 +79,17 @@ class SensorData {
     
     /// Function to pass touch down event, places mark in sensor data for debugging purposes.
     /// - parameter touchForce: Value denoting force screen was struck.
-    func touchDown(touchForce:Float) {
-        touch = TouchEvent.Down
+    func touchDown(_ touchForce:Float) {
+        touch = TouchEvent.down
         touchFlickForce = touchForce
     }
     
     /// Function to pass touch up event, places mark in sensor data for debuggin purposes.
     func touchUp() {
-        touch = TouchEvent.Up
+        touch = TouchEvent.up
     }
     
-    func setFlick(flickForce:Float) {
+    func setFlick(_ flickForce:Float) {
         touchFlickForce = flickForce
     }
     
@@ -115,5 +118,5 @@ class SensorData {
 /// - Up: Touch up event occurred when this data was received.
 /// - None: No touch event occurred.
 enum TouchEvent:Int {
-    case Down = 1, Up = -1, None = 0
+    case down = 1, up = -1, none = 0
 }

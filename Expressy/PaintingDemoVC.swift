@@ -12,11 +12,11 @@ import SVProgressHUD
 import MessageUI
 
 class PaintingDemoVC: UIViewController, MFMailComposeViewControllerDelegate {
-    private let startingStrokeWidth:CGFloat = 30.0
-    private let minDrawWidth:CGFloat = 5.00
+    fileprivate let startingStrokeWidth:CGFloat = 30.0
+    fileprivate let minDrawWidth:CGFloat = 5.00
     
-    private var initialWidth:CGFloat!
-    private var startRecordTime:NSTimeInterval?
+    fileprivate var initialWidth:CGFloat!
+    fileprivate var startRecordTime:TimeInterval?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -25,9 +25,9 @@ class PaintingDemoVC: UIViewController, MFMailComposeViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let paintForce = EXTForceGestureRecognizer(target: self, action: Selector("paintForce:"), event: .AllPress)
-        let paintRoll = EXTRollGestureRecognizer(target: self, action: Selector("paintRoll:"))
-        let paintFlick = EXTFlickGestureRecognizer(target: self, action: Selector("paintFlick:"))
+        let paintForce = EXTForceGestureRecognizer(target: self, action: #selector(PaintingDemoVC.paintForce(_:)), event: .allPress)
+        let paintRoll = EXTRollGestureRecognizer(target: self, action: #selector(PaintingDemoVC.paintRoll(_:)))
+        let paintFlick = EXTFlickGestureRecognizer(target: self, action: #selector(PaintingDemoVC.paintFlick(_:)))
         
         paintForce.cancelsTouchesInView = false
         paintRoll.cancelsTouchesInView = false
@@ -38,17 +38,17 @@ class PaintingDemoVC: UIViewController, MFMailComposeViewControllerDelegate {
         self.view.addGestureRecognizer(paintFlick)
     }
     
-    @IBAction func etToggle(sender: AnyObject) {
+    @IBAction func etToggle(_ sender: AnyObject) {
         self.view.gestureRecognizers?.forEach({ (recognizer) -> () in
-            recognizer.enabled = !recognizer.enabled
+            recognizer.isEnabled = !recognizer.isEnabled
         })
-        SVProgressHUD.showImage(UIImage(named: "ExpressyIcon"), status: self.view.gestureRecognizers!.first!.enabled ? "Expressive Touch Enabled" : "Expressive Touch Disabled")
+        SVProgressHUD.show(UIImage(named: "ExpressyIcon"), status: self.view.gestureRecognizers!.first!.isEnabled ? "Expressive Touch Enabled" : "Expressive Touch Disabled")
     }
     
-    func paintForce(recognizer:EXTForceGestureRecognizer) {
+    func paintForce(_ recognizer:EXTForceGestureRecognizer) {
         let paintView = self.view as! DAScratchPadView
         switch recognizer.state {
-        case .Began:
+        case .began:
             paintView.drawWidth = startingStrokeWidth * CGFloat(recognizer.tapForce)
             paintView.drawWidth = paintView.drawWidth > minDrawWidth ? paintView.drawWidth : minDrawWidth
             initialWidth = paintView.drawWidth
@@ -57,10 +57,10 @@ class PaintingDemoVC: UIViewController, MFMailComposeViewControllerDelegate {
         }
     }
     
-    func paintRoll(recognizer:EXTRollGestureRecognizer) {
+    func paintRoll(_ recognizer:EXTRollGestureRecognizer) {
         let paintView = self.view as! DAScratchPadView
         switch recognizer.state {
-        case .Changed:
+        case .changed:
             paintView.drawWidth = initialWidth + CGFloat(recognizer.currentRoll / 2.00)
             paintView.drawWidth = paintView.drawWidth > minDrawWidth ? paintView.drawWidth : minDrawWidth
         default:
@@ -68,50 +68,50 @@ class PaintingDemoVC: UIViewController, MFMailComposeViewControllerDelegate {
         }
     }
     
-    func paintFlick(recognizer:EXTFlickGestureRecognizer) {
+    func paintFlick(_ recognizer:EXTFlickGestureRecognizer) {
         //let paintView = self.view as! DAScratchPadView
         switch recognizer.state {
-        case .Ended:
+        case .ended:
             break
         default:
             break
         }
     }
     
-    @IBAction func clear(sender: AnyObject) {
+    @IBAction func clear(_ sender: AnyObject) {
         let paintView = self.view as! DAScratchPadView
-        paintView.clearToColor(UIColor.whiteColor())
+        paintView.clear(to: UIColor.white)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "colorPickerSegue" {
-            let destinationVC = segue.destinationViewController as! UINavigationController
+            let destinationVC = segue.destination as! UINavigationController
             let colorPicker = destinationVC.topViewController as! PaintingDemoColorPickerVC
             colorPicker.paintView = self.view as! DAScratchPadView
         }
     }
     
-    @IBAction func unwindToPaintingDemo(segue: UIStoryboardSegue) {}
+    @IBAction func unwindToPaintingDemo(_ segue: UIStoryboardSegue) {}
     
-    @IBAction func RecordBtn(sender: UIBarButtonItem) {
+    @IBAction func RecordBtn(_ sender: UIBarButtonItem) {
         if let startTime = startRecordTime {
             sender.image = UIImage(named: "RecordIcon")
             startRecordTime = nil
             
             let csv = CSVBuilder(files: ["paintingDemo-sensordata.csv" : SensorData.headerLine()])
             
-            EvalUtils.logDataBetweenTimes(startTime, endTime: NSDate.timeIntervalSinceReferenceDate(), csv: csv, file: "paintingDemo-sensordata.csv")
+            EvalUtils.logDataBetweenTimes(startTime, endTime: Date.timeIntervalSinceReferenceDate, csv: csv, file: "paintingDemo-sensordata.csv")
             
             emailCSV(csv)
             SensorCache.resetLimit()
         } else {
             sender.image = UIImage(named: "PauseIcon")
-            startRecordTime = NSDate.timeIntervalSinceReferenceDate()
+            startRecordTime = Date.timeIntervalSinceReferenceDate
             SensorCache.setRecordLimit()
         }
     }
     
-    func emailCSV(csv:CSVBuilder) {
+    func emailCSV(_ csv:CSVBuilder) {
         if(MFMailComposeViewController.canSendMail()){
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
@@ -119,26 +119,26 @@ class PaintingDemoVC: UIViewController, MFMailComposeViewControllerDelegate {
             mail.setSubject("Painting Demo sensor data")
             
             for file in csv.files {
-                if let data = file.1.dataUsingEncoding(NSUTF8StringEncoding) {
+                if let data = file.1.data(using: String.Encoding.utf8) {
                     mail.addAttachmentData(data, mimeType: "text/csv", fileName: file.0)
                 } else {
-                    let alert = UIAlertController(title: "Error exporting CSV", message: "Unable to read CSV file.", preferredStyle: UIAlertControllerStyle.Alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-                    presentViewController(alert, animated: true, completion: nil)
+                    let alert = UIAlertController(title: "Error exporting CSV", message: "Unable to read CSV file.", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    present(alert, animated: true, completion: nil)
                 }
             }
             
             mail.setToRecipients(["gerrywilko@googlemail.com"])
-            presentViewController(mail, animated: true, completion: nil)
+            present(mail, animated: true, completion: nil)
         }
         else {
-            let alert = UIAlertController(title: "Error exporting CSV", message: "Your device cannot send emails.", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-            presentViewController(alert, animated: true, completion: nil)
+            let alert = UIAlertController(title: "Error exporting CSV", message: "Your device cannot send emails.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            present(alert, animated: true, completion: nil)
         }
     }
     
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }

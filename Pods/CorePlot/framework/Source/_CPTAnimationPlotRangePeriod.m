@@ -5,22 +5,22 @@
 
 @implementation _CPTAnimationPlotRangePeriod
 
--(void)setStartValueFromObject:(id)boundObject propertyGetter:(SEL)boundGetter
+-(void)setStartValueFromObject:(nonnull id)boundObject propertyGetter:(nonnull SEL)boundGetter
 {
     typedef NSValue *(*GetterType)(id, SEL);
-    GetterType getterMethod = (GetterType)[boundObject methodForSelector : boundGetter];
+    GetterType getterMethod = (GetterType)[boundObject methodForSelector:boundGetter];
 
     self.startValue = getterMethod(boundObject, boundGetter);
 }
 
--(BOOL)canStartWithValueFromObject:(id)boundObject propertyGetter:(SEL)boundGetter
+-(BOOL)canStartWithValueFromObject:(nonnull id)boundObject propertyGetter:(nonnull SEL)boundGetter
 {
     if ( !self.startValue ) {
         [self setStartValueFromObject:boundObject propertyGetter:boundGetter];
     }
 
     typedef CPTPlotRange *(*GetterType)(id, SEL);
-    GetterType getterMethod = (GetterType)[boundObject methodForSelector : boundGetter];
+    GetterType getterMethod = (GetterType)[boundObject methodForSelector:boundGetter];
 
     CPTPlotRange *current = getterMethod(boundObject, boundGetter);
     CPTPlotRange *start   = (CPTPlotRange *)self.startValue;
@@ -34,7 +34,7 @@
            ( CPTDecimalGreaterThanOrEqualTo(currentLoc, endLoc) && CPTDecimalLessThanOrEqualTo(currentLoc, startLoc) );
 }
 
--(NSValue *)tweenedValueForProgress:(CGFloat)progress
+-(nonnull NSValue *)tweenedValueForProgress:(CGFloat)progress
 {
     CPTPlotRange *start = (CPTPlotRange *)self.startValue;
     CPTPlotRange *end   = (CPTPlotRange *)self.endValue;

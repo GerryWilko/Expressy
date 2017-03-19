@@ -11,20 +11,20 @@ import Foundation
 class SensorProcessor {
     /// Central application data cache.
     static let dataCache = SensorCache()
-    private static let accNorm:Float = 4096.0
-    private static let gyroNorm:Float = 0.07
-    private static let magNorm:Float = 0.1
+    fileprivate static let accNorm:Float = 4096.0
+    fileprivate static let gyroNorm:Float = 0.07
+    fileprivate static let magNorm:Float = 0.1
     
     /// Function to pass new Bluetooth packet to be processed into raw sensor data. Also handles calculation of Madgwick quaternion.
     /// - parameter data: Bluetooth packet.
-    class func updateCache(data:NSData) {
-        let dataLength = data.length
+    class func updateCache(_ data:Data) {
+        let dataLength = data.count
         
         assert( dataLength == 20 )
         
-        var buffer = [UInt8](count: dataLength, repeatedValue: 0)
+        var buffer = [UInt8](repeating: 0, count: dataLength)
         
-        data.getBytes(&buffer, length: dataLength)
+        (data as NSData).getBytes(&buffer, length: dataLength)
         
         let ax = Float((CShort(buffer[ 3]) << 8) + CShort(buffer[ 2])) / accNorm
         let ay = Float((CShort(buffer[ 5]) << 8) + CShort(buffer[ 4])) / accNorm
@@ -41,10 +41,10 @@ class SensorProcessor {
         self.updateCache(ax, ay: ay, az: az, gx: gx, gy: gy, gz: gz, mx: mx, my: my, mz: mz)
     }
     
-    class func updateCache(ax: Float, ay: Float, az: Float, gx: Float, gy: Float, gz: Float, mx: Float?, my: Float?, mz: Float?) {
+    class func updateCache(_ ax: Float, ay: Float, az: Float, gx: Float, gy: Float, gz: Float, mx: Float?, my: Float?, mz: Float?) {
         MadgwickAHRSupdateIMU(MathUtils.deg2rad(gx), MathUtils.deg2rad(gy), MathUtils.deg2rad(gz), ax, ay, az)
         
-        let time = NSDate.timeIntervalSinceReferenceDate()
+        let time = Date.timeIntervalSinceReferenceDate
         let data = SensorData(time: time, ax: ax, ay: ay, az: az, gx: gx, gy: gy, gz: gz, mx: mx, my: my, mz: mz, qx: q0, qy: q1, qz: q2, qw: q3)
         
         dataCache.add(data)

@@ -9,12 +9,12 @@
  **/
 @implementation CPTAxisSet
 
-/** @property CPTAxisArray axes
+/** @property nullable CPTAxisArray *axes
  *  @brief The axes in the axis set.
  **/
 @synthesize axes;
 
-/** @property CPTLineStyle *borderLineStyle
+/** @property nullable CPTLineStyle *borderLineStyle
  *  @brief The line style for the layer border.
  *  If @nil, the border is not drawn.
  **/
@@ -36,7 +36,7 @@
  *  @param newFrame The frame rectangle.
  *  @return The initialized CPTAxisSet object.
  **/
--(instancetype)initWithFrame:(CGRect)newFrame
+-(nonnull instancetype)initWithFrame:(CGRect)newFrame
 {
     if ( (self = [super initWithFrame:newFrame]) ) {
         axes            = @[];
@@ -51,7 +51,7 @@
 
 /// @cond
 
--(instancetype)initWithLayer:(id)layer
+-(nonnull instancetype)initWithLayer:(nonnull id)layer
 {
     if ( (self = [super initWithLayer:layer]) ) {
         CPTAxisSet *theLayer = (CPTAxisSet *)layer;
@@ -69,7 +69,7 @@
 
 /// @cond
 
--(void)encodeWithCoder:(NSCoder *)coder
+-(void)encodeWithCoder:(nonnull NSCoder *)coder
 {
     [super encodeWithCoder:coder];
 
@@ -77,13 +77,27 @@
     [coder encodeObject:self.borderLineStyle forKey:@"CPTAxisSet.borderLineStyle"];
 }
 
--(instancetype)initWithCoder:(NSCoder *)coder
+-(nullable instancetype)initWithCoder:(nonnull NSCoder *)coder
 {
     if ( (self = [super initWithCoder:coder]) ) {
-        axes            = [[coder decodeObjectForKey:@"CPTAxisSet.axes"] copy];
-        borderLineStyle = [[coder decodeObjectForKey:@"CPTAxisSet.borderLineStyle"] copy];
+        axes = [[coder decodeObjectOfClasses:[NSSet setWithArray:@[[NSArray class], [CPTAxis class]]]
+                                      forKey:@"CPTAxisSet.axes"] copy];
+        borderLineStyle = [[coder decodeObjectOfClass:[CPTLineStyle class]
+                                               forKey:@"CPTAxisSet.borderLineStyle"] copy];
     }
     return self;
+}
+
+/// @endcond
+
+#pragma mark -
+#pragma mark NSSecureCoding Methods
+
+/// @cond
+
++(BOOL)supportsSecureCoding
+{
+    return YES;
 }
 
 /// @endcond
@@ -110,7 +124,7 @@
  **/
 -(void)relabelAxes
 {
-    CPTAxisArray theAxes = self.axes;
+    CPTAxisArray *theAxes = self.axes;
 
     [theAxes makeObjectsPerformSelector:@selector(setNeedsLayout)];
     [theAxes makeObjectsPerformSelector:@selector(setNeedsRelabel)];
@@ -129,7 +143,7 @@
  *  @param idx The zero-based index.
  *  @return The axis matching the given coordinate and index, or @nil if no match is found.
  **/
--(CPTAxis *)axisForCoordinate:(CPTCoordinate)coordinate atIndex:(NSUInteger)idx
+-(nullable CPTAxis *)axisForCoordinate:(CPTCoordinate)coordinate atIndex:(NSUInteger)idx
 {
     CPTAxis *foundAxis = nil;
     NSUInteger count   = 0;
@@ -168,7 +182,7 @@
  *  @param interactionPoint The coordinates of the interaction.
  *  @return Whether the event was handled or not.
  **/
--(BOOL)pointingDeviceDownEvent:(CPTNativeEvent *)event atPoint:(CGPoint)interactionPoint
+-(BOOL)pointingDeviceDownEvent:(nonnull CPTNativeEvent *)event atPoint:(CGPoint)interactionPoint
 {
     for ( CPTAxis *axis in self.axes ) {
         if ( [axis pointingDeviceDownEvent:event atPoint:interactionPoint] ) {
@@ -192,7 +206,7 @@
  *  @param interactionPoint The coordinates of the interaction.
  *  @return Whether the event was handled or not.
  **/
--(BOOL)pointingDeviceUpEvent:(CPTNativeEvent *)event atPoint:(CGPoint)interactionPoint
+-(BOOL)pointingDeviceUpEvent:(nonnull CPTNativeEvent *)event atPoint:(CGPoint)interactionPoint
 {
     for ( CPTAxis *axis in self.axes ) {
         if ( [axis pointingDeviceUpEvent:event atPoint:interactionPoint] ) {
@@ -210,7 +224,7 @@
 
 /// @cond
 
--(void)setAxes:(CPTAxisArray)newAxes
+-(void)setAxes:(nullable CPTAxisArray *)newAxes
 {
     if ( newAxes != axes ) {
         for ( CPTAxis *axis in axes ) {
@@ -231,7 +245,7 @@
     }
 }
 
--(void)setBorderLineStyle:(CPTLineStyle *)newLineStyle
+-(void)setBorderLineStyle:(nullable CPTLineStyle *)newLineStyle
 {
     if ( newLineStyle != borderLineStyle ) {
         borderLineStyle = [newLineStyle copy];

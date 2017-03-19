@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension UIView {
     @IBInspectable var cornerRadius: CGFloat {
@@ -39,10 +40,10 @@ extension UIView {
     
     @IBInspectable var borderColor: UIColor {
         get {
-            return UIColor(CGColor: layer.borderColor!)
+            return UIColor(cgColor: layer.borderColor!)
         }
         set {
-            layer.borderColor = newValue.CGColor
+            layer.borderColor = newValue.cgColor
         }
     }
 }
@@ -50,10 +51,10 @@ extension UIView {
 extension UIButton {
     @IBInspectable var aspectFit: Bool {
         get {
-            return imageView?.contentMode == UIViewContentMode.ScaleAspectFit
+            return imageView?.contentMode == UIViewContentMode.scaleAspectFit
         }
         set {
-            imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+            imageView?.contentMode = UIViewContentMode.scaleAspectFit
         }
     }
 }

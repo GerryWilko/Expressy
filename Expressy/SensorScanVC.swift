@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import UIKit
 import CoreBluetooth
 
 class SensorScanVC: UITableViewController {
     static var deviceList:NSMutableOrderedSet = []
-    private static var currentTableView:UITableView!
+    fileprivate static var currentTableView:UITableView!
     
     required init?(coder aDecoder:NSCoder) {
         super.init(coder: aDecoder)
@@ -29,22 +30,22 @@ class SensorScanVC: UITableViewController {
         
         let refreshControl = UIRefreshControl()
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to Refresh")
-        refreshControl.addTarget(self, action: Selector("scanAgain:"), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: #selector(SensorScanVC.scanAgain(_:)), for: UIControlEvents.valueChanged)
         self.tableView.addSubview(refreshControl)
     }
     
-    @IBAction func cancel(sender: AnyObject) {
+    @IBAction func cancel(_ sender: AnyObject) {
         SensorConnectionManager.getConnectionManager().stop()
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
-    func scanAgain(refreshControl:UIRefreshControl) {
+    func scanAgain(_ refreshControl:UIRefreshControl) {
         SensorConnectionManager.getConnectionManager().scan()
         refreshControl.endRefreshing()
     }
     
-    class func addDevice(device:CBPeripheral) {
-        deviceList.addObject(device)
+    class func addDevice(_ device:CBPeripheral) {
+        deviceList.add(device)
         reloadData()
     }
     
@@ -52,43 +53,43 @@ class SensorScanVC: UITableViewController {
         currentTableView.reloadData()
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return SensorScanVC.deviceList.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let peripheral = SensorScanVC.deviceList[indexPath.row] as! CBPeripheral
         let cell = UITableViewCell()
         
         cell.textLabel!.text = peripheral.name
-        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         SensorConnectionManager.getConnectionManager().stop()
         let peripheral = SensorScanVC.deviceList[indexPath.row] as! CBPeripheral
         SensorConnectionManager.getConnectionManager().connectPeripheral(peripheral, completedCallback: { (error) -> Void in
             var alert:UIAlertController
             
             if let e = error {
-                if (e.userInfo["message"] != nil) {
-                    alert = UIAlertController(title: "Connection Failed", message: error!.userInfo["message"] as? String, preferredStyle: UIAlertControllerStyle.Alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                if (!e.localizedDescription.isEmpty) {
+                    alert = UIAlertController(title: "Connection Failed", message: e.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
                 } else {
-                    alert = UIAlertController(title: "Connection Failed", message: "Unable to connect to sensor. Please try again.", preferredStyle: UIAlertControllerStyle.Alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                    alert = UIAlertController(title: "Connection Failed", message: "Unable to connect to sensor. Please try again.", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
                 }
             } else {
-                alert = UIAlertController(title: "Connection Success", message: "Sensor is now connected and streaming.", preferredStyle: UIAlertControllerStyle.Alert)
+                alert = UIAlertController(title: "Connection Success", message: "Sensor is now connected and streaming.", preferredStyle: UIAlertControllerStyle.alert)
                 
-                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: {(action) -> Void in
-                    self.performSegueWithIdentifier("unwindToMenuSegue", sender: self)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: {(action) -> Void in
+                    self.performSegue(withIdentifier: "unwindToMenuSegue", sender: self)
                 }))
             }
             
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         })
     }
 }

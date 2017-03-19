@@ -7,18 +7,23 @@
 
 @class CPTTradingRangePlot;
 
+/**
+ *  @brief Trading range plot bindings.
+ **/
+typedef NSString *CPTTradingRangePlotBinding cpt_swift_struct;
+
 /// @ingroup plotBindingsTradingRangePlot
 /// @{
-extern NSString *__nonnull const CPTTradingRangePlotBindingXValues;
-extern NSString *__nonnull const CPTTradingRangePlotBindingOpenValues;
-extern NSString *__nonnull const CPTTradingRangePlotBindingHighValues;
-extern NSString *__nonnull const CPTTradingRangePlotBindingLowValues;
-extern NSString *__nonnull const CPTTradingRangePlotBindingCloseValues;
-extern NSString *__nonnull const CPTTradingRangePlotBindingIncreaseFills;
-extern NSString *__nonnull const CPTTradingRangePlotBindingDecreaseFills;
-extern NSString *__nonnull const CPTTradingRangePlotBindingLineStyles;
-extern NSString *__nonnull const CPTTradingRangePlotBindingIncreaseLineStyles;
-extern NSString *__nonnull const CPTTradingRangePlotBindingDecreaseLineStyles;
+extern CPTTradingRangePlotBinding __nonnull const CPTTradingRangePlotBindingXValues;
+extern CPTTradingRangePlotBinding __nonnull const CPTTradingRangePlotBindingOpenValues;
+extern CPTTradingRangePlotBinding __nonnull const CPTTradingRangePlotBindingHighValues;
+extern CPTTradingRangePlotBinding __nonnull const CPTTradingRangePlotBindingLowValues;
+extern CPTTradingRangePlotBinding __nonnull const CPTTradingRangePlotBindingCloseValues;
+extern CPTTradingRangePlotBinding __nonnull const CPTTradingRangePlotBindingIncreaseFills;
+extern CPTTradingRangePlotBinding __nonnull const CPTTradingRangePlotBindingDecreaseFills;
+extern CPTTradingRangePlotBinding __nonnull const CPTTradingRangePlotBindingLineStyles;
+extern CPTTradingRangePlotBinding __nonnull const CPTTradingRangePlotBindingIncreaseLineStyles;
+extern CPTTradingRangePlotBinding __nonnull const CPTTradingRangePlotBindingDecreaseLineStyles;
 /// @}
 
 /**
@@ -56,7 +61,7 @@ typedef NS_ENUM (NSInteger, CPTTradingRangePlotField) {
  *  @param indexRange The range of the data indexes of interest.
  *  @return An array of fills.
  **/
--(nullable CPTFillArray)increaseFillsForTradingRangePlot:(nonnull CPTTradingRangePlot *)plot recordIndexRange:(NSRange)indexRange;
+-(nullable CPTFillArray *)increaseFillsForTradingRangePlot:(nonnull CPTTradingRangePlot *)plot recordIndexRange:(NSRange)indexRange;
 
 /** @brief @optional Gets the fill used with a candlestick plot when close >= open for the given plot.
  *  This method will not be called if
@@ -73,7 +78,7 @@ typedef NS_ENUM (NSInteger, CPTTradingRangePlotField) {
  *  @param plot The trading range plot.
  *  @param indexRange The range of the data indexes of interest.
  **/
--(nullable CPTFillArray)decreaseFillsForTradingRangePlot:(nonnull CPTTradingRangePlot *)plot recordIndexRange:(NSRange)indexRange;
+-(nullable CPTFillArray *)decreaseFillsForTradingRangePlot:(nonnull CPTTradingRangePlot *)plot recordIndexRange:(NSRange)indexRange;
 
 /** @brief @optional Gets the fill used with a candlestick plot when close < open for the given plot.
  *  This method will not be called if
@@ -96,7 +101,7 @@ typedef NS_ENUM (NSInteger, CPTTradingRangePlotField) {
  *  @param indexRange The range of the data indexes of interest.
  *  @return An array of line styles.
  **/
--(nullable CPTLineStyleArray)lineStylesForTradingRangePlot:(nonnull CPTTradingRangePlot *)plot recordIndexRange:(NSRange)indexRange;
+-(nullable CPTLineStyleArray *)lineStylesForTradingRangePlot:(nonnull CPTTradingRangePlot *)plot recordIndexRange:(NSRange)indexRange;
 
 /** @brief @optional Gets the line style used to draw candlestick or OHLC symbols for the given trading range plot.
  *  This method will not be called if
@@ -114,7 +119,7 @@ typedef NS_ENUM (NSInteger, CPTTradingRangePlotField) {
  *  @param indexRange The range of the data indexes of interest.
  *  @return An array of line styles.
  **/
--(nullable CPTLineStyleArray)increaseLineStylesForTradingRangePlot:(nonnull CPTTradingRangePlot *)plot recordIndexRange:(NSRange)indexRange;
+-(nullable CPTLineStyleArray *)increaseLineStylesForTradingRangePlot:(nonnull CPTTradingRangePlot *)plot recordIndexRange:(NSRange)indexRange;
 
 /** @brief @optional Gets the line style used to outline candlestick symbols when close >= open for the given trading range plot.
  *  This method will not be called if
@@ -132,7 +137,7 @@ typedef NS_ENUM (NSInteger, CPTTradingRangePlotField) {
  *  @param indexRange The range of the data indexes of interest.
  *  @return An array of line styles.
  **/
--(nullable CPTLineStyleArray)decreaseLineStylesForTradingRangePlot:(nonnull CPTTradingRangePlot *)plot recordIndexRange:(NSRange)indexRange;
+-(nullable CPTLineStyleArray *)decreaseLineStylesForTradingRangePlot:(nonnull CPTTradingRangePlot *)plot recordIndexRange:(NSRange)indexRange;
 
 /** @brief @optional Gets the line style used to outline candlestick symbols when close < open for the given trading range plot.
  *  This method will not be called if

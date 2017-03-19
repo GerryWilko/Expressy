@@ -21,11 +21,11 @@ class Vector3D {
         return sqrt(pow(x, 2) + pow(y, 2) + pow(z, 2))
     }
     
-    func angleBetween(other:Vector3D) -> Float {
+    func angleBetween(_ other:Vector3D) -> Float {
         return atan2(self.crossProduct(other).magnitude(), self.dotProduct(other))
     }
     
-    func crossProduct(right:Vector3D) -> Vector3D {
+    func crossProduct(_ right:Vector3D) -> Vector3D {
         let x = self.y * right.z - self.z * right.y
         let y = self.z * right.x - self.x * right.z
         let z = self.x * right.y - self.y * right.x
@@ -33,13 +33,21 @@ class Vector3D {
         return Vector3D(x: x, y: y, z: z)
     }
     
-    func dotProduct(right:Vector3D) -> Float {
+    func dotProduct(_ right:Vector3D) -> Float {
         return x * right.x + y * right.y + z * right.z
     }
 }
 
 struct Vector4D {
     let x:Float, y:Float, z:Float, w:Float
+}
+
+func + (left: Vector3D, right: Vector3D) -> Vector3D {
+    return Vector3D(x: left.x + right.x, y: left.y + right.y, z: left.z + right.z)
+}
+
+func - (left: Vector3D, right: Vector3D) -> Vector3D {
+    return Vector3D(x: left.x - right.x, y: left.y - right.y, z: left.z - right.z)
 }
 
 func * (left: Vector3D, right: Vector4D) -> Vector3D {

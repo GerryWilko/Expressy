@@ -8,27 +8,27 @@
 /**
  *  @brief An array of fills.
  **/
-typedef NSArray<CPTFill *> *CPTFillArray;
+typedef NSArray<CPTFill *> CPTFillArray;
 
 /**
  *  @brief A mutable array of fills.
  **/
-typedef NSMutableArray<CPTFill *> *CPTMutableFillArray;
+typedef NSMutableArray<CPTFill *> CPTMutableFillArray;
 
-@interface CPTFill : NSObject<NSCopying, NSCoding>
+@interface CPTFill : NSObject<NSCopying, NSCoding, NSSecureCoding>
 
 /// @name Factory Methods
 /// @{
-+(nonnull instancetype)fillWithColor:(nullable CPTColor *)aColor;
-+(nonnull instancetype)fillWithGradient:(nullable CPTGradient *)aGradient;
-+(nonnull instancetype)fillWithImage:(nullable CPTImage *)anImage;
++(nonnull instancetype)fillWithColor:(nonnull CPTColor *)aColor;
++(nonnull instancetype)fillWithGradient:(nonnull CPTGradient *)aGradient;
++(nonnull instancetype)fillWithImage:(nonnull CPTImage *)anImage;
 /// @}
 
 /// @name Initialization
 /// @{
--(nonnull instancetype)initWithColor:(nullable CPTColor *)aColor;
--(nonnull instancetype)initWithGradient:(nullable CPTGradient *)aGradient;
--(nonnull instancetype)initWithImage:(nullable CPTImage *)anImage;
+-(nonnull instancetype)initWithColor:(nonnull CPTColor *)aColor;
+-(nonnull instancetype)initWithGradient:(nonnull CPTGradient *)aGradient;
+-(nonnull instancetype)initWithImage:(nonnull CPTImage *)anImage;
 /// @}
 
 @end
