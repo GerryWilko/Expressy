@@ -8,5 +8,5 @@ Expressiveness, which we define as the extent to which rich and complex intent c
 
 ### Running the Application
 
-1. Download Big Buck Bunny video from `http://bbb3d.renderfarming.net/download.html` and place in `ExpressiveTouch\bbb_sunflower.mp4`.
-2. Now you can open the `ExpressiveTouch.xcworkspace` workspace and deploy it to your device.
+1. Download Big Buck Bunny video from `http://bbb3d.renderfarming.net/download.html` and place in `Expressy\bbb_sunflower.mp4`.
+2. Now you can open the `Expressy.xcworkspace` workspace and deploy it to your device.
