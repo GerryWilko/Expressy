@@ -365,8 +365,9 @@
 				TargetAttributes = {
 					D517508919E9831C0076F6FA = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = X7BDHAQC53;
+						DevelopmentTeam = J3676MPZ85;
 						LastSwiftMigration = 0820;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -624,8 +625,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = X7BDHAQC53;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = J3676MPZ85;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -640,7 +641,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.ncl.OpenLab.Expressy;
 				PRODUCT_NAME = Expressy;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "f46ad834-b97a-4ec1-8671-a54816cd598d";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: *";
 				SWIFT_OBJC_BRIDGING_HEADER = "Expressy/Expressy-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				VALID_ARCHS = "armv7 armv7s arm64";
@@ -655,7 +657,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = X7BDHAQC53;
+				DEVELOPMENT_TEAM = J3676MPZ85;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -670,7 +672,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.ncl.OpenLab.Expressy;
 				PRODUCT_NAME = Expressy;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "f46ad834-b97a-4ec1-8671-a54816cd598d";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: *";
 				SWIFT_OBJC_BRIDGING_HEADER = "Expressy/Expressy-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;

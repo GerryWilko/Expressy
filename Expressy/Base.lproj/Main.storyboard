@@ -392,7 +392,7 @@
                             <outlet property="delegate" destination="xfT-zT-XkF" id="lTH-Nu-fx6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Expressive Touch" id="yrq-DK-ak8">
+                    <navigationItem key="navigationItem" title="Expressy" id="yrq-DK-ak8">
                         <barButtonItem key="leftBarButtonItem" enabled="NO" title="Connect Device" id="A7W-Tf-8Yq">
                             <connections>
                                 <segue destination="FZc-4D-lmh" kind="presentation" identifier="connectDeviceSegue" modalPresentationStyle="pageSheet" id="Gtl-wb-T9r"/>

@@ -71,12 +71,6 @@ class SensorData {
         return "Time,ax,ay,az,gx,gy,gz,gravx,gravy,gravz,qx,qy,qz,qw,Touch,Touch/Flick Force"
     }
     
-    /// Function to retrieve the accelerometer values with the estimation of gravity removed providing 'pure' acceleration.
-    /// - returns: Vector of 'pure' accelerometer values.
-    func getAccNoGrav() -> Vector3D {
-        return Vector3D(x: acc.x - grav.x, y: acc.y - grav.y, z: acc.z - grav.z)
-    }
-    
     /// Function to pass touch down event, places mark in sensor data for debugging purposes.
     /// - parameter touchForce: Value denoting force screen was struck.
     func touchDown(_ touchForce:Float) {

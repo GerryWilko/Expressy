@@ -15,8 +15,22 @@ class PlaneModelVC: UIViewController {
     @IBOutlet weak var rollLbl: UILabel!
     @IBOutlet weak var pitchLbl: UILabel!
     
+    fileprivate var detector:EXTInteractionDetector
     fileprivate var timer:Timer!
     fileprivate var scnView:SCNView!
+    
+    required init?(coder aDecoder: NSCoder) {
+        detector = EXTInteractionDetector(dataCache: SensorProcessor.dataCache)
+        super.init(coder: aDecoder)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        detector.startDetection()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        detector.stopDetection()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +76,7 @@ class PlaneModelVC: UIViewController {
         scnView.gestureRecognizers?.append(tapGesture)
         
         SensorProcessor.dataCache.subscribe(dataCallback)
+        detector.subscribe(.metrics, callback: detectorCallback)
     }
     
     func handleTap(_ gestureRecognize: UIGestureRecognizer) {
@@ -101,10 +116,12 @@ class PlaneModelVC: UIViewController {
         let ship = scnView.scene!.rootNode.childNode(withName: "ship", recursively: true)!
         
         ship.orientation = SCNQuaternion(x: -data.q.y, y: -data.q.x, z: data.q.z, w: data.q.w)
-        
-        forceLbl.text = "Force: \(data.linAcc.magnitude())"
-        rollLbl.text = "Roll: \(data.gyro.x)"
-        pitchLbl.text = "Pitch: \(data.gyro.y)"
+    }
+    
+    func detectorCallback(data:Float?) {
+        forceLbl.text = "Force: \(String(format: "%.2f", detector.currentForce))"
+        rollLbl.text = "Roll: \(String(format: "%.2f", detector.currentRoll))"
+        pitchLbl.text = "Pitch: \(String(format: "%.2f", detector.currentPitch))"
     }
     
     override var shouldAutorotate : Bool {

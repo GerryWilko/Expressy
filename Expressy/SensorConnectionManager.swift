@@ -180,7 +180,7 @@ class SensorConnectionManager: NSObject, CBCentralManagerDelegate, CBPeripheralM
         let sampleRateUUID = CBUUID(string: "0000000A-0008-A8BA-E311-F48C90364D99")
         
         if let sampleRateCharac = service.characteristics?.filter({$0.uuid == sampleRateUUID}).first {
-            let sampleRateMessage = Data(bytes: [0x00, 0x0a], count: 2)
+            let sampleRateMessage = Data(bytes: [0x00, 0x32], count: 2)
             peripheral.writeValue(sampleRateMessage, for: sampleRateCharac, type: .withoutResponse)
         }
         

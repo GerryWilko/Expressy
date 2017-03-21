@@ -195,7 +195,7 @@ class EXTInteractionDetector {
     /// - parameter Sensor: data to be analysed.
     /// - returns: New calculation for instantaneous force.
     fileprivate func calculateForce(_ data:SensorData) -> Float {
-        return data.getAccNoGrav().magnitude()
+        return data.linAcc.magnitude()
     }
     
     func calculateTouchForce(_ touchDownTime:TimeInterval) -> Float {
@@ -204,8 +204,8 @@ class EXTInteractionDetector {
         var force:Float = 0.0
         
         for d in data {
-            if d.getAccNoGrav().magnitude() > force {
-                force = d.getAccNoGrav().magnitude()
+            if d.linAcc.magnitude() > force {
+                force = d.linAcc.magnitude()
             }
         }
         
@@ -222,8 +222,8 @@ class EXTInteractionDetector {
         var maxMag:Float = 0.0
         
         for d in data {
-            if (d.getAccNoGrav().magnitude() > maxMag) {
-                maxMag = d.getAccNoGrav().magnitude()
+            if (d.linAcc.magnitude() > maxMag) {
+                maxMag = d.linAcc.magnitude()
             }
         }
         
